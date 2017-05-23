@@ -1,0 +1,1933 @@
+
+
+\chapter{Exterior product \label{sec:Exterior-product}}
+
+In this chapter I introduce one of the most useful constructions in
+basic linear algebra --- the exterior product, denoted by $\mathbf{a}\wedge\mathbf{b}$,
+where $\mathbf{a}$ and $\mathbf{b}$ are vectors from a space $V$.
+The basic idea of the exterior product is that we would like to define
+an \emph{antisymmetric} and bilinear product of vectors. In other
+words, we would like to have the properties $\mathbf{a}\wedge\mathbf{b}=-\mathbf{b}\wedge\mathbf{a}$
+and $\mathbf{a}\wedge(\mathbf{b}+\lambda\mathbf{c})=\mathbf{a}\wedge\mathbf{b}+\lambda\mathbf{a}\wedge\mathbf{c}$. 
+
+
+\section{Motivation\label{sub:Motivation-for-exterior}}
+
+Here I discuss, at some length, the motivation for introducing the
+exterior product. The motivation is geometrical and comes from considering
+the properties of areas and volumes in the framework of elementary
+Euclidean geometry. I will proceed with a formal definition of the
+exterior product in Sec.~\ref{sub:Definition-of-the-exterior}. In
+order to understand the definition explained there, it is not necessary
+to use this geometric motivation because the definition will be purely
+algebraic. Nevertheless, I feel that this motivation will be helpful
+for some readers.
+
+
+\subsection{Two-dimen\-sion\-al oriented area\label{sub:Two-dimensional-oriented}}
+
+We work in a two-dimen\-sion\-al Euclidean space, such as that considered
+in elementary geometry. We assume that the usual geometrical definition
+of the area of a parallelogram is known.
+
+Consider the area $Ar(\mathbf{a},\mathbf{b})$ of a parallelogram
+spanned by vectors $\mathbf{a}$ and $\mathbf{b}$. It is known from
+elementary geometry that $Ar(\mathbf{a},\mathbf{b})=\left|\mathbf{a}\right|\cdot\left|\mathbf{b}\right|\cdot\sin\alpha$
+where $\alpha$ is the angle between the two vectors, which is always
+between 0 and $\pi$ (we do not take into account the orientation
+of this angle). Thus defined, the area $Ar$ is always non-negative.
+
+Let us investigate $Ar(\mathbf{a},\mathbf{b})$ as a function of the
+vectors $\mathbf{a}$ and $\mathbf{b}$. If we stretch the vector
+$\mathbf{a}$, say, by factor 2, the area is also increased by factor
+2. However, if we multiply $\mathbf{a}$ by the number $-2$, the
+area will be multiplied by $2$ rather than by $-2$:\[
+Ar(\mathbf{a},2\mathbf{b})=Ar(\mathbf{a},-2\mathbf{b})=2Ar(\mathbf{a},\mathbf{b}).\]
+ Similarly, for some vectors $\mathbf{a},\mathbf{b},\mathbf{c}$ such
+as shown in Fig.~\ref{fig:The-area-of2}, we have $Ar(\mathbf{a},\mathbf{b}+\mathbf{c})=Ar(\mathbf{a},\mathbf{b})+Ar(\mathbf{a},\mathbf{c})$.
+However, if we consider $\mathbf{b}=-\mathbf{c}$ then we obtain \begin{align*}
+Ar(\mathbf{a},\mathbf{b}+\mathbf{c}) & =Ar(\mathbf{a},0)=0\\
+ & \neq Ar(\mathbf{a},\mathbf{b})+Ar(\mathbf{a},-\mathbf{b})=2Ar(\mathbf{a},\mathbf{b}).\end{align*}
+
+
+Hence, the area $Ar(\mathbf{a},\mathbf{b})$ is, strictly speaking,
+\emph{not} a linear function of the vectors $\mathbf{a}$ and $\mathbf{b}$:
+\begin{align*}
+Ar(\lambda\mathbf{a},\mathbf{b}) & =\left|\lambda\right|Ar(\mathbf{a},\mathbf{b})\neq\lambda\, Ar(\mathbf{a},\mathbf{b}),\\
+Ar(\mathbf{a},\mathbf{b}+\mathbf{c}) & \neq Ar(\mathbf{a},\mathbf{b})+Ar(\mathbf{a},\mathbf{c}).\end{align*}
+Nevertheless, as we have seen, the properties of linearity hold in
+\emph{some} cases. If we look closely at those cases, we find that
+linearly holds precisely when we do not change the orientation of
+the vectors. It would be more convenient if the linearity properties
+held in all cases. 
+
+The trick is to replace the area function $Ar$ with the \textbf{oriented
+area}\index{oriented area} function $A(\mathbf{a},\mathbf{b})$.
+Namely, we define the function $A(\mathbf{a},\mathbf{b})$ by \[
+A(\mathbf{a},\mathbf{b})=\pm\left|\mathbf{a}\right|\cdot\left|\mathbf{b}\right|\cdot\sin\alpha,\]
+where the sign is chosen positive when the angle $\alpha$ is measured
+from the vector $\mathbf{a}$ to the vector $\mathbf{b}$ in the counterclockwise
+direction, and negative otherwise.
+
+
+\paragraph{Statement:}
+
+The oriented area $A(\mathbf{a},\mathbf{b})$ of a parallelogram spanned
+by the vectors $\mathbf{a}$ and $\mathbf{b}$ in the two-dimen\-sion\-al
+Euclidean space is an antisymmetric and bilinear function of the vectors
+$\mathbf{a}$ and $\mathbf{b}$:\begin{align*}
+A(\mathbf{a},\mathbf{b}) & =-A(\mathbf{b},\mathbf{a}),\\
+A(\lambda\mathbf{a},\mathbf{b}) & =\lambda\, A(\mathbf{a},\mathbf{b}),\\
+A(\mathbf{a},\mathbf{b}+\mathbf{c}) & =A(\mathbf{a},\mathbf{b})+A(\mathbf{a},\mathbf{c}).\qquad\text{(the sum law)}\end{align*}
+
+
+%
+\begin{figure}
+\begin{centering}
+\psfrag{0}{0}\psfrag{A}{$A$} \psfrag{B}{$B$} \psfrag{D}{$D$} \psfrag{C}{$C$} \psfrag{E}{$E$} \psfrag{v1}{$\mathbf{b}$} \psfrag{v2}{$\mathbf{a}$} \psfrag{v1lambda}{$\mathbf{b}+\alpha\mathbf{a}$}\includegraphics[width=3in]{./figs/v1v2-vol.eps}
+\par\end{centering}
+
+\caption{The area of the parallelogram $0ACB$ spanned by $\mathbf{a}$ and
+$\mathbf{b}$ is equal to the area of the parallelogram $0ADE$ spanned
+by $\mathbf{a}$ and $\mathbf{b}+\alpha\mathbf{a}$ due to the equality
+of areas $ACD$ and $0BE$.\label{fig:The-area-of1}}
+
+\end{figure}
+
+
+
+\subparagraph{Proof:}
+
+The first property is a straightforward consequence of the sign rule
+in the definition of $A$.
+
+Proving the second property requires considering the cases $\lambda>0$
+and $\lambda<0$ separately. If $\lambda>0$ then the orientation
+of the pair $\left(\mathbf{a},\mathbf{b}\right)$ remains the same
+and then it is clear that the property holds: When we rescale $\mathbf{a}$
+by $\lambda$, the parallelogram is stretched and its area increases
+by factor $\lambda$. If $\lambda<0$ then the orientation of the
+parallelogram is reversed and the oriented area changes sign.
+
+To prove the sum law, we consider  two cases: either $\mathbf{c}$
+is parallel to $\mathbf{a}$ or it is not. If $\mathbf{c}$ is parallel
+to $\mathbf{a}$, say $\mathbf{c}=\alpha\mathbf{a}$, we use Fig.~\ref{fig:The-area-of1}
+to show that $A(\mathbf{a},\mathbf{b}+\lambda\mathbf{a})=A(\mathbf{a},\mathbf{b})$,
+which yields the desired statement since $A(\mathbf{a},\lambda\mathbf{a})=0$.
+If $\mathbf{c}$ is not parallel to $\mathbf{a}$, we use Fig.~\ref{fig:The-area-of2}
+to show that $A(\mathbf{a},\mathbf{b}+\mathbf{c})=A(\mathbf{a},\mathbf{b})+A(\mathbf{a},\mathbf{c})$.
+Analogous geometric constructions can be made for different possible
+orientations of the vectors $\mathbf{a}$, $\mathbf{b}$, $\mathbf{c}$.\hfill{}$\blacksquare$
+
+%
+\begin{figure}
+\begin{centering}
+\psfrag{A}{$A$} \psfrag{B}{$B$} \psfrag{D}{$D$} \psfrag{C}{$C$} \psfrag{F}{$F$} \psfrag{E}{$E$}  \psfrag{a}{$\mathbf{a}$} \psfrag{b}{$\mathbf{b}$} \psfrag{c}{$\mathbf{c}$}\psfrag{b+c}{$\mathbf{b}+\mathbf{c}$}\includegraphics[width=3in]{./figs/2darea}
+\par\end{centering}
+
+\caption{The area of the parallelogram spanned by $\mathbf{a}$ and $\mathbf{b}$
+(equal to the area of $CEFD$) plus the area of the parallelogram
+spanned by $\mathbf{a}$ and $\mathbf{c}$ (the area of $ACDB$) equals
+the area of the parallelogram spanned by $\mathbf{a}$ and $\mathbf{b}+\mathbf{c}$
+(the area of $AEFB$) because of the equality of the areas of $ACE$
+and $BDF$.\label{fig:The-area-of2}}
+
+\end{figure}
+
+
+It is relatively easy to compute the oriented area because of its
+algebraic properties. Suppose the vectors $\mathbf{a}$ and $\mathbf{b}$
+are given through their components in a standard basis $\left\{ \mathbf{e}_{1},\mathbf{e}_{2}\right\} $,
+for instance \[
+\mathbf{a}=\alpha_{1}\mathbf{e}_{1}+\alpha_{2}\mathbf{e}_{2},\quad\mathbf{b}=\beta_{1}\mathbf{e}_{1}+\beta_{2}\mathbf{e}_{2}.\]
+We assume, of course, that the vectors $\mathbf{e}_{1}$ and $\mathbf{e}_{2}$
+are orthogonal to each other and have unit length, as is appropriate
+in a Euclidean space. We also assume that the right angle is measured
+from $\mathbf{e}_{1}$ to $\mathbf{e}_{2}$ in the counter-clockwise
+direction, so that $A(\mathbf{e}_{1},\mathbf{e}_{2})=+1$. Then we
+use the Statement and the properties $A(\mathbf{e}_{1},\mathbf{e}_{1})=0$,
+$A(\mathbf{e}_{1},\mathbf{e}_{2})=1$, $A(\mathbf{e}_{2},\mathbf{e}_{2})=0$
+to compute\begin{align*}
+A(\mathbf{a},\mathbf{b}) & =A(\alpha_{1}\mathbf{e}_{1}+\alpha_{2}\mathbf{e}_{2},\beta_{1}\mathbf{e}_{1}+\beta_{2}\mathbf{e}_{2})\\
+ & =\alpha_{1}\beta_{2}A(\mathbf{e}_{1},\mathbf{e}_{2})+\alpha_{2}\beta_{1}A(\mathbf{e}_{2},\mathbf{e}_{1})\\
+ & =\alpha_{1}\beta_{2}-\alpha_{2}\beta_{1}.\end{align*}
+
+
+The ordinary (unoriented) area is then obtained as the absolute value
+of the oriented area, $Ar(\mathbf{a},\mathbf{b})=\left|A(\mathbf{a},\mathbf{b})\right|$.
+It turns out that the oriented area, due to its strict linearity properties,
+is a much more convenient and powerful construction than the unoriented
+area.
+
+
+\subsection{Parallelograms in $\mathbb{R}^{3}$ and in $\mathbb{R}^{n}$ \label{sub:Area-of-two-dimensional-parallelograms}}
+
+Let us now work in the Euclidean space $\mathbb{R}^{3}$ with a standard
+basis $\left\{ \mathbf{e}_{1},\mathbf{e}_{2},\mathbf{e}_{3}\right\} $.
+We can similarly try to characterize the area of a parallelogram spanned
+by two vectors $\mathbf{a}$, $\mathbf{b}$. It is, however, not possible
+to characterize the orientation of the area simply by a sign. We also
+cannot use a geometric construction such as that in Fig.~\ref{fig:The-area-of2};
+in fact it is \emph{not true} in three dimensions that the area spanned
+by $\mathbf{a}$ and $\mathbf{b}+\mathbf{c}$ is equal to the sum
+of $Ar(\mathbf{a},\mathbf{b})$ and $Ar(\mathbf{a},\mathbf{c})$.
+Can we still define some kind of {}``oriented area'' that obeys
+the sum law?
+
+Let us consider Fig.~\ref{fig:The-area-of2} as a figure showing
+the \emph{projection} of the areas of the three parallelograms onto
+some coordinate plane, say, the plane of the basis vectors $\left\{ \mathbf{e}_{1},\mathbf{e}_{2}\right\} $.
+It is straightforward to see that the projections of the areas obey
+the sum law as oriented areas.
+
+
+\paragraph{Statement:}
+
+Let $\mathbf{a},\mathbf{b}$ be two vectors in $\mathbb{R}^{3}$,
+and let $P(\mathbf{a},\mathbf{b})$ be the parallelogram spanned by
+these vectors. Denote by $P(\mathbf{a},\mathbf{b})_{\mathbf{e}_{1},\mathbf{e}_{2}}$
+the parallelogram within the coordinate plane $\text{Span}\left\{ \mathbf{e}_{1},\mathbf{e}_{2}\right\} $
+obtained by projecting $P(\mathbf{a},\mathbf{b})$ onto that coordinate
+plane, and similarly for the other two coordinate planes. Denote by
+$A(\mathbf{a},\mathbf{b})_{\mathbf{e}_{1},\mathbf{e}_{2}}$ the oriented
+area of $P(\mathbf{a},\mathbf{b})_{\mathbf{e}_{1},\mathbf{e}_{2}}$.
+Then $A(\mathbf{a},\mathbf{b})_{\mathbf{e}_{1},\mathbf{e}_{2}}$ is
+a bilinear, antisymmetric function of $\mathbf{a}$ and $\mathbf{b}$.
+
+
+\subparagraph{Proof:}
+
+The projection onto the coordinate plane of $\mathbf{e}_{1},\mathbf{e}_{2}$
+is a linear transformation. Hence, the vector $\mathbf{a}+\lambda\mathbf{b}$
+is projected onto the sum of the projections of $\mathbf{a}$ and
+$\lambda\mathbf{b}$. Then we apply the arguments in the proof of
+Statement~\ref{sub:Two-dimensional-oriented} to the \emph{projections}
+of the vectors; in particular, Figs.~\ref{fig:The-area-of1} and~\ref{fig:The-area-of2}
+are interpreted as showing the projections of all vectors onto the
+coordinate plane $\mathbf{e}_{1},\mathbf{e}_{2}$. It is then straightforward
+to see that all the properties of the oriented area hold for the projected
+oriented areas. Details left as exercise.\hfill{}$\blacksquare$
+
+It is therefore convenient to consider the oriented areas of the three
+projections --- $A(\mathbf{a},\mathbf{b})_{\mathbf{e}_{1},\mathbf{e}_{2}}$,
+$A(\mathbf{a},\mathbf{b})_{\mathbf{e}_{2},\mathbf{e}_{3}}$, $A(\mathbf{a},\mathbf{b})_{\mathbf{e}_{3},\mathbf{e}_{1}}$
+--- as three components of a \emph{vector-valued} area $A(\mathbf{a},\mathbf{b})$
+of the parallelogram spanned by $\mathbf{a},\mathbf{b}$. Indeed,
+it can be shown that these three projected areas coincide with the
+three Euclidean components of the vector product $\mathbf{a}\times\mathbf{b}$.
+The vector product is the traditional way such areas are represented
+in geometry: the vector $\mathbf{a}\times\mathbf{b}$ represents at
+once the magnitude of the area and the orientation of the parallelogram.
+One computes the unoriented area of a parallelogram as the length
+of the vector $\mathbf{a}\times\mathbf{b}$ representing the oriented
+area,\[
+Ar(\mathbf{a},\mathbf{b})=\left[A(\mathbf{a},\mathbf{b})_{\mathbf{e}_{1},\mathbf{e}_{2}}^{2}+A(\mathbf{a},\mathbf{b})_{\mathbf{e}_{2},\mathbf{e}_{3}}^{2}+A(\mathbf{a},\mathbf{b})_{\mathbf{e}_{3},\mathbf{e}_{1}}^{2}\right]^{\frac{1}{2}}.\]
+
+
+However, the vector product cannot be generalized to all higher-dimen\-sion\-al
+spaces. Luckily, the vector product does not play an essential role
+in the construction of the oriented area. 
+
+Instead of working with the vector product, we will generalize the
+idea of projecting the parallelogram onto coordinate planes. Consider
+a parallelogram spanned by vectors $\mathbf{a},\mathbf{b}$ in an
+$n$-dimen\-sion\-al Euclidean space $V$ with the standard basis
+$\left\{ \mathbf{e}_{1},...,\mathbf{e}_{n}\right\} $. While in three-dimen\-sion\-al
+space we had just three projections (onto the coordinate planes $xy$,
+$xz$, $yz$), in an $n$-dimen\-sion\-al space we have $\frac{1}{2}n(n-1)$
+coordinate planes, which can be denoted by $\text{Span}\left\{ \mathbf{e}_{i},\mathbf{e}_{j}\right\} $
+(with $1\leq i<j\leq n$). We may construct the $\frac{1}{2}n(n-1)$
+projections of the parallelogram onto these coordinate planes. Each
+of these projections has an oriented area; that area is a bilinear,
+antisymmetric number-valued function of the vectors $\mathbf{a},\mathbf{b}$.
+(The proof of the Statement above does not use the fact that the space
+is \emph{three}-dimen\-sion\-al!) We may then regard these $\frac{1}{2}n(n-1)$
+numbers as the components of a vector representing the oriented area
+of the parallelogram. It is clear that all these components are needed
+in order to describe the actual geometric \emph{orientation} of the
+parallelogram in the $n$-dimen\-sion\-al space.
+
+We arrived at the idea that the oriented area of the parallelogram
+spanned by $\mathbf{a},\mathbf{b}$ is an antisymmetric, bilinear
+function $A(\mathbf{a},\mathbf{b})$ whose value is a vector with
+$\frac{1}{2}n(n-1)$ components, i.e.~a vector \emph{in a new space}
+--- the {}``space of oriented areas,'' as it were. This space is
+$\frac{1}{2}n(n-1)$-dimen\-sion\-al. We will construct this space
+explicitly below; it is the space of bivectors, to be denoted by $\wedge^{2}V$. 
+
+We will see that the unoriented area of the parallelogram is computed
+as the \emph{length} of the vector $A(\mathbf{a},\mathbf{b})$, i.e.~as
+the square root of the sum of squares of the areas of the projections
+of the parallelogram onto the coordinate planes. This is a generalization
+of the Pythagoras theorem to areas in higher-dimen\-sion\-al spaces.
+
+The analogy between ordinary vectors and vector-val\-ued areas can
+be understood visually as follows. A straight line segment in an $n$-dimen\-sion\-al
+space is represented by a vector whose $n$ components (in an orthonormal
+basis) are the signed lengths of the $n$ projections of the line
+segment onto the coordinate axes. (The components are \emph{signed},
+or \emph{oriented}, i.e.~taken with a negative sign if the orientation
+of the vector is opposite to the orientation of the axis.) The length
+of a straight line segment, i.e.~the length of the vector $\mathbf{v}$,
+is then computed as $\sqrt{\left\langle \mathbf{v},\mathbf{v}\right\rangle }$.
+The scalar product $\left\langle \mathbf{v},\mathbf{v}\right\rangle $
+is equal to the sum of squared lengths of the projections because
+we are using an orthonormal basis. A parallelogram in space is represented
+by a vector $\psi$ whose ${n \choose 2}$ components are the \emph{oriented}
+areas of the ${n \choose 2}$ projections of the parallelogram onto
+the coordinate planes. (The vector $\psi$ belongs to the space of
+oriented areas, not to the original $n$-dimen\-sion\-al space.)
+The numerical value of the area of the parallelogram is then computed
+as $\sqrt{\left\langle \psi,\psi\right\rangle }$. The scalar product
+$\left\langle \psi,\psi\right\rangle $ in the space of oriented areas
+is equal to the sum of squared areas of the projections because the
+${n \choose 2}$ unit areas in the coordinate planes are an orthonormal
+basis (according to the definition of the scalar product in the space
+of oriented areas).
+
+The generalization of the Pythagoras theorem holds not only for areas
+but also for higher-dimen\-sion\-al volumes. A general proof of
+this theorem will be given in Sec.~\ref{proof-of-pythagoras}, using
+the exterior product and several other constructions to be developed
+below.
+
+
+\section{Exterior product\label{sub:Definition-of-the-exterior}}
+
+In the previous section I motivated the introduction of the antisymmetric
+product by showing its connection to areas and volumes. In this section
+I will give the definition and work out the properties of the exterior
+product in a purely algebraic manner, without using any geometric
+intuition. This will enable us to work with vectors in arbitrary dimensions,
+to obtain many useful results, and eventually also to appreciate more
+fully the geometric significance of the exterior product. 
+
+As explained in Sec.~\ref{sub:Area-of-two-dimensional-parallelograms},
+it is possible to represent the oriented area of a parallelogram by
+a vector in some auxiliary space. The oriented area is much more convenient
+to work with because it is a \emph{bilinear} function of the vectors
+$\mathbf{a}$ and $\mathbf{b}$ (this is explained in detail in Sec.~\ref{sub:Motivation-for-exterior}).
+{}``Product'' is another word for {}``bilinear function.'' We
+have also seen that the oriented area is an \emph{antisymmetric} function
+of the vectors $\mathbf{a}$ and $\mathbf{b}$.
+
+In three dimensions, an oriented area is represented by the cross
+product $\mathbf{a}\times\mathbf{b}$, which is indeed an antisymmetric
+and bilinear product. So we expect that the oriented area in higher
+dimensions can be represented by some kind of new antisymmetric product
+of $\mathbf{a}$ and $\mathbf{b}$; let us denote this product (to
+be defined below) by $\mathbf{a}\wedge\mathbf{b}$, pronounced {}``a
+wedge b.'' The value of $\mathbf{a}\wedge\mathbf{b}$ will be a vector
+in a \emph{new} vector space. We will also construct this new space
+explicitly.
+
+
+\subsection{Definition of exterior product}
+
+Like the tensor product space, the space of exterior products can
+be defined solely by its algebraic properties. We can consider the
+space of \emph{formal} \emph{expressions} like $\mathbf{a}\wedge\mathbf{b}$,
+$3\mathbf{a}\wedge\mathbf{b}+2\mathbf{c}\wedge\mathbf{d}$, etc.,
+and \emph{require} the properties of an antisymmetric, bilinear product
+to hold.
+
+Here is a more formal definition of the exterior product space: We
+will construct an antisymmetric product {}``by hand,'' using the
+tensor product space.
+
+
+\paragraph{Definition 1:}
+
+Given a vector space $V$, we define a new vector space $V\wedge V$
+called the \textbf{exterior product}\index{exterior product} (or
+antisymmetric tensor product, or alternating product, or \textbf{wedge
+product}\index{wedge product}) of two copies of $V$. The space $V\wedge V$
+is the subspace in $V\otimes V$ consisting of all \textbf{antisymmetric}
+tensors, i.e.~tensors of the form\[
+\mathbf{v}_{1}\otimes\mathbf{v}_{2}-\mathbf{v}_{2}\otimes\mathbf{v}_{1},\quad\mathbf{v}_{1,2}\in V,\]
+and all linear combinations of such tensors. The exterior product
+of two vectors $\mathbf{v}_{1}$ and $\mathbf{v}_{2}$ is the expression
+shown above; it is obviously an antisymmetric and bilinear function
+of $\mathbf{v}_{1}$ and $\mathbf{v}_{2}$.
+
+For example, here is one particular element from $V\wedge V$, which
+we write in two different ways using the axioms of the tensor product:\begin{align}
+\left(\mathbf{u}+\mathbf{v}\right)\otimes\left(\mathbf{v}+\mathbf{w}\right)-\left(\mathbf{v}+\mathbf{w}\right)\otimes\left(\mathbf{u}+\mathbf{v}\right)=\mathbf{u}\otimes\mathbf{v}-\mathbf{v}\otimes\mathbf{u}\nonumber \\
++\mathbf{u}\otimes\mathbf{w}-\mathbf{w}\otimes\mathbf{u}+\mathbf{v}\otimes\mathbf{w}-\mathbf{w}\otimes\mathbf{v}\in V\wedge V.\label{eq:uvw calc 1}\end{align}
+
+
+
+\subparagraph{Remark:}
+
+A tensor $\mathbf{v}_{1}\otimes\mathbf{v}_{2}\in V\otimes V$ is not
+equal to the tensor $\mathbf{v}_{2}\otimes\mathbf{v}_{1}$ if $\mathbf{v}_{1}\neq\mathbf{v}_{2}$.
+This is so because there is no identity among the axioms of the tensor
+product that would allow us to exchange the factors $\mathbf{v}_{1}$
+and $\mathbf{v}_{2}$ in the expression $\mathbf{v}_{1}\otimes\mathbf{v}_{2}$.
+
+
+\paragraph{Exercise 1:}
+
+Prove that the {}``exchange map'' $\hat{T}\left(\mathbf{v}_{1}\otimes\mathbf{v}_{2}\right)\equiv\mathbf{v}_{2}\otimes\mathbf{v}_{1}$
+is a canonically defined, linear map of $V\otimes V$ into itself.
+Show that $\hat{T}$ has only two eigenvalues which are $\pm1$. Give
+examples of eigenvectors with eigenvalues $+1$ and $-1$. Show that
+the subspace $V\wedge V\subset V\otimes V$ is the eigenspace of the
+exchange operator $\hat{T}$ with eigenvalue $-1$
+
+\emph{Hint:} $\hat{T}\hat{T}=\hat{1}_{V\otimes V}$. Consider tensors
+of the form $\mathbf{u}\otimes\mathbf{v}\pm\mathbf{v}\otimes\mathbf{u}$
+as candidate eigenvectors of $\hat{T}$.\hfill{}$\blacksquare$
+
+It is quite cumbersome to perform calculations in the tensor product
+notation as we did in Eq.~(\ref{eq:uvw calc 1}). So let us write
+the exterior product as $\mathbf{u}\wedge\mathbf{v}$ instead of $\mathbf{u}\otimes\mathbf{v}-\mathbf{v}\otimes\mathbf{u}$.
+It is then straightforward to see that the {}``wedge'' symbol $\wedge$
+indeed works like an anti-commutative multiplication, as we intended.
+The rules of computation are summarized in the following statement.
+
+
+\paragraph{Statement 1:}
+
+One may save time and write $\mathbf{u}\otimes\mathbf{v}-\mathbf{v}\otimes\mathbf{u}\equiv\mathbf{u}\wedge\mathbf{v}\in V\wedge V$,
+and the result of any calculation will be correct, as long as one
+follows the rules:\begin{align}
+\mathbf{u}\wedge\mathbf{v} & =-\mathbf{v}\wedge\mathbf{u},\label{eq:uv antisymm}\\
+\left(\lambda\mathbf{u}\right)\wedge\mathbf{v} & =\lambda\left(\mathbf{u}\wedge\mathbf{v}\right),\\
+\left(\mathbf{u}+\mathbf{v}\right)\wedge\mathbf{x} & =\mathbf{u}\wedge\mathbf{x}+\mathbf{v}\wedge\mathbf{x}.\label{eq:uv distrib}\end{align}
+It follows also that $\mathbf{u}\wedge\left(\lambda\mathbf{v}\right)=\lambda\left(\mathbf{u}\wedge\mathbf{v}\right)$
+and that $\mathbf{v}\wedge\mathbf{v}=0$. (These identities hold for
+any vectors $\mathbf{u},\mathbf{v}\in V$ and any scalars $\lambda\in\mathbb{K}$.)
+
+
+\subparagraph{Proof:}
+
+These properties are direct consequences of the axioms of the tensor
+product when applied to antisymmetric tensors. For example, the calculation~(\ref{eq:uvw calc 1})
+now requires a simple expansion of brackets,\[
+\left(\mathbf{u}+\mathbf{v}\right)\wedge\left(\mathbf{v}+\mathbf{w}\right)=\mathbf{u}\wedge\mathbf{v}+\mathbf{u}\wedge\mathbf{w}+\mathbf{v}\wedge\mathbf{w}.\]
+Here we removed the term $\mathbf{v}\wedge\mathbf{v}$ which vanishes
+due to the antisymmetry of $\wedge$. Details left as exercise.\hfill{}$\blacksquare$
+
+Elements of the space $V\wedge V$, such as $\mathbf{a}\wedge\mathbf{b}+\mathbf{c}\wedge\mathbf{d}$,
+are sometimes called \textbf{bivectors}\index{bivector}.%
+\footnote{It is important to note that a bivector is not necessarily expressible
+as a single-term product of two vectors; see the Exercise at the end
+of Sec.~\ref{sub:Properties-of-the-ext-powers}.\index{single-term exterior products}%
+} We will also want to define the exterior product of more than two
+vectors. To define the exterior product of \emph{three} vectors, we
+consider the subspace of $V\otimes V\otimes V$ that consists of antisymmetric
+tensors of the form\begin{align}
+\mathbf{a}\otimes\mathbf{b}\otimes\mathbf{c}-\mathbf{b}\otimes\mathbf{a}\otimes\mathbf{c}+\mathbf{c}\otimes\mathbf{a}\otimes\mathbf{b}-\mathbf{c}\otimes\mathbf{b}\otimes\mathbf{a}\nonumber \\
++\mathbf{b}\otimes\mathbf{c}\otimes\mathbf{a}-\mathbf{a}\otimes\mathbf{c}\otimes\mathbf{b}\label{eq:antisym 3}\end{align}
+and linear combinations of such tensors. These tensors are called
+\textbf{totally antisymmetric\index{totally antisymmetric}} because
+they can be viewed as (tensor-valued) functions of the vectors $\mathbf{a},\mathbf{b},\mathbf{c}$
+that change sign under exchange of any two vectors. The expression
+in Eq.~(\ref{eq:antisym 3}) will be denoted for brevity by $\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}$,
+similarly to the exterior product of two vectors, $\mathbf{a}\otimes\mathbf{b}-\mathbf{b}\otimes\mathbf{a}$,
+which is denoted for brevity by $\mathbf{a}\wedge\mathbf{b}$. Here
+is a general definition.
+
+
+\paragraph{Definition 2:}
+
+The \textbf{exterior product\index{exterior product} of $k$ copies}
+of $V$ (also called the \textbf{$k$-th exterior power} of $V$)
+is denoted by $\wedge^{k}V$ and is defined as the subspace of totally
+antisymmetric tensors within $V\otimes...\otimes V$. In the concise
+notation, this is the space spanned by expressions of the form\[
+\mathbf{v}_{1}\wedge\mathbf{v}_{2}\wedge...\wedge\mathbf{v}_{k},\quad\mathbf{v}_{j}\in V,\]
+assuming that the properties of the wedge product (linearity and antisymmetry)
+hold as given by Statement~1. For instance, \begin{equation}
+\mathbf{u}\wedge\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{k}=\left(-1\right)^{k}\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{k}\wedge\mathbf{u}\label{eq:uv pull}\end{equation}
+({}``pulling a vector through $k$ other vectors changes sign $k$
+times'').\hfill{}$\blacksquare$
+
+The previously defined space of bivectors is in this notation $V\wedge V\equiv\wedge^{2}V$.
+A natural extension of this notation is $\wedge^{0}V=\mathbb{K}$
+and $\wedge^{1}V=V$. I will also use the following {}``wedge product''
+notation,\[
+\bigwedge_{k=1}^{n}\mathbf{v}_{k}\equiv\mathbf{v}_{1}\wedge\mathbf{v}_{2}\wedge...\wedge\mathbf{v}_{n}.\]
+
+
+Tensors from the space $\wedge^{n}V$ are also called $n$-\textbf{vectors}\index{$n$-vectors}
+or \textbf{antisymmetric tensors}\index{antisymmetric tensor} of
+rank $n$.
+
+
+\paragraph{Question:}
+
+How to compute expressions containing multiple products such as $\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}$?
+
+
+\subparagraph{Answer:}
+
+Apply the rules shown in Statement~1. For example, one can permute
+adjacent vectors and change sign,\[
+\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}=-\mathbf{b}\wedge\mathbf{a}\wedge\mathbf{c}=\mathbf{b}\wedge\mathbf{c}\wedge\mathbf{a},\]
+one can expand brackets,\[
+\mathbf{a}\wedge(\mathbf{x}+4\mathbf{y})\wedge\mathbf{b}=\mathbf{a}\wedge\mathbf{x}\wedge\mathbf{b}+4\mathbf{a}\wedge\mathbf{y}\wedge\mathbf{b},\]
+and so on. If the vectors $\mathbf{a},\mathbf{b},\mathbf{c}$ are
+given as linear combinations of some basis vectors $\left\{ \mathbf{e}_{j}\right\} $,
+we can thus reduce $\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}$ to
+a linear combination of exterior products of basis vectors, such as
+$\mathbf{e}_{1}\wedge\mathbf{e}_{2}\wedge\mathbf{e}_{3}$, $\mathbf{e}_{1}\wedge\mathbf{e}_{2}\wedge\mathbf{e}_{4}$,
+etc.
+
+
+\paragraph{Question:}
+
+The notation $\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}$ suggests
+that the exterior product is associative,\[
+\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}=\left(\mathbf{a}\wedge\mathbf{b}\right)\wedge\mathbf{c}=\mathbf{a}\wedge(\mathbf{b}\wedge\mathbf{c}).\]
+How can we make sense of this?
+
+
+\subparagraph{Answer:}
+
+If we want to be pedantic, we need to define the exterior product
+operation $\wedge$ between a single-term bivector $\mathbf{a}\wedge\mathbf{b}$
+and a vector $\mathbf{c}$, such that the result is \emph{by} \emph{definition}
+the 3-vector $\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}$. We then
+define the same operation on linear combinations of single-term bivectors,
+\[
+\left(\mathbf{a}\wedge\mathbf{b}+\mathbf{x}\wedge\mathbf{y}\right)\wedge\mathbf{c}\equiv\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}+\mathbf{x}\wedge\mathbf{y}\wedge\mathbf{c}.\]
+Thus we have defined the exterior product between $\wedge^{2}V$ and
+$V$, the result being a 3-vector from $\wedge^{3}V$. We then need
+to verify that the results do not depend on the choice of the vectors
+such as $\mathbf{a},\mathbf{b},\mathbf{x},\mathbf{y}$ in the representation
+of a bivector: A different representation can be achieved only by
+using the properties of the exterior product (i.e.~the axioms of
+the tensor product), e.g.~we may replace $\mathbf{a}\wedge\mathbf{b}$
+by $-\mathbf{b}\wedge\left(\mathbf{a}+\lambda\mathbf{b}\right)$.
+It is easy to verify that any such replacements will not modify the
+resulting 3-vector, e.g. \[
+\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}=-\mathbf{b}\wedge\left(\mathbf{a}+\lambda\mathbf{b}\right)\wedge\mathbf{c},\]
+again due to the properties of the exterior product. This consideration
+shows that calculations with exterior products are consistent with
+our algebraic intuition. We may indeed compute $\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}$
+as $\left(\mathbf{a}\wedge\mathbf{b}\right)\wedge\mathbf{c}$ or as
+$\mathbf{a}\wedge\left(\mathbf{b}\wedge\mathbf{c}\right)$.
+
+
+\paragraph{Example~1:}
+
+Suppose we work in $\mathbb{R}^{3}$ and have vectors $\mathbf{a}=\left(0,\frac{1}{2},-\frac{1}{2}\right)$,
+$\mathbf{b}=\left(2,-2,0\right)$, $\mathbf{c}=\left(-2,5,-3\right)$.
+Let us compute various exterior products. Calculations are easier
+if we introduce the basis $\left\{ \mathbf{e}_{1},\mathbf{e}_{2},\mathbf{e}_{3}\right\} $
+explicitly:\[
+\mathbf{a}=\frac{1}{2}\left(\mathbf{e}_{2}-\mathbf{e}_{3}\right),\quad\mathbf{b}=2(\mathbf{e}_{1}-\mathbf{e}_{2}),\quad\mathbf{c}=-2\mathbf{e}_{1}+5\mathbf{e}_{2}-3\mathbf{e}_{3}.\]
+We compute the 2-vector $\mathbf{a}\wedge\mathbf{b}$ by using the
+properties of the exterior product, such as $\mathbf{x}\wedge\mathbf{x}=0$
+and $\mathbf{x}\wedge\mathbf{y}=-\mathbf{y}\wedge\mathbf{x}$, and
+simply expanding the brackets as usual in algebra:\begin{align*}
+\mathbf{a}\wedge\mathbf{b} & =\frac{1}{2}\left(\mathbf{e}_{2}-\mathbf{e}_{3}\right)\wedge2\left(\mathbf{e}_{1}-\mathbf{e}_{2}\right)\\
+ & =\left(\mathbf{e}_{2}-\mathbf{e}_{3}\right)\wedge\left(\mathbf{e}_{1}-\mathbf{e}_{2}\right)\\
+ & =\mathbf{e}_{2}\wedge\mathbf{e}_{1}-\mathbf{e}_{3}\wedge\mathbf{e}_{1}-\mathbf{e}_{2}\wedge\mathbf{e}_{2}+\mathbf{e}_{3}\wedge\mathbf{e}_{2}\\
+ & =-\mathbf{e}_{1}\wedge\mathbf{e}_{2}+\mathbf{e}_{1}\wedge\mathbf{e}_{3}-\mathbf{e}_{2}\wedge\mathbf{e}_{3}.\end{align*}
+The last expression is the result; note that now there is nothing
+more to compute or to simplify. The expressions such as $\mathbf{e}_{1}\wedge\mathbf{e}_{2}$
+are the basic expressions out of which the space $\mathbb{R}^{3}\wedge\mathbb{R}^{3}$
+is built. Below (Sec.~\ref{sub:Properties-of-the-ext-powers}) we
+will show formally that the set of these expressions is a basis in
+the space $\mathbb{R}^{3}\wedge\mathbb{R}^{3}$.
+
+Let us also compute the 3-vector $\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}$,\begin{align*}
+ & \mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}=\left(\mathbf{a}\wedge\mathbf{b}\right)\wedge\mathbf{c}\\
+ & =\left(-\mathbf{e}_{1}\wedge\mathbf{e}_{2}+\mathbf{e}_{1}\wedge\mathbf{e}_{3}-\mathbf{e}_{2}\wedge\mathbf{e}_{3}\right)\wedge(-2\mathbf{e}_{1}+5\mathbf{e}_{2}-3\mathbf{e}_{3}).\end{align*}
+When we expand the brackets here, terms such as $\mathbf{e}_{1}\wedge\mathbf{e}_{2}\wedge\mathbf{e}_{1}$
+will vanish because \[
+\mathbf{e}_{1}\wedge\mathbf{e}_{2}\wedge\mathbf{e}_{1}=-\mathbf{e}_{2}\wedge\mathbf{e}_{1}\wedge\mathbf{e}_{1}=0,\]
+so only terms containing all different vectors need to be kept, and
+we find\begin{align*}
+\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c} & =3\mathbf{e}_{1}\wedge\mathbf{e}_{2}\wedge\mathbf{e}_{3}+5\mathbf{e}_{1}\wedge\mathbf{e}_{3}\wedge\mathbf{e}_{2}+2\mathbf{e}_{2}\wedge\mathbf{e}_{3}\wedge\mathbf{e}_{1}\\
+ & =\left(3-5+2\right)\mathbf{e}_{1}\wedge\mathbf{e}_{2}\wedge\mathbf{e}_{3}=0.\end{align*}
+We note that all the terms are proportional to the 3-vector $\mathbf{e}_{1}\wedge\mathbf{e}_{2}\wedge\mathbf{e}_{3}$,
+so only the coefficient in front of $\mathbf{e}_{1}\wedge\mathbf{e}_{2}\wedge\mathbf{e}_{3}$
+was needed; then, by coincidence, that coefficient turned out to be
+zero. So the result is the zero 3-vector.\hfill{}$\blacksquare$
+
+
+\paragraph{Question:}
+
+Our original goal was to introduce a bilinear, antisymmetric product
+of vectors in order to obtain a geometric representation of oriented
+areas. Instead, $\mathbf{a}\wedge\mathbf{b}$ was defined algebraically,
+through tensor products. It is clear that $\mathbf{a}\wedge\mathbf{b}$
+is antisymmetric and bilinear, but why does it represent an oriented
+area?
+
+
+\subparagraph{Answer:}
+
+Indeed, it may not be immediately clear why oriented areas should
+be elements of $V\wedge V$. We have seen that the oriented area $A(\mathbf{x},\mathbf{y})$
+is an antisymmetric and bilinear function of the two vectors $\mathbf{x}$
+and $\mathbf{y}$. Right now we have constructed the space $V\wedge V$
+simply as the \emph{space of antisymmetric products}. By constructing
+that space merely out of the axioms of the antisymmetric product,
+we already covered \emph{every} \emph{possible} bilinear antisymmetric
+product. This means that \emph{any} antisymmetric and bilinear function
+of the two vectors $\mathbf{x}$ and $\mathbf{y}$ is proportional
+to $\mathbf{x}\wedge\mathbf{y}$ or, more generally, is a \emph{linear}
+\emph{function} of $\mathbf{x}\wedge\mathbf{y}$ (perhaps with values
+in a different space). Therefore, the space of oriented areas (that
+is, the space of linear combinations of $A(\mathbf{x},\mathbf{y})$
+for various $\mathbf{x}$ and $\mathbf{y}$) is in any case mapped
+to a subspace of $V\wedge V$. We have also seen that oriented areas
+in $N$ dimensions can be represented through ${N \choose 2}$ projections,
+which indicates that they are vectors in some ${N \choose 2}$-dimen\-sion\-al
+space. We will see below that the space $V\wedge V$ has exactly this
+dimension (Theorem~2 in Sec.~\ref{sub:Properties-of-the-ext-powers}).
+Therefore, we can expect that the space of oriented areas coincides
+with $V\wedge V$. Below we will be working in a space $V$ with a
+scalar product, where the notions of area and volume are well defined.
+Then we will see (Sec.~\ref{sub:Volumes-of-k-dimensional}) that
+tensors from $V\wedge V$ and the higher exterior powers of $V$ indeed
+correspond in a natural way to oriented areas, or more generally to
+oriented volumes of a certain dimension.
+
+
+\paragraph{Remark: Origin of the name {}``exterior.''}
+
+The construction of the exterior product\index{exterior product!origin of the name}
+is a modern formulation of the ideas dating back to H. Grassmann (1844).
+A 2-vector $\mathbf{a}\wedge\mathbf{b}$ is interpreted geometrically
+as the oriented area of the parallelogram spanned by the vectors $\mathbf{a}$
+and $\mathbf{b}$. Similarly, a 3-vector $\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}$
+represents the oriented 3-volume of a parallelepiped spanned by $\left\{ \mathbf{a},\mathbf{b},\mathbf{c}\right\} $.
+Due to the antisymmetry of the exterior product, we have $(\mathbf{a}\wedge\mathbf{b})\wedge(\mathbf{a}\wedge\mathbf{c})=0$,
+$(\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c})\wedge(\mathbf{b}\wedge\mathbf{d})=0$,
+etc. We can interpret this geometrically by saying that the {}``product''
+of two volumes is zero if these volumes have a vector in common. This
+motivated Grassmann to call his antisymmetric product {}``exterior.''
+In his reasoning, the product of two {}``extensive quantities''
+(such as lines, areas, or volumes) is nonzero only when each of the
+two quantities is geometrically {}``to the exterior'' (outside)
+of the other.
+
+
+\paragraph{Exercise 2:}
+
+Show that in a \emph{two}-dimensional space $V$, any 3-vector such
+as $\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}$ can be simplified
+to the zero 3-vector. Prove the same for $n$-vectors in $N$-dimensional
+spaces when $n>N$.\hfill{}$\blacksquare$
+
+One can also consider the exterior powers of the \emph{dual} space
+$V^{*}$. Tensors from $\wedge^{n}V^{*}$ are usually (for historical
+reasons) called $n$-\textbf{forms}\index{$n$-forms} (rather than
+{}``$n$-covectors'').
+
+
+\paragraph{Question:}
+
+Where is the star here, really? Is the space $\wedge^{n}\left(V^{*}\right)$
+different from $\left(\wedge^{n}V\right)^{*}$?
+
+
+\subparagraph{Answer:}
+
+Good that you asked. These spaces are canonically isomorphic, but
+there is a subtle technical issue worth mentioning. Consider an example:
+$\mathbf{a}^{*}\wedge\mathbf{b}^{*}\in\wedge^{2}(V^{*})$ can act
+upon $\mathbf{u}\wedge\mathbf{v}\in\wedge^{2}V$ by the standard tensor
+product rule, namely $\mathbf{a}^{*}\otimes\mathbf{b}^{*}$ acts on
+$\mathbf{u}\otimes\mathbf{v}$ as \[
+\left(\mathbf{a}^{*}\otimes\mathbf{b}^{*}\right)\left(\mathbf{u}\otimes\mathbf{v}\right)=\mathbf{a}^{*}(\mathbf{u})\,\mathbf{b}^{*}(\mathbf{v}),\]
+so by using the definition of $\mathbf{a}^{*}\wedge\mathbf{b}^{*}$
+and $\mathbf{u}\wedge\mathbf{v}$ through the tensor product, we find\begin{align*}
+\left(\mathbf{a}^{*}\wedge\mathbf{b}^{*}\right)\left(\mathbf{u}\wedge\mathbf{v}\right) & =\left(\mathbf{a}^{*}\otimes\mathbf{b}^{*}-\mathbf{b}^{*}\otimes\mathbf{a}^{*}\right)\left(\mathbf{u}\otimes\mathbf{v}-\mathbf{v}\otimes\mathbf{u}\right)\\
+ & =2\mathbf{a}^{*}(\mathbf{u})\,\mathbf{b}^{*}(\mathbf{v})-2\mathbf{b}^{*}(\mathbf{u})\,\mathbf{a}^{*}(\mathbf{v}).\end{align*}
+We got a \textbf{combinatorial} \textbf{factor}\index{combinatorial factor}
+2, that is, a factor that arises because we have \emph{two} permutations
+of the set $\left(\mathbf{a},\mathbf{b}\right)$. With $\wedge^{n}\left(V^{*}\right)$
+and $\left(\wedge^{n}V\right)^{*}$ we get a factor $n!$. It is not
+always convenient to have this combinatorial factor. For example,
+in a finite number field the number $n!$ might be \emph{equal to
+zero} for large enough $n$. In these cases we could \emph{redefine}
+the action of $\mathbf{a}^{*}\wedge\mathbf{b}^{*}$ on $\mathbf{u}\wedge\mathbf{v}$
+as \[
+\left(\mathbf{a}^{*}\wedge\mathbf{b}^{*}\right)\left(\mathbf{u}\wedge\mathbf{v}\right)\equiv\mathbf{a}^{*}(\mathbf{u})\,\mathbf{b}^{*}(\mathbf{v})-\mathbf{b}^{*}(\mathbf{u})\,\mathbf{a}^{*}(\mathbf{v}).\]
+ If we are not working in a finite number field, we are able to divide
+by any integer, so we may keep combinatorial factors in the denominators
+of expressions where such factors appear. For example, if $\left\{ \mathbf{e}_{j}\right\} $
+is a basis in $V$ and $\omega=\mathbf{e}_{1}\wedge...\wedge\mathbf{e}_{N}$
+is the corresponding basis tensor in the one-dimen\-sion\-al space
+$\wedge^{N}V$, the dual basis tensor in $\left(\wedge^{N}V\right)^{*}$
+could be defined by \[
+\omega^{*}=\frac{1}{N!}\mathbf{e}_{1}^{*}\wedge...\wedge\mathbf{e}_{N}^{*},\quad\text{so that}\:\omega^{*}(\omega)=1.\]
+The need for such combinatorial factors is a minor technical inconvenience
+that does not arise too often. We may give the following definition
+that avoids dividing by combinatorial factors (but now we use permutations;
+see Appendix~\ref{sub:Properties-of-permutations}).
+
+
+\paragraph{Definition 3:}
+
+The action of a $k$-form $\mathbf{f}_{1}^{*}\wedge...\wedge\mathbf{f}_{k}^{*}$
+on a $k$-vector $\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{k}$ is
+defined by\[
+\sum_{\sigma}(-1)^{\left|\sigma\right|}\mathbf{f}_{1}^{*}(\mathbf{v}_{\sigma(1)})...\mathbf{f}_{k}^{*}(\mathbf{v}_{\sigma(k)}),\]
+where the summation is performed over all permutations $\sigma$ of
+the ordered set $\left(1,...,k\right)$.
+
+
+\paragraph{Example~2:}
+
+With $k=3$ we have\begin{align*}
+ & (\mathbf{p}^{*}\wedge\mathbf{q}^{*}\wedge\mathbf{r}^{*})(\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c})\\
+ & =\mathbf{p}^{*}(\mathbf{a})\mathbf{q}^{*}(\mathbf{b})\mathbf{r}^{*}(\mathbf{c})-\mathbf{p}^{*}(\mathbf{b})\mathbf{q}^{*}(\mathbf{a})\mathbf{r}^{*}(\mathbf{c})\\
+ & +\mathbf{p}^{*}(\mathbf{b})\mathbf{q}^{*}(\mathbf{c})\mathbf{r}^{*}(\mathbf{a})-\mathbf{p}^{*}(\mathbf{c})\mathbf{q}^{*}(\mathbf{b})\mathbf{r}^{*}(\mathbf{a})\\
+ & +\mathbf{p}^{*}(\mathbf{c})\mathbf{q}^{*}(\mathbf{a})\mathbf{r}^{*}(\mathbf{b})-\mathbf{p}^{*}(\mathbf{c})\mathbf{q}^{*}(\mathbf{b})\mathbf{r}^{*}(\mathbf{a}).\end{align*}
+
+
+
+\paragraph{Exercise 3:}
+
+a) Show that $\mathbf{a}\wedge\mathbf{b}\wedge\omega=\omega\wedge\mathbf{a}\wedge\mathbf{b}$
+where $\omega$ is any antisymmetric tensor (e.g.~$\omega=\mathbf{x}\wedge\mathbf{y}\wedge\mathbf{z}$).
+
+b) Show that\[
+\omega_{1}\wedge\mathbf{a}\wedge\omega_{2}\wedge\mathbf{b}\wedge\omega_{3}=-\omega_{1}\wedge\mathbf{b}\wedge\omega_{2}\wedge\mathbf{a}\wedge\omega_{3},\]
+where $\omega_{1}$, $\omega_{2}$, $\omega_{3}$ are arbitrary antisymmetric
+tensors and $\mathbf{a},\mathbf{b}$ are vectors. 
+
+c) Due to antisymmetry,  $\mathbf{a}\wedge\mathbf{a}=0$ for any vector
+$\mathbf{a}\in V$. Is it also true that $\omega\wedge\omega=0$ for
+any bivector $\omega\in\wedge^{2}V$?
+
+
+\subsection{{*} Symmetric tensor product}
+
+
+\paragraph{Question:}
+
+At this point it is still unclear why the antisymmetric definition
+is at all useful. Perhaps we could define something else, say the
+symmetric product, instead of the exterior product? We could try to
+define a product, say $\mathbf{a}\odot\mathbf{b}$, with some other
+property, such as\[
+\mathbf{a}\odot\mathbf{b}=2\mathbf{b}\odot\mathbf{a}.\]
+
+
+
+\subparagraph{Answer:}
+
+This does not work because, for example, we would have\[
+\mathbf{b}\odot\mathbf{a}=2\mathbf{a}\odot\mathbf{b}=4\mathbf{b}\odot\mathbf{a},\]
+so all the {}``$\odot$'' products would have to vanish.
+
+We can define the \emph{symmetric} tensor product, $\otimes_{S}$,
+with the property\[
+\mathbf{a}\otimes_{S}\mathbf{b}=\mathbf{b}\otimes_{S}\mathbf{a},\]
+but it is impossible to define anything else in a similar fashion.%
+\footnote{This is a theorem due to Grassmann (1862).%
+} 
+
+The antisymmetric tensor product is the eigenspace (within $V\otimes V$)
+of the exchange operator $\hat{T}$ with eigenvalue $-1$. That operator
+has only eigenvectors with eigenvalues $\pm1$, so the only other
+possibility is to consider the eigenspace with eigenvalue $+1$. This
+eigenspace is spanned by symmetric tensors of the form $\mathbf{u}\otimes\mathbf{v}+\mathbf{v}\otimes\mathbf{u}$,
+and can be considered as the space of symmetric tensor products. We
+could write\[
+\mathbf{a}\otimes_{S}\mathbf{b}\equiv\mathbf{a}\otimes\mathbf{b}+\mathbf{b}\otimes\mathbf{a}\]
+and develop the properties of this product. However, it turns out
+that the symmetric tensor product is much less useful for the purposes
+of linear algebra than the antisymmetric subspace. This book derives
+most of the results of linear algebra using the antisymmetric product
+as the main tool!
+
+
+\section{Properties of spaces $\wedge^{k}V$\label{sec:Properties-of-the-wedgekV}}
+
+As we have seen, tensors from the space $V\otimes V$ are representable
+by linear combinations of the form $\mathbf{a}\otimes\mathbf{b}+\mathbf{c}\otimes\mathbf{d}+...$,
+but not \emph{uniquely} representable because one can transform one
+such linear combination into another by using the axioms of the tensor
+product. Similarly, $n$-vectors are not uniquely representable by
+linear combinations of exterior products. For example,\[
+\mathbf{a}\wedge\mathbf{b}+\mathbf{a}\wedge\mathbf{c}+\mathbf{b}\wedge\mathbf{c}=(\mathbf{a}+\mathbf{b})\wedge(\mathbf{b}+\mathbf{c})\]
+ since $\mathbf{b}\wedge\mathbf{b}=0$. In other words, the 2-vector
+$\omega\equiv\mathbf{a}\wedge\mathbf{b}+\mathbf{a}\wedge\mathbf{c}+\mathbf{b}\wedge\mathbf{c}$
+has an alternative representation containing only a single-term exterior
+product, $\omega=\mathbf{r}\wedge\mathbf{s}$ where $\mathbf{r}=\mathbf{a}+\mathbf{b}$
+and $\mathbf{s}=\mathbf{b}+\mathbf{c}$.
+
+
+\paragraph{Exercise:\index{single-term exterior products}}
+
+Show that any 2-vector in a \emph{three}-dimen\-sion\-al space is
+representable by a single-term exterior product, i.e.~to a 2-vector
+of the form $\mathbf{a}\wedge\mathbf{b}$.
+
+\emph{Hint}: Choose a basis $\left\{ \mathbf{e}_{1},\mathbf{e}_{2},\mathbf{e}_{3}\right\} $
+and show that $\alpha\mathbf{e}_{1}\wedge\mathbf{e}_{2}+\beta\mathbf{e}_{1}\wedge\mathbf{e}_{3}+\gamma\mathbf{e}_{2}\wedge\mathbf{e}_{3}$
+is equal to a single-term product.\hfill{}$\blacksquare$
+
+What about higher-dimen\-sion\-al spaces? We will show (see the
+Exercise at the end of Sec.~\ref{sub:Properties-of-the-ext-powers})
+that $n$-vectors cannot be in general reduced to a single-term product.
+This is, however, always possible for $(N-1)$-vectors in an $N$-dimen\-sion\-al
+space. (You showed this for $N=3$ in the exercise above.)
+
+
+\paragraph{Statement:}
+
+Any $(N-1)$-vector in an $N$-dimen\-sion\-al space can be written
+as a single-term exterior product of the form $\mathbf{a}_{1}\wedge...\wedge\mathbf{a}_{N-1}$.
+
+
+\subparagraph{Proof:}
+
+We prove this by using induction in $N$. The basis of induction is
+$N=2$, where there is nothing to prove. The induction step: Suppose
+that the statement is proved for $(N-1)$-vectors in $N$-dimen\-sion\-al
+spaces, we need to prove it for $N$-vectors in $(N+1)$-dimen\-sion\-al
+spaces. Choose a basis $\left\{ \mathbf{e}_{1},...,\mathbf{e}_{N+1}\right\} $
+in the space. Any $N$-vector $\omega$ can be written as a linear
+combination of exterior product terms,\begin{align*}
+\omega & =\alpha_{1}\mathbf{e}_{2}\wedge...\wedge\mathbf{e}_{N+1}+\alpha_{2}\mathbf{e}_{1}\wedge\mathbf{e}_{3}\wedge...\wedge\mathbf{e}_{N+1}+...\\
+ & \quad+\alpha_{N}\mathbf{e}_{1}\wedge...\wedge\mathbf{e}_{N-1}\wedge\mathbf{e}_{N+1}+\alpha_{N+1}\mathbf{e}_{1}\wedge...\wedge\mathbf{e}_{N},\end{align*}
+where $\left\{ \alpha_{i}\right\} $ are some constants. 
+
+Note that any tensor $\omega\in\wedge^{N-1}V$ can be written in this
+way simply by expressing every vector through the basis and by expanding
+the exterior products. The result will be a linear combination of
+the form shown above, containing at most $N+1$ single-term exterior
+products of the form $\mathbf{e}_{1}\wedge...\wedge\mathbf{e}_{N}$,
+$\mathbf{e}_{2}\wedge...\wedge\mathbf{e}_{N+1}$, and so on. We do
+not yet know whether these single-term exterior products constitute
+a linearly independent set; this will be established in Sec.~\ref{sub:Properties-of-the-ext-powers}.
+Presently, we will not need this property.
+
+Now we would like to transform the expression above to a single term.
+We move $\mathbf{e}_{N+1}$ outside brackets in the first $N$ terms:\begin{align*}
+\omega & =\big(\alpha_{1}\mathbf{e}_{2}\wedge...\wedge\mathbf{e}_{N}+...+\alpha_{N}\mathbf{e}_{1}\wedge...\wedge\mathbf{e}_{N-1}\big)\wedge\mathbf{e}_{N+1}\\
+ & \qquad+\alpha_{N+1}\mathbf{e}_{1}\wedge...\wedge\mathbf{e}_{N}\\
+ & \equiv\psi\wedge\mathbf{e}_{N+1}+\alpha_{N+1}\mathbf{e}_{1}\wedge...\wedge\mathbf{e}_{N},\end{align*}
+where in the last line we have introduced an auxiliary $(N-1)$-vector
+$\psi$. If it happens that $\psi=0$, there is nothing left to prove.
+Otherwise, at least one of the $\alpha_{i}$ must be nonzero; without
+loss of generality, suppose that $\alpha_{N}\neq0$ and rewrite $\omega$
+as \[
+\omega=\psi\wedge\mathbf{e}_{N+1}+\alpha_{N+1}\mathbf{e}_{1}\wedge...\wedge\mathbf{e}_{N}=\psi\wedge\big(\mathbf{e}_{N+1}+\frac{\alpha_{N+1}}{\alpha_{N}}\mathbf{e}_{N}\big).\]
+Now we note that $\psi$ belongs to the space of $\left(N-1\right)$-vectors
+over the $N$-dimen\-sion\-al subspace spanned by $\left\{ \mathbf{e}_{1},...,\mathbf{e}_{N}\right\} $.
+By the inductive assumption, $\psi$ can be written as a single-term
+exterior product, $\psi=\mathbf{a}_{1}\wedge...\wedge\mathbf{a}_{N-1}$,
+of some vectors $\left\{ \mathbf{a}_{i}\right\} $. Denoting \[
+\mathbf{a}_{N}\equiv\mathbf{e}_{N+1}+\frac{\alpha_{N+1}}{\alpha_{N}}\mathbf{e}_{N},\]
+we obtain \[
+\omega=\mathbf{a}_{1}\wedge...\wedge\mathbf{a}_{N-1}\wedge\mathbf{a}_{N},\]
+i.e. $\omega$ can be represented as a single-term exterior product.\hfill{}$\blacksquare$ 
+
+
+\subsection{Linear maps between spaces $\wedge^{k}V$\label{sub:Linear-maps-between-spaces}}
+
+Since the spaces $\wedge^{k}V$ are vector spaces, we may consider
+linear maps between them. 
+
+A simplest example is a map\[
+L_{\mathbf{a}}:\omega\mapsto\mathbf{a}\wedge\omega,\]
+mapping $\wedge^{k}V\rightarrow\wedge^{k+1}V$; here the vector $\mathbf{a}$
+is \emph{fixed}. It is important to check that $L_{\mathbf{a}}$ is
+a \emph{linear} map between these spaces. How do we check this? We
+need to check that $L_{\mathbf{a}}$ maps a linear combination of
+tensors into linear combinations; this is easy to see,\begin{align*}
+L_{\mathbf{a}} & (\omega+\lambda\omega^{\prime})=\mathbf{a}\wedge(\omega+\lambda\omega')\\
+ & =\mathbf{a}\wedge\omega+\lambda\mathbf{a}\wedge\omega'=L_{\mathbf{a}}\omega+\lambda L_{\mathbf{a}}\omega'.\end{align*}
+
+
+Let us now fix a covector $\mathbf{a}^{*}$. A covector is a map $V\rightarrow\mathbb{K}$.
+In Lemma~2 of Sec.~\ref{sub:Dimension-of-tensor} we have used covectors
+to define linear maps $\mathbf{a}^{*}:V\otimes W\rightarrow W$ according
+to Eq.~(\ref{eq:fg rule}), mapping $\mathbf{v}\otimes\mathbf{w}\mapsto\mathbf{a}^{*}\left(\mathbf{v}\right)\mathbf{w}$.
+Now we will apply the analogous construction to exterior powers and
+construct a map $V\wedge V\rightarrow V$. Let us denote this map
+by $\iota_{\mathbf{a}^{*}}$. 
+
+It would be incorrect to define the map $\iota_{\mathbf{a}^{*}}$
+by the formula $\iota_{\mathbf{a}^{*}}(\mathbf{v}\wedge\mathbf{w})=\mathbf{a}^{*}\left(\mathbf{v}\right)\mathbf{w}$
+because such a definition does not respect the antisymmetry of the
+wedge product and thus violates the linearity condition, \[
+\iota_{\mathbf{a}^{*}}\left(\mathbf{w}\wedge\mathbf{v}\right)\,{\lyxbuildrel!\above=}\,\iota_{\mathbf{a}^{*}}\left(\left(-1\right)\mathbf{v}\wedge\mathbf{w}\right)=-\iota_{\mathbf{a}^{*}}\left(\mathbf{v}\wedge\mathbf{w}\right)\neq\mathbf{a}^{*}(\mathbf{v})\mathbf{w}.\]
+So we need to act with $\mathbf{a}^{*}$ on \emph{each} of the vectors
+in a wedge product and make sure that the correct minus sign comes
+out. An acceptable formula for the map $\iota_{\mathbf{a}^{*}}:\wedge^{2}V\rightarrow V$
+is\[
+\iota_{\mathbf{a}^{*}}\left(\mathbf{v}\wedge\mathbf{w}\right)\equiv\mathbf{a}^{*}\left(\mathbf{v}\right)\mathbf{w}-\mathbf{a}^{*}\left(\mathbf{w}\right)\mathbf{v}.\]
+(Please check that the linearity condition now holds!) This is how
+we will define the map $\iota_{\mathbf{a}^{*}}$ on $\wedge^{2}V$.
+
+Let us now extend $\iota_{\mathbf{a}^{*}}:\wedge^{2}V\rightarrow V$
+to a map \[
+\iota_{\mathbf{a}^{*}}:\wedge^{k}V\rightarrow\wedge^{k-1}V,\]
+defined as follows: \begin{align}
+\iota_{\mathbf{a}^{*}}\mathbf{v} & \equiv\mathbf{a}^{*}(\mathbf{v}),\nonumber \\
+\iota_{\mathbf{a}^{*}}(\mathbf{v}\wedge\omega) & \equiv\mathbf{a}^{*}(\mathbf{v})\omega-\mathbf{v}\wedge(\iota_{\mathbf{a}^{*}}\omega).\label{eq:inductive}\end{align}
+This definition is \emph{inductive}, i.e.~it shows how to define
+$\iota_{\mathbf{a}^{*}}$ on $\wedge^{k}V$ if we know how to define
+it on $\wedge^{k-1}V$. The action of $\iota_{\mathbf{a}^{*}}$ on
+a sum of terms is defined by requiring  linearity, \[
+\iota_{\mathbf{a}^{*}}\left(A+\lambda B\right)\equiv\iota_{\mathbf{a}^{*}}\left(A\right)+\lambda\iota_{\mathbf{a}^{*}}\left(B\right),\quad A,B\in\wedge^{k}V.\]
+
+
+We can convert this inductive definition into a more explicit formula:
+if $\omega=\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{k}\in\wedge^{k}V$
+then \begin{align*}
+\iota_{\mathbf{a}^{*}} & (\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{k})\equiv\mathbf{a}^{*}(\mathbf{v}_{1})\mathbf{v}_{2}\wedge...\wedge\mathbf{v}_{k}-\mathbf{a}^{*}(\mathbf{v}_{2})\mathbf{v}_{1}\wedge\mathbf{v}_{3}\wedge...\wedge\mathbf{v}_{k}\\
+ & +...+\left(-1\right)^{k-1}\mathbf{a}^{*}(\mathbf{v}_{k})\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{k-1}.\end{align*}
+
+
+This map is called the \textbf{interior product}\index{interior product}
+or the \textbf{insertion} map\index{insertion map}. This is a useful
+operation in  linear algebra. The insertion map $\iota_{\mathbf{a}^{*}}\psi$
+{}``inserts'' the covector $\mathbf{a}^{*}$ into the tensor $\psi\in\wedge^{k}V$
+by acting with $\mathbf{a}^{*}$ on each of the vectors in the exterior
+product that makes up $\psi$.
+
+Let us check formally that the insertion map is linear. 
+
+
+\paragraph{Statement:}
+
+The map $\iota_{\mathbf{a}^{*}}:\wedge^{k}V\rightarrow\wedge^{k-1}V$
+for $1\leq k\leq N$ is a well-defined linear map, according to the
+inductive definition.
+
+
+\subparagraph{Proof:}
+
+First, we need to check that it maps linear combinations into linear
+combinations; this is quite easy to see by induction, using the fact
+that $\mathbf{a}^{*}:V\rightarrow\mathbb{K}$ is linear. However,
+this type of linearity is not sufficient; we also need to check that
+the \emph{result} of the map, i.e.~the tensor $\iota_{\mathbf{a}^{*}}(\omega)$,
+is defined \emph{independently} \emph{of} \emph{the} \emph{representation}
+of $\omega$ through vectors such as $\mathbf{v}_{i}$. The problem
+is, there are many such representations, for example some tensor $\omega\in\wedge^{3}V$
+might be written using different vectors as \[
+\omega=\mathbf{v}_{1}\wedge\mathbf{v}_{2}\wedge\mathbf{v}_{3}=\mathbf{v}_{2}\wedge(\mathbf{v}_{3}-\mathbf{v}_{1})\wedge(\mathbf{v}_{3}+\mathbf{v}_{2})\equiv\tilde{\mathbf{v}}_{1}\wedge\tilde{\mathbf{v}}_{2}\wedge\tilde{\mathbf{v}}_{3}.\]
+ We need to verify that any such equivalent representation yields
+the same resulting tensor $\iota_{\mathbf{a}^{*}}(\omega)$, despite
+the fact that the definition of $\iota_{\mathbf{a}^{*}}$ \emph{appears}
+to depend on the choice of the vectors $\mathbf{v}_{i}$. Only then
+will it be proved that $\iota_{\mathbf{a}^{*}}$ is a linear map $\wedge^{k}V\rightarrow\wedge^{k-1}V$.
+
+An equivalent representation of a tensor $\omega$ can be obtained
+only by using the properties of the exterior product, namely linearity
+and antisymmetry. Therefore, we need to verify that $\iota_{\mathbf{a}^{*}}(\omega)$
+does not change when we change the representation of $\omega$ in
+these two ways: 1) expanding a linear combination,\begin{equation}
+(\mathbf{x}+\lambda\mathbf{y})\wedge...\mapsto\mathbf{x}\wedge...+\lambda\mathbf{y}\wedge...;\label{eq:change repr 1}\end{equation}
+2) interchanging the order of two vectors in the exterior product
+and change the sign,\begin{equation}
+\mathbf{x}\wedge\mathbf{y}\wedge...\mapsto-\mathbf{y}\wedge\mathbf{x}\wedge...\label{eq:change repr 2}\end{equation}
+It is clear that $\mathbf{a}^{*}(\mathbf{x}+\lambda\mathbf{y})=\mathbf{a}^{*}(\mathbf{x})+\lambda\mathbf{a}^{*}(\mathbf{y})$;
+it follows by induction that $\iota_{\mathbf{a}^{*}}\omega$ does
+not change under a change of representation of the type~(\ref{eq:change repr 1}).
+Now we consider the change of representation of the type~(\ref{eq:change repr 2}).
+We have, by definition of $\iota_{\mathbf{a}^{*}}$,\[
+\iota_{\mathbf{a}^{*}}(\mathbf{v}_{1}\wedge\mathbf{v}_{2}\wedge\chi)=\mathbf{a}^{*}(\mathbf{v}_{1})\mathbf{v}_{2}\wedge\chi-\mathbf{a}^{*}(\mathbf{v}_{2})\mathbf{v}_{1}\wedge\chi+\mathbf{v}_{1}\wedge\mathbf{v}_{2}\wedge\iota_{\mathbf{a}^{*}}(\chi),\]
+where we have denoted by $\chi$ the rest of the exterior product.
+It is clear from the above expression that \[
+\iota_{\mathbf{a}^{*}}(\mathbf{v}_{1}\wedge\mathbf{v}_{2}\wedge\chi)=-\iota_{\mathbf{a}^{*}}(\mathbf{v}_{2}\wedge\mathbf{v}_{1}\wedge\chi)=\iota_{\mathbf{a}^{*}}(-\mathbf{v}_{2}\wedge\mathbf{v}_{1}\wedge\chi).\]
+This proves that $\iota_{\mathbf{a}^{*}}(\omega)$ does not change
+under a change of representation of $\omega$ of the type~(\ref{eq:change repr 2}).
+This concludes the proof.\hfill{}$\blacksquare$
+
+
+\paragraph{Remark:}
+
+It is apparent from the proof that the \emph{minus sign} in the inductive
+definition~(\ref{eq:inductive}) is crucial for the linearity of
+the map $\iota_{\mathbf{a}^{*}}$. Indeed, if we attempt to define
+a map by a formula such as\[
+\mathbf{v}_{1}\wedge\mathbf{v}_{2}\mapsto\mathbf{a}^{*}(\mathbf{v}_{1})\mathbf{v}_{2}+\mathbf{a}^{*}(\mathbf{v}_{2})\mathbf{v}_{1},\]
+the result will \emph{not} be a linear map $\wedge^{2}V\rightarrow V$
+despite the appearance of linearity. The correct formula must take
+into account the fact that $\mathbf{v}_{1}\wedge\mathbf{v}_{2}=-\mathbf{v}_{2}\wedge\mathbf{v}_{1}$.
+
+
+\paragraph{Exercise:}
+
+Show by induction in $k$ that\[
+L_{\mathbf{x}}\iota_{\mathbf{a}^{*}}\omega+\iota_{\mathbf{a}^{*}}L_{\mathbf{x}}\omega=\mathbf{a}^{*}(\mathbf{x})\omega,\quad\forall\omega\in\wedge^{k}V.\]
+In other words, the linear operator $L_{\mathbf{x}}\iota_{\mathbf{a}^{*}}+\iota_{\mathbf{a}^{*}}L_{\mathbf{x}}:\wedge^{k}V\rightarrow\wedge^{k}V$
+is simply the multiplication by the number $\mathbf{a}^{*}(\mathbf{x})$.
+
+
+\paragraph{}
+
+
+\subsection{Exterior product and linear dependence\label{sub:Properties-of-the-ext-powers}}
+
+The exterior product is useful in many ways. One powerful property
+of the exterior product is its close relation to linear independence
+of sets of vectors. For example, if $\mathbf{u}=\lambda\mathbf{v}$
+then $\mathbf{u}\wedge\mathbf{v}=0$. More generally:
+
+
+\paragraph{Theorem 1:}
+
+A set $\left\{ \mathbf{v}_{1},...,\mathbf{v}_{k}\right\} $ of vectors
+from $V$ is linearly independent if and only if $(\mathbf{v}_{1}\wedge\mathbf{v}_{2}\wedge...\wedge\mathbf{v}_{k})\neq0$,
+i.e.~it is a nonzero tensor from $\wedge^{k}V$.
+
+
+\subparagraph{Proof:}
+
+If $\left\{ \mathbf{v}_{j}\right\} $ is linearly dependent then without
+loss of generality we may assume that $\mathbf{v}_{1}$ is a linear
+combination of other vectors, $\mathbf{v}_{1}=\sum_{j=2}^{k}\lambda_{j}\mathbf{v}_{j}$.
+Then \begin{align*}
+\mathbf{v}_{1}\wedge\mathbf{v}_{2}\wedge...\wedge\mathbf{v}_{k} & =\sum_{j=2}^{k}\lambda_{j}\mathbf{v}_{j}\wedge\mathbf{v}_{2}\wedge...\wedge\mathbf{v}_{j}\wedge...\wedge\mathbf{v}_{k}\\
+ & =\sum_{j=2}^{k}\left(-1\right)^{j-1}\mathbf{v}_{2}\wedge...\mathbf{v}_{j}\wedge\mathbf{v}_{j}\wedge...\wedge\mathbf{v}_{k}=0.\end{align*}
+Conversely, we need to prove that the tensor $\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{k}\neq0$
+if $\left\{ \mathbf{v}_{j}\right\} $ is linearly \emph{in}dependent.
+The proof is by induction in $k$. The basis of induction is $k=1$:
+if $\left\{ \mathbf{v}_{1}\right\} $ is linearly independent then
+clearly $\mathbf{v}_{1}\neq0$. The induction step: Assume that the
+statement is proved for $k-1$ and that $\left\{ \mathbf{v}_{1},...,\mathbf{v}_{k}\right\} $
+is a linearly independent set. By Exercise~1 in Sec.~\ref{sub:Dual-vector-space}
+there exists a covector $\mathbf{f}^{*}\in V^{*}$ such that $\mathbf{f}^{*}\left(\mathbf{v}_{1}\right)=1$
+and $\mathbf{f}^{*}\left(\mathbf{v}_{i}\right)=0$ for $2\leq i\leq k$.
+Now we apply the interior product map $\iota_{\mathbf{f}^{*}}:\wedge^{k}V\rightarrow\wedge^{k-1}V$
+constructed in Sec.~\ref{sub:Linear-maps-between-spaces} to the
+tensor $\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{k}$ and find \[
+\iota_{\mathbf{f}^{*}}\left(\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{k}\right)=\mathbf{v}_{2}\wedge...\wedge\mathbf{v}_{k}.\]
+By the induction step, the linear independence of $k-1$ vectors $\left\{ \mathbf{v}_{2},...,\mathbf{v}_{k}\right\} $
+entails $\mathbf{v}_{2}\wedge...\wedge\mathbf{v}_{k}\neq0$. The map
+$\iota_{\mathbf{f}^{*}}$ is linear and cannot map a zero tensor into
+a nonzero tensor, therefore $\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{k}\neq0$.\hfill{}$\blacksquare$
+
+It is also important to know that any tensor from the highest exterior
+power $\wedge^{N}V$ can be represented as just a \emph{single-term}\index{single-term exterior products}
+exterior product of $N$ vectors. (Note that the same property for
+$\wedge^{N-1}V$ was already established in Sec.~\ref{sec:Properties-of-the-wedgekV}.)
+
+
+\paragraph{Lemma~1:}
+
+For any tensor $\omega\in\wedge^{N}V$ there exist vectors $\left\{ \mathbf{v}_{1},...,\mathbf{v}_{N}\right\} $
+such that $\omega=\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{N}$.
+
+
+\subparagraph{Proof:}
+
+If $\omega=0$ then there is nothing to prove, so we assume $\omega\neq0$.
+By definition, the tensor $\omega$ has a representation as a sum
+of \emph{several} exterior products, say \[
+\omega=\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{N}+\mathbf{v}_{1}^{\prime}\wedge...\wedge\mathbf{v}_{N}^{\prime}+...\]
+Let us simplify this expression to just one exterior product. First,
+let us omit any zero terms in this expression (for instance, $\mathbf{a}\wedge\mathbf{a}\wedge\mathbf{b}\wedge...=0$).
+Then by Theorem~1 the set $\left\{ \mathbf{v}_{1},...,\mathbf{v}_{N}\right\} $
+is linearly independent (or else the term $\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{N}$
+would be zero). Hence, $\left\{ \mathbf{v}_{1},...,\mathbf{v}_{N}\right\} $
+is a basis in $V$. All other vectors such as $\mathbf{v}_{i}^{\prime}$
+can be decomposed as linear combinations of vectors in that basis.
+Let us denote $\psi\equiv\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{N}$.
+By expanding the brackets in exterior products such as $\mathbf{v}_{1}^{\prime}\wedge...\wedge\mathbf{v}_{N}^{\prime}$,
+we will obtain every time the tensor $\psi$ with different coefficients.
+Therefore, the final result of simplification will be that $\omega$
+equals  $\psi$ multiplied with some coefficient. This is sufficient
+to prove Lemma~1.\hfill{}$\blacksquare$
+
+Now we would like to build a basis in the space $\wedge^{m}V$. For
+this we need to determine which sets of tensors from $\wedge^{m}V$
+are linearly independent within that space.
+
+
+\paragraph{Lemma 2:}
+
+If $\left\{ \mathbf{e}_{1},...,\mathbf{e}_{N}\right\} $ is a basis
+in $V$ then any tensor $A\in\wedge^{m}V$ can be decomposed as a
+linear combination of the tensors $\mathbf{e}_{k_{1}}\wedge\mathbf{e}_{k_{2}}\wedge...\wedge\mathbf{e}_{k_{m}}$
+with some indices $k_{j}$, $1\leq j\leq m$.
+
+
+\subparagraph{Proof:}
+
+The tensor $A$ is a linear combination of expressions of the form
+$\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{m}$, and each vector $\mathbf{v}_{i}\in V$
+can be decomposed in the basis $\left\{ \mathbf{e}_{j}\right\} $.
+Expanding the brackets around the wedges using the rules~(\ref{eq:uv antisymm})--(\ref{eq:uv distrib}),
+we obtain a decomposition of an arbitrary tensor through the basis
+tensors. For example, \begin{align*}
+\left(\mathbf{e}_{1}+2\mathbf{e}_{2}\right)\wedge\left(\mathbf{e}_{1}-\mathbf{e}_{2}+\mathbf{e}_{3}\right)-2\left(\mathbf{e}_{2}-\mathbf{e}_{3}\right)\wedge\left(\mathbf{e}_{1}-\mathbf{e}_{3}\right)\\
+=-\mathbf{e}_{1}\wedge\mathbf{e}_{2}-\mathbf{e}_{1}\wedge\mathbf{e}_{3}+4\mathbf{e}_{2}\wedge\mathbf{e}_{3}\end{align*}
+(please verify this yourself!).\hfill{}$\blacksquare$
+
+By Theorem~1, all tensors $\mathbf{e}_{k_{1}}\wedge\mathbf{e}_{k_{2}}\wedge...\wedge\mathbf{e}_{k_{m}}$
+constructed out of subsets of vectors from the basis $\left\{ \mathbf{e}_{1},...,\mathbf{e}_{k}\right\} $
+are nonzero, and by Lemma~2 any tensor can be decomposed into a linear
+combination of these tensors. But are these tensors a basis in the
+space $\wedge^{m}V$? Yes:
+
+
+\paragraph{Lemma 3:}
+
+If $\left\{ \mathbf{v}_{1},...,\mathbf{v}_{n}\right\} $ is a linearly
+independent set of vectors (not necessarily a basis in $V$ since
+$n\leq N$), then:
+
+\textbf{(1)} The set of ${n \choose 2}$ tensors\[
+\left\{ \mathbf{v}_{j}\wedge\mathbf{v}_{k},\:1\leq j<k\leq n\right\} \equiv\left\{ \mathbf{v}_{1}\wedge\mathbf{v}_{2},\mathbf{v}_{1}\wedge\mathbf{v}_{3},...,\mathbf{v}_{n-1}\wedge\mathbf{v}_{n}\right\} \]
+is linearly independent in the space $\wedge^{2}V$. 
+
+\textbf{(2)} The set of ${n \choose m}$ tensors\[
+\left\{ \mathbf{v}_{k_{1}}\wedge\mathbf{v}_{k_{2}}\wedge...\wedge\mathbf{v}_{k_{m}},\:1\leq k_{1}<k_{2}<...<k_{m}\leq n\right\} \]
+ is linearly independent in the space $\wedge^{m}V$ for $2\leq m\leq n$.
+
+
+\subparagraph{Proof:}
+
+\textbf{(1)} The proof is similar to that of Lemma~3 in Sec.~\ref{sub:Dimension-of-tensor}.
+Suppose the set $\left\{ \mathbf{v}_{j}\right\} $ is linearly independent
+but the set $\left\{ \mathbf{v}_{j}\wedge\mathbf{v}_{k}\right\} $
+is linearly \emph{dependent}, so that there exists a linear combination\[
+\sum_{1\leq j<k\leq n}\lambda_{jk}\mathbf{v}_{j}\wedge\mathbf{v}_{k}=0\]
+with at least some $\lambda_{jk}\neq0$. Without loss of generality,
+$\lambda_{12}\neq0$ (or else we can renumber the vectors $\mathbf{v}_{j}$).
+There exists a covector $\mathbf{f}^{*}\in V^{*}$ such that $\mathbf{f}^{*}\left(\mathbf{v}_{1}\right)=1$
+and $\mathbf{f}^{*}\left(\mathbf{v}_{i}\right)=0$ for $2\leq i\leq n$.
+Apply the interior product with this covector to the above tensor,\[
+0=\iota_{\mathbf{f}^{*}}\left[\sum_{1\leq j<k\leq n}\lambda_{jk}\mathbf{v}_{j}\wedge\mathbf{v}_{k}\right]=\sum_{k=2}^{n}\lambda_{1k}\mathbf{v}_{k},\]
+therefore by linear independence of $\left\{ \mathbf{v}_{k}\right\} $
+all $\lambda_{1k}=0$, contradicting the assumption $\lambda_{12}\neq0$.
+
+\textbf{(2)} The proof of part (1) is straightforwardly generalized
+to the space $\wedge^{m}V$, using induction in $m$. We have just
+proved the basis of induction, $m=2$. Now the induction step: assume
+that the statement is proved for $m-1$ and consider a set $\left\{ \mathbf{v}_{k_{1}}\wedge...\wedge\mathbf{v}_{k_{m}}\right\} $,
+of tensors of rank $m$, where $\left\{ \mathbf{v}_{j}\right\} $
+is a basis. Suppose that this set is linearly dependent; then there
+is a linear combination \[
+\omega\equiv\sum_{k_{1},...,k_{m}}\lambda_{k_{1}...k_{m}}\mathbf{v}_{k_{1}}\wedge...\wedge\mathbf{v}_{k_{m}}=0\]
+with some nonzero coefficients, e.g.~$\lambda_{12...m}\neq0$. There
+exists a covector $\mathbf{f}^{*}$ such that $\mathbf{f}^{*}\left(\mathbf{v}_{1}\right)=1$
+and $\mathbf{f}^{*}\left(\mathbf{v}_{i}\right)=0$ for $2\leq i\leq n$.
+Apply this covector to the tensor $\omega$ and obtain $\iota_{\mathbf{f}^{*}}\omega=0$,
+which yields a vanishing linear combination of tensors $\mathbf{v}_{k_{1}}\wedge...\wedge\mathbf{v}_{k_{m-1}}$
+of rank $m-1$ with \emph{some} nonzero coefficients. But this contradicts
+the induction assumption, which says that any set of tensors $\mathbf{v}_{k_{1}}\wedge...\wedge\mathbf{v}_{k_{m-1}}$
+of rank $m-1$ is linearly independent.\hfill{}$\blacksquare$
+
+Now we are ready to compute the dimension of $\wedge^{m}V$.
+
+
+\paragraph{Theorem 2:}
+
+The dimension of the space $\wedge^{m}V$ is \[
+\dim\wedge^{m}V={N \choose m}=\frac{N!}{m!\left(N-m\right)!},\]
+ where $N\equiv\dim V$. For $m>N$ we have $\dim\wedge^{m}V=0$,
+i.e.~the spaces $\wedge^{m}V$ for $m>N$ consist solely of the zero
+tensor. 
+
+
+\subparagraph{Proof:}
+
+We will explicitly construct a basis in the space $\wedge^{m}V$.
+First choose a basis $\left\{ \mathbf{e}_{1},...,\mathbf{e}_{N}\right\} $
+in $V$. By Lemma~3, the set of ${N \choose m}$ tensors\[
+\left\{ \mathbf{e}_{k_{1}}\wedge\mathbf{e}_{k_{2}}\wedge...\wedge\mathbf{e}_{k_{m}},\:1\leq k_{1}<k_{2}<...<k_{m}\leq N\right\} \]
+ is linearly independent, and by Lemma~2 any tensor $A\in\wedge^{m}V$
+is a linear combination of these tensors. Therefore the set $\left\{ \mathbf{e}_{k_{1}}\wedge\mathbf{e}_{k_{2}}\wedge...\wedge\mathbf{e}_{k_{m}}\right\} $
+is a basis in $\wedge^{m}V$. By Theorem~\ref{sub:All-bases-have},
+the dimension of space is equal to the number of vectors in any basis,
+therefore $\dim\wedge^{m}N={N \choose m}$.
+
+For $m>N$, the existence of a nonzero tensor $\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{m}$
+contradicts Theorem~1: The set $\left\{ \mathbf{v}_{1},...,\mathbf{v}_{m}\right\} $
+cannot be linearly independent since it has more vectors than the
+dimension of the space. Therefore all such tensors are equal to zero
+(more pedantically, to the \emph{zero} \emph{tensor}), which is thus
+the only element of $\wedge^{m}V$ for every $m>N$.\hfill{}$\blacksquare$
+
+
+\paragraph{Exercise 1:}
+
+It is given that the set of four vectors $\left\{ \mathbf{a},\mathbf{b},\mathbf{c},\mathbf{d}\right\} $
+is linearly independent. Show that the tensor $\omega\equiv\mathbf{a}\wedge\mathbf{b}+\mathbf{c}\wedge\mathbf{d}\in\wedge^{2}V$
+\emph{cannot} be equal to a single-term\index{single-term exterior products}
+exterior product of the form $\mathbf{x}\wedge\mathbf{y}$.
+
+\emph{Outline of solution}: 
+
+1. Constructive solution. There exists $\mathbf{f}^{*}\in V^{*}$
+such that $\mathbf{f}^{*}(\mathbf{a})=1$ and $\mathbf{f}^{*}(\mathbf{b})=0$,
+$\mathbf{f}^{*}(\mathbf{c})=0$, $\mathbf{f}^{*}(\mathbf{d})=0$.
+Compute $\iota_{\mathbf{f}^{*}}\omega=\mathbf{b}$. If $\omega=\mathbf{x}\wedge\mathbf{y}$,
+it will follow that a linear combination of $\mathbf{x}$ and $\mathbf{y}$
+is equal to $\mathbf{b}$, i.e.~$\mathbf{b}$ belongs to the two-dimen\-sion\-al
+space $\text{Span}\left\{ \mathbf{x},\mathbf{y}\right\} $. Repeat
+this argument for the remaining three vectors ($\mathbf{a}$, $\mathbf{c}$,
+$\mathbf{d}$) and obtain a contradiction.
+
+2. Non-constructive solution. Compute $\omega\wedge\omega=2\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}\wedge\mathbf{d}\neq0$
+by linear independence of $\left\{ \mathbf{a},\mathbf{b},\mathbf{c},\mathbf{d}\right\} $.
+If we could express $\omega=\mathbf{x}\wedge\mathbf{y}$ then we would
+have $\omega\wedge\omega=0$.\hfill{}$\blacksquare$
+
+
+\paragraph{Remark:}
+
+While $\mathbf{a}\wedge\mathbf{b}$ is interpreted geometrically as
+the oriented area of a parallelogram spanned by $\mathbf{a}$ and
+$\mathbf{b}$, a general linear combination such as $\mathbf{a}\wedge\mathbf{b}+\mathbf{c}\wedge\mathbf{d}+\mathbf{e}\wedge\mathbf{f}$
+does not have this interpretation (unless it can be reduced to a single-term
+product $\mathbf{x}\wedge\mathbf{y}$). If not reducible to a single-term
+product, $\mathbf{a}\wedge\mathbf{b}+\mathbf{c}\wedge\mathbf{d}$
+can be interpreted only as a \emph{formal} linear combination of two
+areas.
+
+
+\paragraph{Exercise 2:}
+
+Suppose that $\psi\in\wedge^{k}V$ and $\mathbf{x}\in V$ are such
+that $\mathbf{x}\wedge\psi=0$ while $\mathbf{x}\neq0$. Show that
+there exists $\chi\in\wedge^{k-1}V$ such that $\psi=\mathbf{x}\wedge\chi$.
+Give an example where $\psi$ and $\chi$ are \emph{not} representable
+as a single-term exterior product.
+
+\emph{Outline of solution}: There exists $\mathbf{f}^{*}\in V^{*}$
+such that $\mathbf{f}^{*}(\mathbf{x})=1$. Apply $\iota_{\mathbf{f}^{*}}$
+to the given equality $\mathbf{x}\wedge\psi=0$:\[
+0\,{\lyxbuildrel!\above=}\,\iota_{\mathbf{f}^{*}}(\mathbf{x}\wedge\psi)=\psi-\mathbf{x}\wedge\iota_{\mathbf{f}^{*}}\psi,\]
+which means that $\psi=\mathbf{x}\wedge\chi$ with $\chi\equiv\iota_{\mathbf{f}^{*}}\psi$.
+An example can be found with $\chi=\mathbf{a}\wedge\mathbf{b}+\mathbf{c}\wedge\mathbf{d}$
+as in Exercise 1, and $\mathbf{x}$ such that the set $\{\mathbf{a},\mathbf{b},\mathbf{c},\mathbf{d},\mathbf{x}\}$
+is linearly independent; then $\psi\equiv\mathbf{x}\wedge\psi$ is
+also not reducible to a single-term product.
+
+
+\subsection{Computing the dual basis\label{sub:Computing-the-dual}}
+
+The exterior product allows us to compute explicitly the dual basis\index{dual basis}
+for a given basis.
+
+We begin with some motivation. Suppose $\left\{ \mathbf{v}_{1},...,\mathbf{v}_{N}\right\} $
+is a given basis; we would like to compute its dual basis. For instance,
+the covector $\mathbf{v}_{1}^{*}$ of the dual basis is the linear
+function such that $\mathbf{v}_{1}^{*}(\mathbf{x})$ is equal to the
+coefficient at $\mathbf{v}_{1}$ in the decomposition of $\mathbf{x}$
+in the basis $\left\{ \mathbf{v}_{j}\right\} $,\[
+\mathbf{x}=\sum_{i=1}^{N}x_{i}\mathbf{v}_{i};\quad\mathbf{v}_{1}^{*}(\mathbf{x})=x_{1}.\]
+We start from the observation that the tensor $\omega\equiv\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{N}$
+is nonzero since $\left\{ \mathbf{v}_{j}\right\} $ is a basis. The
+exterior product $\mathbf{x}\wedge\mathbf{v}_{2}\wedge...\wedge\mathbf{v}_{N}$
+is equal to zero if $\mathbf{x}$ is a linear combination only of
+$\mathbf{v}_{2}$, ..., $\mathbf{v}_{N}$, with a zero coefficient
+$x_{1}$. This suggests that the exterior product of $\mathbf{x}$
+with the $(N-1)$-vector $\mathbf{v}_{2}\wedge...\wedge\mathbf{v}_{N}$
+is quite similar to the covector $\mathbf{v}_{1}^{*}$ we are looking
+for. Indeed, let us compute\[
+\mathbf{x}\wedge\mathbf{v}_{2}\wedge...\wedge\mathbf{v}_{N}=x_{1}\mathbf{v}_{1}\wedge\mathbf{v}_{2}\wedge...\wedge\mathbf{v}_{N}=x_{1}\omega.\]
+Therefore, exterior multiplication with $\mathbf{v}_{2}\wedge...\wedge\mathbf{v}_{N}$
+acts quite similarly to $\mathbf{v}_{1}^{*}$. To make the notation
+more concise, let us introduce a special \textbf{complement}\index{Grassmann's complement}
+operation%
+\footnote{The complement operation was introduced by H. Grassmann (1844).%
+} denoted by a star: \[
+*\left(\mathbf{v}_{1}\right)\equiv\mathbf{v}_{2}\wedge...\wedge\mathbf{v}_{N}.\]
+Then we can write $\mathbf{v}_{1}^{*}(\mathbf{x})\omega=\mathbf{x}\wedge*(\mathbf{v}_{1})$.
+This equation can be used for computing $\mathbf{v}_{1}^{*}$: namely,
+for any $\mathbf{x}\in V$ the number $\mathbf{v}_{1}^{*}(\mathbf{x})$
+is equal to the constant $\lambda$ in the equation $\mathbf{x}\wedge*(\mathbf{v}_{1})=\lambda\omega$.
+To make this kind of equation more convenient, let us write\[
+\lambda\equiv\mathbf{v}_{1}^{*}(\mathbf{x})=\frac{\mathbf{x}\wedge\mathbf{v}_{2}\wedge...\wedge\mathbf{v}_{N}}{\mathbf{v}_{1}\wedge\mathbf{v}_{2}\wedge...\wedge\mathbf{v}_{N}}=\frac{\mathbf{x}\wedge*(\mathbf{v}_{1})}{\omega},\]
+where the {}``division'' of one tensor\index{dividing by tensor}
+by another is to be understood as follows: We first compute the tensor
+$\mathbf{x}\wedge*(\mathbf{v}_{1})$; this tensor is proportional
+to the tensor $\omega$ since both belong to the one-dimen\-sion\-al
+space $\wedge^{N}V$, so we can determine the number $\lambda$ such
+that $\mathbf{x}\wedge*(\mathbf{v}_{1})=\lambda\omega$; the proportionality
+coefficient $\lambda$ is then the result of the division of $\mathbf{x}\wedge*(\mathbf{v}_{1})$
+by $\omega$.
+
+For $\mathbf{v}_{2}$ we have\[
+\mathbf{v}_{1}\wedge\mathbf{x}\wedge\mathbf{v}_{3}\wedge...\wedge\mathbf{v}_{N}=x_{2}\omega=\mathbf{v}_{2}^{*}(\mathbf{x})\omega.\]
+ If we would like to have $x_{2}\omega=\mathbf{x}\wedge*(\mathbf{v}_{2})$,
+we need to add an extra minus sign and define\[
+*\left(\mathbf{v}_{2}\right)\equiv-\mathbf{v}_{1}\wedge\mathbf{v}_{3}\wedge...\wedge\mathbf{v}_{N}.\]
+Then we indeed obtain $\mathbf{v}_{2}^{*}(\mathbf{x})\omega=\mathbf{x}\wedge*(\mathbf{v}_{2})$. 
+
+It is then clear that we can define the tensors $*(\mathbf{v}_{i})$
+for $i=1,...,N$ in this way. The tensor $*(\mathbf{v}_{i})$ is obtained
+from $\omega$ by removing the vector $\mathbf{v}_{i}$ and by adding
+a sign that corresponds to shifting the vector $\mathbf{v}_{i}$ to
+the left position in the exterior product. The {}``complement''
+map, $*:V\rightarrow\wedge^{N-1}V$, satisfies $\mathbf{v}_{j}\wedge*(\mathbf{v}_{j})=\omega$
+for each \emph{basis} vector $\mathbf{v}_{j}$. (Once defined on the
+basis vectors, the complement map can be then extended to all vectors
+from $V$ by requiring linearity. However, we will apply the complement
+operation only to basis vectors right now.)
+
+With these definitions, we may express the dual basis as\[
+\mathbf{v}_{i}^{*}(\mathbf{x})\omega=\mathbf{x}\wedge*(\mathbf{v}_{i}),\quad\mathbf{x}\in V,\: i=1,...,N.\]
+
+
+
+\paragraph{Remark:}
+
+The notation $*(\mathbf{v}_{i})$ suggests that e.g.~$*(\mathbf{v}_{1})$
+is some operation applied to $\mathbf{v}_{1}$ and is a function only
+of the vector $\mathbf{v}_{1}$, but this is not so: The {}``complement''
+of a vector depends on the entire basis and not merely on the single
+vector! Also, the property $\mathbf{v}_{1}\wedge*(\mathbf{v}_{1})=\omega$
+is not sufficient to define the tensor $*\mathbf{v}_{1}$. The proper
+definition of $*(\mathbf{v}_{i})$ is the tensor obtained from $\omega$
+by removing $\mathbf{v}_{i}$ as just explained.
+
+
+\paragraph{Example:}
+
+In the space $\mathbb{R}^{2}$, let us compute the dual basis to the
+basis $\left\{ \mathbf{v}_{1},\mathbf{v}_{2}\right\} $ where $\mathbf{v}_{1}={2 \choose 1}$
+and $\mathbf{v}_{2}={-1 \choose 1}$.
+
+Denote by $\mathbf{e}_{1}$ and $\mathbf{e}_{2}$ the standard basis
+vectors ${1 \choose 0}$ and ${0 \choose 1}$. We first compute the
+2-vector \[
+\omega=\mathbf{v}_{1}\wedge\mathbf{v}_{2}=\left(2\mathbf{e}_{1}+\mathbf{e}_{2}\right)\wedge\left(-\mathbf{e}_{1}+\mathbf{e}_{2}\right)=3\mathbf{e}_{1}\wedge\mathbf{e}_{2}.\]
+ The {}``complement'' operation for the basis $\left\{ \mathbf{v}_{1},\mathbf{v}_{2}\right\} $
+gives $*(\mathbf{v}_{1})=\mathbf{v}_{2}$ and $*(\mathbf{v}_{2})=-\mathbf{v}_{1}$.
+We now define the covectors $\mathbf{v}_{1,2}^{*}$ by their action
+on arbitrary vector $\mathbf{x}\equiv x_{1}\mathbf{e}_{1}+x_{2}\mathbf{e}_{2}$,\begin{align*}
+\mathbf{v}_{1}^{*}(\mathbf{x})\omega & =\mathbf{x}\wedge\mathbf{v}_{2}=\left(x_{1}\mathbf{e}_{1}+x_{2}\mathbf{e}_{2}\right)\wedge\left(-\mathbf{e}_{1}+\mathbf{e}_{2}\right)\\
+ & =\left(x_{1}+x_{2}\right)\mathbf{e}_{1}\wedge\mathbf{e}_{2}=\frac{x_{1}+x_{2}}{3}\omega,\\
+\mathbf{v}_{2}^{*}(\mathbf{x})\omega & =-\mathbf{x}\wedge\mathbf{v}_{1}=-\left(x_{1}\mathbf{e}_{1}+x_{2}\mathbf{e}_{2}\right)\wedge\left(2\mathbf{e}_{1}+\mathbf{e}_{2}\right)\\
+ & =\left(-x_{1}+2x_{2}\right)\mathbf{e}_{1}\wedge\mathbf{e}_{2}=\frac{-x_{1}+2x_{2}}{3}\omega.\end{align*}
+Therefore, $\mathbf{v}_{1}^{*}=\frac{1}{3}\mathbf{e}_{1}^{*}+\frac{1}{3}\mathbf{e}_{2}^{*}$
+and $\mathbf{v}_{2}^{*}=-\frac{1}{3}\mathbf{e}_{1}^{*}+\frac{2}{3}\mathbf{e}_{2}^{*}$.
+
+
+\paragraph{Question:}
+
+Can we define the complement operation for all $\mathbf{x}\in V$
+by the equation $\mathbf{x}\wedge*(\mathbf{x})=\omega$ where $\omega\in\wedge^{N}V$
+is a fixed tensor? Does the complement really depend on the entire
+basis? Or perhaps a choice of $\omega$ is sufficient?
+
+
+\subparagraph{Answer: }
+
+No, yes, no. Firstly, $*(\mathbf{x})$ is not uniquely specified by
+that equation alone, since $\mathbf{x}\wedge A=\omega$ defines $A$
+only up to tensors of the form $\mathbf{x}\wedge...$; secondly, the
+equation $\mathbf{x}\wedge*(\mathbf{x})=\omega$ indicates that $*(\lambda\mathbf{x})=\frac{1}{\lambda}\,*\negmedspace(\mathbf{x})$,
+so the complement map would not be linear if defined like that. It
+is important to keep in mind that the complement map requires an entire
+basis for its definition and depends not only on the choice of a tensor
+$\omega$, but also on the choice of all the basis vectors. For example,
+in two dimensions we have $*(\mathbf{e}_{1})=\mathbf{e}_{2}$; it
+is clear that $*(\mathbf{e}_{1})$ depends on the choice of $\mathbf{e}_{2}$!
+
+
+\paragraph{Remark:}
+
+The situation is different when the vector space is equipped with
+a scalar product (see Sec.~\ref{sub:The-vector-product} below).
+In that case, one usually chooses an \emph{orthonormal} basis to define
+the complement map; then the complement map is called the \textbf{Hodge\index{Hodge star}
+star}. It turns out that the Hodge star is independent of the choice
+of the basis as long as the basis is orthonormal with respect to the
+given scalar product, and as long as the orientation of the basis
+is unchanged (i.e.~as long as the tensor $\omega$ does not change
+sign). In other words, the Hodge star operation is invariant under
+orthogonal and orientation-preserving transformations of the basis;
+these transformations preserve the tensor $\omega$. So the Hodge
+star operation depends not quite on the detailed choice of the basis,
+but rather on the choice of the scalar product and on the orientation
+of the basis (the sign of $\omega$). However, right now we are working
+with a general space without a scalar product. In this case, the complement
+map depends on the entire basis.
+
+
+\subsection{Gaussian elimination}
+
+
+\paragraph{Question:}
+
+How much computational effort is actually needed to compute the exterior
+product of $n$ vectors? It looks easy in two or three dimensions,
+but in $N$ dimensions the product of $n$ vectors $\left\{ \mathbf{x}_{1},...,\mathbf{x}_{n}\right\} $
+gives expressions such as\[
+\bigwedge_{i=1}^{n}\mathbf{x}_{n}=\left(x_{11}\mathbf{e}_{1}+...+x_{1N}\mathbf{e}_{N}\right)\wedge...\wedge\left(x_{n1}\mathbf{e}_{1}+...+x_{nN}\mathbf{e}_{N}\right),\]
+which will be reduced to an exponentially large number (of order $N^{n}$)
+of elementary tensor products when we expand all brackets.
+
+
+\subparagraph{Answer:}
+
+Of course, expanding all brackets is not the best way to compute long
+exterior products. We can instead use a procedure similar to the Gaussian
+elimination\index{Gaussian elimination} for computing determinants.
+The key observation is that\[
+\mathbf{x}_{1}\wedge\mathbf{x}_{2}\wedge...=\mathbf{x}_{1}\wedge\left(\mathbf{x}_{2}-\lambda\mathbf{x}_{1}\right)\wedge...\]
+for any number $\lambda$, and that it is easy to compute an exterior
+product of the form\[
+(\alpha_{1}\mathbf{e}_{1}+\alpha_{2}\mathbf{e}_{2}+\alpha_{3}\mathbf{e}_{3})\wedge(\beta_{2}\mathbf{e}_{2}+\beta_{3}\mathbf{e}_{3})\wedge\mathbf{e}_{3}=\alpha_{1}\beta_{2}\mathbf{e}_{1}\wedge\mathbf{e}_{2}\wedge\mathbf{e}_{3}.\]
+It is easy to compute this exterior product because the second vector
+($\beta_{2}\mathbf{e}_{2}+\beta_{3}\mathbf{e}_{3}$) does not contain
+the basis vector $\mathbf{e}_{1}$ and the third vector does not contain
+$\mathbf{e}_{1}$ or $\mathbf{e}_{2}$. So we can simplify the computation
+of a long exterior product if we rewrite \begin{align*}
+ & \bigwedge_{i=1}^{n}\mathbf{x}_{n}=\mathbf{x}_{1}\wedge\tilde{\mathbf{x}}_{2}\wedge...\wedge\tilde{\mathbf{x}}_{n}\\
+ & \equiv\mathbf{x}_{1}\wedge(\mathbf{x}_{2}-\lambda_{11}\mathbf{x}_{1})\wedge...\wedge\left(\mathbf{x}_{n}-\lambda_{n1}\mathbf{x}_{1}-...-\lambda_{n-1,n-1}\mathbf{x}_{n-1}\right),\end{align*}
+where the coefficients $\left\{ \lambda_{ij}\,|\,1\leq i\leq n-1,\;1\leq j\leq i\right\} $
+are chosen appropriately such that the vector $\tilde{\mathbf{x}}_{2}\equiv\mathbf{x}_{2}-\lambda_{11}\mathbf{x}_{1}$
+does not contain the basis vector $\mathbf{e}_{1}$, and generally
+the vector \[
+\tilde{\mathbf{x}}_{k}\equiv\mathbf{x}_{k}-\lambda_{k1}\mathbf{x}_{1}-...-\lambda_{k-1,k-1}\mathbf{x}_{k-1}\]
+ does not contain the basis vectors $\mathbf{e}_{1}$,..., $\mathbf{e}_{k-1}$.
+(That is, these basis vectors have been {}``eliminated'' from the
+vector $\mathbf{x}_{k}$, hence the name of the method.) Eliminating
+$\mathbf{e}_{1}$ from $\mathbf{x}_{2}$ can be done with $\lambda_{11}=\frac{x_{21}}{x_{11}}$,
+which is possible provided that $x_{11}\neq0$; if $x_{11}=0$, we
+need to renumber the vectors $\left\{ \mathbf{x}_{j}\right\} $. If
+none of them contains $\mathbf{e}_{1}$, we skip $\mathbf{e}_{1}$
+and proceed with $\mathbf{e}_{2}$ instead. Elimination of other basis
+vectors proceeds similarly. After performing this algorithm, we will
+either find that some vector $\tilde{\mathbf{x}}_{k}$ is itself zero,
+which means that the entire exterior product vanishes, or we will
+find the product of vectors of the form\[
+\tilde{\mathbf{x}}_{1}\wedge...\wedge\tilde{\mathbf{x}}_{n},\]
+ where the vectors $\tilde{\mathbf{x}}_{i}$ are linear combinations
+of $\mathbf{e}_{i}$, ..., $\mathbf{e}{}_{N}$ (not containing $\mathbf{e}_{1}$,
+..., $\mathbf{e}_{i}$). 
+
+If $n=N$, the product can be evaluated immediately since the last
+vector, $\tilde{\mathbf{x}}_{N}$, is proportional to $\mathbf{e}_{N}$,
+so\begin{align*}
+\tilde{\mathbf{x}}_{1}\wedge...\wedge\tilde{\mathbf{x}}_{n} & =\left(c_{11}\mathbf{e}_{1}+...\right)\wedge...\wedge(c_{nn}\mathbf{e}_{N})\\
+ & =c_{11}c_{22}...c_{nn}\mathbf{e}_{1}\wedge...\wedge\mathbf{e}_{N}.\end{align*}
+ The computation is somewhat longer if $n<N$, so that \[
+\tilde{\mathbf{x}}_{n}=c_{nn}\mathbf{e}_{n}+...+c_{nN}\mathbf{e}_{N}.\]
+In that case, we may eliminate, say, $\mathbf{e}_{n}$ from $\tilde{\mathbf{x}}_{1}$,
+..., $\tilde{\mathbf{x}}_{n-1}$ by subtracting a multiple of $\tilde{\mathbf{x}}_{n}$
+from them, but we cannot simplify the product any more; at that point
+we need to expand the last bracket (containing $\tilde{\mathbf{x}}_{n}$)
+and write out the terms.
+
+
+\paragraph{Example 1: }
+
+We will calculate the exterior product\begin{align*}
+ & \mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}\\
+ & \equiv(7\mathbf{e}_{1}-8\mathbf{e}_{2}+\mathbf{e}_{3})\wedge(\mathbf{e}_{1}-2\mathbf{e}_{2}-15\mathbf{e}_{3})\wedge(2\mathbf{e}_{1}-5\mathbf{e}_{2}-\mathbf{e}_{3}).\end{align*}
+We will eliminate $\mathbf{e}_{1}$ from $\mathbf{a}$ and $\mathbf{c}$
+(just to keep the coefficients simpler):\begin{align*}
+ & \mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}=(\mathbf{a}-7\mathbf{b})\wedge\mathbf{b}\wedge(\mathbf{c}-2\mathbf{b})\\
+ & =(6\mathbf{e}_{2}+106\mathbf{e}_{3})\wedge\mathbf{b}\wedge(-\mathbf{e}_{2}+9\mathbf{e}_{3})\\
+ & \equiv\mathbf{a}_{1}\wedge\mathbf{b}\wedge\mathbf{c}_{1}.\end{align*}
+Now we eliminate $\mathbf{e}_{2}$ from $\mathbf{a}_{1}$, and then
+the product can be evaluated quickly:\begin{align*}
+ & \mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}=\mathbf{a}_{1}\wedge\mathbf{b}\wedge\mathbf{c}_{1}=(\mathbf{a}_{1}+6\mathbf{c}_{1})\wedge\mathbf{b}\wedge\mathbf{c}_{1}\\
+ & =(160\mathbf{e}_{3})\wedge(\mathbf{e}_{1}-2\mathbf{e}_{2}-5\mathbf{e}_{3})\wedge(-\mathbf{e}_{2}+9\mathbf{e}_{3})\\
+ & =160\mathbf{e}_{3}\wedge\mathbf{e}_{1}\wedge(-\mathbf{e}_{2})=-160\mathbf{e}_{1}\wedge\mathbf{e}_{2}\wedge\mathbf{e}_{3}.\end{align*}
+
+
+
+\paragraph{Example 2:}
+
+Consider\begin{align*}
+ & \mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}\equiv(\mathbf{e}_{1}+2\mathbf{e}_{2}-\mathbf{e}_{3}+\mathbf{e}_{4})\\
+ & \quad\wedge(2\mathbf{e}_{1}+\mathbf{e}_{2}-\mathbf{e}_{3}+3\mathbf{e}_{4})\wedge(-\mathbf{e}_{1}-\mathbf{e}_{2}+\mathbf{e}_{4}).\end{align*}
+We eliminate $\mathbf{e}_{1}$ and $\mathbf{e}_{2}$:\begin{align*}
+ & \mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}=\mathbf{a}\wedge(\mathbf{b}-2\mathbf{a})\wedge(\mathbf{c}+\mathbf{a})\\
+ & =\mathbf{a}\wedge\left(-3\mathbf{e}_{2}+\mathbf{e}_{3}+\mathbf{e}_{4}\right)\wedge\left(\mathbf{e}_{2}-\mathbf{e}_{3}+2\mathbf{e}_{4}\right)\\
+ & \equiv\mathbf{a}\wedge\mathbf{b}_{1}\wedge\mathbf{c}_{1}=\mathbf{a}\wedge\mathbf{b}_{1}\wedge(\mathbf{c}_{1}+3\mathbf{b}_{1})\\
+ & =\mathbf{a}\wedge\mathbf{b}_{1}\wedge(2\mathbf{e}_{3}+5\mathbf{e}_{4})\equiv\mathbf{a}\wedge\mathbf{b}_{1}\wedge\mathbf{c}_{2}.\end{align*}
+We can now eliminate $\mathbf{e}_{3}$ from $\mathbf{a}$ and $\mathbf{b}_{1}$:\begin{align*}
+ & \mathbf{a}\wedge\mathbf{b}_{1}\wedge\mathbf{c}_{2}=(\mathbf{a}+\frac{1}{2}\mathbf{c}_{2})\wedge(\mathbf{b}_{1}-\frac{1}{2}\mathbf{c}_{2})\wedge\mathbf{c}_{2}\equiv\mathbf{a}_{2}\wedge\mathbf{b}_{2}\wedge\mathbf{c}_{2}\\
+ & =(\mathbf{e}_{1}+2\mathbf{e}_{2}+\frac{7}{2}\mathbf{e}_{4})\wedge(-3\mathbf{e}_{2}-\frac{3}{2}\mathbf{e}_{4})\wedge(2\mathbf{e}_{3}+5\mathbf{e}_{4}).\end{align*}
+Now we cannot eliminate any more vectors, so we expand the last bracket
+and simplify the result by omitting the products of equal vectors:
+\begin{align*}
+ & \,\mathbf{a}_{2}\wedge\mathbf{b}_{2}\wedge\mathbf{c}_{2}=\mathbf{a}_{2}\wedge\mathbf{b}_{2}\wedge2\mathbf{e}_{3}+\mathbf{a}_{2}\wedge\mathbf{b}_{2}\wedge5\mathbf{e}_{4}\\
+ & =\left(\mathbf{e}_{1}+2\mathbf{e}_{2}\right)\wedge(-\frac{3}{2}\mathbf{e}_{4})\wedge2\mathbf{e}_{3}+\mathbf{e}_{1}\wedge(-3\mathbf{e}_{2})\wedge2\mathbf{e}_{3}\\
+ & +\mathbf{e}_{1}\wedge(-3\mathbf{e}_{2})\wedge5\mathbf{e}_{4}\\
+ & =3\mathbf{e}_{1}\wedge\mathbf{e}_{3}\wedge\mathbf{e}_{4}+6\mathbf{e}_{2}\wedge\mathbf{e}_{3}\wedge\mathbf{e}_{4}-6\mathbf{e}_{1}\wedge\mathbf{e}_{2}\wedge\mathbf{e}_{3}-15\mathbf{e}_{1}\wedge\mathbf{e}_{2}\wedge\mathbf{e}_{4}.\end{align*}
+ 
+
+
+\subsection{Rank of a set of vectors\label{sub:Rank-of-a-set-of-vectors}}
+
+We have defined the rank of a map (Sec.~\ref{sub:Linear-maps-between-different-spaces})
+as the dimension of the image of the map, and we have seen that the
+rank is equal to the minimum number of tensor product terms needed
+to represent the map as a tensor. An analogous concept can be introduced
+for sets of vectors.
+
+
+\paragraph{Definition:}
+
+If $S=\left\{ \mathbf{v}_{1},...,\mathbf{v}_{n}\right\} $ is a set
+of vectors (where $n$ is not necessarily smaller than the dimension
+$N$ of space), the \textbf{rank} of the set $S$ is the dimension
+of the subspace spanned by the vectors $\left\{ \mathbf{v}_{1},...,\mathbf{v}_{n}\right\} $.
+Written as a formula,\[
+\text{rank}\,(S)=\dim\,\text{Span}\, S.\]
+
+
+The rank of a set $S$ is equal to the maximum number of vectors in
+any linearly independent subset of $S$. For example, consider the
+set $\left\{ 0,\mathbf{v},2\mathbf{v},3\mathbf{v}\right\} $ where
+$\mathbf{v}\neq0$. The rank of this set is 1 since these four vectors
+span a one-dimen\-sion\-al subspace,\[
+\text{Span}\left\{ 0,\mathbf{v},2\mathbf{v},3\mathbf{v}\right\} =\text{Span}\left\{ \mathbf{v}\right\} .\]
+Any subset of $S$ having two or more vectors is linearly dependent.
+
+We will now show how to use the exterior product for computing the
+rank of a given (finite) set $S=\left\{ \mathbf{v}_{1},...,\mathbf{v}_{n}\right\} $. 
+
+According to Theorem~1 in Sec.~\ref{sub:Properties-of-the-ext-powers},
+the set $S$ is linearly independent if and only if $\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{n}\neq0$.
+So we first compute the tensor $\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{n}$.
+If this tensor is nonzero then the set $S$ is linearly independent,
+and the rank of $S$ is equal to $n$. If, on the other hand, $\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{n}=0$,
+the rank is less than $n$. We can determine the rank of $S$ by the
+following procedure. First, we assume that all $\mathbf{v}_{j}\neq0$
+(any zero vectors can be omitted without changing the rank of $S$).
+Then we compute $\mathbf{v}_{1}\wedge\mathbf{v}_{2}$; if the result
+is zero, we may omit $\mathbf{v}_{2}$ since $\mathbf{v}_{2}$ is
+proportional to $\mathbf{v}_{1}$ and try $\mathbf{v}_{1}\wedge\mathbf{v}_{3}$.
+If $\mathbf{v}_{1}\wedge\mathbf{v}_{2}\neq0$, we try $\mathbf{v}_{1}\wedge\mathbf{v}_{2}\wedge\mathbf{v}_{3}$,
+and so on. The procedure can be formulated using induction in the
+obvious way. Eventually we will arrive at a subset $\{\mathbf{v}_{i_{1}},...,\mathbf{v}_{i_{k}}\}\subset S$
+such that $\mathbf{v}_{i_{1}}\wedge...\wedge...\mathbf{v}_{i_{k}}\neq0$
+but $\mathbf{v}_{i_{1}}\wedge...\wedge...\mathbf{v}_{i_{k}}\wedge\mathbf{v}_{j}=0$
+for any other $\mathbf{v}_{j}$. Thus, there are no linearly independent
+subsets of $S$ having $k+1$ or more vectors. Then the rank of $S$
+is equal to $k$. 
+
+The subset $\{\mathbf{v}_{i_{1}},...,\mathbf{v}_{i_{k}}\}$ is built
+by a procedure that depends on the order in which the vectors $\mathbf{v}_{j}$
+are selected. However, the next statement says that the resulting
+subspace spanned by $\{\mathbf{v}_{i_{1}},...,\mathbf{v}_{i_{k}}\}$
+is the same regardless of the order of vectors $\mathbf{v}_{j}$.
+Hence, the subset $\{\mathbf{v}_{i_{1}},...,\mathbf{v}_{i_{k}}\}$
+yields a basis in $\text{Span}\, S$. 
+
+
+\paragraph{Statement: }
+
+Suppose a set $S$ of vectors has rank $k$ and contains \emph{two}
+different linearly independent subsets, say $S_{1}=\left\{ \mathbf{v}_{1},...,\mathbf{v}_{k}\right\} $
+and $S_{2}=\left\{ \mathbf{u}_{1},...,\mathbf{u}_{k}\right\} $, both
+having $k$ vectors (but no linearly independent subsets having $k+1$
+or more vectors). Then the tensors $\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{k}$
+and $\mathbf{u}_{1}\wedge...\wedge\mathbf{u}_{k}$ are proportional
+to each other (as tensors from $\wedge^{k}V$).
+
+
+\subparagraph{Proof:}
+
+The tensors $\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{k}$ and $\mathbf{u}_{1}\wedge...\wedge\mathbf{u}_{k}$
+are both nonzero by Theorem~1 in Sec.~\ref{sub:Properties-of-the-ext-powers}.
+We will now show that it is possible to replace $\mathbf{v}_{1}$
+by one of the vectors from the set $S_{2}$, say $\mathbf{u}_{l}$,
+such that the new tensor $\mathbf{u}_{l}\wedge\mathbf{v}_{2}\wedge...\wedge\mathbf{v}_{k}$
+is nonzero and proportional to the original tensor $\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{k}$.
+It will follow that this procedure can be repeated for every other
+vector $\mathbf{v}_{i}$, until we replace all $\mathbf{v}_{i}$'s
+by some $\mathbf{u}_{i}$'s and thus prove that the tensors $\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{k}$
+and $\mathbf{u}_{1}\wedge...\wedge\mathbf{u}_{k}$ are proportional
+to each other.
+
+It remains to prove that the vector $\mathbf{v}_{1}$ can be replaced.
+We need to find a suitable vector $\mathbf{u}_{l}$. Let $\mathbf{u}_{l}$
+be one of the vectors from $S_{2}$, and let us check whether $\mathbf{v}_{1}$
+could be replaced by $\mathbf{u}_{l}$. We first note that $\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{k}\wedge\mathbf{u}_{l}=0$
+since there are no linearly independent subsets of $S$ having $k+1$
+vectors. Hence the set $\left\{ \mathbf{v}_{1},...,\mathbf{v}_{k},\mathbf{u}_{l}\right\} $
+is linearly \emph{dependent}. It follows (since the set $\left\{ \mathbf{v}_{i}\,|\, i=1,...,k\right\} $
+was linearly independent before we added $\mathbf{u}_{l}$ to it)
+that $\mathbf{u}_{l}$ can be expressed as a linear combination of
+the $\mathbf{v}_{i}$'s with some coefficients $\alpha_{i}$:\[
+\mathbf{u}_{l}=\alpha_{1}\mathbf{v}_{1}+...+\alpha_{k}\mathbf{v}_{k}.\]
+If $\alpha_{1}\neq0$ then we will have\[
+\mathbf{u}_{l}\wedge\mathbf{v}_{2}\wedge...\wedge\mathbf{v}_{k}=\alpha_{1}\mathbf{v}_{1}\wedge\mathbf{v}_{2}\wedge...\wedge\mathbf{v}_{k}.\]
+The new tensor is nonzero and proportional to the old tensor, so we
+can replace $\mathbf{v}_{1}$ by $\mathbf{u}_{l}$. 
+
+However, it could also happen that $\alpha_{1}=0$. In that case we
+need to choose a different vector $\mathbf{u}_{l'}\in S_{2}$ such
+that the corresponding coefficient $\alpha_{1}$ is nonzero. It remains
+to prove that such a choice is possible. If this were impossible then
+all $\mathbf{u}_{i}$'s would have been expressible as linear combinations
+of $\mathbf{v}_{i}$'s with zero coefficients at the vector $\mathbf{v}_{1}$.
+In that case, the exterior product $\mathbf{u}_{1}\wedge...\wedge\mathbf{u}_{k}$
+would be equal to a linear combination of exterior products of vectors
+$\mathbf{v}_{i}$ with $i=2,...,k$. These exterior products contain
+$k$ vectors among which only $\left(k-1\right)$ vectors are different.
+Such exterior products are all equal to zero. However, this contradicts
+the assumption $\mathbf{u}_{1}\wedge...\wedge\mathbf{u}_{k}\neq0$.
+Therefore, at least one vector $\mathbf{u}_{l}$ exists such that
+$\alpha_{1}\neq0$, and the required replacement is always possible.\hfill{}$\blacksquare$
+
+
+\paragraph{Remark:}
+
+It follows from the above Statement that the subspace spanned by $S$
+can be uniquely characterized by a nonzero tensor such as $\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{k}$
+in which the constituents --- the vectors $\mathbf{v}_{1}$,..., $\mathbf{v}_{k}$
+--- form a basis in the subspace $\text{Span}\, S$. It does not matter
+which linearly independent subset we choose for this purpose. We also
+have a computational procedure for determining the subspace $\text{Span}\, S$
+together with its dimension. Thus, we find that a $k$-dimen\-sion\-al
+subspace is adequately specified by selecting a nonzero tensor $\omega\in\wedge^{k}V$
+of the form $\omega=\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{k}$.
+For a given subspace, this tensor $\omega$ is unique up to a nonzero
+constant factor. Of course, the decomposition of $\omega$ into an
+exterior product of vectors $\left\{ \mathbf{v}_{i}\,|\, i=1,...,k\right\} $
+is not unique, but any such decomposition yields a set $\left\{ \mathbf{v}_{i}\,|\, i=1,...,k\right\} $
+spanning the same subspace. 
+
+
+\paragraph{Exercise 1:}
+
+Let $\left\{ \mathbf{v}_{1},...,\mathbf{v}_{n}\right\} $ be a linearly
+independent set of vectors, $\omega\equiv\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{n}\neq0$,
+and $\mathbf{x}$ be a given vector such that $\omega\wedge\mathbf{x}=0$.
+Show that $\mathbf{x}$ belongs to the subspace $\text{Span}\left\{ \mathbf{v}_{1},...,\mathbf{v}_{n}\right\} $. 
+
+
+\paragraph{Exercise 2:}
+
+Given a nonzero covector $\mathbf{f}^{*}$ and a vector $\mathbf{n}$
+such that $\mathbf{f}^{*}(\mathbf{n})\neq0$, show that the operator
+$\hat{P}$ defined by\[
+\hat{P}\mathbf{x}=\mathbf{x}-\mathbf{n}\frac{\mathbf{f}^{*}(\mathbf{x})}{\mathbf{f}^{*}(\mathbf{n})}\]
+ is a projector\index{projector} onto the subspace $\mathbf{f}^{*\perp}$,
+i.e.~that $\mathbf{f}^{*}(\hat{P}\mathbf{x})=0$ for all $\mathbf{x}\in V$.
+Show that\[
+(\hat{P}\mathbf{x})\wedge\mathbf{n}=\mathbf{x}\wedge\mathbf{n},\quad\forall\mathbf{x}\in V.\]
+
+
+
+\subsection{Exterior product in index notation\label{sub:Exterior-product-in-index}}
+
+Here I show how to perform calculations with the exterior product
+using the index notation\index{exterior product!in index notation}
+(see Sec.~\ref{sub:Index-notation}), although I will not use this
+later because the index-free notation is more suitable for the purposes
+of this book. 
+
+Let us choose a basis $\left\{ \mathbf{e}_{j}\right\} $ in $V$;
+then the dual basis $\left\{ \mathbf{e}_{j}^{*}\right\} $ in $V$
+and the basis $\left\{ \mathbf{e}_{k_{1}}\wedge...\wedge\mathbf{e}_{k_{m}}\right\} $
+in $\wedge^{m}V$ are fixed. By definition, the exterior product of
+two vectors $\mathbf{u}$ and $\mathbf{v}$ is \[
+A\equiv\mathbf{u}\wedge\mathbf{v}=\mathbf{u}\otimes\mathbf{v}-\mathbf{v}\otimes\mathbf{u},\]
+ therefore it is written in the index notation as $A^{ij}=u^{i}v^{j}-u^{j}v^{i}$.
+Note that the matrix $A^{ij}$ is antisymmetric: $A^{ij}=-A^{ji}$.
+
+Another example: The 3-vector $\mathbf{u}\wedge\mathbf{v}\wedge\mathbf{w}$
+can be expanded in the basis as\[
+\mathbf{u}\wedge\mathbf{v}\wedge\mathbf{w}=\sum_{i,j,k=1}^{N}B^{ijk}\mathbf{e}_{i}\wedge\mathbf{e}_{j}\wedge\mathbf{e}_{k}.\]
+What is the relation between the components $u^{i}$, $v^{i}$, $w^{i}$
+of the vectors and the components $B^{ijk}$? A direct calculation
+yields\begin{equation}
+B^{ijk}=u^{i}v^{j}w^{k}-u^{i}v^{k}w^{j}+u^{k}v^{i}w^{j}-u^{k}w^{j}v^{i}+u^{j}w^{k}v^{i}-u^{j}w^{i}w^{k}.\label{eq:Bijk formula}\end{equation}
+In other words, every permutation of the set $\left(i,j,k\right)$
+of indices enters with the sign corresponding to the parity of that
+permutation. 
+
+
+\paragraph{Remark:}
+
+Readers familiar with the standard definition of the matrix determinant
+will recognize a formula quite similar to the determinant of a $3\times3$
+matrix. The connection between determinants and exterior products
+will be fully elucidated in Chapter~\ref{sec:Determinants-and-all}.
+
+
+\paragraph{Remark:}
+
+The {}``three-dimen\-sion\-al array'' $B^{ijk}$ is antisymmetric
+with respect to \emph{any} pair of indices: \[
+B^{ijk}=-B^{jik}=-B^{ikj}=...\]
+Such arrays are called \textbf{totally antisymmetric\index{totally antisymmetric}}.\hfill{}$\blacksquare$
+
+The formula~(\ref{eq:Bijk formula}) for the components $B^{ijk}$
+of $\mathbf{u}\wedge\mathbf{v}\wedge\mathbf{w}$ is not particularly
+convenient and cannot be easily generalized. We will now rewrite Eq.~(\ref{eq:Bijk formula})
+in a different form that will be more suitable for expressing exterior
+products of arbitrary tensors.
+
+Let us first consider the exterior product of three vectors as a map
+$\hat{E}:V\otimes V\otimes V\rightarrow\wedge^{3}V$. This map is
+linear and can be represented, in the index notation, in the following
+way:\[
+u^{i}v^{j}w^{k}\mapsto\left(\mathbf{u}\wedge\mathbf{v}\wedge\mathbf{w}\right)^{ijk}=\sum_{l,m,n}E_{lmn}^{ijk}u^{l}v^{m}w^{n},\]
+where the array $E_{lmn}^{ijk}$ is the component representation of
+the map $E$. Comparing with the formula~(\ref{eq:Bijk formula}),
+we find that $E_{lmn}^{ijk}$ can be expressed through the Kronecker
+$\delta$-symbol as\[
+E_{lmn}^{ijk}=\delta_{l}^{i}\delta_{m}^{j}\delta_{n}^{k}-\delta_{l}^{i}\delta_{m}^{k}\delta_{n}^{j}+\delta_{l}^{k}\delta_{m}^{i}\delta_{n}^{j}-\delta_{l}^{k}\delta_{m}^{j}\delta_{n}^{i}+\delta_{l}^{j}\delta_{m}^{k}\delta_{n}^{i}-\delta_{l}^{j}\delta_{m}^{i}\delta_{n}^{k}.\]
+ It is now clear that the exterior product of two vectors can be also
+written as\[
+(\mathbf{u}\wedge\mathbf{v})^{ij}=\sum_{l,m}E_{lm}^{ij}u^{l}v^{m},\]
+where\[
+E_{lm}^{ij}=\delta_{l}^{i}\delta_{m}^{j}-\delta_{l}^{j}\delta_{m}^{i}.\]
+By analogy, the map $\hat{E}:V\otimes...\otimes V\rightarrow\wedge^{n}V$
+(for $2\leq n\leq N$) can be represented in the index notation by
+the array of components $E_{j_{1}...j_{n}}^{i_{1}...i_{n}}$. This
+array is totally antisymmetric with respect to all the indices $\left\{ i_{s}\right\} $
+and separately with respect to all $\left\{ j_{s}\right\} $. Using
+this array, the exterior product of two general antisymmetric tensors,
+say $\phi\in\wedge^{m}V$ and $\psi\in\wedge^{n}V$, such that $m+n\leq N$,
+can be represented in the index notation by\[
+(\phi\wedge\psi)^{i_{1}...i_{m+n}}=\frac{1}{m!n!}\sum_{(j_{s},k_{s})}E_{j_{1}...j_{m}k_{1}...k_{n}}^{i_{1}...i_{m+n}}\phi^{j_{1}...j_{m}}\psi^{k_{1}...k_{n}}.\]
+The combinatorial factor $m!n!$ is needed to compensate for the $m!$
+equal terms arising from the summation over $\left(j_{1},...,j_{m}\right)$
+due to the fact that $\phi^{j_{1}...j_{m}}$ is totally antisymmetric,
+and similarly for the $n!$ equal terms arising from the summation
+over $\left(k_{1},...,k_{m}\right)$.
+
+It is useful to have a general formula for the array $E_{j_{1}...j_{n}}^{i_{1}...i_{n}}$.
+One way to define it is\[
+E_{j_{1}...j_{n}}^{i_{1}...i_{n}}=\begin{cases}
+\left(-1\right)^{\left|\sigma\right|} & \text{ if }\left(i_{1},...,i_{n}\right)\text{ is a permutation }\sigma\text{ of }\left(j_{1},...,j_{n}\right);\\
+0 & \text{ otherwise}.\end{cases}\]
+We will now show how one can express $E_{j_{1}...j_{n}}^{i_{1}...i_{n}}$
+through the Levi-Civita symbol $\varepsilon$.
+
+The \textbf{Levi-Civita symbol}\index{Levi-Civita symbol} is defined
+as a totally antisymmetric array with $N$ indices, whose values are
+$0$ or $\pm1$ according to the formula \[
+\varepsilon^{i_{1}...i_{N}}=\begin{cases}
+\left(-1\right)^{\left|\sigma\right|} & \text{ if }\left(i_{1},...,i_{N}\right)\text{ is a permutation }\sigma\text{ of }\left(1,...,N\right);\\
+0 & \text{otherwise.}\end{cases}\]
+Comparing this with the definition of $E_{j_{1}...j_{n}}^{i_{1}...i_{n}}$,
+we notice that\[
+\varepsilon^{i_{1}...i_{N}}=E_{1...N}^{i_{1}...i_{N}}.\]
+Depending on convenience, we may write $\varepsilon$ with upper or
+lower indices since $\varepsilon$ is just an array of numbers in
+this calculation. 
+
+In order to express $E_{j_{1}...j_{n}}^{i_{1}...i_{n}}$ through $\varepsilon^{i_{1}...i_{N}}$,
+we obviously need to use at least two copies of $\varepsilon$ ---
+one with upper and one with lower indices. Let us therefore consider
+the expression\begin{equation}
+\tilde{E}_{j_{1}...j_{n}}^{i_{1}...i_{n}}\equiv\sum_{k_{1},...,k_{N-n}}\varepsilon^{i_{1}...i_{n}k_{1}...k_{N-n}}\varepsilon_{j_{1}...j_{n}k_{1}...k_{N-n}},\label{eq:E tilda def}\end{equation}
+where the summation is performed \emph{only} over the $N-n$ indices
+$\left\{ k_{s}\right\} $. This expression has $2n$ free indices
+$i_{1}$, ..., $i_{n}$ and $j_{1}$, ..., $j_{n}$, and is totally
+antisymmetric in these free indices (since $\varepsilon$ is totally
+antisymmetric in all indices). 
+
+
+\paragraph{Statement:}
+
+The exterior product operator $E_{j_{1}...j_{n}}^{i_{1}...i_{n}}$
+is expressed through the Levi-Civita symbol as\begin{equation}
+E_{j_{1}...j_{n}}^{i_{1}...i_{n}}=\frac{1}{\left(N-n\right)!}\tilde{E}_{j_{1}...j_{n}}^{i_{1}...i_{n}},\label{eq:E def}\end{equation}
+where $\tilde{E}$ is defined by Eq.~(\ref{eq:E tilda def}).
+
+
+\subparagraph{Proof:}
+
+Let us compare the values of $E_{j_{1}...j_{n}}^{i_{1}...i_{n}}$
+and $\tilde{E}_{j_{1}...j_{n}}^{i_{1}...i_{n}}$, where the indices
+$\left\{ i_{s}\right\} $ and $\left\{ j_{s}\right\} $ have some
+fixed values. There are two cases: either the set $\left(i_{1},...,i_{n}\right)$
+is a permutation of the set $\left(j_{1},...,j_{n}\right)$; in that
+case we may denote this permutation by $\sigma$; or $\left(i_{1},...,i_{n}\right)$
+is not a permutation of $\left(j_{1},...,j_{n}\right)$. 
+
+Considering the case when a permutation $\sigma$ brings $\left(j_{1},...,j_{n}\right)$
+into $\left(i_{1},...,i_{n}\right)$, we find that the symbols $\varepsilon$
+in Eq.~(\ref{eq:E tilda def}) will be nonzero only if the indices
+$\left(k_{1},...,k_{N-n}\right)$ are a permutation of the complement
+of the set $\left(i_{1},...,i_{n}\right)$. There are $\left(N-n\right)!$
+such permutations, each contributing the same value to the sum in
+Eq.~(\ref{eq:E tilda def}). Hence, we may write%
+\footnote{In the equation below, I have put the warning {}``no sums'' for
+clarity: A summation over all repeated indices is often \emph{implicitly}
+assumed in the index notation.%
+} the sum as \[
+\tilde{E}_{j_{1}...j_{n}}^{i_{1}...i_{n}}=\left(N-n\right)!\,\varepsilon^{i_{1}...i_{n}k_{1}...k_{N-n}}\varepsilon_{j_{1}...j_{n}k_{1}...k_{N-n}}\text{ (no sums!)},\]
+where the indices $\left\{ k_{s}\right\} $ are chosen such that the
+values of $\varepsilon$ are nonzero. Since \[
+\sigma\left(j_{1},...,j_{n}\right)=\left(i_{1},...,i_{n}\right),\]
+we may permute the first $n$ indices in $\varepsilon_{j_{1}...j_{n}k_{1}...k_{N-n}}$\begin{align*}
+\tilde{E}_{j_{1}...j_{n}}^{i_{1}...i_{n}} & =\left(N-n\right)!(-1)^{\left|\sigma\right|}\varepsilon^{i_{1}...i_{n}k_{1}...k_{N-n}}\varepsilon_{i_{1}...i_{n}k_{1}...k_{N-n}}\text{ (no sums!)}\\
+ & =\left(N-n\right)!(-1)^{\left|\sigma\right|}.\end{align*}
+(In the last line, we replaced the squared $\varepsilon$ by $1$.)
+Thus, the required formula for $\tilde{E}$ is valid in the first
+case.
+
+In the case when $\sigma$ does not exist, we note that\[
+\tilde{E}_{j_{1}...j_{n}}^{i_{1}...i_{n}}=0,\]
+because in that case one of the $\varepsilon$'s in Eq.~(\ref{eq:E tilda def})
+will have at least some indices equal and thus will be zero. Therefore
+$\tilde{E}$ and $E$ are equal to zero for the same sets of indices.\hfill{}$\blacksquare$
+
+Note that the formula for the top exterior power ($n=N$) is simple
+and involves no summations and no combinatorial factors:\[
+E_{j_{1}...j_{N}}^{i_{1}...i_{N}}=\varepsilon^{i_{1}...i_{N}}\varepsilon_{j_{1}...j_{N}}.\]
+
+
+
+\paragraph{Exercise:}
+
+The operator $\hat{E}:V\otimes V\otimes V\rightarrow\wedge^{3}V$
+can be considered within the subspace $\wedge^{3}V\subset V\otimes V\otimes V$,
+which yields an operator $\hat{E}:\wedge^{3}V\rightarrow\wedge^{3}V$.
+Show that in this subspace,\[
+\hat{E}=3!\,\hat{1}_{\wedge^{3}V}.\]
+Generalize to $\wedge^{n}V$ in the natural way. 
+
+\emph{Hint}: Act with $\hat{E}$ on $\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}$.
+
+
+\paragraph{Remark:}
+
+As a rule, a summation of the Levi-Civita symbol $\varepsilon$ with
+any antisymmetric tensor (e.g.~another $\varepsilon$) gives rise
+to a combinatorial factor $n!$ when the summation goes over $n$
+indices.
+
+
+\subsection{{*} Exterior algebra (Grassmann algebra)}
+
+The formalism of exterior algebra is used e.g.~in physical theories
+of quantum fermionic fields and supersymmetry.
+
+
+\paragraph{Definition:}
+
+An \textbf{algebra}\index{algebra} is a vector space with a distributive
+multiplication. In other words, ${\cal A}$ is an algebra if it is
+a vector space over a field $\mathbb{K}$ and if for any $a,b\in{\cal A}$
+their product $ab\in{\cal A}$ is defined, such that $a\left(b+c\right)=ab+ac$
+and $\left(a+b\right)c=ac+bc$ and $\lambda\left(ab\right)=\left(\lambda a\right)b=a\left(\lambda b\right)$
+for $\lambda\in\mathbb{K}$. An algebra is called \textbf{commutative}
+if $ab=ba$ for all $a,b$. 
+
+The properties of the multiplication in an algebra can be summarized
+by saying that for any fixed element $a\in{\cal A}$, the transformations
+$x\mapsto ax$ and $x\mapsto xa$ are linear maps of the algebra into
+itself.
+
+
+\paragraph{Examples of algebras:}
+\begin{enumerate}
+\item All $N\times N$ matrices with coefficients from $\mathbb{K}$ are
+a $N^{2}$-dimen\-sion\-al algebra. The multiplication is defined
+by the usual matrix multiplication formula. This algebra is not commutative
+because not all matrices commute. 
+\item The field $\mathbb{K}$ is a one-dimen\-sion\-al algebra over itself.
+(Not a very exciting example.) This algebra is commutative.
+\end{enumerate}
+
+\paragraph{Statement:}
+
+If $\omega\in\wedge^{m}V$ then we can define the map $L_{\omega}:\wedge^{k}V\rightarrow\wedge^{k+m}V$
+by the formula\[
+L_{\omega}\left(\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{k}\right)\equiv\omega\wedge\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{k}.\]
+For elements of $\wedge^{0}V\equiv\mathbb{K}$, we define $L_{\lambda}\omega\equiv\lambda\omega$
+and also $L_{\omega}\lambda\equiv\lambda\omega$ for any $\omega\in\wedge^{k}V$,
+$\lambda\in\mathbb{K}$. Then the map $L_{\omega}$ is linear for
+any $\omega\in\wedge^{m}V$, $0\leq m\leq N$.
+
+
+\subparagraph{Proof: }
+
+Left as exercise.\hfill{}$\blacksquare$
+
+
+\paragraph{Definition: }
+
+The \textbf{exterior algebra}\index{exterior algebra} (also called
+the \textbf{Grassmann algebra}\index{Grassmann algebra}) based on
+a vector space $V$ is the space $\wedge V$ defined as the direct
+sum, \[
+\wedge V\equiv\mathbb{K}\oplus V\oplus\wedge^{2}V\oplus...\oplus\wedge^{N}V,\]
+with the multiplication defined by the map $L$, which is extended
+to the whole of $\wedge V$ by linearity.
+
+For example, if $\mathbf{u},\mathbf{v}\in V$ then $1+\mathbf{u}\in\wedge V$,\[
+A\equiv3-\mathbf{v}+\mathbf{u}-2\mathbf{v}\wedge\mathbf{u}\in\wedge V,\]
+and\[
+L_{1+\mathbf{u}}A=\left(1+\mathbf{u}\right)\wedge\left(3-\mathbf{v}+\mathbf{u}-2\mathbf{v}\wedge\mathbf{u}\right)=3-\mathbf{v}+4\mathbf{u}-\mathbf{v}\wedge\mathbf{u}.\]
+Note that we still write the symbol $\wedge$ to denote multiplication
+in $\wedge V$ although now it is not necessarily anticommutative;
+for instance, $1\wedge x=x\wedge1=x$ for any $x$ in this algebra.
+
+
+\paragraph{Remark: }
+
+The summation in expressions such as $1+\mathbf{u}$ above is \emph{formal}
+in the usual sense: $1+\mathbf{u}$ is not a new vector or a new tensor,
+but an element of a \emph{new} \emph{space}. The exterior algebra
+is thus the space of formal linear combinations of numbers, vectors,
+2-vectors, etc., all the way to $N$-vectors.\hfill{}$\blacksquare$
+
+Since $\wedge V$ is a direct sum of $\wedge^{0}V$, $\wedge^{1}V$,
+etc., the elements of $\wedge V$ are sums of scalars, vectors, bivectors,
+etc., i.e.~of objects having a definite {}``grade'' --- scalars
+being {}``of grade'' 0, vectors of grade 1, and generally $k$-vectors
+being of grade $k$. It is easy to see that $k$-vectors and $l$-vectors
+either commute or anticommute, for instance\begin{align*}
+\left(\mathbf{a}\wedge\mathbf{b}\right)\wedge\mathbf{c} & =\mathbf{c}\wedge\left(\mathbf{a}\wedge\mathbf{b}\right),\\
+\left(\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}\right)\wedge1 & =1\wedge\left(\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}\right),\\
+\left(\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}\right)\wedge\mathbf{d} & =-\mathbf{d}\wedge\left(\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}\right).\end{align*}
+The general law of commutation and anticommutation can be written
+as \[
+\omega_{k}\wedge\omega_{l}=\left(-1\right)^{kl}\omega_{l}\wedge\omega_{k},\]
+where $\omega_{k}\in\wedge^{k}V$ and $\omega_{l}\in\wedge^{l}V$.
+However, it is important to note that sums of elements having different
+grades, such as $1+\mathbf{a}$, are elements of $\wedge V$ that
+do \emph{not} have a definite grade, because they do not belong to
+any single subspace $\wedge^{k}V\subset\wedge V$. Elements that do
+not have a definite grade can of course still be multiplied within
+$\wedge V$, but they \emph{neither} commute \emph{nor} anticommute,
+for example:\begin{align*}
+\left(1+\mathbf{a}\right)\wedge\left(1+\mathbf{b}\right) & =1+\mathbf{a}+\mathbf{b}+\mathbf{a}\wedge\mathbf{b},\\
+\left(1+\mathbf{b}\right)\wedge\left(1+\mathbf{a}\right) & =1+\mathbf{a}+\mathbf{b}-\mathbf{a}\wedge\mathbf{b}.\end{align*}
+So $\wedge V$ is a \emph{noncommutative} (but associative) algebra.
+Nevertheless, the fact that elements of $\wedge V$ having a pure
+grade either commute or anticommute is important, so this kind of
+algebra is called a \textbf{graded algebra}\index{graded algebra}.
+
+
+\paragraph{Exercise 1:}
+
+Compute the dimension of the algebra $\wedge V$ as a vector space,
+if $\dim V=N$.
+
+
+\subparagraph{Answer: }
+
+$\dim\left(\wedge V\right)=\sum_{i=0}^{N}{N \choose i}=2^{N}$.
+
+
+\paragraph{Exercise 2:}
+
+Suppose that an element $x\in\wedge V$ is a sum of elements of \emph{pure
+even} grade, e.g.~$x=1+\mathbf{a}\wedge\mathbf{b}$. Show that $x$
+commutes with any other element of $\wedge V$. 
+
+
+\paragraph{Exercise 3:}
+
+Compute $\exp\left(\mathbf{a}\right)$ and $\exp\left(\mathbf{a}\wedge\mathbf{b}+\mathbf{c}\wedge\mathbf{d}\right)$
+by writing the Taylor series using the multiplication within the algebra
+$\wedge V$.
+
+\emph{Hint}: Simplify the expression $\exp(x)=1+x+\frac{1}{2}x\wedge x+...$
+for the particular $x$ as given.
+
+
+\subparagraph{Answer: }
+
+$\exp\left(\mathbf{a}\right)=1+\mathbf{a}$; \[
+\exp\left(\mathbf{a}\wedge\mathbf{b}+\mathbf{c}\wedge\mathbf{d}\right)=1+\mathbf{a}\wedge\mathbf{b}+\mathbf{c}\wedge\mathbf{d}+\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}\wedge\mathbf{d}.\]

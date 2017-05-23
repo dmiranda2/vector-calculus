@@ -1,0 +1,1288 @@
+\chapter{Integration of Forms} \label{ch:integralofforms}
+
+\section{Differential Forms}
+
+
+\begin{df}
+A \negrito{$k$-differential form field in $\reals^n$} is an expression
+of the form
+$$\omega =  \dsum _{ 1 \leq j_1 \leq j_2 \leq \cdots \leq j_k \leq n} a_{j_1j_2\ldots j_k}\d{x_{j_1}} \wedge \d{x_{j_2}} \wedge \cdots \d{x_{j_k}},
+$$where the $a_{j_1j_2\ldots j_k}$ are differentiable
+functions in $\reals^n$.
+\end{df}
+
+A $0$-differential form in $\reals^n$ is simply a differentiable
+function in $\reals^n$.
+
+
+\begin{exa}
+$$g(x, y, z, w) = x + y^2 + z^3 + w^4$$is a 0-form in $\reals^4$.
+\end{exa}
+\begin{exa}
+An example of a  1-form field in $\reals^3$ is
+$$\omega = x\d{x}+ y^2\d{y} + xyz^3\d{z}.$$
+\end{exa}
+\begin{exa}
+An example of a  2-form field in $\reals^3$ is
+$$\omega = x^2\d{x}\wedge \d{y} + y^2\d{y} \wedge \d{z} + \d{z} \wedge \d{x}.$$
+\end{exa}
+\begin{exa}
+An example of a  3-form  field in $\reals^3$ is
+$$\omega = (x + y + z)\d{x}\wedge \d{y} \wedge \d{z}.$$
+\end{exa}
+We shew now how to multiply differential forms.
+\begin{exa}
+The product of the 1-form fields in $\reals^3$
+$$\omega_1 = y\d{x}+ x\d{y},$$
+$$\omega_2 = -2x\d{x}+ 2y\d{y},$$is
+$$\omega_1 \wedge \omega_2 = (2x^2 + 2y^2)\d{x}\wedge \d{y}.$$
+
+\end{exa}
+
+\begin{df}Let $f(x_1, x_2, \ldots , x_n)$ be a $0$-form in
+$\reals^n$. The \negrito{exterior derivative} $\d{f}$ of $f$ is
+
+$$\d{f} = \dsum _{i = 1} ^n \dfrac{\partial f}{\partial x_i}\d{x_i}.     $$
+Furthermore, if $$ \omega = f(x_1, x_2, \ldots , x_n) \d{x_{j_1}}
+\wedge \d{x_{j_2}} \wedge \cdots \wedge \d{x_{j_k}}
+$$is a $k$-form in $\reals^n$, the \negrito{exterior derivative} $\d{\omega}$ of $\omega$ is the $(k +
+1 )$-form
+$$ \d{\omega} = \d{f(x_1, x_2, \ldots , x_n)} \wedge \d{x_{j_1}} \wedge
+\d{x_{j_2}} \wedge \cdots \wedge \d{x_{j_k}}.
+                   $$
+\end{df}
+\begin{exa}
+If in $\reals^2$, $\omega = x^3y^4$, then
+$$\d (x^3y^4) = 3x^2y^4\d{x}+ 4x^3y^3\d{y}.$$
+\end{exa}
+\begin{exa}
+If in $\reals^2$, $\omega = x^2y\d{x}+ x^3y^4\d{y}$ then
+$$\begin{array}{lll}
+\d{\omega} & = & \d (x^2y\d{x}+ x^3y^4\d{y}) \\
+& = & (2xy\d{x}+ x^2\d{y})\wedge \d{x}+ (3x^2y^4\d{x}+ 4x^3y^3\d{y})\wedge \d{y} \\
+& = & x^2 \d{y} \wedge \d{x}+ 3x^2y^4\d{x}\wedge \d{y} \\
+& = & (3x^2y^4 - x^2)\d{x}\wedge \d{y} \\
+\end{array}$$
+\end{exa}
+
+\begin{exa}
+Consider the change of variables $x = u + v, y = uv$. Then
+$$\d{x}= \d{u}+\d{v},$$
+$$\d{y}  = v\d{u}+ u\d v,$$whence
+$$\d{x}\wedge \d{y} = (u - v) \d{u}\wedge\d{v}.$$
+\end{exa}
+\begin{exa}
+Consider the transformation of coordinates $xyz$ into $uvw$
+coordinates given by
+$$u = x + y + z,\  v = \dfrac{z}{y + z},\  w = \dfrac{y + z}{x + y + z}.$$
+Then
+$$\d{u}= \d{x}+ \d{y} + \d{z},$$
+$$\d v = -\dfrac{z}{(y + z)^2}\d{y} + \dfrac{y}{(y + z)^2}\d{z},
+$$
+$$\d{w} =
+-\dfrac{y + z}{(x + y + z)^2}\d{x}+ \dfrac{x}{(x + y + z)^2}\d{y} +
+\dfrac{x}{(x + y + z)^2}\d{z}.$$ Multiplication gives
+$$\everymath{\displaystyle}{\begin{array}{lll}\d{u}\wedge\d{v} \wedge \d{w} & = & \left(-\dfrac{zx}{(y + z)^2(x + y + z)^2} -
+\dfrac{y(y + z)}{(y + z)^2(x + y + z)^2} \right. \\
+& & \qquad \left. + \dfrac{z(y + z)}{(y + z)^2(x + y + z)^2} -
+\dfrac{xy}{(y + z)^2(x + y + z)^2} \right)\d{x}\wedge \d{y} \wedge
+\d{z}
+\\ &
+= &\dfrac{z^2 - y^2 - zx - xy}{(y + z)^2(x + y + z)^2}\d{x}\wedge
+\d{y} \wedge \d{z}. \end{array}}$$
+\end{exa}
+
+\section{Integrating Differential Forms}
+Let
+
+\[\omega=\dsum_{i_1 < \cdots < i_k} a_{i_1,\dots,i_k}({\vector{x}})\,dx^{i_1} \wedge \ldots \wedge dx^{i_k}\]
+
+be a differential form and $M$ a differentiable-manifold over 
+which we
+wish to integrate, where $M$ has the parameterization
+
+\[M({\vector{u}})=(x^1({\vector{u}}),\dots,x^k({\vector{u}}))\]
+
+for in the parameter $\vector{u}$ domain $D$ . Then defines the integral of the
+differential form over as
+
+\[\int_S \omega =\int_D \dsum_{i_1 < \cdots < i_k} a_{i_1,\dots,i_k}(M({\vector{u}})) \frac{\partial(x^{i_1},\dots,x^{i_k})}{\partial(u^{1},\dots,u^{k})}\,du^1 \cdots du^k,\]
+
+where the integral on the right-hand side is the standard Riemann  integral over $D$, and
+
+\[\frac{\partial(x^{i_1},\dots,x^{i_k})}{\partial(u^{1},\dots,u^{k})}\]
+
+is the determinant of the Jacobian.
+
+
+
+\section{Zero-Manifolds }
+\begin{df}
+A  {$0$-dimensional  oriented manifold of $\reals^n$} is simply
+a point $\point{x}\in \reals^n$, with a choice of the  $+$ or $-$
+sign. A general oriented $0$-manifold is a union of oriented points.
+\end{df}
+\begin{df}
+Let $M = +\{\point{b}\} \cup -\{\point{a}\}$ be an oriented
+$0$-manifold, and let $\omega$ be a $0$-form. Then
+$$ \dint _M \omega = \omega (\point{b}) - \omega (\point{a}).   $$
+\end{df}
+
+\begin{rem}$-\point{x}$ has opposite orientation to $+\point{x}$ and
+$$ \dint _{-\point{x}} \omega = -\dint _{+\point{x}} \omega .   $$
+\end{rem}
+\begin{exa}
+Let $M = -\{(1,0,0)\} \cup +\{(1,2,3)\} \cup
+-\{(0,-2,0)\}$\footnote{Do not confuse, say, $-\{(1,0,0)\}$ with
+$-(1,0,0) = (-1,0,0)$. The first one means that the point
+$(1,0,0)$ is given negative orientation, the second means that
+$(-1,0,0)$ is the additive inverse of $(1,0,0)$. } be an oriented
+$0$-manifold, and let $\omega = x + 2y + z^2$. Then
+$$\dint _M\omega = -\omega ((1,0,0)) + \omega (1,2,3) - \omega (0,0,3) = -(1) + (14) - (-4) = 17.         $$
+\end{exa}
+
+\section{One-Manifolds}
+\begin{df}
+A  \textbf{$1$-dimensional  oriented manifold of $\reals^n$} is simply
+an oriented smooth curve  $\Gamma\in \reals^n$, with a choice of a
+$+$ orientation if the curve traverses in the direction of
+increasing $t$,  or with a choice of a $-$ sign if the curve
+traverses in the direction of decreasing $t$. A general oriented
+$1$-manifold is a union of oriented curves.
+\end{df}
+\begin{rem}The curve $-\Gamma$ has opposite orientation to $\Gamma$ and
+$$ \dint _{-\Gamma} \omega = -\dint _\Gamma \omega .   $$If $\vector{f}:\reals ^2 \to \reals
+^2$ and if $\d{\vector{r}} = \colvec{\d{x}\\ \d{y}}$, the classical
+way of writing this is $$  \dint _{\Gamma} \vector{f}\cdot
+\d{\vector{r}}.
+$$
+\end{rem}
+We now turn to the problem of integrating $1$-forms.
+\begin{exa}
+Calculate
+$$\dint _\Gamma xy\d{x} + (x + y)\d{y}$$ where $\Gamma$ is the parabola
+$y = x^2, \ x \in [-1; 2]$ oriented in the positive direction.
+\end{exa}
+\begin{solu} We parametrise the curve as $x = t, y = t^2$. Then
+$$xy\d{x} + (x + y)\d{y} = t^3\d{t} + (t + t^2)\d{t^2} = (3t^3 + 2t^2)\d{t},    $$
+whence
+$$\begin{array}{lll}
+\dint _{\Gamma} \omega & = & \dint _{-1} ^2 (3t^3 + 2t^2)\d{t} \\
+& = & \left[\dfrac{2}{3}t^3  + \dfrac{3}{4}t^4\right] _{-1} ^2\\ &
+= & \dfrac{69}{4}.
+\end{array}$$
+What would happen if we had given the curve above a different
+parametrisation? First observe that the curve travels from
+$(-1,1)$ to $(2,4)$ on the parabola $y = x^2$. These conditions
+are met with the parametrisation $x = \sqrt{t} - 1, y =
+(\sqrt{t}-1)^2$, $t\in [0; 9]$. Then
+$$\begin{array}{lll}xy\d{x} + (x + y)\d{y} & = & (\sqrt{t}-1)^3\d{(\sqrt{t}-1)} + ((\sqrt{t}-1) + (\sqrt{t}-1)^2)\d{(\sqrt{t}-1)^2}\\
+& = & (3(\sqrt{t}-1)^3 + 2(\sqrt{t}-1)^2)\d{(\sqrt{t} - 1)} \\
+& = & \dfrac{1}{2\sqrt{t}}(3(\sqrt{t}-1)^3 +
+2(\sqrt{t}-1)^2)\d{t},
+\end{array}$$ whence
+$$\begin{array}{lll}
+\dint _{\Gamma} \omega & = & \dint _{0} ^9 \dfrac{1}{2\sqrt{t}}(3(\sqrt{t}-1)^3 + 2(\sqrt{t}-1)^2)\d{t} \\
+& = &
+\left[\frac{3t^2}{4}-\frac{7t^{3/2}}{3}+\frac{5t}{2}-\sqrt{t}\right]
+_{0} ^9\\[1ex] & = & \dfrac{69}{4},\\
+\end{array}$$as before.
+
+
+
+
+
+
+
+\end{solu}
+
+\begin{rem}
+It turns out that if two different parametrisations of the same
+curve have the same orientation, then their integrals are equal.
+Hence, we only need to worry about finding a suitable
+parametrisation.
+\end{rem}
+
+
+
+
+
+
+
+\begin{exa}
+ Calculate the line integral $$\dint _{\Gamma} y\sin x\d{x}+ x\cos y\d{y}  ,$$ where $\Gamma$ is the line
+segment from $(0, 0)$ to $(1, 1)$ in the positive direction.
+ \end{exa}
+ \begin{solu} This line has equation $y = x$, so we choose the parametrisation $x = y = t$. The integral is thus
+ $$\begin{array}{lll}
+\dint _{\Gamma} y\sin x\d{x}+ x\cos y\d{y}  & = & \dint _0 ^1
+(t\sin t  + t\cos t)\d t \\
+& = &  [t(\sin x - \cos t)]_0 ^1 - \dint _0 ^1
+(\sin t  - \cos t)\d t\\
+ & = & 2\sin 1 - 1,
+ \end{array}$$upon integrating by parts.
+
+
+
+
+
+
+\end{solu}
+\begin{exa}
+ Calculate the path integral $$\dint _{\Gamma} \dfrac{x + y}{x^2 + y^2} \ \ \d{y} + \dfrac{x - y}{x^2 +
+y^2}\ \ \d{x}$$around the closed square   $\Gamma = ABCD$ with $A
+= (1, 1)$, $B = (-1, 1)$, $C = (-1, -1)$, and $D = (1, -1)$ in the
+direction $ABCDA$.
+ \end{exa}
+ \begin{solu}  On $AB$, $y=1, \d{y} = 0$, on $BC$, $x = -1, \d{x} =
+ 0$, on $CD$, $y = -1, \d{y} = 0$, and on $DA$, $x = 1, \d{x} =
+ 0$. The integral is thus
+ \renewcommand{\arraystretch}{2}
+ $$\begin{array}{lll}
+\dint _{\Gamma} \omega & = & \dint _{AB} \omega + \dint _{BC} \omega
++
+\dint _{CD} \omega +  \dint _{DA} \omega \\
+& = & \dint ^{-1} _1 \dfrac{x - 1}{x^2 + 1}\ \d{x}+  \dint ^{-1} _1
+\dfrac{y - 1}{y^2 + 1}\ \d{y} +  \dint _{-1} ^1 \dfrac{x + 1}{x^2 +
+1}\ \d{x}+  \dint _{-1} ^1 \dfrac{y + 1}{y^2 + 1}\
+\d{y} \\
+& = & 4 \dint _{-1} ^1 \dfrac{1}{x^2 + 1}\ \d{x}\\
+& = & 4\arctan x|_{-1} ^1 \\ & = & 2\pi .
+ \end{array}$$
+
+
+
+
+
+ \end{solu}
+ \begin{rem}
+When the integral is along a closed path, like in the preceding
+example, it is customary to use the symbol $\ \doint _\Gamma$
+rather than $\dint_\Gamma$. The positive direction of integration
+is that sense that when traversing the path, the area enclosed by
+the curve is to the left of the curve.
+\end{rem}
+
+\begin{exa}
+ Calculate the path integral $$\doint _{\Gamma}  x^2\d{y} + y^2\d{x},$$where $\Gamma$ is the ellipse
+ $\dis{9x^2 + 4y^2 = 36}$
+traversed once in the positive sense. \end{exa} \begin{solu}
+Parametrise the ellipse as $x = 2\cos t, y = 3\sin t, t\in [0;
+2\pi]$. Observe that when traversing this closed curve, the area of
+the ellipse is on the left hand side of the path, so this
+parametrisation traverses the curve in the positive sense. We have
+$$\begin{array}{lll}
+\doint _{\Gamma} \omega & = & \dint _0 ^{2\pi} ((4\cos^2t)(3\cos t)
++
+(9\sin t)(-2\sin t) )\d t \\
+& = & \dint _0 ^{2\pi} (12\cos^3t - 18\sin^3t) \d t \\
+& = & 0.
+\end{array}$$
+
+
+
+
+
+\end{solu}
+
+
+
+\begin{df}
+ Let $\Gamma$ be a smooth curve. The integral $$\dint \limits_\Gamma f(\point{x}) \norm{\d{\point{x}}}
+ $$is called the \negrito{path integral of $f$ along $\Gamma$.}
+\end{df}
+\begin{exa}\label{exa:int_along_a_length}
+Find $\dint \limits_\Gamma x \norm{\d{\point{x}}} $ where $\Gamma$
+is the triangle starting at  $A:(-1,-1)$ to $B:(2,-2)$, and ending
+in $C:(1,2)$.
+\end{exa}\begin{solu} The lines passing through the given  points have
+equations $L_{AB}: y = \dfrac{-x - 4}{3}$,  and $L_{BC}: y = -4x +
+6$. On $L_{AB}$ $$ x\norm{\d{\point{x}}} = x\sqrt{(\d{x})^2 +
+(\d{y})^2} = x\sqrt{1 + \left(-\dfrac{1}{3}\right)^2}\d{x} =
+\dfrac{x\sqrt{10}\d{x}}{3},
+$$and on $L_{BC}$
+$$ x\norm{\d{\point{x}}} = x\sqrt{(\d{x})^2 +
+(\d{y})^2} = x(\sqrt{1 + \left(-4\right)^2})\d{x} =
+x\sqrt{17}\d{x}.
+$$Hence
+$$\begin{array}{lll}\dint \limits_\Gamma x \norm{\d{\point{x}}} & = & \dint \limits_{L_{AB}} x \norm{\d{\point{x}}}  + \dint \limits_{L_{BC}} x \norm{\d{\point{x}}}  \\
+& = & \dint _{-1} ^2  \dfrac{x\sqrt{10}\d{x}}{3} + \dint _2 ^1
+x\sqrt{17}\d{x} \\
+& = &  \dfrac{\sqrt{10}}{2}  - \dfrac{3\sqrt{17}}{2}.
+\end{array}
+$$
+
+
+
+
+
+
+\end{solu}
+
+\vspace*{2cm}
+\begin{figure}[htpb]
+
+$$ \psset{unit=2pc}\renewcommand{\pshlabel}[1]{{\tiny
+#1}}
+\renewcommand{\psvlabel}[1]{{\tiny #1}} \psaxes(0,0)(-3,-3)(3,3)
+\psdots[dotscale=1, dotstyle=*](-1,-1)(2,-2)(1,2)
+\psline(-1,-1)(2,-2)(1,2)
+$$ \vspace*{2cm}\hangcaption{Example \ref{exa:int_along_a_length}. } \label{fig:int_along_a_length}
+\end{figure}
+
+\section*{\psframebox{Homework}}
+\begin{multicols}{2}\columnseprule 1pt \columnsep 25pt\multicoltolerance=900
+\begin{problem}
+Consider $\dint _C x\d{x}+y\d{y}$ and $\dint _C xy
+\norm{\d{\point{x}}} $.
+\begin{enumerate}
+\item  Evaluate $\dint _C x\d{x}+y\d{y}$ where $C$ is the straight line path that starts at $(-1,0)$ goes to $(0,1)$ and ends at $(1,0)$, by parametrising this
+path. Calculate also $\dint _C xy \norm{\d{\point{x}}} $ using this
+parametrisation.
+\item  Evaluate $\dint _C x\d{x}+yd{y}$ where $C$ is the semicircle that starts at $(-1,0)$ goes to $(0,1)$ and ends at $(1,0)$, by parametrising this
+path. Calculate also $\dint _C xy \norm{\d{\point{x}}} $ using this
+parametrisation.
+\end{enumerate}
+\begin{answer}
+\noindent
+\begin{enumerate}
+\item  Let $L_1: y =x+1$, $L_2: -x+1$. Then
+$$
+\begin{array}{lll}
+\dint _C x\d{x}+y\d{y} & = & \dint _{L_1} x\d{x}+y\d{y}+\dint _{L_2}
+x\d{x}+y\d{y}\\
+& = & \dint _{-1} ^1 x\d{x} (x+1)\d{x} + \dint _0 ^1 x\d{x}
+-(-x+1)\d{x}\\
+& = & 0.
+\end{array}
+$$
+Also, both on $L_1$ and on $L_2$ we have
+$\norm{\d{\point{x}}}=\sqrt{2}\d{x}$, thus
+$$
+\begin{array}{lll}
+\dint _C xy \norm{\d{\point{x}}}& = & \dint _{L_1}xy
+\norm{\d{\point{x}}}+\dint _{L_2}
+xy \norm{\d{\point{x}}}\\
+& = & \sqrt{2}\dint _{-1} ^1 x(x+1)\d{x} - \sqrt{2}\dint _0 ^1 x(-x+1)\d{x}\\
+& = & 0.
+\end{array}
+$$
+
+\item We put $x=\sin t$, $y = \cos t$, $t\in\lcrc{-\frac{\pi}{2}}{\frac{\pi}{2}}$. Then
+
+$$
+\begin{array}{lll}
+\dint _C x\d{x}+y\d{y} & = & \dint _{-\pi/2} ^{\pi/2}
+(\sin t)(\cos t)\d{t}-(\cos t)(\sin t)\d{t}\\
+& = & 0.
+\end{array}
+$$
+Also, $\norm{\d{\point{x}}}=\sqrt{(\cos t)^2+(-\sin
+t)^2}\d{t}=\d{t}$, and thus
+$$
+\begin{array}{lll}
+\dint _C xy \norm{\d{\point{x}}}& = & \dint _{-\pi/2} ^{\pi/2} (\sin
+t)(\cos t) \d{t}\\
+& = & \dfrac{(\sin t)^2}{2}\Big| _{-\pi/2} ^{\pi/2} \\
+& = & 0.
+\end{array}
+$$
+\end{enumerate}
+\end{answer}
+\end{problem}
+
+
+\begin{problem}
+\label{pro:path-integral}  Find $\dint _{\Gamma} x\d{x} + y\d{y} $
+where $\Gamma$ is the path shewn in figure \ref{fig:path-integral},
+starting at  $O(0,0)$ going on a straight line to $A\left(4\cos
+\tfrac{\pi}{6}, 4\sin \tfrac{\pi}{6}\right)$ and continuing on an
+arc of a circle to $B\left(4\cos \tfrac{\pi}{5}, 4\sin
+\tfrac{\pi}{5}\right)$.
+\begin{answer}
+Let $\Gamma _1$ denote the straight line segment path from $O$ to
+$A=(2\sqrt{3},2)$ and $\Gamma _2$ denote the arc of the circle
+centred at $(0,0)$ and radius $4$ going counterclockwise from
+$\theta=\dfrac{\pi}{6}$ to  $\theta=\dfrac{\pi}{5}$.
+
+\bigskip
+
+Observe that the Cartesian equation of the line  $\line{OA}$ is $y
+=\dfrac{x}{\sqrt{3}}$. Then on $\Gamma _1$
+$$x\d{x} + y\d{y} = x\d{x}+ \dfrac{x}{\sqrt{3}}\d{\dfrac{x}{\sqrt{3}}} = \dfrac{4}{3}x\d{x}.$$
+Hence $$\dint _{\Gamma _1} x\d{x} + y\d{y} = \dint _0 ^{2\sqrt{3}}
+\dfrac{4}{3}x\d{x} = 8.
+$$
+
+On the arc of the circle we may put $x=4\cos \theta$, $y = 4\sin
+\theta$ and integrate from $\theta = \dfrac{\pi}{6}$ to $\theta =
+\dfrac{\pi}{5}$. Observe that there
+$$ x\d{x} + y\d{y} = (\cos \theta )\d{\cos \theta}  +(\sin\theta)\d{\sin \theta} = -\sin\theta\cos\theta\d{\theta}+\sin\theta\cos\theta\d{\theta}=0,$$
+and since the integrand is $0$, the integral will be zero.
+
+\bigskip
+
+Assembling these two pieces,
+$$\dint _{\Gamma} x\d{x} + y\d{y} = \dint _{\Gamma _1} x\d{x} + y\d{y} +\dint _{\Gamma _2} x\d{x} + y\d{y}=8+0=8.    $$
+
+
+\bigskip
+
+Using the parametrisations from the solution of  problem
+\ref{pro:path-integral2}, we find on $\Gamma _1$ that
+$$ x\norm{\d{\point{x}}} = x\sqrt{(\d{x})^2+ (\d{y})^2} =x\sqrt{1+\dfrac{1}{3}}\d{x}=\dfrac{2}{\sqrt{3}}x\d{x},  $$
+whence
+$$ \dint _{\Gamma _1} x\norm{\d{\point{x}}} = \dint _0 ^{2\sqrt{3}}
+\dfrac{2}{\sqrt{3}}x\d{x} = 4\sqrt{3}.  $$ On $\Gamma _2$ that
+$$ x\norm{\d{\point{x}}} = x\sqrt{(\d{x})^2+ (\d{y})^2} =16\cos \theta\sqrt{\sin^2\theta + \cos^2\theta}\d{\theta}=16\cos\theta\d{\theta},  $$
+whence
+$$ \dint _{\Gamma _2} x\norm{\d{\point{x}}} = \dint _{\pi /6} ^{\pi /5}
+16\cos\theta\d{\theta} = 16\sin \dfrac{\pi}{5} -16\sin
+\dfrac{\pi}{6}= 4\sin \dfrac{\pi}{5}-8.
+$$Assembling these we gather that
+$$ \dint _{\Gamma } x\norm{\d{\point{x}}} =\dint _{\Gamma _1} x\norm{\d{\point{x}}}+\dint _{\Gamma _2}
+x\norm{\d{\point{x}}}= 4\sqrt{3}-8+16\sin \dfrac{\pi}{5}.$$
+
+
+
+\end{answer}
+\end{problem}
+\begin{problem}
+Find $\doint _\Gamma  z\d{x} + x\d{y} + y\d{z}$ where $\Gamma$ is the
+intersection of the sphere $x^2 + y^2 + z^2 = 1$ and the plane $x +
+y = 1$, traversed in the positive direction. \begin{answer} The
+curve lies on the sphere, and to parametrise this curve, we dispose
+of one of the variables, $y$ say, from where $y = 1-x$ and $x^2 +
+y^2 + z^2 = 1$ give
+$$\begin{array}{lll}x^2 + (1 - x)^2 + z^2 = 1  & \implies & 2x^2 -2x + z^2 = 0\\ & \implies & 2\left(x - \frac{1}{2}\right)^2   + z^2 = \frac{1}{2}\\
+& \implies & 4\left(x - \frac{1}{2}\right)^2 + 2z^2 =
+1.\end{array}$$ So we now put $$x = \frac{1}{2} +  \frac{\cos t}{2},
+\ \ \ z = \dfrac{\sin t}{\sqrt{2}},\ \ \  y = 1 - x =
+\frac{1}{2}-\frac{\cos t}{2}.
+$$We must integrate on the side of the plane that can be viewed
+from   the point $(1,1,0)$ (observe that the vector  $\colvec{1\\ 1 \\
+0}$ is normal to the plane). On the $zx$-plane, $4\left(x -
+\frac{1}{2}\right)^2 + 2z^2 = 1$ is an ellipse. To obtain a positive
+parametrisation we must integrate from $t = 2\pi$ to $t = 0$ (this
+is because when you look at the ellipse from the point $(1,1,0)$ the
+positive $x$-axis is to your left, and not your right).   Thus
+$$\begin{array}{lll}\doint _\Gamma  z\d{x} + x\d{y} + y\d{z} & = &
+\dint ^0 _{2\pi} \dfrac{\sin
+t}{\sqrt{2}} \d{\left( \frac{1}{2} + \frac{\cos t}{2}\right)}  \\
+& & + \dint ^0 _{2\pi} \left( \frac{1}{2} + \frac{\cos
+t}{2}\right)\d{\left(\frac{1}{2} -\frac{\cos t}{2}\right)} \\ & & +
+\dint ^0 _{2\pi} \left(\frac{1}{2} -\frac{\cos
+t}{2}\right)\d{\left(\dfrac{\sin t}{\sqrt{2}}\right)} \\
+& = & \dint ^0 _{2\pi} \left(\frac{\sin t}{4}+ \frac{\cos
+t}{2\sqrt{2}}+ \frac{\cos t\sin t}{4}  -
+\frac{1}{2\sqrt{2}}\right)\ \d{t}  \\
+& = & \dfrac{\pi}{\sqrt{2}}.
+\end{array}$$
+
+\end{answer}
+\end{problem}
+
+\end{multicols}
+
+
+
+\section{Closed and Exact Forms}
+\begin{lemma}[Poincar\'{e} Lemma] \label{thm:poincare_lemma}
+If $\omega$ is a $p$-differential form of continuously
+differentiable functions  in $\reals^n$ then $$ \d{(\d{\omega})} =
+0.
+$$
+\end{lemma}
+\begin{proof}
+We will prove this  by induction on $p$. For $p= 0$ if
+$$\omega = f(x_1, x_2, \ldots , x_n)  $$
+then
+$$\d{\omega} = \dsum _{k = 1} ^n \frac{\partial f}{\partial x_k}\d{x_k}  $$
+and
+$$\begin{array} {lll}\d{(\d{\omega})} & =  & \dsum _{k = 1} ^n \d{\left(\frac{\partial f}{\partial x_k}\right)}\wedge\d{x_k} \\
+& = &  \dsum _{k = 1} ^n \left(\dsum _{j = 1} ^n \frac{\partial ^2
+f}{\partial x_j\partial x_k} \wedge \d{x_j}\right)\wedge\d{x_k}\\
+& = &  \dsum _{1 \leq j \leq k \leq n} ^n  \left(\frac{\partial ^2
+f}{\partial x_j\partial x_k} - \frac{\partial ^2
+f}{\partial x_k\partial x_j} \right)\d{x_j}\wedge\d{x_k}\\
+& = & 0,
+\end{array}$$
+since $\omega$ is continuously differentiable and so the mixed
+partial derivatives are equal. Consider now an arbitrary $p$-form,
+$p>0$. Since such a form can be written as
+$$\omega =  \dsum _{ 1 \leq j_1 \leq j_2 \leq \cdots \leq j_p \leq n} a_{j_1j_2\ldots j_p}\d{x_{j_1}} \wedge \d{x_{j_2}} \wedge \cdots \d{x_{j_p}},
+$$where the $a_{j_1j_2\ldots j_p}$ are continuous differentiable
+functions in $\reals^n$, we have
+$$\begin{array}{lll}\d{\omega}  & = &   \dsum _{ 1 \leq j_1 \leq j_2 \leq \cdots \leq j_p \leq n} \d{a_{j_1j_2\ldots j_p}} \wedge \d{x_{j_1}} \wedge \d{x_{j_2}} \wedge \cdots
+\d{x_{j_p}}\\
+& = &  \dsum _{ 1 \leq j_1 \leq j_2 \leq \cdots \leq j_p \leq n}
+\left(\dsum _{i=1} ^n \frac{\partial a_{j_1j_2\ldots j_p}}{\partial
+x_i}\d{x_i}\right) \wedge \d{x_{j_1}} \wedge \d{x_{j_2}} \wedge
+\cdots \d{x_{j_p}}, \end{array}
+$$
+it is enough to prove that for each summand
+$$\d{\left(\d{a} \wedge\d{x_{j_1}} \wedge \d{x_{j_2}} \wedge \cdots \d{x_{j_p}}\right)} = 0.$$
+But $$\begin{array}{lll}\d{\left(\d{a}\wedge\d{x_{j_1}} \wedge
+\d{x_{j_2}} \wedge \cdots \d{x_{j_p}}\right)}  & = &
+\d{\d{a}}\wedge \left(\d{x_{j_1}} \wedge \d{x_{j_2}} \wedge \cdots
+\d{x_{j_p}}\right) \\ & & \qquad  + \d{a}\wedge
+\d{\left(\d{x_{j_1}} \wedge \d{x_{j_2}} \wedge \cdots
+\d{x_{j_p}}\right)}\\ & = & \d{a}\wedge \d{\left(\d{x_{j_1}}
+\wedge \d{x_{j_2}} \wedge \cdots \d{x_{j_p}}\right)},
+\end{array} $$ since $\d{\d{a}} = 0$ from the case $p=0$. But an
+independent induction argument proves that
+$$  \d{\left(\d{x_{j_1}}
+\wedge \d{x_{j_2}} \wedge \cdots \d{x_{j_p}}\right)}=0,$$
+completing the proof.
+\end{proof}
+
+
+\begin{df}
+A differential form $\omega$ is said to be \negrito{exact} if there is
+a continuously differentiable function $F$ such that
+$$\d F = \omega .$$
+\end{df}
+
+\begin{exa}
+The differential form $$x\d{x}+ y\d{y} $$is exact, since
+$$x\d{x}+ y\d{y} = \d \left(\dfrac{1}{2}(x^2 + y^2)\right) . $$
+\end{exa}
+\begin{exa}
+The differential form $$y\d{x}+ x\d{y} $$is exact, since
+$$y\d{x}+ x\d{y} = \d \left(xy\right) . $$
+\end{exa}
+
+\begin{exa}
+The differential form $$\dfrac{x}{x^2 + y^2}\d{x}+ \dfrac{y}{x^2 +
+y^2}\d{y}
+$$is exact, since
+$$\dfrac{x}{x^2 + y^2}\d{x}+ \dfrac{y}{x^2 + y^2}\d{y} = \d \left(\dfrac{1}{2}\log_e (x^2 + y^2)\right) . $$
+\end{exa}
+\begin{rem}
+Let $\omega = \d{F}$ be an exact form. By the Poincar\'{e} Lemma
+Theorem \ref{thm:poincare_lemma}, $\d{\omega} = \d{\d{F}} = 0$.  A
+result of Poincar\'{e} says that for certain domains (called \negrito{
+star-shaped domains}) the converse is also true, that is, if
+$\d{\omega} = 0$ on a star-shaped domain then $\omega$ is exact.
+\end{rem}\begin{exa} Determine whether the differential form $$\omega =
+\dfrac{2x(1 - e^y)}{(1 + x^2)^2}\d{x}+ \dfrac{e^y}{1 + x^2}\d{y}$$
+is exact.
+\end{exa}
+\begin{solu} Assume there is a function $F$ such that
+$$\d F = \omega .$$By the Chain Rule
+$$\d F = \dfrac{\partial F}{\partial x}\d{x}+ \dfrac{\partial F}{\partial y}\d{y} .$$
+This demands that
+$$\dfrac{\partial F}{\partial x} = \dfrac{2x(1 -
+e^y)}{(1 + x^2)^2},$$
+$$\dfrac{\partial F}{\partial y} = \dfrac{e^y}{1 + x^2}.$$
+We have a choice here of integrating either the first, or the
+second expression. Since integrating the second expression (with
+respect to $y$) is easier, we find
+$$F(x, y) = \dfrac{e^y}{1 + x^2} + \phi (x),$$where $\phi (x)$ is a
+function depending only on $x$. To find it, we differentiate the
+obtained expression for $F$ with respect to $x$ and find
+$$\dfrac{\partial F}{\partial x} = -\dfrac{2xe^y}{(1 + x^2)^2} + \phi '(x).$$Comparing this with our first
+expression for $\dfrac{\partial F}{\partial x}$, we find
+$$\phi '(x) = \dfrac{2x}{(1 + x^2)^2}, $$that is
+$$\phi (x) = -\dfrac{1}{1 + x^2} + c,$$where $c$ is a constant.
+We then take
+$$F(x, y) =  \dfrac{e^y - 1}{1 + x^2} + c.$$
+\end{solu}
+\begin{exa}
+Is there a continuously differentiable function such that $$ \d{F}
+= \omega = y^2z^3 \d{x} + 2xyz^3\d{y} + 3xy^2z^2\d{z}\ \ ?
+$$
+\end{exa}
+\begin{solu} We have $$\begin{array}{lll}\d{\omega} &  = & (2yz^3\d{y} +
+3y^2z^2\d{z})\wedge \d{x} \\ & &  + (2yz^3\d{x} + 2xz^3\d{y} +
+6xyz^2\d{z})\wedge \d{y} \\ & & +
+(3y^2z^2\d{x} + 6xyz^2\d{y} + 6xy^2z\d{z})\wedge\d{z} \\
+&  = &  0, \end{array}$$ so this form is exact in a star-shaped
+domain. So put $$ \d{F} =  \frac{\partial F}{\partial x}\d{x} +
+\frac{\partial F}{\partial y}\d{y} + \frac{\partial F}{\partial
+z}\d{z} = y^2z^3 \d{x} + 2xyz^3\d{y} + 3xy^2z^2\d{z}.
+$$Then $$\frac{\partial F}{\partial x} = y^2z^3 \implies F = xy^2z^3 + a(y,z), $$
+$$\frac{\partial F}{\partial y} =  2xyz^3\implies F = xy^2z^3 + b(x,z), $$
+$$\frac{\partial F}{\partial z} = 3xy^2z^2 \implies F = xy^2z^3 + c(x,y), $$
+Comparing these three expressions for $F$, we obtain $F(x,y,z) =
+xy^2z^3$.
+\end{solu}
+
+
+
+
+
+
+
+
+
+
+
+
+
+ We have the following equivalent of the Fundamental
+Theorem of Calculus.
+\begin{thm}\label{thm:exact_forms}
+Let $U \subseteq \reals^n$ be an open set. Assume $\omega = \d F$ is an exact form, and $\Gamma$ a path in $U$ with starting
+point $A$ and endpoint $B$. Then
+$$\dint _{\Gamma} \omega = \dint _{A} ^B \d F = F(B) - F(A).
+$$In particular, if $\Gamma $ is a simple closed path, then
+$$\doint _{\Gamma} \omega = 0.$$
+\end{thm}
+\begin{exa}
+Evaluate the integral $$\doint\limits_\Gamma \dfrac{2x}{x^2 +
+y^2}\d{x} + \dfrac{2y}{x^2 + y^2}\ \d{y}
+$$ where $\Gamma$ is the closed polygon with vertices at $A=(0,0)$, $B=(5,0)$, $C=(7,2)$, $D= (3,2)$, $E=(1,1)$, traversed in the order
+$ABCDEA$.
+\end{exa}
+\begin{solu}Observe that $$ \d{\left(\dfrac{2x}{x^2 + y^2}\d{x} +
+\dfrac{2y}{x^2 + y^2}\ \d{y}\right)}   = -\dfrac{4xy}{(x^2 +
+y^2)^2}\d{y} \wedge \d{x}  -\dfrac{4xy}{(x^2 + y^2)^2}\d{x} \wedge
+\d{y} =0,
+$$and so the form is exact in a start-shaped domain. By virtue of Theorem
+\ref{thm:exact_forms}, the integral is $0$.
+\end{solu}
+\begin{exa}
+Calculate the path integral $$\doint _{\Gamma} (x^2 - y)\d{x}+ (y^2 -
+x)\d{y},$$ where $\Gamma$ is a loop of  $\dis{ x^3 + y^3 - 2xy = 0}$
+traversed once in the positive sense.
+\end{exa}\begin{solu} Since
+$$\dfrac{\partial}{\partial y} (x^2 - y) = -1 =
+\dfrac{\partial}{\partial x} (y^2 - x), $$the form is exact, and
+since this is a closed simple path, the integral is $0$.
+\end{solu}
+
+
+
+
+
+
+
+\section{Two-Manifolds}
+\begin{df}
+A  \textbf{$2$-dimensional  oriented manifold of $\reals^2$} is simply
+an open set  (region) $D\in \reals^2$, where the $+$ orientation is
+counter-clockwise and the $-$  orientation is clockwise. A general
+oriented $2$-manifold is a union of open sets.
+\end{df}
+\begin{rem}The region $-D$ has opposite orientation to $D$ and
+$$ \dint _{-D} \omega = -\dint _D \omega .   $$ We will often write
+$$\dint _Df(x,y)\d{A} $$ where $\d{A}$ denotes the \negrito{area
+element}.
+\end{rem}
+
+\begin{rem}
+In this section, unless otherwise noticed, we will choose the
+positive orientation for the regions considered. This corresponds to
+using the area form $\d{x} \d{y}$.
+\end{rem}
+Let $D \subseteq \reals^2$. Given a function $f:D \rightarrow
+\reals$, the integral
+$$\dint \limits_D f\d{A} $$is the sum of all the values of $f$ restricted to $D$. In particular,
+$$\dint \limits_D \d{A}$$is the area of $D$.
+
+
+\section{Three-Manifolds}
+\begin{df}
+A  \textbf{$3$-dimensional  oriented manifold of $\reals^3$} is simply
+an open set  (body) $V\in \reals^3$, where the $+$ orientation is in
+the direction of the outward pointing normal to the body, and
+ the $-$ orientation is in the direction of the inward pointing  normal to the body. A general
+oriented $3$-manifold is a union of open sets.
+\end{df}
+\begin{rem}The region $-M$ has opposite orientation to $M$ and
+$$ \dint _{-M} \omega = -\dint _M \omega .   $$ We will often write
+$$\dint _Mf\d{V} $$ where $\d{V}$ denotes the \negrito{volume
+element}.
+\end{rem}
+
+\begin{rem}
+In this section, unless otherwise noticed, we will choose the
+positive orientation for the regions considered. This corresponds
+to using the volume form $\d{x}\wedge \d{y}\wedge \d{z}$.
+\end{rem}
+Let $V \subseteq \reals^3$. Given a function $f:V \rightarrow
+\reals$, the integral
+$$\dint \limits_V f\d{V} $$is the sum of all the values of $f$ restricted to $V$. In particular,
+$$\dint \limits_V \d{V} $$is the oriented volume of $V$.
+
+\begin{exa}
+Find $$\dint \limits_{[0;1]^3} \ x^2ye^{xyz} \ \d{V}.$$
+\end{exa}
+\begin{solu}The integral is
+$$\begin{array}{lll}
+\dint_0 ^1 \left(\dint_0 ^1 \left(\dint_0 ^1 x^2ye^{xyz}\
+\d{z}\right)\d{y}\right) \d{x}& = & \dint_0 ^1 \left(\dint_0 ^1
+x(e^{xy} - 1)\ \d{y}\right) \d{x}\\
+& = & \dint_0 ^1 (e^x - x - 1) \d{x}\\
+& = & e  - \dfrac{5}{2}.
+\end{array}$$
+\end{solu}
+s
+
+\section{Surface Integrals}
+\begin{df}
+A  \textbf{$2$-dimensional  oriented manifold of $\reals^3$} is simply
+a smooth surface $D\in \reals^3$, where the $+$ orientation is in
+the direction of the outward normal pointing away from the origin
+and the $-$ orientation is in the direction of the inward normal
+pointing towards the origin. A general oriented $2$-manifold in
+$\reals^3$ is a union of surfaces.
+\end{df}
+\begin{rem}The surface $-\Sigma$ has opposite orientation to $\Sigma$ and
+$$ \dint _{-\Sigma} \omega = -\dint _\Sigma \omega .   $$
+\end{rem}
+
+\begin{rem}
+In this section, unless otherwise noticed, we will choose the
+positive orientation for the regions considered. This corresponds
+to using the ordered basis  $$\{\d{y}\wedge \d{z}, \
+\d{z}\wedge\d{x}, \ \d{x}\wedge\d{y}\}.$$
+\end{rem}
+
+\begin{df}
+Let $f:\reals^3\rightarrow \reals$. The integral of $f$ over the
+smooth surface $\Sigma$ (oriented in the positive sense) is given by
+the expression  $$\dint \limits_\Sigma f \norm{\d{ ^2\vector{x}}}.$$Here
+$$\norm{\d{ ^2\vector{x}}} = \sqrt{(\d{x} \wedge \d{y})^2 + (\d{z} \wedge \d{x})^2 + (\d{y} \wedge \d{z})^2}$$
+is the \negrito{surface area element}.
+\end{df}
+\begin{exa}
+Evaluate $\dint \limits_\Sigma z\norm{\d{ ^2\vector{x}}}$ where
+$\Sigma$ is the outer surface of the section of the paraboloid $z =
+x^2 + y^2, 0 \leq z \leq 1.$
+\end{exa}
+\begin{solu} We parametrise the paraboloid as follows. Let $x = u, y = v, z
+= u^2 + v^2.$ Observe that the domain $D$ of $\Sigma$ is the unit
+disk $u^2 + v^2 \leq 1$. We see that
+$$\d{x} \wedge \d{y} =   \d{u}\wedge \d{v},$$
+$$\d{y} \wedge \d{z}  = -2u \d{u}\wedge \d{v}, $$
+$$\d{z} \wedge \d{x}  = -2v \d{u}\wedge \d{v},
+$$and so
+$$\norm{\d{ ^2\vector{x}}} = \sqrt{1 + 4u^2 + 4v^2}\d{u} \wedge \d{v} .$$
+Now,
+$$\dint \limits_\Sigma z \norm{\d{ ^2\vector{x}}}= \dint \limits_D (u^2 + v^2)\sqrt{1 + 4u^2 + 4v^2}\d{u}\d{v}.
+$$To evaluate this last integral we use polar coordinates, and
+so
+$$\begin{array}{lll}\dint \limits_D (u^2 + v^2)\sqrt{1 + 4u^2 + 4v^2}\d{u}
+\d{v} & = & \dint _0 ^{2\pi} \dint _0 ^1 \rho^3 \sqrt{1 +
+4\rho^2} \d{\rho} \d{\theta} \\
+& = & \dfrac{\pi}{12}(5\sqrt{5} + \dfrac{1}{5}).
+\end{array}$$
+\end{solu}
+\begin{exa} Find the area of that part of the cylinder $x^2 +
+y^2 = 2y$ lying inside the sphere $x^2+y^2+z^2=4$. \end{exa}
+\begin{solu} We have $$x^2 + y^2 = 2y \iff x^2 + (y - 1)^2 = 1. $$
+We parametrise the cylinder by putting $x = \cos u, y - 1 = \sin u$,
+and $z = v$. Hence
+$$\d{x} = -\sin u\d{u}, \ \d{y} = \cos u\d{u}, \ \d{z} = d{v},    $$
+whence
+$$\d{x} \wedge \d{y} =  0, \d{y} \wedge \d{z} = \cos u \d{u} \wedge \d{v},
+\d{z} \wedge \d{x} = \sin u\d{u} \wedge \d{v},  $$ and so
+$$\begin{array}{lll}\norm{\d{ ^2\vector{x}}} & = & \sqrt{(\d{x} \wedge \d{y})^2 + (\d{z} \wedge \d{x})^2 + (\d{y} \wedge \d{z})^2}\\ &  = & \sqrt{\cos^2u + \sin^2u}\ \d{u}\wedge\d{v} \\
+& = & \d{u}\wedge\d{v}.
+\end{array}$$The cylinder and the sphere intersect when $x^2 + y^2 = 2y$
+and $x^2 + y^2 + z^2 = 4$, that is, when $z^2 = 4 - 2y$, i.e. $v^2 =
+4 - 2(1 + \sin u) = 2 - 2\sin u$. Also $ 0 \leq u \leq \pi.$ The
+integral is thus
+$$\begin{array}{lll} \dint \limits_\Sigma \norm{\d{ ^2\vector{x}}} & = & \dint _0 ^{\pi}\dint _{-\sqrt{2 - 2\sin u}} ^{\sqrt{2 - 2\sin u}} \d{v}\d{u} = \dint _0 ^{\pi} 2\sqrt{2 - 2\sin u } \d{u}\\
+& = & 2\sqrt{2} \dint _0 ^{\pi} \sqrt{1 - \sin u} \ \d{u} \\
+& = & 2\sqrt {2} \left( 4\sqrt {2}-4 \right) . \\
+\end{array}
+$$
+\end{solu}
+\begin{exa}
+Evaluate  $$\dint \limits_\Sigma x\d{y}\d{z} + (z^2 - zx) \d{z}
+\d{x} - xy\d{x} \d{y},
+$$where $\Sigma$ is the top side of the triangle with vertices at
+$(2,0,0)$, $(0,2,0)$, $(0,0,4)$.
+\end{exa}
+\begin{solu} Observe that the plane passing through the three given points
+has equation $2x + 2y + z = 4$. We project this plane onto the
+coordinate axes obtaining
+$$ \dint \limits_\Sigma x\d{y}\d{z} = \dint _0 ^4 \dint _0 ^{2 - z/2} (2-y-z/2) \d{y} \d{z} =  \frac{8}{3},  $$
+$$ \dint \limits_\Sigma (z^2 - zx)\d{z}\d{x} = \dint _0 ^2 \dint _0 ^{4-2x} (z^2-zx) \d{z}  \d{x} =  8,  $$
+$$ -\dint \limits_\Sigma xy\d{x}\d{y} = -\dint _0 ^2 \dint _0 ^{2 - y} xy \d{x}  \d{y} =  -\frac{2}{3},  $$
+and hence
+$$\dint \limits_\Sigma x\d{y}\d{z} + (z^2 - zx)
+\d{z} \d{x} - xy\d{x} \d{y} = 10.
+$$
+\end{solu}
+\section*{\psframebox{Homework}}
+\begin{problem}
+Evaluate $\dint \limits_\Sigma y \norm{\d{ ^2\vector{x}}}$ where
+$\Sigma$ is the surface $z = x + y^2, 0 \leq x \leq 1, 0 \leq y \leq
+2.$ \begin{answer} We parametrise the surface by letting $x = u, y =
+v, z = u + v^2.$ Observe that the domain $D$ of $\Sigma$ is the
+square $[0; 1]\times [0; 2]$. Observe that
+$$\d{x} \wedge \d{y}
+=   \d{u} \wedge \d{v} ,$$
+$$\d{y} \wedge \d{z} = -\d{u} \wedge \d{v}, $$
+$$\d{z} \wedge \d{x} = -2v\d{u} \wedge \d{v},
+$$and so
+$$\norm{\d{ ^2\vector{x}}} = \sqrt{2 + 4v^2}\d{u} \wedge \d{v}.$$
+The integral becomes
+$$\begin{array}{lll}
+\dint \limits_\Sigma y \norm{\d{ ^2\vector{x}}} & = & \dint_0 ^2\dint _0
+^1
+v\sqrt{2 + 4v^2}\d{u}\d{v} \\
+& = & \left(\dint_0 ^1 \d{u}\right) \left(\dint_0 ^2 y\sqrt{2 +
+4v^2}\d{v}\right) \\
+& = & \dfrac{13\sqrt{2}}{3}.
+\end{array}$$
+\end{answer}
+\end{problem}
+\begin{problem}
+Consider the cone $z = \sqrt{x^2+y^2}$. Find the surface area of the
+part of the cone which lies between the planes $z = 1$ and $z = 2$.
+\begin{answer}
+Using $x=r\cos \theta$, $y=r\sin \theta$, $1\leq r \leq 2$, $0 \leq
+\theta \leq 2\pi$, the surface area is
+$$ \sqrt{2}\dint _0  ^{2\pi}\dint _1 ^2 r\d{r}\d{\theta}=3\pi\sqrt{2}.  $$
+\end{answer}
+\end{problem}
+
+\begin{problem}
+Evaluate $\dint \limits_\Sigma x^2 \norm{\d{ ^2\vector{x}}}$ where
+$\Sigma$ is the surface of the unit sphere $x^2 + y^2 + z^2 = 1.$
+\begin{answer} We use spherical coordinates, $(x, y, z) =
+(\cos\theta\sin\phi, \sin\theta\sin\phi, \cos\phi)$. Here $\theta
+\in [0; 2\pi]$ is the latitude and $\phi \in [0; \pi]$ is the
+longitude. Observe that
+$$\d{x}\wedge\d{y}=
+\sin\phi\cos\phi \d{\phi}\wedge\d{\theta} ,$$
+$$\d{y}\wedge\d{z} = \cos\theta\sin^2\phi \d{\phi}\wedge\d{\theta},
+$$
+$$\d{z}\wedge\d{x}= -\sin\theta\sin^2\phi \d{\phi}\wedge\d{\theta},
+$$and so
+$$\norm{\d{ ^2 \vector{x}}} = \sin\phi \d{\phi}\wedge\d{\theta}.$$
+The integral becomes
+$$\begin{array}{lll}
+\dint \limits_\Sigma x^2 \norm{\d{ ^2\vector{x}}} & = & \dint _0 ^{2\pi}
+\dint _{0} ^{\pi} \cos^2\theta\sin^3\phi \d{\phi}  \d{\theta} \\
+& = & \dfrac{4\pi}{3}.
+\end{array}$$
+\end{answer}
+\end{problem}
+\begin{problem}
+Evaluate $\dint _S z\norm{\d{ ^2\vector{x}}}$ over the conical surface
+$z=\sqrt{x^2 + y^2}$ between $z=0$ and $z=1$. \begin{answer} Put $x
+= u, y = v, z^2 = u^2 + v^2$. Then
+$$\d{x} = \d{u}, \ \d{y} = \d{v}, \ z\d{z} = u\d{u} + v\d{v},    $$
+whence
+$$\d{x} \wedge \d{y} =  \d{u} \wedge \d{v}, \d{y} \wedge \d{z} = -\dfrac{u}{z}  \d{u} \wedge \d{v},
+\d{z} \wedge \d{x} = -\dfrac{v}{z}  \d{u} \wedge \d{v},  $$ and so
+$$\begin{array}{lll}\norm{\d{ ^2\vector{x}}} & = &  \sqrt{(\d{x} \wedge \d{y})^2 + (\d{z} \wedge \d{x})^2 + (\d{y} \wedge \d{z})^2} \\
+& = & \sqrt{1 + \dfrac{u^2 + v^2}{z^2}}\ \d{u}\wedge\d{v} \\ &  = &
+\sqrt{2}\ \d{u}\wedge\d{v}.
+\end{array}$$ Hence $$\dint \limits_{\Sigma} \ z\norm{\d{ ^2\vector{x}}} =
+\dint\limits_{u^2 + v^2 \leq 1} \sqrt{u^2 + v^2}\ \sqrt{2}\
+\d{u}\d{v} = \sqrt{2}\dint _0 ^{2\pi}\dint _0 ^1  \rho^2\
+\d{\rho}\d{\theta} = \dfrac{2\pi\sqrt{2}}{3}.
+$$
+\end{answer}
+\end{problem}
+
+\begin{problem}
+You put a perfectly spherical egg through an egg slicer, resulting
+in $n$ slices of identical height, but you forgot to peel it first!
+Shew that the amount of egg shell in any of the slices is the same.
+Your argument must use surface integrals.\begin{answer} If the egg
+has radius $R$,  each slice will have height $2R/n$. A slice can be
+parametrised by $0 \leq \theta \leq 2\pi$, $\phi_1 \leq \phi \leq
+\phi_2$, with $$R\cos\phi_1 - R\cos\phi_2 = 2R/n.$$ The area of the
+part of the surface of the sphere in slice is $$\dint _0
+^{2\pi}\dint_{\phi_1} ^{\phi_2} R^2\sin\phi \d{\phi}\d{\theta} = 2\pi
+R^2(\cos\phi_1 - \cos\phi_2 ) = 4\pi R^2/n.$$ This means that each
+of the $n$ slices has identical area $4\pi R^2 /n$.
+\end{answer}
+\end{problem}
+
+\begin{problem}
+Evaluate  $$\dint \limits_\Sigma xy\d{y}\d{z} - x^2\d{z} \d{x} + (x
++ z)\d{x} \d{y},
+$$where $\Sigma$ is the top of the triangular region of the plane $2x + 2y + z =
+6$ bounded by the first octant. \begin{answer} We project this plane
+onto the coordinate axes obtaining
+$$ \dint \limits_\Sigma xy\d{y}\d{z} = \dint _0 ^6 \dint _0 ^{3-z/2} (3-y-z/2)y \d{y}  \d{z} =  \frac{27}{4},  $$
+$$ -\dint \limits_\Sigma x^2\d{z}\d{x} = -\dint _0 ^3 \dint _0 ^{6-2x} x^2 \d{z}  \d{x} =  -\frac{27}{2},  $$
+$$ \dint \limits_\Sigma (x + z)\d{x}\d{y} = \dint _0 ^3 \dint _0 ^{3 - y} (6 - x - 2y) \d{x}  \d{y} =  \frac{27}{2},  $$
+and hence
+$$\dint \limits_\Sigma xy\d{y}\d{z} -
+x^2\d{z} \d{x} + (x + z)\d{x} \d{y} = \frac{27}{4}.
+$$
+\end{answer}
+\end{problem}
+\section{Green's, Stokes', and Gauss' Theorems}
+We are now in position to state the general Stoke's Theorem.
+
+\begin{thm}[General Stoke's Theorem]
+Let $M$ be a smooth oriented manifold, having boundary $\partial
+M$. If $\omega$ is a differential form, then
+$$\dint _{\partial M} \omega = \dint _{M} \d{\omega} .$$
+\end{thm}
+In $\reals^2$, if $\omega$ is a $1$-form, this takes the name of
+\negrito{Green's Theorem.}
+\begin{exa}
+Evaluate $\doint _C (x - y^3)\d{x}+ x^3\d{y}$ where  $C$ is the
+circle $x^2 + y^2 = 1$.
+\end{exa}
+\begin{solu} We will first use Green's Theorem and then evaluate the
+integral directly. We have
+$$\begin{array}{lll}\d{\omega} &  = &  \d (x - y^3) \wedge \d{x}+ \d (x^3) \wedge \d{y}\\
+& = & (\d{x}- 3y^2\d{y})\wedge \d{x}+ (3x^2\d{x})\wedge \d{y} \\
+& = & (3y^2 + 3x^2) \d{x}\wedge \d{y}.
+\end{array}$$
+The region $M$ is the area enclosed by the circle $x^2 + y^2 = 1. $
+Thus by Green's Theorem, and using polar coordinates,
+$$\begin{array}{lll}\doint _C (x - y^3)\d{x}+ x^3\d{y} & = &
+\dint _M (3y^2 + 3x^2) \d{x}\d{y} \\
+& = & \dint _0 ^{2\pi} \dint _0 ^1 3\rho^2 \rho \d{\rho} \d{\theta}
+\\
+& = & \dfrac{3\pi}{2}. \end{array}$$ {\em Aliter:} We can evaluate
+this integral directly, again resorting to polar coordinates.
+$$\begin{array}{lll}\doint _C (x - y^3)\d{x}+ x^3\d{y} & = &
+\dint _0 ^{2\pi} (\cos\theta -\sin^3\theta)(-\sin\theta)\d{\theta} + (\cos^3\theta)(\cos\theta)\d{\theta} \\
+& = & \dint _0 ^{2\pi} (\sin^4\theta + \cos^4\theta -
+\sin\theta\cos\theta)\d{\theta}.
+\end{array}$$
+To evaluate the last integral, observe that $1 = (\sin^2\theta +
+\cos^2\theta )^2 = \sin^4\theta + 2\sin^2\theta\cos^2\theta +
+\cos^4\theta$, whence the integral equals
+$$\begin{array}{lll}
+\dint _0 ^{2\pi} (\sin^4\theta + \cos^4\theta -
+\sin\theta\cos\theta)\d{\theta} & = & \dint _0 ^{2\pi} (1 -
+2\sin^2\theta\cos^2\theta  - \sin\theta\cos\theta)\d{\theta} \\
+& = & \dfrac{3\pi}{2}.
+\end{array}$$
+\end{solu}
+
+
+In general, let $$ \omega = f(x,y)\d{x} + g(x,y)\d{y}  $$ be a
+$1$-form in $\reals ^2$. Then
+ $$\begin{array}{lll} \d{\omega}  & =  & \d{f(x,y)}\wedge\d{x} + \d{g(x,y)}\wedge\d{y} \\
+ &=& \left(\dfrac{\partial }{\partial x}f(x,y)\d{x}+ \dfrac{\partial }{\partial y}f(x,y)\d{y}\right)\wedge\d{x}
+ +  \left(\dfrac{\partial }{\partial x}g(x,y)\d{x}+ \dfrac{\partial }{\partial
+ y}g(x,y)\d{y}\right)\wedge\d{y}\\
+ & = &  \left(\dfrac{\partial }{\partial x}g(x,y)- \dfrac{\partial }{\partial y}f(x,y)\right)\d{x}\wedge\d{y}
+ \end{array}$$
+which gives the classical Green's Theorem
+$$  \dint \limits _{\partial M}  f(x,y)\d{x} + g(x,y)\d{y} = \dint \limits _M   \left(\dfrac{\partial }{\partial x}g(x,y)- \dfrac{\partial }{\partial y}f(x,y)\right)\d{x}\d{y}.$$
+
+In $\reals^3$, if $\omega$ is a 2-form, the above theorem takes the
+name of \negrito{Gauss} or the \negrito{Divergence Theorem}.
+
+\bigskip
+
+\begin{exa}
+ Evaluate $\dint _S (x - y)\d{y}  \d{z} + z\d{z}  \d{x}- y\d{x} \d{y}$ where $S$ is the surface of the sphere $$x^2 + y^2 + z^2 = 9$$
+and the positive direction is the outward normal.
+\end{exa}
+\begin{solu} The region $M$ is the interior of the sphere $x^2 + y^2 + z^2
+= 9$. Now,
+$$\begin{array}{lll}\d{\omega} &  = & (\d{x}- \d{y}) \wedge\d{y} \wedge \d{z}
++ \d{z}\wedge\d{z} \wedge \d{x}-  \d{y}\wedge\d{x}\wedge \d{y} \\
+& = &  \d{x}\wedge \d{y} \wedge \d{z}. \\
+\end{array}$$
+The integral becomes
+$$\begin{array}{lll}\dint \limits_M \d{x} \d{y}  \d{z} & = &  \dfrac{4\pi}{3}(27)\\ &  = & 36\pi. \end{array}$$
+{\em Aliter:} We could evaluate this integral directly. We have
+$$\dint _\Sigma (x - y)\d{y}  \d{z}  = \dint _\Sigma x\d{y}  \d{z},
+$$since $(x, y , z) \mapsto -y$ is an odd function of $y$ and the
+domain of integration is symmetric with respect to $y$. Now,
+$$\begin{array}{lll}\dint _\Sigma x\d{y}  \d{z} & = &
+\dint_{-3} ^3 \dint _0 ^{2\pi} |\rho|\sqrt{9 - \rho^2}\d{\rho}
+\d{\theta}
+\\
+& = &  36\pi.
+\end{array}
+$$
+Also
+$$\dint _\Sigma z\d{z} \d{x}= 0,
+$$since $(x, y , z) \mapsto z$ is an odd function of $z$ and the
+domain of integration is symmetric with respect to $z$. Similarly
+$$\dint _\Sigma -y\d{x} \d{y}   = 0,
+$$since $(x, y , z) \mapsto -y$ is an odd function of $y$ and the
+domain of integration is symmetric with respect to $y$.
+\end{solu}
+
+In general, let $$ \omega = f(x,y,z)\d{y} \wedge \d{z} +
+g(x,y,z)\d{z} \wedge \d{x} + h(x,y,z) \d{x}  \wedge \d{y}
+$$ be a $2$-form in $\reals ^3$.
+Then
+ $$\begin{array}{lll} \d{\omega}  & =  & \d{f(x,y,z)}\d{y} \wedge \d{z} + \d{g(x,y,z)}\d{z}
+\wedge \d{x} + \d{h(x,y,z)} \d{x}  \wedge \d{y} \\
+ &=& \left(\dfrac{\partial }{\partial x}f(x,y,z)\d{x}+ \dfrac{\partial }{\partial y}f(x,y,z)\d{y}+ \dfrac{\partial }{\partial z}f(x,y,z)\d{z}\right)\wedge \d{y}\wedge\d{z}
+\\ & & \quad  +  \left(\dfrac{\partial }{\partial x}g(x,y,z)\d{x}+ \dfrac{\partial
+}{\partial
+ y}g(x,y,z)\d{y}+ \dfrac{\partial
+}{\partial
+ z}g(x,y,z)\d{z}\right)\wedge \d{z}\wedge\d{x}\\
+ & & \quad  +  \left(\dfrac{\partial }{\partial x}h(x,y,z)\d{x}+ \dfrac{\partial
+}{\partial
+ y}h(x,y,z)\d{y}+ \dfrac{\partial
+}{\partial
+ z}h(x,y,z)\d{z}\right)\wedge \d{x}\wedge\d{y}\\
+ & = &  \left(\dfrac{\partial }{\partial x}f(x,y,z)+ \dfrac{\partial }{\partial
+ y}g(x,y,z) +\dfrac{\partial }{\partial
+ z}h(x,y,z)  \right)\d{x}\wedge\d{y} \wedge \d{z},
+ \end{array}$$
+which gives the classical Gauss's Theorem
+$$  \dint \limits _{\partial M}  f(x,y,z)\d{y}  \d{z} + g(x,y,z)\d{z}
+\d{x} + h(x,y,z) \d{x}  \d{y} = \dint \limits _M
+\left(\dfrac{\partial }{\partial x}f(x,y,z)+\dfrac{\partial
+}{\partial y}g(x,y,z)+\dfrac{\partial }{\partial
+z}h(x,y,z)\right)\d{x}\d{y}\d{z}.$$ Using classical notation, if
+$$\vector{a}=\colvec{f(x,y,z)\\ g(x,y,z)\\ h(x,y,z)}, \d{\vector{S}} = \colvec{\d{y}\d{z}\\ \d{z}\d{x}\\ \d{x}\d{y}}, $$
+then
+$$\dint  \limits _{ M}  (\nabla \cdot \vector{a} )\d{V} = \dint \limits _{\partial M} \vector{a} \cdot \d{\vector{S}}.  $$
+
+
+
+
+\bigskip
+
+
+The classical Stokes' Theorem occurs when $\omega$ is a $1$-form in
+$\reals^3$.
+
+\begin{exa}
+Evaluate $\doint _C y\d{x}+ (2x - z)\d{y} + (z - x)\d{z} $ where $C$
+is the intersection of the sphere $x^2 + y^2 + z^2 = 4$ and the
+plane $z = 1$.
+\end{exa}
+\begin{solu} We have
+$$\begin{array}{lll}
+\d{\omega}  & = & (\d{y})\wedge \d{x}+ (2\d{x}- \d{z} )\wedge \d{y}
++ (\d{z} - \d{x})\wedge \d{z}
+\\
+& = & -\d{x}\wedge \d{y} + 2\d{x}\wedge \d{y} + \d{y} \wedge \d{z} + \d{z} \wedge \d{x}\\
+& = & \d{x}\wedge \d{y} + \d{y} \wedge \d{z} + \d{z} \wedge \d{x}.\\
+\end{array}$$
+Since on $C$, $z = 1$, the surface $\Sigma$ on which we are
+integrating is the inside of the circle $x^2 + y^2 + 1 = 4,$ i.e.,
+$x^2 + y^2 = 3.$ Also, $z = 1 $ implies $\d{z} = 0$ and so
+$$\dint \limits_\Sigma \d{\omega} = \dint \limits_\Sigma \d{x} \d{y}.$$Since this is just the area of the circular region $x^2 +
+y^2 \leq 3$, the integral evaluates to
+$$ \dint \limits_\Sigma \d{x} \d{y} = 3\pi.$$
+\end{solu}
+
+
+In general, let $$ \omega = f(x,y,z)\d{x} + g(x,y,z)\d{y} ++
+h(x,y,z)\d{z}  $$ be a $1$-form in $\reals ^3$. Then
+ $$\begin{array}{lll} \d{\omega}  & =  & \d{f(x,y,z)}\wedge\d{x} + \d{g(x,y,z)}\wedge\d{y}+ \d{h(x,y,z)}\wedge\d{z} \\
+ &=& \left(\dfrac{\partial }{\partial x}f(x,y,z)\d{x}+ \dfrac{\partial }{\partial y}f(x,y,z)\d{y}+ \dfrac{\partial }{\partial
+ z}f(x,y,z)\d{z}\right)\wedge\d{x} \\ & &
+ +  \left(\dfrac{\partial }{\partial x}g(x,y,z)\d{x}+ \dfrac{\partial }{\partial
+ y}g(x,y,z)\d{y} +\dfrac{\partial }{\partial z}g(x,y,z)\d{z}\right)\wedge\d{y}\\
+ & & \quad +  \left(\dfrac{\partial }{\partial x}h(x,y,z)\d{x}+ \dfrac{\partial }{\partial
+ y}h(x,y,z)\d{y} +\dfrac{\partial }{\partial z}h(x,y,z)\d{z}\right)\wedge\d{z}\\
+ & = &
+ \left(\dfrac{\partial }{\partial y}h(x,y,z)- \dfrac{\partial }{\partial
+ z}g(x,y,z)\right)\d{y}\wedge\d{z} \\
+ & & \quad + \left(\dfrac{\partial }{\partial z}f(x,y,z)- \dfrac{\partial }{\partial
+ x}h(x,y,z)\right)\d{z}\wedge\d{x}\\
+ & & \quad
+  \left(\dfrac{\partial }{\partial x}g(x,y,z)- \dfrac{\partial }{\partial y}f(x,y,z)\right)\d{x}\wedge\d{y}
+ \end{array}$$
+which gives the classical Stokes' Theorem
+$$ \begin{array}{lll} \dint \limits _{\partial M}  f(x,y,z)\d{x} + g(x,y,z)\d{y}+h(x,y,z)\d{z} \\
+ & = & \dint \limits _M   \left(\dfrac{\partial }{\partial y}h(x,y,z)- \dfrac{\partial }{\partial
+z}g(x,y,z)\right)\d{y}\d{z}\\
+& & \quad + \left(\dfrac{\partial }{\partial z}g(x,y,z)-
+\dfrac{\partial
+}{\partial x}f(x,y,z)\right)\d{x}\d{y} \\
+& & \quad + \left(\dfrac{\partial }{\partial x}h(x,y,z)-
+\dfrac{\partial }{\partial y}f(x,y,z)\right)\d{x}\d{y}
+.\end{array}$$
+
+Using classical notation, if
+$$\vector{a}=\colvec{f(x,y,z)\\ g(x,y,z)\\ h(x,y,z)}, \quad \d{\vector{r}}=\colvec{\d{x}\\ \d{y}\\ \d{z}},\quad  \d{\vector{S}} = \colvec{\d{y}\d{z}\\ \d{z}\d{x}\\ \d{x}\d{y}}, $$
+then
+$$\dint  \limits _{ M}  (\nabla \cross \vector{a} )\cdot \d{\vector{S}} = \dint \limits _{\partial M} \vector{a} \cdot \d{\vector{r}}.  $$
+
+
+
+
+
+
+\section*{\psframebox{Homework}}
+\begin{problem}
+Evaluate $\doint _C x^3y\d{x}+ xy\d{y}$ where  $C$ is the square with
+vertices at $(0, 0)$, $(2, 0)$, $(2, 2)$ and $(0, 2)$.
+\begin{answer}Evaluating this directly would result in evaluating four path
+integrals, one for each side of the square. We will use Green's
+Theorem. We have
+$$\begin{array}{lll}\d{\omega} &  = &  \d (x^3y) \wedge \d{x}+ \d (xy) \wedge \d{y}\\
+& = & (3x^2y\d{x}+ x^3\d{y}) \wedge \d{x}+ (y\d{x}+
+x\d{y} ) \wedge \d{y} \\
+& = & (y - x^3)\d{x}\wedge \d{y}.
+\end{array}$$
+The region $M$ is the area enclosed by the square. The integral
+equals
+$$\begin{array}{lll}
+\doint _C x^3y\d{x}+ xy\d{y} & = & \dint _0 ^2 \dint _0 ^2 (y
+- x^3)\d{x} \d{y} \\
+& = & -4.
+\end{array}$$
+\end{answer}
+\end{problem}
+\begin{problem}
+Consider the triangle $\triangle$ with vertices $A:(0,0)$, $B:(1,
+1),$ $C:(-2, 2)$.
+\begin{dingautolist}{202} \item If $L_{PQ}$ denotes the equation of the
+line joining $P$ and $Q$ find $L_{AB}$,  $L_{AC}$, and $L_{BC}$.
+ \item Evaluate
+$$\doint _\triangle y^2\d{x}+ x\d{y}.$$
+
+ \item  Find $$\dint\limits_{D} (1 - 2y) \d{x}\wedge \d{y}$$where ${D}$ is the interior of $\triangle$.
+\end{dingautolist} \begin{answer}We have
+\begin{dingautolist}{202} \item $L_{AB}$ is $y = x$;  $L_{AC}$  is
+$y = -x$, and  $L_{BC}$ is clearly $y = -\dfrac{1}{3}x +
+\dfrac{4}{3}$.
+ \item  We have \renewcommand{\arraystretch}{1.5}
+$${\everymath{\dis}\begin{array}{lllll}  \dint _{AB} y^2\d{x}+ x\d{y}  & = &  \dint _0 ^1 (x^2 + x)\d{x}            & = &  \dfrac{5}{6}  \\
+\dint _{BC} y^2\d{x}+ x\d{y}  & = &  \dint _1 ^{-2}
+\left(\left(-\dfrac{1}{3}x + \dfrac{4}{3}\right)^2 -\dfrac{1}{3}x \right)\d{x}            & = &  -\dfrac{15}{2}  \\
+\dint _{CA} y^2\d{x}+ x\d{y}  & = &  \dint _{-2} ^0 (x^2 - x)\d{x}            & = &  \dfrac{14}{3}  \\
+\end{array} }$$Adding these integrals we find $$ \doint _\triangle y^2\d{x}+ x\d{y} = -2.$$
+
+ \item   We have
+$${\everymath{\dis}\begin{array}{lll}\dint\limits_{D} (1 - 2y) \d{x}\wedge\d{y} & = & \dint _{-2} ^0 \left(\dint _{-x} ^{-x/3 + 4/3} (1 - 2y)
+\d{y}\right) \d{x}\\ & &\quad + \dint _{0} ^1 \left(\dint _{x} ^{-x/3
++ 4/3}
+(1 - 2y)\d{y}\right) \d{x} \\
+& = & -\dfrac{44}{27} - \dfrac{10}{27} \\
+& = & -2.
+\end{array}}$$
+\end{dingautolist}
+\end{answer}
+\end{problem}
+
+\begin{problem}
+Problems \ref{pro:form-a} through \ref{pro:form-b} refer to the
+differential form $$ \omega = x\d{y}\wedge
+\d{z}+y\d{z}\wedge\d{x}+2z\d{x}\wedge \d{y}, $$ and the solid $M$
+whose boundaries are the paraboloid $z=1-x^2-y^2$, $0 \leq z \leq 1$
+and the disc $x^2+y^2\leq 1$, $z=0$. The surface $\partial M$ of the
+solid is positively oriented upon considering  outward normals.
+\begin{enumerate}
+\item \label{pro:form-a}  Prove that $\d{\omega}=4 \d{x}\wedge\d{y}\wedge\d{z}$.
+\item Prove that in Cartesian coordinates, $\dint _{\partial M}\omega =\dint _{-1} ^1  \dint _{-\sqrt{1-x^2}}
+^{\sqrt{1-x^2}} \dint _{0} ^{1-x^2-y^2} 4\d{z}\d{y}\d{x}$.
+\item Prove that in cylindrical coordinates, $\dint _{M}\d{\omega}=\dint _0 ^{2\pi}\dint
+_0 ^1 \dint _0 ^{1-r^2} 4r\d{z}\d{r}\d{\theta} $.
+\item  \label{pro:form-b} Prove that $ \dint _{\partial M} x\d{y}\d{z}+y\d{z}\d{x}+2z\d{x}\d{y} =2\pi. $
+\end{enumerate}
+\end{problem}
+
+\begin{problem}
+Problems \ref{pro:gauss-a} through \ref{pro:gauss-b} refer to the
+box
+$$M=\{(x,y,z)\in\reals^3: 0 \leq x \leq 1, \ 0 \leq y \leq 1, \ 0 \leq z \leq 2 \},  $$
+the upper face of the box
+$$U=\{(x,y,z)\in\reals^3: 0 \leq x \leq 1, \ 0 \leq y \leq 1, \ z=2 \},  $$
+the boundary of the box without the upper top $S=\partial M\setminus
+U$,
+ and the differential form
+$$ \omega = (\arctan y-x^2)\d{y}\wedge\d{z} + (\cos x\sin z-y^3)\d{z}\wedge\d{x} + (2zx+6zy^2)\d{x}\wedge\d{y}. $$
+
+
+\begin{enumerate}
+\item  \label{pro:gauss-a} Prove that
+$\d{\omega}=3y^2\d{x}\wedge\d{y}\wedge\d{z}$.
+\item Prove that $\dint _{\partial M} (\arctan y-x^2)\d{y}\d{z} + (\cos x\sin z-y^3)\d{z}\d{x} + (2zx+6zy^2)\d{x}\d{y}
+=\dint _0 ^2 \dint _0 ^1 \dint _0 ^1 3y^2\d{x}\d{y}\d{z}=2$. Here
+the boundary of the box is positively oriented considering outward
+normals.
+\item Prove that the integral on the
+upper face of the box is $\dint _{U} (\arctan y-x^2)\d{y}\d{z} +
+(\cos x\sin z-y^3)\d{z}\d{x} + (2zx+6zy^2)\d{x}\d{y}=\dint _0 ^1
+\dint _0 ^1 4x+12y^2\d{x}\d{y}=6$.
+\item  \label{pro:gauss-b} Prove that the integral on the open box is $\dint _{\partial M\setminus U} (\arctan y-x^2)\d{y}\d{z} + (\cos
+x\sin z-y^3)\d{z}\d{x} + (2zx+6zy^2)\d{x}\d{y}=-4$.
+\end{enumerate}
+\end{problem}
+
+\begin{problem}  Problems \ref{pro:triangle-a} through \ref{pro:triangle-b}
+refer to a triangular surface  $T$ in $\reals^3$ and a differential
+form $\omega$. The vertices of $T$ are at $A(6,0,0)$, $B(0,12,0)$,
+and $C(0,0,3)$. The boundary of of the triangle $\partial T$ is
+oriented positively by starting at $A$, continuing to $B$, following
+to $C$, and ending again at  $A$. The surface $T$ is oriented
+positively by considering the top of the triangle, as viewed from a
+point far above the triangle. The differential form is
+$$\omega = \left(2xz+\arctan e^x\right)\d{x} + \left(xz+(y+1)^y\right)\d{y} + \left(xy+\dfrac{y^2}{2}+\log (1+z^2)\right)\d{z}.   $$
+
+\begin{enumerate}
+\item  \label{pro:triangle-a} Prove that the equation of the plane that
+ contains the triangle $T$ is $ 2x+y+4z=12 $.
+ \item Prove that $\d{\omega}=y\d{y}\wedge\d{z}
++\left(2x-y\right)\d{z}\wedge\d{x}+z\d{x}\wedge\d{y}$.
+\item  \label{pro:triangle-b} Prove that $\dint _{\partial T}  \left(2xz+\arctan e^x\right)\d{x} + \left(xz+(y+1)^y\right)\d{y} + \left(xy+\dfrac{y^2}{2}+\log
+(1+z^2)\right)\d{z}=\dint _0 ^3 \dint _0 ^{12-4z} y\d{y}\d{z} +\dint
+_0 ^6 \dint _0 ^{3-x/2} 2x\d{z}\d{x}$=108.
+\end{enumerate}
+\end{problem}
+
+
+\begin{problem}
+Use Green's Theorem to prove that
+$$\dint _\Gamma (x^2 + 2y^3)\d{y} = 16\pi,
+$$where $\Gamma$ is the circle $(x - 2)^2 + y^2 = 4$. Also, prove this
+directly by using  a path integral. \begin{answer} Observe that
+$$ \d{(x^2 + 2y^3)\wedge\d{y}} = 2x\d{x}\wedge\d{y}.$$Hence by the
+generalised Stokes' Theorem the integral equals $$\dint
+\limits_{\{(x - 2)^2 + y^2 \leq 4\}} 2x\d{x}\wedge\d{y} = \dint
+_{-\pi/2} ^{\pi/2} \dint _0 ^{4\cos\theta} 2\rho^2 \cos\theta\d{\rho}
+\wedge\d\theta = 16\pi .
+$$
+To do it directly, put $x - 2 = 2\cos t, y = 2\sin t, 0 \leq t \leq
+2\pi$. Then the integral becomes
+$$\begin{array}{lll}\dint _0 ^{2\pi} ((2 + 2\cos t)^2 + 16\sin^3t)\d{2\sin t} & = & \dint _0 ^{2\pi} (8\cos t + 16\cos^2 t\\ & & \qquad  + 8\cos^3t + 32\cos t\sin^3t) \d{t}\\ & =  & 16\pi.  \end{array}  $$
+
+\end{answer}
+\end{problem}
+
+\begin{problem}
+Let $\Gamma$ denote the curve of intersection of the plane $x + y =
+2$ and the sphere $x^2 -2x + y^2 - 2y + z^2 = 0$, oriented clockwise
+when viewed from the origin. Use Stoke's Theorem to prove that
+$$\dint \limits_\Gamma y \d{x} + z\d{y} + x\d{z} = -2\pi\sqrt{2}.
+$$ Prove this directly by parametrising the boundary of the
+surface and evaluating the path integral. \begin{answer} At the
+intersection path
+$$ 0 = x^2 + y^2 + z^2 - 2(x + y) = (2 - y)^2 + y^2 + z^2 - 4 = 2y^2 - 4y + z^2 = 2(y - 1)^2 + z^2 - 2,  $$
+which describes an ellipse on the $yz$-plane. Similarly we get $2(x
+- 1)^2 + z^2 = 2$ on the $xz$-plane.  We have
+$$ \d{\left(y\d{x} + z\d{y} + x\d{z}\right)}  = \d{y}\wedge\d{x} +
+\d{z}\wedge\d{y} + \d{x}\wedge\d{z} = -\d{x}\wedge\d{y}
+-\d{y}\wedge\d{z} - \d{z}\wedge\d{x}.$$ Since $\d{x}\wedge \d{y} =
+0$, by Stokes' Theorem the integral sought is
+$$ -\dint \limits_{2(y - 1)^2 + z^2 \leq 2} \d{y}\d{z}  -\dint \limits_{2(x- 1)^2 + z^2 \leq 2} \d{z}\d{x}
+= -2\pi (\sqrt{2}). $$ (To evaluate the integrals you may resort to
+the fact that  the area of the elliptical region
+$\dfrac{(x-x_0)^2}{a^2} + \dfrac{(y-y_0)^2}{b^2} \leq 1$ is $\pi
+ab)$.
+
+\bigskip
+
+If we were to evaluate this integral directly, we would set $$  y =
+1 + \cos \theta, \ z =  \sqrt{2}\sin \theta , x = 2 - y = 1 -
+\cos\theta .
+$$The integral becomes
+$$ \dint _0 ^{2\pi} (1 + \cos \theta)\d{(1 - \cos \theta)} + \sqrt{2}\sin\theta\d{(1 + \cos\theta)} + (1 - \cos\theta)\d{(\sqrt{2}\sin\theta)} $$
+which in turn $$ = \dint_0 ^{2\pi} \sin\theta + \sin\theta\cos\theta
+- \sqrt{2} + \sqrt{2}\cos\theta \d{\theta} = -2\pi\sqrt{2}.$$
+\end{answer}
+\end{problem}
+\begin{problem}
+Use Green's Theorem to evaluate
+$$\doint _C (x^3-y^3)\d{x} +(x^3+y^3)\d{y},  $$
+where $C$ is the  positively oriented boundary of the region between
+the circles $x^2 +y^2 = 2$ and $x^2 +y^2 = 4$.
+\end{problem}
+
+
+
+

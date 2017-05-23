@@ -1,0 +1,1030 @@
+
+\chapter{Tensor Calculus}
+
+\section{Tensor Fields}
+
+
+In many applications, especially in differential geometry and physics, it is natural to consider a tensor with components that are functions of the point in a space.  This was the setting of Ricci's original work.  In modern mathematical terminology such an object is called a tensor field and  often referred to simply as a tensor.
+
+\begin{df}
+  A \negrito{tensor field}  of type  
+$(r,s)$ is a map  $T:V\to T_{r}^s(V)$.
+\end{df}
+The space of all tensor fields of type $(r,s)$ is denoted $ \mathcal{T}_{r}^s(V)$.
+In this way, given $T\in \mathcal{T}_{r}^s(V)$, if we apply this to a point $p \in V$, we obtain $T(p)\in T_{r}^s(V)$
+
+
+It's usual to write the point $p$ as an index:
+\[T_p :(v_1,\dots, \omega_n) \mapsto T_p(v_1,\dots, \omega_n) \in \bbR\]
+
+
+\begin{exa} \mbox{}
+ \begin{itemize}
+ \item If $f\in \mathcal{T}_{0}^0(V)$ then $f$ is a scalar function.
+  \item If $T\in \mathcal{T}_{1}^0(V)$ then $T$ is a vector field.
+   \item If $T\in \mathcal{T}_{0}^1(V)$ then $f$ is called differential form of rank $1$.
+ \end{itemize}
+\end{exa}
+
+\paragraph{Differential}
+Now we will construct the one of the most important tensor field: the differential.
+ 
+ Given a differentiable scalar function $f$ the directional derivative 
+ \[\D_vf(p):= \left. \dfrac{d}{dt} f(p+tv)\right|_{t=0}\]
+ is a linear function of $v$.
+ \begin{align}
+  (\D_{v + w} f)(p) &= (\D_v f)(p) + (\D_w f)(p) \\
+    (\D_{c v} f)(p) &= c (\D_v f)(p)
+\end{align}
+ 
+ In other words 
+$\D_vf(p)\in \mathcal{T}_{0}^1(V)$
+
+\begin{df}
+ Let  $f:V\to \bbR$  be a differentiable function. The  \emph{differential} of $f$, denoted by  $\d f$,
+is the differential form defined by 
+\[\d f_p v= \D_vf(p) .  \]
+
+Clearly, $\d f \in \mathcal{T}_{0}^1(V) $
+\end{df}
+
+
+Let $\{u^1, u^2, \dots, u^n\}$ be a coordinate system. Since the coordinates $\{u^1, u^2, \dots, u^n\}$ are themselves functions, we define the associated  differential-forms $\{\d u^1, \d u^2, \dots, \d u^n\}$.
+
+
+\begin{proposition} \label{basis-coordinate-system}
+Let $\{u^1, u^2, \dots, u^n\}$ be a coordinate system and $\dfrac{\partial \vector{r}}{\partial u_i}(p)$ the corresponding basis of $V$.
+Then the differential-forms $\{\d u^1, \d u^2, \dots, \d u^n\}$ are the corresponding dual basis:
+\[\d u^i_p\left( \dfrac{\partial \vector{r}}{\partial u_j}(p)\right)=\delta_i^j\]
+\end{proposition}
+
+
+Since $\dfrac{\partial u^i}{\partial u^j}=\delta^i_j$, it follows that
+\[\d f = \sum_{i=1}^n \dfrac{\partial f}{\partial u^i} \, \du^i .\]
+
+We also have the following product rule
+\[ \d (fg)= (\d f) g +f (\d g) \]
+
+As consequence of Theorem \ref{tensor-coordinate} and Proposition  \ref{basis-coordinate-system} we have:
+
+\begin{theorem} \label{tensor-coordinate}
+ Given $T \in \mathcal{T}^r_s(V)$
+be   a $(r,s)$ tensor. Then $T$ can be expressed in coordinates as:
+\[T=\dsum_{j_1=1}^{n} \cdots \dsum_{j_n=1}^{n}  \tsor{A}^{j_1\cdots j_r} _{j_{r+1}\cdots j_n} \d u^{j_1}\otimes \d u^{j_r} \otimes  \dfrac{\partial r}{\partial u_{j_{r+1}}}(p) \cdots \otimes  \dfrac{\partial r}{\partial u_{j_{r+s}}}(p)
+\]
+\end{theorem}
+
+
+
+
+\subsection{Change of Coordinates}
+
+Let $\{u^1, u^2, \dots, u^n\}$ and $\{\bar{u}^1, \bar{u}^2, \dots, \bar{u}^n\}$  two coordinates system and $\{\dfrac{\partial \vector{r}}{\partial u_i}(p)\}$ and $\{\dfrac{\partial \vector{r}}{\partial \bar{u}_i}(p)\}$ the  basis of $V$ with 
+$\{\d u^j\}$ and $\{\d \bar{u}^j\}$ are the corresponding dual basis:
+
+By the chain rule we have that the vectors change of basis as:
+\[\dfrac{\partial \vector{r}}{\partial \bar{u}_j}(p)= \dfrac{\partial  u_i}{\partial  \bar{u}_j}(p)\dfrac{\partial \vector{r}}{\partial  u_i}(p)\]
+So the matrix of change of basis  is:
+\[A_i^j=\dfrac{\partial  u_i}{\partial  \bar{u}_j}\]
+And the covectors changes by the inverse:
+\[\left(A^{-1}\right)_i^j=\dfrac{\partial  \bar{u}_j}{\partial  u_i}\]
+
+
+
+
+
+\begin{theorem}[Change of Basis For Tensor Fields] 
+Let $\{u^1, u^2, \dots, u^n\}$ and $\{\bar{u}^1, \bar{u}^2, \dots, \bar{u}^n\}$  two coordinates system and 
+$T$ a tensor
+ \[\hat{T}^{i'_1\dots i'_p}_{j'_1\dots j'_q}(\bar{u}^1,\ldots,\bar{u}^n) =
+\dfrac{\partial \bar{u}^{i'_1}}{\partial u^{i_1}}
+\cdots
+\dfrac{\partial \bar{u}^{i'_p}}{\partial u^{i_p}}
+\dfrac{\partial u^{j_{1}}}{\partial \bar{u}^{j'_{1}}}
+\cdots
+\dfrac{\partial u^{j_q}}{\partial \bar{u}^{j'_q}}
+T^{i_1\dots i_p}_{j_{1}\dots j_q}(u^1,\ldots,u^n).\]
+\end{theorem}
+
+
+
+\begin{exa}[Contravariance] The tangent vector to a curve is a contravariant vector. 
+ 
+\end{exa}
+ 
+ \begin{solu}
+ Let the curve be given by the parameterization $ x^i = x^i(t)$. Then the tangent vector to the curve is
+\[ T^i = \frac{dx^i}{dt}\]
+Under a change of coordinates, the curve is given by
+\[ x'^i=x'^i (t) = x'^i(x^1(t),\cdots,x^n(t))\]
+and the tangent vector in the new coordinate system  is given by:
+\[ T'^i = \frac{dx'^i}{dt}\]
+By the chain rule,
+\[\frac{dx'^i}{dt}=\frac{\partial x'^i}{\partial x^j}\frac{dx^j}{dt}\]
+Therefore,
+\[ T'^i = T^j\frac{\partial x'^i}{\partial x^j}\]
+which shows that the tangent vector transforms contravariantly and thus it is a contravariant vector.
+ \end{solu}
+
+
+\begin{example}[Covariance] The gradient of a scalar field is a covariant vector field.
+\end{example}
+
+\begin{solu}
+Let $\phi(\vector{x})$ be a scalar field.  Then let
+\[ \vector{G} = \nabla\phi = \left(\frac{\partial\phi}{\partial x^1}, \frac{\partial\phi}{\partial x^2},\frac{\partial\phi}{\partial x^3},\cdots,\frac{\partial\phi}{\partial x^n}\right)\]
+thus
+\[ G_i = \frac{\partial \phi}{\partial x^i}\]
+In the primed coordinate system, the gradient is
+
+ \[G'_i = \frac{\partial \phi'}{\partial x'^i}\]
+where $\phi'=\phi'(\vector{x}')=\phi(\vector{x}(\vector{x}'))$
+By the chain rule,
+\[\frac{\partial\phi'}{\partial x'^i}=\frac{\partial\phi}{\partial x^j}\frac{\partial x^j}{\partial x'^i}\]
+Thus
+\[G'_i=G_j\frac{\partial x^j}{\partial x'^i}\]
+which shows that the gradient is a covariant vector.
+ 
+\end{solu}
+
+
+
+\begin{example}
+ A covariant tensor has components $xy,z^2, 3yz-x$ in rectangular coordinates. Write its components in spherical coordinates.
+\end{example}
+
+\begin{solu}
+ Let $A_i$ denote its coordinates in rectangular coordinates 
+ $(x^1,x^2,x^3)=(x,y,z)$.
+ \[A_1=xy \qquad A_2=z^2, \qquad A_3=3y-x \]
+
+ Let $\bar{A}_k$ denote its coordinates in spherical coordinates $(\bar{x}^1,\bar{x}^2,\bar{x}^3)=(r,\phi,\theta)$:
+ 
+ Then 
+ \[\bar{A}_k=\frac{\partial x^j}{\partial \bar{x}^k}A_j\]
+ 
+ The relation between the two coordinates systems are given by:
+ \[
+  x = r \sin \phi \cos\theta;\; y = r\sin\phi\sin\theta;\; z = r\cos\phi
+\]
+
+And so:
+\begin{align}
+\bar{A}_1&=
+\frac{\partial x^1}{\partial \bar{x}^1}A_1+
+\frac{\partial x^2}{\partial \bar{x}^1}A_2+
+\frac{\partial x^3}{\partial \bar{x}^1}A_3\\ 
+&=  \sin \phi \cos\theta(xy)+ \sin\phi\sin\theta(z^2) +
+\cos\phi(3y-x)\\
+&=  \sin \phi \cos\theta(r \sin \phi \cos\theta)(r\sin\phi\sin\theta)+ \sin\phi\sin\theta(r\cos\phi)^2\\
+&+ \cos\phi(3r\sin\phi\sin\theta-r \sin \phi \cos\theta)
+\end{align}
+
+
+\begin{align}
+\bar{A}_2&=
+\frac{\partial x^1}{\partial \bar{x}^2}A_1+
+\frac{\partial x^2}{\partial \bar{x}^2}A_2+
+\frac{\partial x^3}{\partial \bar{x}^2}A_3\\ 
+&=   r \cos \phi \cos\theta(xy)+ r\cos\phi\sin\theta(z^2) +
+-r\sin\phi(3y-x)\\
+&=   r \cos \phi \cos\theta(r \sin \phi \cos\theta)(r\sin\phi\sin\theta)+ r\cos\phi\sin\theta(r\cos\phi)^2\\
+&+r\sin\phi(3r\sin\phi\sin\theta-r \sin \phi \cos\theta)
+\end{align}
+
+\begin{align}
+\bar{A}_3&=
+\frac{\partial x^1}{\partial \bar{x}^3}A_1+
+\frac{\partial x^2}{\partial \bar{x}^3}A_2+
+\frac{\partial x^3}{\partial \bar{x}^3}A_3\\ 
+&=   -r \sin \phi \sin\theta(xy)+ r\sin\phi\cos\theta(z^2) +
+0)\\
+&=    -r \sin \phi \sin\theta(r \sin \phi \cos\theta)(r\sin\phi\sin\theta)+ r\sin\phi\cos\theta(r\cos\phi)^2  \\
+\end{align}
+
+
+\end{solu}
+
+\section{Derivatives}
+
+
+    In this section we consider two different types of derivatives
+of  tensor fields: differentiation with
+respect to spacial variables $x^1,\,\dots,\,x^n$ and differentiation
+with respect to parameters other than the spatial ones.
+
+The second type of derivatives are simpler to define.  Suppose we have
+tensor field $T$ of type $(r,s)$ and depending on the
+additional parameter $t$ (for instance, this could be a time variable).
+Then, upon choosing some Cartesian coordinate system, we can write
+\begin{equation}
+ \frac{\partial X^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}}{\partial t}
+=\lim_{h\to 0}\frac{X^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}(t+h,x^1,
+\dots,x^n)-X^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}(t,x^1,\dots,x^n)}{h}.
+\quad
+\label{dertensor}
+\end{equation}
+
+
+
+The left hand side of \ref{dertensor} is a tensor since the fraction
+in right hand side is constructed by means of two tensorial operations: difference and scalar multiplication. Taking the limit $h\to 0$  preserves the tensorial nature of this fraction since the
+ matrices of change of coordinates are time-independent.
+
+So the differentiation with respect to external
+parameters  is a tensorial operation
+producing new tensors from existing ones.
+
+Now let's consider the spacial derivative of tensor field $T$, e.g, the derivative
+with respect to $x^1$. 
+In this case we want to write the derivative as
+\begin{equation}
+\frac{\partial T^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}}{\partial x^1}
+=\lim_{h\to 0}\frac{T^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}(x^1+h,
+\dots,x^n)-T^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}(x^1,\dots,x^n)}{h},
+\quad
+\label{dertensor2} 
+\end{equation}
+but in numerator of the fraction in the right hand side of
+\ref{dertensor2} we get the difference of two tensors bound to
+different points of space:  the point $x^1,\,\dots,\,x^n$ and  the point $x^1+h,\,\dots,\,x^n$. 
+
+In general we can't sum the coordinates of  tensors defined in different points since these  tensors are written with respect to distinct basis of vector and covectors, as both basis varies with the point.  
+In Cartesian coordinate system we don't have this dependence. And both tensors are written in the same basis and everything is well defined.
+
+We now claim:
+
+\begin{theorem}
+ For any tensor field $\bold T$ of type
+$(r,s)$ partial derivatives  with respect to
+spacial variables $u_1,\,\dots,\,u_n$ 
+ \[
+    \underbrace{\dfrac{\partial}{\partial u^a}\cdots \dfrac{\partial}{\partial x_c}}_{m}T^{i_1\ldots\,i_r}_{j_1\ldots\,j_s},
+  \]
+in any Cartesian coordinate
+system represent another tensor field of the type
+$(r,s+m)$.
+\end{theorem}
+
+
+\begin{proof}
+Since $T$ is a Tensor
+
+ \[T^{i_1\dots i_p}_{j_1\dots j_q}(u^1,\ldots,u^n) =
+\dfrac{\partial u^{i_1}}{\partial \bar{u}^{i'_1}}
+\cdots
+\dfrac{\partial u^{i_p}}{\partial \bar{u}^{i'_p}}
+\dfrac{\partial \bar{u}^{j'_{1}}}{\partial u^{j_{1}}}
+\cdots
+\dfrac{\partial \bar{u}^{j'_q}}{\partial u^{j_q}}
+\hat{T}^{i'_1\dots i'_p}_{j'_{1}\dots j'_q}(\bar{u}^1,\ldots,\bar{u}^n)  .\]
+
+and so:
+
+\begin{align}
+\dfrac{\partial}{\partial u^a}T^{i_1\dots i_p}_{j_1\dots j_q}(u^1,\ldots,u^n) & =
+\dfrac{\partial}{\partial u^a}\left( \dfrac{\partial u^{i_1}}{\partial \bar{u}^{i'_1}}
+\cdots
+\dfrac{\partial u^{i_p}}{\partial \bar{u}^{i'_p}}
+\dfrac{\partial \bar{u}^{j'_{1}}}{\partial u^{j_{1}}}
+\cdots
+\dfrac{\partial \bar{u}^{j'_q}}{\partial u^{j_q}}
+\hat{T}^{i'_1\dots i'_p}_{j'_{1}\dots j'_q}(\bar{u}^1,\ldots,\bar{u}^n) \right)\\
+&=\dfrac{\partial}{\partial u^a}\left( \dfrac{\partial u^{i_1}}{\partial \bar{u}^{i'_1}}
+\cdots
+\dfrac{\partial u^{i_p}}{\partial \bar{u}^{i'_p}}
+\dfrac{\partial \bar{u}^{j'_{1}}}{\partial u^{j_{1}}}
+\cdots
+\dfrac{\partial \bar{u}^{j'_q}}{\partial u^{j_q}}\right)
+\hat{T}^{i'_1\dots i'_p}_{j'_{1}\dots j'_q}(\bar{u}^1,\ldots,\bar{u}^n)+ \\
+& \dfrac{\partial u^{i_1}}{\partial \bar{u}^{i'_1}}
+\cdots
+\dfrac{\partial u^{i_p}}{\partial \bar{u}^{i'_p}}
+\dfrac{\partial \bar{u}^{j'_{1}}}{\partial u^{j_{1}}}
+\cdots
+\dfrac{\partial \bar{u}^{j'_q}}{\partial u^{j_q}} \dfrac{\partial}{\partial u^a}
+\hat{T}^{i'_1\dots i'_p}_{j'_{1}\dots j'_q}(\bar{u}^1,\ldots,\bar{u}^n) 
+\end{align}
+
+
+We are assuming that the matrices 
+   \[
+\dfrac{\partial u^{i_s}}{\partial \bar{u}^{i'_s}} \qquad \dfrac{\partial \bar{u}^{j'_l}}{\partial u^{j_l}}
+   \]
+are constant matrices.
+
+
+And so 
+   \[
+\dfrac{\partial}{\partial u^a}\dfrac{\partial u^{i_s}}{\partial \bar{u}^{i'_s}}=0 \qquad \dfrac{\partial}{\partial u^a}\dfrac{\partial \bar{u}^{j'_l}}{\partial u^{j_l}}=0
+   \]
+Hence    
+\[\dfrac{\partial}{\partial u^a}\left( \dfrac{\partial u^{i_1}}{\partial \bar{u}^{i'_1}}
+\cdots
+\dfrac{\partial u^{i_p}}{\partial \bar{u}^{i'_p}}
+\dfrac{\partial \bar{u}^{j'_{1}}}{\partial u^{j_{1}}}
+\cdots
+\dfrac{\partial \bar{u}^{j'_q}}{\partial u^{j_q}}\right)
+\hat{T}^{i'_1\dots i'_p}_{j'_{1}\dots j'_q}(\bar{u}^1,\ldots,\bar{u}^n) =0\]   
+And 
+\begin{align}
+\dfrac{\partial}{\partial u^a}T^{i_1\dots i_p}_{j_1\dots j_q}(u^1,\ldots,u^n) & = \dfrac{\partial u^{i_1}}{\partial \bar{u}^{i'_1}}
+\cdots
+\dfrac{\partial u^{i_p}}{\partial \bar{u}^{i'_p}}
+\dfrac{\partial \bar{u}^{j'_{1}}}{\partial u^{j_{1}}}
+\cdots
+\dfrac{\partial \bar{u}^{j'_q}}{\partial u^{j_q}} \dfrac{\partial}{\partial u^a}
+\hat{T}^{i'_1\dots i'_p}_{j'_{1}\dots j'_q}(\bar{u}^1,\ldots,\bar{u}^n) \\
+&= \dfrac{\partial u^{i_1}}{\partial \bar{u}^{i'_1}}
+\cdots
+\dfrac{\partial u^{i_p}}{\partial \bar{u}^{i'_p}}
+\dfrac{\partial \bar{u}^{j'_{1}}}{\partial u^{j_{1}}}
+\cdots
+\dfrac{\partial \bar{u}^{j'_q}}{\partial u^{j_q}} \dfrac{\partial \bar{u}_a'}{\partial u^a} \left[ \dfrac{\partial}{\partial \bar{u}_a'}
+\hat{T}^{i'_1\dots i'_p}_{j'_{1}\dots j'_q}(\bar{u}^1,\ldots,\bar{u}^n)\right]
+\end{align}
+
+
+\end{proof}
+
+\begin{remark} We note that in general the partial derivative is not a tensor.  Given a vector field 
+\[\vector{v} = v^j \dfrac{\partial \vector{r}}{\partial u^j}\quad,\] then
+\[\quad\dfrac{\partial\vector{v}}{\partial u^i} = \dfrac{\partial v^j}{\partial u^i}  \dfrac{\partial \vector{r}}{\partial u^j}  +  v^j \dfrac{\partial^2 \vector{r}}{\partial u^i \, \partial u^j}.\]
+
+The term $\dfrac{\partial^2 \vector{r}}{\partial u^i \, \partial u^j}$ in general is not null if the coordinate system is not the Cartesian.
+\end{remark}
+
+
+\begin{example}
+ Calculate
+\[ 
+\partial_{x^m} \partial_{\lambda^n} (A^{ij} \lambda^i x^j + B^{ij} x^i \lambda^j)
+\]
+\end{example}
+
+\begin{solu}
+
+\begin{align}
+\partial_{x^m} \partial_{\lambda^n} (A^{ij} \lambda^i x^j + B^{ij} x^i \lambda^j)
+&= A^{ij} \delta^{in} \delta^{jm} + B^{ij} \delta^{im} \delta^{jn} \\
+&=A^{nm} + B^{mn}
+\end{align}
+\end{solu}
+
+
+\begin{example}
+ Prove that if $F_{ik}$ is an antisymmetric tensor then
+$$
+T_{ijk}= \partial_i F_{jk} + \partial_{j}F_{ki} +\partial_{k}F_{ij}
+$$
+is a tensor .
+ 
+\end{example}
+
+\begin{solu}
+
+The tensor $F_{ik}$ changes as:
+\[F_{jk} = \frac{\partial x^j}{\partial x'^a}\frac{\partial x^k}{\partial x'^b} \bar{F}_{ab}\]
+
+Then 
+\begin{align}
+ \partial_i F_{jk}  &= \partial_i  \left( \frac{\partial x^j}{\partial x'^a}\frac{\partial x^k}{\partial x'^b} \bar{F}_{ab} \right)\\
+ &= \partial_i  \left( \frac{\partial x^j}{\partial x'^a}\frac{\partial x^k}{\partial x'^b}\right)\bar{F}_{ab}+ \frac{\partial x^j}{\partial x'^a}\frac{\partial x^k}{\partial x'^b}  \partial_i \bar{F}_{ab}\\
+ &= \partial_i  \left( \frac{\partial x^j}{\partial x'^a}\frac{\partial x^k}{\partial x'^b}\right)\bar{F}_{ab}+ \frac{\partial x^j}{\partial x'^a}\frac{\partial x^k}{\partial x'^b} \frac{\partial x^i}{\partial x'^a}  \partial_a \bar{F}_{ab}
+\end{align}
+
+
+
+ 
+The tensor 
+$$
+T_{ijk}= \partial_i F_{jk} + \partial_{j}F_{ki} +\partial_{k}F_{ij}
+$$
+is totally antisymmetric under any index pair exchange. Now perform a coordinate change, $T_{ijk}$ will transform as
+
+$$
+T_{abc} = \frac{\partial x^i }{\partial x'^a}\frac{\partial x^j }{\partial x'^b}\frac{\partial x^k }{\partial x'^c}T_{ijk} + I_{abc}
+$$
+where this $I_{abc}$ is  given by:
+
+$$
+I_{abc} = \frac{\partial x^i}{\partial x'^a}\partial_i (\frac{\partial x^j}{\partial x'^b}\frac{\partial x^k}{\partial x'^c}) F_{jk} + \cdots
+$$
+such $I_{abc}$ will clearly be also totally antisymmetric under exchange of any pair of the indices $a,b,c$. Notice now that we can rewrite:
+
+$$
+I_{abc} = \frac{\partial }{\partial x'^a}(\frac{\partial x^j}{\partial x'^b}\frac{\partial x^k}{\partial x'^c}) F_{jk} + \cdots \\
+=\frac{\partial^2 x^j}{\partial x'^a x'^b}\frac{\partial x^k}{\partial x'^c} F_{jk}  + \frac{\partial x^j}{\partial x'^b} \frac{\partial^2 x^j}{\partial x'^a x'^c} F_{jk} + \cdots  
+$$
+and they all vanish because the object is antisymmetric in the indices $a,b,c$ while the mixed partial derivatives are symmetric (remember that an object both symmetric and antisymmetric is zero), hence $T_{ijk}$ is a tensor.
+\end{solu}
+
+\begin{problem} 
+ Give a more detailed explanation of why
+the time derivative of a tensor of type $(r,s)$ is tensor of type
+$(r,s)$.
+\end{problem}
+
+
+
+
+\section{Integrals and the Tensor Divergence Theorem}
+It is also straightforward to do integrals. Since we can sum tensors and take limits, the definition of a tensor-valued integral is straightforward.
+
+For example, $\dint_V T_{ij\cdots k}(\vector{x})\;\d V$ is a tensor of the same rank as $T_{ij\cdots k}$ (think of the integral as the limit of a sum).
+
+It is easy to generalize the divergence theorem from vectors to tensors. 
+
+\begin{thm}[Divergence Theorem for Tensors]
+Let $T_{ijk\dotsm}$  be a continuously differentiable tensor defined on a domain $V$ with a piecewise-differentiable boundary (i.e. for almost all points, we have a well-defined normal vector $n^l$), then we have
+  \[
+    \dint_S T_ {ij\cdots k\ell}n^\ell\;\d S = \dint_V \dfrac{\partial}{\partial x_\ell}(T_{ij\cdots k\ell})\;\d V,
+  \]
+  with $\vector{n}$ being an outward pointing normal.
+\end{thm}
+The regular divergence theorem is the case where $T$ has one index and is a vector field.
+
+\begin{proof}
+  The tensor form of the divergence theorem can be obtained applying  the usual divergence theorem to the vector field $\vector{v}$ defined by $v_\ell = a^i b^j \cdots c^k T_{ij\cdots k\ell}$, where $\vector{a}, \vector{b}, \cdots, \vector{c}$ are fixed constant vectors.
+
+  Then
+  \[
+    \nabla\cdot \vector{v} = \dfrac{\partial v_\ell}{\partial x^\ell} = a^i b^j \cdots c^k \dfrac{\partial}{\partial x^\ell}T^{ij\cdots k\ell},
+  \]
+  and
+  \[
+    \vector{n}\cdot \vector{v} = n^\ell v_\ell = a^i b^j \cdots c^k T_{ij\cdots k\ell }n^\ell.
+  \]
+  Since $\vector{a}, \vector{b}, \cdots, \vector{c}$ are arbitrary, therefore they can be eliminated, and the tensor divergence theorem follows.
+\end{proof}
+% \section{Tensors of Rank 2}
+% \subsection{Decomposition of a second-rank tensor}
+% This decomposition might look arbitrary at first sight, but as time goes on, you will find that it is actually very useful in your future career (at least, the lecturer claims so).
+% 
+% Any second rank tensor can be written as a sum of its symmetric and anti-symmetric parts
+% \[
+%   T_{ij} = S_{ij} + \tsor{A}_ij},
+% \]
+% where
+% \[
+%   S_{ij} = \dfrac{1}{2}(T_{ij} + T_{ji}),\quad \tsor{A}_ij} = \dfrac{1}{2}(T_{ij} - T_{ji}).
+% \]
+% Here $T_{ij}$ has 9 independent components, whereas $S_{ij}$ and $\tsor{A}_ij}$ have 6 and 3 independent components, since they must be of the form
+% \[
+%   (S_{ij}) =
+%   \begin{bmatrix}
+%     a & d & e\\
+%     d & b & f\\
+%     e & f & c
+%   \end{bmatrix}
+%   ,\quad
+%   (\tsor{A}_ij}) =
+%   \begin{bmatrix}
+%     0 & a & b\\
+%     -a & 0 & c\\
+%     -b & -c & 0
+%   \end{bmatrix}.
+% \]
+% The symmetric part can be be further reduced to a \emph{traceless} part plus an \emph{isotropic} (ie. multiple of $\delta_{ij}$) part:
+% \[
+%   S_{ij} = P_{ij} + \dfrac{1}{3}\delta_{ij} Q,
+% \]
+% where $Q = S_{ii}$ is the trace of $S_{ij}$ and $P_{ij} = P_{ji} = S_{ij} -\dfrac{1}{3}\delta_{ij}Q$ is traceless. Then $P_{ij}$ has 5 independent components while $Q$ has 1.
+% 
+% Since the antisymmetric part has 3 independent components, just like a usual vector, we should be able to write $\tsor{A}_i}$ in terms of a single vector. In fact, we can write the antisymmetric part as
+% \[
+%   \tsor{A}_ij} = \varepsilon_{ijk}B_k
+% \]
+% for some vector $B$. To figure out what this $B$ is, we multiply by $\varepsilon_{ij\ell}$ on both sides and use some magic algebra to obtain
+% \[
+%   B_k = \dfrac{1}{2}\varepsilon_{ijk}\tsor{A}_ij} = \dfrac{1}{2}\varepsilon_{ijk}T_{ij},
+% \]
+% where the last equality is from the fact that only antisymmetric parts contribute to the sum.
+% 
+% Then
+% \[
+%   (\tsor{A}_ij}) =
+%   \begin{bmatrix}
+%     0 & B_3 & -B_2\\
+%     -B_3 & 0 & B_1\\
+%     B_2 & -B_1 & 0
+%   \end{bmatrix}
+% \]
+% To summarize,
+% \[
+%   T_{ij} = P_{ij} + \varepsilon_{ijk}B_k + \dfrac{1}{3}\delta_{ij}Q,
+% \]
+% where $B_k = \dfrac{1}{2}\varepsilon_{pqj} T_{pq}$, $Q = T_{kk}$ and $P_{ij} = P_{ji} = \dfrac{T_{ij} + T_{ji}}{2} - \dfrac{1}{3}\delta_{ij}Q$.
+% 
+% \begin{exa}
+%   The derivative of a vector field $F_i (\vector{r})$ is a tensor $T_{ij} = \dfrac{\partial F_i}{\partial x_j}$, a tensor field. Our decomposition given above has the symmetric traceless piece
+%   \[
+%     P_{ij} = \dfrac{1}{2}\left(\dfrac{\partial F_i}{\partial x_j} + \dfrac{\partial F_j}{\partial x_i}\right) - \dfrac{1}{3}\delta_{ij}\dfrac{\partial F_k}{\partial x_k} = \dfrac{1}{2}\left(\dfrac{\partial F_i}{\partial x_j} + \dfrac{\partial F_j}{\partial x_i}\right) - \dfrac{1}{3}\delta_{ij}\nabla\cdot \vector{F},
+%   \]
+%   an antisymmetric piece $\tsor{A}_ij} = \varepsilon_{ijk}B_k$, where
+%   \[
+%     B_k = \dfrac{1}{2}\varepsilon_{ijk}\dfrac{\partial F_i}{\partial x_j} = -\dfrac{1}{2}(\nabla\times \vector{F})_k.
+%   \]
+%   and trace
+%   \[
+%     Q = \dfrac{\partial F_k}{\partial x_k} = \nabla \cdot \vector{F}.
+%   \]
+%   Hence a complete description involves a scalar $\nabla\cdot \vector{F}$, a vector $\nabla\times \vector{F}$, and a symmetric traceless tensor $P_{ij}$.
+% \end{exa}
+
+
+
+
+\section{Metric Tensor\label{secMetricTensor}}
+
+ This is a rank-2 tensor which may also be called the fundamental
+tensor.
+
+ The main purpose of the metric tensor is to generalize
+the concept of distance to general curvilinear coordinate frames and
+maintain the invariance of distance in different coordinate systems.
+
+ In orthonormal Cartesian coordinate systems the distance
+element squared, $\left(ds\right)^{2}$, between two infinitesimally
+neighboring points in space, one with coordinates $x^{i}$ and the
+other with coordinates $x^{i}+dx^{i}$, is given by
+\begin{equation}
+\left(ds\right)^{2}=dx^{i}dx^{i}=\delta_{ij}dx^{i}dx^{j}
+\end{equation}
+This definition of distance is the key to introducing a rank-2 tensor,
+$g_{ij}$, called the metric tensor which, for a general coordinate
+system, is defined by
+\begin{equation}
+\left(ds\right)^{2}=g_{ij}dx^{i}dx^{j}
+\end{equation}
+The metric tensor has also a contravariant form, i.e. $g^{ij}$.
+
+ The components of the metric tensor are given by:
+\begin{equation}
+g_{ij}=\vector{E}_{i}\cdot\vector{E}_{j}\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,
+\&\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,g^{ij}=\vector{E}^{i}\cdot\vector{E}^{
+j}
+\end{equation}
+
+
+where the indexed $\vector{E}$ are the covariant and contravariant
+basis vectors:
+\begin{equation}
+\vector{E}_{i}=\frac{\partial\vector{r}}{\partial u^{i}}\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\&\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\vector{E}^{i}=\nabla u^{i}
+\end{equation}
+where $\vector{r}$ is the position vector in Cartesian coordinates
+and $u^{i}$ is a generalized curvilinear coordinate. 
+
+
+ The mixed type metric tensor is given by:
+\begin{equation}
+g_{\,\,j}^{i}=\vector{E}^{i}\cdot\vector{E}_{j}=\delta_{\,\,j}^{i}\,\,\,\,\,\,\,
+\,\,\,\,\,\,\,\,\,\,\,\,\,\&\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,g_{i}^{\,\,j
+}=\vector{E}_{i}\cdot\vector{E}^{j}=\delta_{i}^{\,\,j}
+\end{equation}
+and hence it is the same as the unity tensor.
+
+ For a coordinate system in which the metric tensor can
+be cast in a diagonal form where the diagonal elements are $\pm1$
+the metric is called flat.
+
+ For Cartesian coordinate systems, which are orthonormal
+flat-space systems, we have
+\begin{equation}
+g^{ij}=\delta^{ij}=g_{ij}=\delta_{ij}
+\end{equation}
+
+
+ The metric tensor is symmetric, that is
+\begin{equation}
+g_{ij}=g_{ji}\,\,\,\,\,\,\,\,\,\,\,\,\,\&\,\,\,\,\,\,\,\,\,\,\,g^{ij}=g^{ji}
+\end{equation}
+
+
+ The contravariant metric tensor is used for raising indices
+of covariant tensors and the covariant metric tensor is used for lowering
+indices of contravariant tensors, e.g.
+\begin{equation}
+A^{i}=g^{ij}\tsor{A}_j\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\tsor{A}^i=g_{ij}A^{j}
+\end{equation}
+where the metric tensor acts, like a Kronecker delta, as an index
+replacement operator. Hence, any tensor can be cast into a covariant
+or a contravariant form, as well as a mixed form. \textcolor{black}{However,
+the order of the indices should be respected in this process, e.g.}
+\begin{equation}
+\tsor{A}_j^{i}=g_{jk}A^{ik}\ne \tsor{A}_j^{\,\,\,i}=g_{jk}A^{ki}
+\end{equation}
+Some authors insert dots (e.g. $\tsor{A}_j^{\cdot\,i}$) to remove any
+ambiguity about the order of the indices.
+
+ The covariant and contravariant metric tensors are inverses
+of each other, that is
+\begin{equation}
+\left[g_{ij}\right]=\left[g^{ij}\right]^{-1}\,\,\,\,\,\,\,\,\,\,\&\,\,\,\,\,\,\,
+\,\,\,\left[g^{ij}\right]=\left[g_{ij}\right]^{-1}
+\end{equation}
+Hence
+\begin{equation}
+g^{ik}g_{kj}=\delta_{\,\,j}^{i}\,\,\,\,\,\,\,\,\,\,\&\,\,\,\,\,\,\,\,\,\,g_{ik}
+g^{kj}=\delta_{i}^{\,\,j}
+\end{equation}
+
+
+ It is common to reserve the ``metric tensor'' to the
+covariant form and call the contravariant form, which is its inverse,
+the ``associate'' or ``conjugate'' or ``reciprocal'' metric
+tensor.
+
+ As a tensor, the metric has a significance regardless of
+any coordinate system although it requires a coordinate system to
+be represented in a specific form.
+
+ For orthogonal coordinate systems the metric tensor is
+diagonal, i.e. $g_{ij}=g^{ij}=0$ for $i\ne j$.
+
+ For flat-space orthonormal Cartesian coordinate systems
+in a 3D space, the metric tensor is given by:
+\begin{equation}
+\left[g_{ij}\right]=\left[\delta_{ij}\right]=\left[\begin{array}{ccc}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{array}\right]=\left[\delta^{ij}\right]=\left[g^{ij}\right]
+\end{equation}
+
+
+ For cylindrical coordinate systems with coordinates ($\rho,\phi,z$),
+the metric tensor is given by:
+\begin{equation}
+\left[g_{ij}\right]=\left[\begin{array}{ccc}
+1 & 0 & 0\\
+0 & \rho^{2} & 0\\
+0 & 0 & 1
+\end{array}\right]\,\,\,\,\,\,\,\,\,\,\&\,\,\,\,\,\,\,\,\,\,\left[g^{ij}\right]
+=\left[\begin{array}{ccc}
+1 & 0 & 0\\
+0 & \dfrac{1}{\rho^{2}} & 0\\
+0 & 0 & 1
+\end{array}\right]
+\end{equation}
+
+
+ For spherical coordinate systems with coordinates ($r,\theta,\phi$),
+the metric tensor is given by:
+\begin{equation}
+\left[g_{ij}\right]=\left[\begin{array}{ccc}
+1 & 0 & 0\\
+0 & r^{2} & 0\\
+0 & 0 & r^{2}\sin^{2}\theta
+\end{array}\right]\,\,\,\,\,\,\,\,\,\,\&\,\,\,\,\,\,\,\,\,\,\left[g^{ij}\right]
+=\left[\begin{array}{ccc}
+1 & 0 & 0\\
+0 & \dfrac{1}{r^{2}} & 0\\
+0 & 0 & \dfrac{1}{r^{2}\sin^{2}\theta}
+\end{array}\right]
+\end{equation}
+
+
+
+
+
+\section{Covariant Differentiation\label{secCovariantDifferentiation}}
+Let $\{x^1,  \dots, x^n\}$ be a coordinate system. And 
+\[\left\lbrace \left. \dfrac{\partial\vector{r}}{\partial x^i} \right|_p : i \in \lbrace1, \dots, n\rbrace\right\rbrace\]
+ the associated basis 
+
+The metric tensor
+\(g_{ij} = \left\langle \dfrac{\partial\vector{r}}{\partial x^i} ; \dfrac{\partial\vector{r}}{\partial x^j} \right\rangle\).
+
+
+Given a vector field 
+\[\vector{v} = v^j \dfrac{\partial \vector{r}}{\partial x^j}\quad,\] then
+\[\quad\dfrac{\partial\vector{v}}{\partial x^i} = \dfrac{\partial v^j}{\partial x^i}  \dfrac{\partial \vector{r}}{\partial x^j}  +  v^j \dfrac{\partial^2 \vector{r}}{\partial x^i \, \partial x^j}.\]
+The last term but can be expressed as a
+linear combination of the tangent space base vectors using the
+Christoffel symbols 
+
+\[\dfrac{\partial^2 \vector{r}}{\partial x^i \, \partial x^j}  = \Gamma^k{}_{ij} \dfrac{\partial\vector{r}}{\partial x^k} 
+.\]
+
+\begin{df}
+ The covariant derivative \(\nabla_{{\vector e}_i} \vector{v}\), also written
+\(\nabla_i \vector{v}\), is defined as:
+
+\[\nabla_{{\vector e}_i} \vector{v} := \dfrac{\partial\vector{v}}{\partial x^i} = \left( \dfrac{\partial v^k}{\partial x^i} + v^j \Gamma^k{}_{ij} \right) \dfrac{\partial\vector{r}}{\partial x^k}.\]
+\end{df}
+
+
+
+The Christoffel symbols can be calculated using the inner product:
+
+\[\left\langle  \dfrac{\partial^2 \vector{r}}{\partial x^i \, \partial x^j} , \dfrac{\partial\vector{r}}{\partial x^l} \right\rangle = \Gamma^k{}_{ij}  \left\langle \dfrac{\partial\vector{r}}{\partial x^k} , \dfrac{\partial\vector{r}}{\partial x^l} \right\rangle =  \Gamma^k{}_{ij} \, g_{kl}.\]
+On the other hand,
+
+\[\dfrac{\partial g_{ab}}{\partial x^c} = \left\langle \dfrac{\partial^2 \vector{r}}{ \partial x^c \, \partial x^a} , \dfrac{\partial \vector{r}}{\partial x^b} \right\rangle +  \left\langle \dfrac{\partial \vector{r}}{\partial x^a} , \dfrac{\partial^2 \vector{r}}{ \partial x^c \, \partial x^b} \right\rangle\]
+using the symmetry of the scalar product and swapping the order
+of partial differentiations we have
+
+\[\dfrac{\partial g_{jk}}{\partial x^i} + \dfrac{\partial g_{ki}}{\partial x^j} - \dfrac{\partial g_{ij}}{\partial x^k} = 2\left\langle  \dfrac{\partial^2 \vector{r}}{\partial x^i \, \partial x^j} , \dfrac{\partial\vector{r}}{\partial x^k} \right\rangle\]
+and so we have expressed the Christoffel symbols for the Levi-Civita connection in
+terms of the metric:
+
+\[g_{kl} \Gamma^k{}_{ij} = \dfrac{1}{2} \left( \dfrac{\partial g_{jl}}{\partial x^i} + \dfrac{\partial g_{li}}{\partial x^j}- \dfrac{\partial g_{ij}}{\partial x^l}\right).\]
+
+
+
+
+
+\begin{df}
+ Christoffel symbol of the second kind is defined by:
+\begin{equation}
+\christoffel{i}{j}{k} =\dfrac{g^{kl}}{2}\left(\dfrac{\partial g_{il}}{\partial 
+x^{j}}+\dfrac{\partial g_{jl}}{\partial x^{i}}-\dfrac{\partial g_{ij}}{\partial 
+x^{l}}\right)
+\end{equation}
+where the indexed $g$ is the metric tensor in its contravariant and
+covariant forms with implied summation over $l$. It is noteworthy
+that Christoffel symbols are not tensors.
+\end{df}
+
+ 
+ The Christoffel symbols of the second kind are symmetric
+in their two lower indices:
+\begin{equation}
+\christoffel{i}{j}{k}=\christoffel{j}{i}{k}
+\end{equation}
+
+\begin{example}
+ For Cartesian coordinate systems, the Christoffel symbols
+are zero for all the values of indices.
+\end{example}
+
+ \begin{example}
+ For cylindrical coordinate systems ($\rho,\phi,z$), the
+Christoffel symbols are zero for all the values of indices except:
+\begin{eqnarray}
+\christoffel{2}{2}{k} & = & -\rho\\
+\christoffel{1}{2}{2} & = & \begin{aligned}\christoffel{2}{1}{2} & 
+\begin{aligned}\,\,=\,\,\,\, & \dfrac{1}{\rho}\end{aligned}
+\end{aligned}
+\nonumber
+\end{eqnarray}
+where ($1,2,3$) stand for ($\rho,\phi,z$). 
+ \end{example}
+
+\begin{example}
+
+ For spherical coordinate systems ($r,\theta,\phi$), the
+Christoffel symbols can be computed from 
+
+$$ds^2=dr^2+r^2d\theta^2+r^2\sin^2\theta d\varphi^2$$
+
+We can easily then see that the metric tensor and the inverse metric tensor are:
+
+$$g=\begin{pmatrix}1&0&0\\0&r^2&0\\0&0&r^2\sin^2\theta\\\end{pmatrix}$$
+
+$$g^{-1}=\begin{pmatrix}1&0&0\\0&r^{-2}&0\\0&0&r^{-2}\sin^{-2}\theta\\\end{pmatrix} $$
+
+Using the  formula:
+
+$$\Gamma^m_{ij}=\dfrac12 g^{ml}(\partial_jg_{il}+\partial_ig_{lj}-\partial_lg_{ji} )$$
+
+Where upper indices indicate the inverse matrix. And so:
+
+$$\Gamma^1=\begin{pmatrix}0&0&0\\0&-r&0\\0&0&-r\sin^2\theta\\\end{pmatrix}$$
+$$\Gamma^2=\begin{pmatrix}0&\dfrac1r&0\\\dfrac1r&0&0\\0&0&-\sin\theta cos\theta\\\end{pmatrix}$$
+$$\Gamma^3=\begin{pmatrix}0&0&\dfrac1r\\0&0&\cot\theta\\\dfrac1r&\cot\theta&0\\\end{pmatrix}$$
+ 
+ 
+\end{example}
+
+\begin{theorem} Under a change of variable from $(y^1,\dots , y^n)$ to $(x^1,\dots , x^n)$, the Christoffel symbol transform as
+\[{\bar\Gamma}^k{}_{ij} =
+\frac{\partial x^p}{\partial y^i}\,
+\frac{\partial x^q}{\partial y^j}\,
+\Gamma^r{}_{pq}\,
+\frac{\partial y^k}{\partial x^r}
++ 
+\frac{\partial y^k}{\partial x^m}\, 
+\frac{\partial^2 x^m}{\partial y^i \partial y^j}  
+\]
+where the overline denotes the Christoffel symbols in the $y$ coordinate system.  
+\end{theorem}
+
+
+
+
+
+\begin{df}[Derivatives of Tensors in Coordinates] \mbox{}
+
+ \begin{itemize}
+\item   For a differentiable scalar $f$ the covariant derivative
+is the same as the normal partial derivative, that is:
+\begin{equation}
+f_{;i}=f_{,i}=\partial_{i}f
+\end{equation}
+This is justified by the fact that the covariant derivative is different
+from the normal partial derivative because the basis vectors in general
+coordinate systems are dependent on their spatial position, and since
+a scalar is independent of the basis vectors the covariant and partial
+derivatives are identical.
+
+\item For a differentiable vector $\vector{A}$ the covariant
+derivative is:
+\begin{equation}
+\begin{aligned}\tsor{A}_{j;i} & =\partial_{i}\tsor{A}_j-\christoffel{j}{i}{k}\tsor{A}_k & 
+\,\,\,\,\,\,\,\,\,\,\,\,\,\,\, & \text{(covariant)}\\
+\tsor{A}_{\,\,;i}^{j} & =\partial_{i}A^{j}+\christoffel{k}{i}{j} A^{k} &  & 
+\text{(contravariant)}
+\end{aligned}
+\end{equation}
+
+
+\item For a differentiable rank-2 tensor $\vector{A}$ the covariant
+derivative is:
+\begin{equation}
+\begin{aligned}\tsor{A}_{jk;i} & 
+=\partial_{i}\tsor{A}_{jk}-\christoffel{j}{i}{l}\tsor{A}_{lk}-\christoffel{k}{i}{l}\tsor{A}_{jl} & 
+\,\,\,\,\,\,\,\,\,\,\,\,\, & \text{(covariant)}\\
+\tsor{A}_{\,\,\,;i}^{jk} & =\partial_{i}A^{jk}+\christoffel{l}{i}{j} 
+A^{lk}+\christoffel{l}{i}{k} A^{jl} &  & \text{(contravariant)}\\
+\tsor{A}_{j;i}^{k} & =\partial_{i}\tsor{A}_j^{k}+\christoffel{l}{i}{k} 
+\tsor{A}_{j^{l}-\christoffel{j}{i}{l} \tsor{A}_l}^{k} &  & \text{(mixed)}
+\end{aligned}
+\end{equation}
+
+
+\item For a differentiable rank-$n$ tensor $\vector{A}$ the
+covariant derivative is:
+\begin{eqnarray}
+\tsor{A}_{lm\ldots p;q}^{ij\ldots k} & = & \partial_{q}\tsor{A}_{lm\ldots p}^{ij\ldots 
+k}+\christoffel{a}{q}{i} \tsor{A}_{lm\ldots p}^{aj\ldots k}
+\christoffel{a}{q}{j} \tsor{A}_{lm\ldots p}^{ia\ldots k}+\cdots+\christoffel{a}{q}{k} 
+\tsor{A}_{lm\ldots p}^{ij\ldots a}\\
+ &  & \,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,-\christoffel{l}{q}{a} 
+\tsor{A}_{am\ldots p}^{ij\ldots k}-\christoffel{m}{q}{a} \tsor{A}_{la\ldots p}^{ij\ldots 
+k}-\cdots-\christoffel{p}{q}{a}\tsor{A}_{lm\ldots a}^{ij\ldots k}\nonumber
+\end{eqnarray}
+
+
+ \end{itemize}
+
+\end{df}
+
+ Since the Christoffel symbols are identically zero in Cartesian
+coordinate systems, the covariant derivative is the same as the normal
+partial derivative for all tensor ranks.
+
+ The covariant derivative of the metric tensor is zero in
+all coordinate systems.
+
+ Several rules of normal differentiation similarly apply
+to covariant differentiation. For example, covariant differentiation
+is a linear operation with respect to algebraic sums of tensor terms:
+\begin{equation}
+\partial_{;i}\left(a\vector{A}\pm b\vector{B}\right)=a\partial_{;i}\vector{A}\pm 
+b\partial_{;i}\vector{B}
+\end{equation}
+where $a$ and $b$ are scalar constants and $\vector{A}$ and $\vector{B}$
+are differentiable tensor fields. The product rule of normal differentiation
+also applies to covariant differentiation of tensor multiplication:
+\begin{equation}
+\partial_{;i}\left(\vector{A}\vector{B}\right)=\left(\partial_{;i}\vector{A}
+\right)\vector{B}+\vector{A}\partial_{;i}\vector{B}
+\end{equation}
+This rule is also valid for the inner product of tensors because the
+inner product is an outer product operation followed by a contraction
+of indices, and covariant differentiation and contraction of indices
+commute.
+
+ The covariant derivative operator can bypass the raising/lowering
+index operator:
+\begin{equation}
+\tsor{A}^i=g_{ij}A^{j}\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\Longrightarrow\,\,\,\,\,\,\,\,\,
+\,\,\,\,\,\,\partial_{;m}\tsor{A}^i=g_{ij}\partial_{;m}A^{j}
+\end{equation}
+and hence the metric behaves like a constant with respect to the covariant
+operator.
+
+ A principal difference between normal partial differentiation
+and covariant differentiation is that for successive differential
+operations the partial derivative operators do commute with each other
+(assuming certain continuity conditions) but the covariant operators
+do not commute, that is
+\begin{equation}
+\partial_{i}\partial_{j}=\partial_{j}\partial_{i}\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,
+\text{but 
+\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,}\partial_{;i}\partial_{;j}\ne\partial_{;j}
+\partial_{;i}
+\end{equation}
+
+
+ Higher order covariant derivatives are similarly defined
+as derivatives of derivatives; however the order of differentiation
+should be respected (refer to the previous point).
+
+
+
+\section{Geodesics and The Euler-Lagrange Equations }
+
+Given the  metric tensor $g$ in some domain $U\subset \bbR^n$, the length of a continuously differentiable curve $\gamma :[a,b] \to \bbR^n$ is defined by
+\[L(\gamma)=\int_a^b \sqrt{  g_{\gamma(t)}(\dot\gamma(t),\dot\gamma(t)) }\,dt.\]
+In coordinates if $\gamma(t)=(x^1, \dots x^n)$ then:
+\[L(\gamma)=\int_a^b\sqrt{-g_{\mu\nu}\frac{dx^{\mu}}{\dt}\frac{dx^{\nu}}{\dt}}\dt\]
+
+
+The distance $d(p,q)$ between two points $p$ and $q$  is defined as the infimum of the length taken over all continuous, piecewise continuously differentiable curves $\gamma : [a,b] \to \bbR^n$ such that $\gamma(a) = p$ and $\gamma(b) = q$. 
+The \negrito{geodesics}  are then defined as the  locally distance-minimizing paths.
+
+So the geodesics  are the curve $y(x)$ such that the functional
+\[L(\gamma)=\int_a^b \sqrt{  g_{\gamma(x)}(\dot\gamma(x),\dot\gamma(x)) }\,dx.\]
+is minimized over all smooth (or piecewise smooth) functions $y(x)$
+such that  $x(a) = p$ and $x(b)
+= q$. 
+
+This problem can be simplified,  if we  introduce the energy functional
+\[E(\gamma)=\frac{1}{2}\int_a^b g_{\gamma(t)}(\dot\gamma(t),\dot\gamma(t))\,dt.\]
+For a piecewise $C^1$ curve, the Cauchy–Schwarz inequality gives
+\[L(\gamma)^2 \le 2(b-a)E(\gamma)\]
+with equality if and only if \[g(\gamma',\gamma')\] is  constant.
+
+Hence the minimizers of $E(\gamma)$ also minimize $L(\gamma)$.
+
+The previous problem is an example of calculus of variations is concerned with the  extrema of functionals.
+The  fundamental problem of the calculus of variations is to find a
+function $x(t)$ such that the functional
+\[
+  I(x) = \int_a^b f(t,x(t),y'(t))\, dt
+  \]
+is minimized over all smooth (or piecewise smooth) functions $x(t)$
+satisfying certain boundary conditions---for example, $x(a) = A$ and $x(b)
+= B$.  
+
+If $\hat x(t)$ is the smooth function at
+which the desired minimum of $I(x)$ occurs, and if $I(\hat x(t) + \varepsilon \eta(t))$ is
+defined for some arbitrary smooth function $eta(x)$ with $\eta(a) = 0$ and 
+$\eta(b) = 0$, for small enough $\varepsilon$, then
+\[
+  I(\hat x + \varepsilon \eta) = \int_a^b f(t,\hat x+\varepsilon \eta,\hat x'+\varepsilon \eta')\,dt
+  \]
+is now a function of $\varepsilon$, which must have a minimum at $\varepsilon = 0$.  In that
+case, if $I(\varepsilon )$ is smooth enough, we must have 
+\[
+  \frac{dI}{d\varepsilon }|_{\varepsilon =0} = \int_a^b f_x(t,\hat x,\hat x')\eta(t) 
+  + f_{x'}(t,\hat x,\hat x')\eta'(t)\,dt = 0\>.
+  \]
+If we integrate the second term by parts we get, using $\eta(a)= 0$
+and $\eta(b) = 0$,
+\[
+  \int_a^b \Biggl( f_x(t,\hat x,\hat x') - \frac{d}{dt} f_{x'}(t,\hat x,\hat x')
+           \Biggr)\eta(t)\,dt = 0\>.
+  \]
+One can then argue that since $\eta(t)$ was arbitrary and $\hat x$ is
+smooth, we must have the
+quantity in brackets identically zero.  This gives the \textit{
+Euler-Lagrange\/} equations:
+\begin{equation}
+  \frac{\partial}{\partial x}f(t, x, x') - \frac{d}{dt} \frac{\partial}{\partial x'} f(t, x, x')  = 0\>. \label{EuLag}
+\end{equation}
+
+In general this gives a second-order ordinary differential equation which can be solved to obtain the extremal function $f(x)$. 
+We remark that the Euler–Lagrange equation is a necessary, but not a sufficient, condition for an extremum.
+
+
+This can be generalized to many variables:
+Given the functional:
+\[
+  I(x) = \int_a^b f(t,x^1(t),x'^1(t), \dots, x^n(t),x'^n(t) )\, dt
+  \]
+  
+We have the corresponding Euler-Lagrange equations:
+\begin{equation}
+  \frac{\partial}{\partial x^k}f(t,x^1(t),x'^1(t), \dots, x^n(t),x'^n(t) ) - \frac{d}{dt} \frac{\partial}{\partial x'^k} (t,x^1(t),x'^1(t), \dots, x^n(t),x'^n(t) )  = 0\>. \label{EuLag}
+\end{equation}  
+
+
+\begin{theorem} A necessary condition to a curve $\gamma$  be a geodesic is
+\[\frac{d^2\gamma^\lambda }{dt^2} + \Gamma^{\lambda}_{\mu \nu }\frac{d\gamma^\mu }{dt}\frac{d\gamma^\nu }{dt} = 0\ \]
+\end{theorem}
+
+
+\begin{proof}
+The geodesics are the minimum of  the functional
+\[L(\gamma)=\int_a^b \sqrt{  g_{\gamma(x)}(\dot\gamma(x),\dot\gamma(x)) }\,dx.\]
+Let 
+\[E=\frac{1}{2} g_{\mu\nu}\frac{dx^\mu}{d\lambda}\frac{dx^\nu}{d\lambda}\]
+
+We will write the Euler Lagrange equations. 
+$$\frac{d}{d\lambda}\frac{\partial L}{\partial(dx^\mu/d\lambda)} = \frac{\partial L}{\partial x^\mu} $$
+Developing the right hand side we have:
+$$\frac{\partial E}{\partial x^\lambda}=\frac{1}{2}\partial_\lambda g_{\mu\nu}\dot x^\mu\dot x^\nu$$
+The first derivative on the left hand side  is
+$$\frac{\partial L}{\partial \dot x^\lambda}=g_{\mu\lambda}(x(\lambda))\dot x^\mu$$
+where we have made the dependence of $g$ on $\lambda$ clear for the next step. Now we differentiate with respect to the curve parameter:
+$$\frac{\mathrm{d}}{\mathrm{d}\lambda}[g_{\mu\lambda}(x(\lambda))\dot x^\mu]=\partial_\nu g_{\mu\lambda}\dot x^\mu\dot x^\nu+g_{\mu\lambda}\ddot x^\mu=\frac{1}{2}\partial_\nu g_{\mu\lambda}\dot x^\mu\dot x^\nu+\frac{1}{2}\partial_\mu g_{\nu\lambda}\dot x^\mu\dot x^\nu+g_{\mu\lambda}\ddot x^\mu$$
+
+Putting it all together, we obtain
+$$g_{\mu\lambda}\ddot x^\mu=-\frac{1}{2}\left(\partial_\nu g_{\mu\lambda}+\partial_\mu g_{\nu\lambda}-\partial_\lambda g_{\mu\nu}\right)\dot x^\mu\dot x^\nu=-\Gamma_{\lambda\mu\nu}\dot x^\mu\dot x^\nu$$
+where in the last step we used the definition of the Christoffel symbols with three lower indices. Now contract with the inverse metric to raise the first index and cancel the metric on the left hand side. So
+$$\ddot x^\lambda=-\Gamma^\lambda{}_{\mu\nu}\dot x^\mu\dot x^\nu$$
+\end{proof}

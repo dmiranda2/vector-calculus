@@ -1,0 +1,1326 @@
+\chapter{Tensors in Coordinates}
+
+\begin{flushright}
+ "The introduction of numbers as coordinates is an act of violence." \\ Hermann Weyl.
+
+\end{flushright}
+
+
+
+
+\section{Index notation for tensors\label{sub:Index-notation}}
+
+So far we have used a coordinate-free formalism to define and
+describe tensors. However, in
+many calculations a basis in $V$ is fixed, and one needs to compute
+the components of tensors in that basis. 
+In this cases the \textbf{index notation} makes such calculations easier.
+
+Suppose a basis $\left\{ \vector{e}_{1},...,\vector{e}_{n}\right\} $
+in $V$ is fixed; then the dual basis $\left\{ \vector{e}^{k}\right\} $
+is also fixed. Any vector $\vector{v}\in V$ is decomposed as $\vector{v}=\dsum_{k}v^{k}\vector{e}_{k}$
+and any covector as $\vector{f}^{*}=\dsum_{k}f_{k}\vector{e}^{k}$.
+
+Any tensor from $V\otimes V$ is decomposed as\[
+A=\dsum_{j,k}A^{jk}\vector{e}_{j}\otimes\vector{e}_{k}\in V\otimes V\]
+and so on. The action of a covector on a vector is $\vector{f}^{*}\left(\vector{v}\right)=\dsum_{k}f_{k}v_{k}$,
+and the action of an operator on a vector is $\dsum_{j,k}\tsor{A}_{jk}v_{k}\vector{e}_{k}$.
+However, it is cumbersome to keep writing these sums. In the index
+notation, one writes \emph{only} the components $v_{k}$ or $\tsor{A}_{jk}$
+of vectors and tensors.
+
+
+\begin{df}
+ Given $T \in \tsor{T}^r_s(V)$:
+\[T=\dsum_{j_1=1}^{n} \cdots \dsum_{j_n=1}^{n}  T_{j_1\cdots j_r} ^{j_{r+1}\cdots j_n} \vector{e}^{j_1}\otimes \vector{e}^{j_r} \otimes \vector{e}_{j_{r+1}} \cdots \otimes \vector{e}_{j_{r+s}}
+\]
+
+The index notation of this tensor is
+\[ T_{j_1\cdots j_r} ^{j_{r+1}\cdots j_n} \]
+\end{df}
+
+
+
+
+\subsection{Definition of  index notation}
+
+The rules for expressing tensors in the index notations are as follows:
+\begin{dinglist}{111}
+ \item Basis vectors $\vector{e}_{k}$ and basis tensors (e.g. $\vector{e}_{k}\otimes\vector{e}_{l}^{*}$)
+are never written explicitly. (It is assumed that the basis is fixed
+and known.)
+\item Instead of a vector $\vector{v}\in V$, one writes its array of components
+$v^{k}$ with the \emph{superscript} index.
+Covectors $\vector{f}^{*}\in V^{*}$
+are written $f_{k}$ with the \emph{subscript} index. The index $k$
+runs over integers from $1$ to $N$. Components of vectors and tensors
+may be thought of as numbers.
+\item Tensors are written as multidimen\-sion\-al arrays of components
+with superscript or subscript indices as necessary, for example $\tsor{A}_{jk}\in V^{*}\otimes V^{*}$
+or $\tsor{B}_{k}^{lm}\in V\otimes V\otimes V^{*}$. Thus e.g.~the Kronecker
+delta symbol is written as $\delta_{k}^{j}$ when it represents the
+identity operator $\hat{1}_{V}$. 
+
+
+\item Tensors with subscript indices, like $\tsor{A}_{ij}$, are called
+covariant, while tensors with superscript indices, like $A^{k}$,
+are called contravariant. Tensors with both types of indices, like
+$\tsor{A}_{lk}^{lmn}$, are called mixed type.
+
+\item Subscript indices, rather than subscripted tensors, are
+also dubbed ``covariant'' and superscript indices are dubbed ``contravariant''.
+
+\item For tensor invariance, a pair of dummy indices should in
+general be complementary in their variance type, i.e. one covariant
+and the other contravariant. 
+
+\item As indicated earlier, tensor order is equal to the number
+of its indices while tensor rank is equal to the number of its free
+indices; hence vectors (terms, expressions and equalities) are represented
+by a single free index and rank-2 tensors are represented by two free
+indices. The dimension of a tensor is determined by the range taken
+by its indices.
+
+\item The choice of indices must be consistent; each index corresponds to
+a particular copy of $V$ or $V^{*}$. Thus it is wrong to write $v_{j}=u_{k}$
+or $v_{i}+u^{i}=0$. Correct equations are $v_{j}=u_{j}$ and $v^{i}+u^{i}=0$.
+This disallows meaningless expressions such as $\vector{v}^{*}+\vector{u}$
+(one cannot add vectors from different spaces).
+\item Sums over indices such as $\dsum_{k=1}^{n}a_{k}b_{k}$ are not written
+explicitly, the $\dsum$ symbol is omitted, and the \textbf{Einstein
+summation convention} is used instead: Summation over all values of
+an index is \emph{always implied} when that index letter appears once
+as a subscript and once as a superscript. In this case the letter
+is called a \textbf{dummy}\index{dummy index} (or \textbf{mute})
+\textbf{index}. Thus one writes $f_{k}v^{k}$ instead of $\dsum_{k}f_{k}v_{k}$
+and $\tsor{A}_{k}^{j}v^{k}$ instead of $\dsum_{k}\tsor{A}_{jk}v_{k}$. 
+\item Summation is allowed \emph{only} over one subscript and one superscript
+but never over two subscripts or two superscripts and never over three
+or more coincident indices. This corresponds to requiring that we
+are only allowed to compute the canonical pairing of $V$ and $V^{*}$
+but no other pairing. The expression
+$v^{k}v^{k}$ is not allowed because there is no canonical pairing
+of $V$ and $V$, so, for instance, the sum $\dsum_{k=1}^{n}v^{k}v^{k}$
+depends on the choice of the basis. For the same reason (dependence
+on the basis), expressions such as $u^{i}v^{i}w^{i}$ or $\tsor{A}_{ii}\tsor{B}^{ii}$
+are not allowed. Correct expressions are $u_{i}v^{i}w_{k}$ and $\tsor{A}_{ik}\tsor{B}^{ik}$.
+\item One needs to pay close attention to the choice and the position of
+the letters such as $j,k,l$,...~used as indices. Indices that are
+not repeated are \textbf{free}\index{free index} indices. The rank
+of a tensor expression is equal to the number of free subscript and
+superscript indices. Thus $\tsor{A}_{k}^{j}v^{k}$ is a rank $1$ tensor
+(i.e.~a vector) because the expression $\tsor{A}_{k}^{j}v^{k}$ has a single
+free index, $j$, and a summation over $k$ is implied. 
+\item The tensor product symbol $\otimes$ is never written. For example,
+if $\vector{v}\otimes\vector{f}^{*}=\dsum_{jk}v_{j}f_{k}^{*}\vector{e}_{j}\otimes\vector{e}^{k}$,
+one writes $v^{k}f_{j}$ to represent the tensor $\vector{v}\otimes\vector{f}^{*}$.
+The index letters in the expression $v^{k}f_{j}$ are intentionally
+chosen to be \emph{different} (in this case, $k$ and $j$) so that
+no summation would be implied. In other words, a tensor product is
+written simply as a product of components, and the index letters are
+chosen appropriately. Then one can interpret $v^{k}f_{j}$ as simply
+the product of \emph{numbers}. In particular, it makes no difference
+whether one writes $f_{j}v^{k}$ or $v^{k}f_{j}$. The \emph{position
+of the indices} (rather than the ordering of vectors) shows in every
+case how the tensor product is formed. Note that it is not possible
+to distinguish $V\otimes V^{*}$ from $V^{*}\otimes V$ in the index
+notation.
+
+\end{dinglist}
+
+\begin{exa}
+ It follows from the definition of $\delta_{j}^{i}$ that $\delta_{j}^{i}v^{j}=v^{i}$.
+This is the index representation of the identity transformation $\hat{1}\vector{v}=\vector{v}$. 
+\end{exa}
+
+
+
+
+
+\begin{exa}
+Suppose $\vector{w}$, $\vector{x}$, $\vector{y}$, and $\vector{z}$
+are vectors from $V$ whose components are $w^{i}$, $x^{i}$, $y^{i}$,
+$z^{i}$. What are the components of the tensor $\vector{w}\otimes\vector{x}+2\vector{y}\otimes\vector{z}\in V\otimes V$?
+\end{exa}
+
+
+\begin{solu}
+ $w^{i}x^{k}+2y^{i}z^{k}$. (We need to choose another letter for the
+second free index, $k$, which corresponds to the second copy of $V$
+in $V\otimes V$.)
+\end{solu}
+
+
+\begin{exa}
+The operator $\hat{A}\equiv\hat{1}_{V}+\lambda\vector{v}\otimes\vector{u}^{*}\in V\otimes V^{*}$
+acts on a vector $\vector{x}\in V$. Calculate the resulting vector
+$\vector{y}\equiv\hat{A}\vector{x}$.
+
+In the index-free notation, the calculation is\[
+\vector{y}=\hat{A}\vector{x}=\left(\hat{1}_{V}+\lambda\vector{v}\otimes\vector{u}^{*}\right)\vector{x}=\vector{x}+\lambda\vector{u}^{*}\left(\vector{x}\right)\vector{v}.\]
+In the index notation, the calculation looks like this:\[
+y^{k}=\left(\delta_{j}^{k}+\lambda v^{k}u_{j}\right)x^{j}=x^{k}+\lambda v^{k}u_{j}x^{j}.\]
+In this formula, $j$ is a dummy index and $k$ is a free index. We
+could have also written $\lambda x^{j}v^{k}u_{j}$ instead of $\lambda v^{k}u_{j}x^{j}$
+since the ordering of components makes no difference in the index
+notation. 
+\end{exa}
+
+
+\begin{exa}
+In a physics book you find the following formula, \[
+H_{\mu\nu}^{\alpha}=\dfrac{1}{2}\left(h_{\beta\mu\nu}+h_{\beta\nu\mu}-h_{\mu\nu\beta}\right)g^{\alpha\beta}.\]
+To what spaces do the tensors $H$, $g$, $h$ belong (assuming these
+quantities represent tensors)? Rewrite this formula in the coordinate-free
+notation.
+\end{exa}
+
+
+\begin{solu}
+$H\in V\otimes V^{*}\otimes V^{*}$, $h\in V^{*}\otimes V^{*}\otimes V^{*}$,
+$g\in V\otimes V$. Assuming the simplest case,\[
+h=\vector{h}_{1}^{*}\otimes\vector{h}_{2}^{*}\otimes\vector{h}_{3}^{*},\; g=\vector{g}_{1}\otimes\vector{g}_{2},\]
+the coordinate-free formula is\[
+H=\dfrac{1}{2}\vector{g}_{1}\otimes\left(\vector{h}_{1}^{*}\left(\vector{g}_{2}\right)\vector{h}_{2}^{*}\otimes\vector{h}_{3}^{*}+\vector{h}_{1}^{*}\left(\vector{g}_{2}\right)\vector{h}_{3}^{*}\otimes\vector{h}_{2}^{*}-\vector{h}_{3}^{*}\left(\vector{g}_{2}\right)\vector{h}_{1}^{*}\otimes\vector{h}_{2}^{*}\right).\]
+\end{solu}
+
+
+
+
+
+
+
+
+\subsection{Advantages and disadvantages of index notation}
+
+Index notation is conceptually easier than the index-free notation
+because one can imagine manipulating ``merely'' some tables of
+numbers, rather than ``abstract vectors.'' In other words, we
+are working with \textit{less abstract objects}. The price is that we obscure
+the geometric interpretation of what we are doing, and proofs of general
+theorems become more difficult to understand.
+
+The main advantage of the index notation is that it makes computations
+ with complicated tensors quicker. 
+
+Some \emph{disadvantages} of the index notation are: 
+
+\begin{dinglist}{111}
+ \item If the basis is changed, all components need to be recomputed. In
+textbooks that use the index notation, quite some time is spent studying
+the transformation laws of tensor components under a change of basis.
+If different basis are used simultaneously, confusion may result.
+
+
+\item  The geometrical meaning of many calculations appears hidden behind
+a mass of indices. It is sometimes unclear whether a long expression
+with indices can be simplified and how to proceed with calculations.
+
+\end{dinglist}
+
+Despite these disadvantages, the index notation enables one to perform
+practical calculations with high-rank tensor spaces, such as those
+required in field theory and in general relativity. For this reason,
+and also for historical reasons (Einstein used the index notation
+when developing the theory of relativity), most physics textbooks
+use the index notation. In some cases, calculations can be performed
+equally quickly using index and index-free notations. In other cases,
+especially when deriving general properties of tensors, the index-free
+notation is superior.%
+
+
+\section{Tensor Revisited: Change of Coordinate}
+
+Vectors, covectors, linear operators, and bilinear forms
+are examples of tensors.  They are multilinear maps that are
+represented numerically when some basis in the space is chosen.
+
+This numeric representation is specific to each of them: vectors
+and covectors are represented by one-dimensional arrays, linear
+operators and quadratic forms are represented by two-dimensional
+arrays. Apart from the number of indices, their position does
+matter. The coordinates of a vector are numerated by one upper 
+index, which is called the contravariant index. The coordinates of
+a covector are numerated by one lower index, which is called the 
+covariant index. In a matrix of bilinear form we
+use two lower indices; therefore bilinear forms are called
+\textbf{twice-covariant tensors}. Linear operators are tensors
+of \textbf{mixed type}; their components are numerated by one upper
+and one lower index. The number of indices and their positions
+determine the transformation rules, i\.\,e\. the way the components
+of each particular tensor behave under a change of basis. In the
+general case, any tensor is represented by a multidimensional
+array with a definite number of upper indices and a definite number
+of lower indices. Let's denote these numbers by $r$ and $s$.
+Then we have \textbf{a tensor of the type $(r,s)$}, or sometimes the
+term \textbf{valency} is used. A tensor of type $(r,s)$, or of valency
+$(r,s)$ is called \textbf{an $r$-times contravariant} and
+\textbf{an $s$-times covariant} tensor. This is terminology; now let's
+proceed to the exact definition. It is based on the following general
+transformation formulas:
+\begin{align}
+&\hskip -2em
+\tsor{X}^{i_1\dots\,i_r}_{j_1\dots\,j_s}=\multsum \tsor{S}^{i_1}_{h_1}\dots\,\tsor{S}^{i_r}_{h_r}\tsor{T}^{k_1}_{j_1}
+\dots\,\tsor{T}^{k_s}_{j_s}\,\tilde{ \tsor{X}}^{h_1\dots\,h_r}_{k_1\dots\,k_s},
+\label{12.1}\\
+&\hskip -2em
+\tilde{\tsor{X}}^{i_1\dots\,i_r}_{j_1\dots\,j_s}=\multsum \tsor{T}^{i_1}_{h_1}\dots\,\tsor{T}^{i_r}_{h_r}\tsor{S}^{k_1}_{j_1}
+\dots\,\tsor{S}^{k_s}_{j_s}\,\tsor{X}^{h_1\dots\,h_r}_{k_1\dots\,k_s}.
+\label{12.2}
+\end{align}
+
+\begin{definition}[Tensor Definition in Coordinate] A  $(r+s)$-dimensional array $\tsor{X}^{i_1\dots\,i_r}_{j_1
+\dots\,j_s}$ of real numbers and such that the components of this
+array obey the transformation rules
+\begin{align}
+&\hskip -2em
+\tsor{X}^{i_1\dots\,i_r}_{j_1\dots\,j_s}=\multsum \tsor{S}^{i_1}_{h_1}\dots\,\tsor{S}^{i_r}_{h_r}\tsor{T}^{k_1}_{j_1}
+\dots\,\tsor{T}^{k_s}_{j_s}\,\tilde{ \tsor{X}}^{h_1\dots\,h_r}_{k_1\dots\,k_s},
+\label{12.1}\\
+&\hskip -2em
+\tilde{\tsor{X}}^{i_1\dots\,i_r}_{j_1\dots\,j_s}=\multsum \tsor{T}^{i_1}_{h_1}\dots\,\tsor{T}^{i_r}_{h_r}\tsor{S}^{k_1}_{j_1}
+\dots\,\tsor{S}^{k_s}_{j_s}\,\tsor{X}^{h_1\dots\,h_r}_{k_1\dots\,k_s}.
+\label{12.2}
+\end{align}
+under a change of basis is called \textbf{tensor} of type $(r,s)$, or
+of valency $(r,s)$.
+\end{definition}
+    Formula \ref{12.2} is derived from \ref{12.1}, so it is
+sufficient to remember only one of them. Let it be the formula
+\ref{12.1}. Though huge, formula \ref{12.1} is easy to
+remember. 
+
+    Indices $i_1,\,\dots,\,i_r$ and $j_1,\,\dots,\,j_s$
+are free indices. In right hand side of the equality \ref{12.1}
+they are distributed in $S$-s and $T$-s, each having only one
+entry and each keeping its position, i\.\,e\. upper indices
+$i_1,\,\dots,\,i_r$ remain upper and lower indices $j_1,\,
+\dots,\,j_s$ remain lower in right hand side of the equality
+\ref{12.1}.\par
+    Other indices $h_1,\,\dots,\,h_r$ and $k_1,\,\dots,\,k_s$
+are summation indices; they enter the right hand side of
+\ref{12.1} pairwise: once as an upper index and once as a
+lower index, once in $S$-s or $T$-s and once in components of
+array $\tilde{ \tsor{X}}^{h_1\dots\,h_r}_{k_1\dots\,k_s}$.\par
+    When expressing $\tsor{X}^{i_1\dots\,i_r}_{j_1\dots\,j_s}$ through
+$\tilde{ \tsor{X}}^{h_1\dots\,h_r}_{k_1\dots\,k_s}$ each upper index is
+served by direct transition matrix $S$ and produces one summation
+in \ref{12.1}:
+
+\begin{equation}
+\tsor{X}^{\dots\,\textcolor{Maroon}{i_{\!\scriptscriptstyle\alpha}}\,\dots}_{\dots\,\dots\,
+\dots}=\dsum\dots\blue{\dsum}^n_{h_{\!\scriptscriptstyle\alpha}=1}
+\dots\dsum\dots\,\tsor{S}^{\,\textcolor{Maroon}{i_{\!\scriptscriptstyle\alpha}}}_{\blue{h_{\!
+\scriptscriptstyle\alpha}}}\,\dots\,\tilde{ \tsor{X}}^{\dots\,\blue{h_{\!\scriptscriptstyle\alpha}}\,
+\dots}_{\dots\,\dots\,\dots}.
+\label{12.3}
+\end{equation}
+In a similar way, each lower index is served by inverse transition
+matrix $T$ and also produces one summation in formula \ref{12.1}:
+\begin{equation}
+\hskip -2em
+\tsor{X}^{\dots\,\dots\,\dots}_{\dots\,\textcolor{Maroon}{j_{\!\scriptscriptstyle\alpha}}\,
+\dots}=\dsum\dots\blue{\dsum}^n_{k_{\!\scriptscriptstyle\alpha}=1}
+\dots\dsum\dots\,\tsor{T}^{\blue{k_{\!\scriptscriptstyle\alpha}}}_{\,\textcolor{Maroon}{j_{\!
+\scriptscriptstyle\alpha}}}\,\dots\,\tilde{ \tsor{X}}^{\dots\,\dots\,\dots}_{\dots\,
+\blue{k_{\!\scriptscriptstyle\alpha}}\,\dots}.
+\label{12.4}
+\end{equation}
+Formulas \ref{12.3} and \ref{12.4} are the same as \ref{12.1}
+and used to highlight how \ref{12.1} is written. So tensors are
+defined. Further we shall consider more examples showing that many
+well-known objects undergo the definition~12.1.
+
+
+\begin{exa}\label{ex:12.1} Verify that formulas  for change of basis of vectors, covectors, linear transformation and bilinear forms are special cases
+of formula \ref{12.1}. What are the valencies of vectors, covectors,
+linear operators, and bilinear forms when they are considered as
+tensors.
+\end{exa}
+
+
+\begin{exa}
+ The $\delta_{i}^ j$ is a tensor.
+\end{exa}
+
+\begin{solu}
+\[ \delta'^j_i=A^j_k(A^{-1})^l_i\delta^k_l=A^j_k(A^{-1})^k_i =\delta^j_i
+ \]
+\end{solu}
+
+
+\todoin{terminar os exemplos}
+
+\begin{exa}
+  The $\epsilon_{ijk}$ is a pseudo-tensor.
+\end{exa}
+
+
+\begin{exa}\label{ex:12.2} Let $a_{ij}$ be the matrix of some bilinear
+form $a$. Let's denote by $b^{ij}$ components of inverse matrix for
+$a_{ij}$. Prove that matrix $b^{ij}$ under a change of basis
+transforms like matrix of twice-contravariant tensor. Hence it
+determines tensor $b$ of valency $(2,0)$. Tensor $b$ is called \negrito{a dual bilinear form} for $a$.
+\end{exa}
+
+
+
+
+\subsection{Rank}
+The order of a tensor is identified by the number of its
+indices (e.g. $\tsor{A}_{jk}^{i}$ is a tensor of order 3) which normally
+identifies the tensor rank as well. However, when contraction (see
+$\S$ \ref{subsubContraction}) takes place once or more, the order
+of the tensor is not affected but its rank is reduced by two for each
+contraction operation.\footnote{In the literature of tensor calculus, rank and order of tensors are
+generally used interchangeably; however some authors differentiate
+between the two as they assign order to the total number of indices,
+including repetitive indices, while they keep rank to the number of
+free indices. We think the latter is better and hence we follow this
+convention in the present text.}
+
+\begin{itemize}
+\item ``Zero tensor'' is a tensor whose all components are
+zero.
+\item ``Unit tensor'' or ``unity tensor'', which is usually
+defined for rank-2 tensors, is a tensor whose all elements are zero
+except the ones with identical values of all indices which are assigned
+the value 1.
+\item  While tensors of rank-0 are generally represented in a
+common form of light face non-indexed symbols, tensors of rank $\ge1$
+are represented in several forms and notations, the main ones are
+the index-free notation, which may also be called direct or symbolic
+or Gibbs notation, and the indicial notation which is also called
+index or component or tensor notation. The first is a geometrically
+oriented notation with no reference to a particular reference frame
+and hence it is intrinsically invariant to the choice of coordinate
+systems, whereas the second takes an algebraic form based on components
+identified by indices and hence the notation is suggestive of an underlying
+coordinate system, although being a tensor makes it form-invariant
+under certain coordinate transformations and therefore it possesses
+certain invariant properties. The index-free notation is usually identified
+by using bold face symbols, like $\vector{a}$ and $\vector{B}$,
+while the indicial notation is identified by using light face indexed
+symbols such as $a^{i}$ and $\tsor{B}_{ij}$.
+\end{itemize}
+
+
+
+\subsection{Examples of Tensors of Different Ranks}
+\begin{dinglist}{111}
+ \item Examples of rank-0 tensors (scalars) are energy, mass,
+temperature, volume and density. These are totally identified by a
+single number regardless of any coordinate system and hence they are
+invariant under coordinate transformations.
+
+ \item Examples of rank-1 tensors (vectors) are displacement,
+force, electric field, velocity and acceleration. These need for their
+complete identification a number, representing their magnitude, and
+a direction representing their geometric orientation within their
+space. Alternatively, they can be uniquely identified by a set of
+numbers, equal to the number of dimensions of the underlying space,
+in reference to a particular coordinate system and hence this identification
+is system-dependent although they still have system-invariant properties
+such as length.
+
+ \item Examples of rank-2 tensors are Kronecker delta (see $\S$
+\ref{subKronecker}), stress, strain, rate of strain and inertia tensors.
+These require for their full identification a set of numbers each
+of which is associated with two directions.
+
+ \item Examples of rank-3 tensors are the Levi-Civita tensor (see
+$\S$ \ref{subPermutation}) and the tensor of piezoelectric moduli.
+
+ \item Examples of rank-4 tensors are the elasticity or stiffness
+tensor, the compliance tensor and the fourth-order moment of inertia
+tensor.
+
+ \item Tensors of high ranks are relatively rare in science.
+\end{dinglist}
+
+
+\section{Tensor Operations in Coordinates}
+
+ There are many operations that can be performed on tensors
+to produce other tensors in general. Some examples of these operations
+are addition/subtraction, multiplication by a scalar (rank-0 tensor),
+multiplication of tensors (each of rank $>0$), contraction and permutation.
+Some of these operations, such as addition and multiplication, involve
+more than one tensor while others are performed on a single tensor,
+such as contraction and permutation.
+
+ In tensor algebra, division is allowed only for scalars,
+hence if the components of an indexed tensor should appear in a denominator,
+the tensor should be redefined to avoid this, e.g. $\tsor{B}_{i}=\dfrac{1}{\tsor{A}_{i}}$.
+
+
+\subsection{Addition and Subtraction}
+
+ Tensors of the same rank and type can be added algebraically to produce a tensor of
+the same rank and type, e.g.
+\begin{equation}
+a=b+c
+\end{equation}
+\begin{equation}
+\tsor{A}_{i}=\tsor{B}_{i}-\tsor{C}_{i}
+\end{equation}
+\begin{equation}
+\tsor{A}_{j}^{i}=\tsor{B}_{j}^{i}+\tsor{C}_{j}^{i}
+\end{equation}
+
+\begin{df}
+ Given two tensors $\tsor{Y}^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}$ and $\tsor{Z}^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}$ of the same type then we define their sum as
+ \[\tsor{X}^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}+
+\tsor{Y}^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}=
+\tsor{Z}^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}.\]
+\end{df}
+
+
+
+\begin{theorem} \label{sum-tensors} Given two tensors $\tsor{Y}^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}$ and $\tsor{Z}^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}$ of type $(r,s)$ then their sum
+\[
+\tsor{Z}^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}=
+\tsor{X}^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}+
+\tsor{Y}^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}.
+\]
+is also a tensor of type $(r,s)$.
+\end{theorem}
+
+\begin{proof}
+\[ \tsor{X}^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}=\multsum  \tsor{S}^{i_1}_{h_1}\ldots\,\tsor{S}^{i_r}_{h_r}\tsor{T}^{k_1}_{j_1}
+\ldots\,\tsor{T}^{k_s}_{j_s}\,\tilde{ \tsor{X}}^{h_1\ldots\,h_r}_{k_1\ldots\,k_s},\]
+
+\[\tsor{Y}^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}=\multsum  \tsor{S}^{i_1}_{h_1}\ldots\,\tsor{S}^{i_r}_{h_r}\tsor{T}^{k_1}_{j_1}
+\ldots\,\tsor{T}^{k_s}_{j_s}\,\tilde{ \tsor{Y}}^{h_1\ldots\,h_r}_{k_1\ldots\,k_s},\]
+
+Then
+\[\tsor{Z}^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}=\multsum  \tsor{S}^{i_1}_{h_1}\ldots\,\tsor{S}^{i_r}_{h_r}\tsor{T}^{k_1}_{j_1}
+\ldots\,\tsor{T}^{k_s}_{j_s}\,\tilde{ \tsor{X}}^{h_1\ldots\,h_r}_{k_1\ldots\,k_s}\]
+\[+\multsum  \tsor{S}^{i_1}_{h_1}\ldots\,\tsor{S}^{i_r}_{h_r}\tsor{T}^{k_1}_{j_1}
+\ldots\,\tsor{T}^{k_s}_{j_s}\,\tilde{ \tsor{Y}}^{h_1\ldots\,h_r}_{k_1\ldots\,k_s}\]
+
+\[\tsor{Z}^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}=\multsum  \tsor{S}^{i_1}_{h_1}\ldots\,\tsor{S}^{i_r}_{h_r}\tsor{T}^{k_1}_{j_1}
+\ldots\,\tsor{T}^{k_s}_{j_s}\,\left( \tilde{ \tsor{X}}^{h_1\ldots\,h_r}_{k_1\ldots\,k_s} +\tilde{ \tsor{Y}}^{h_1\ldots\,h_r}_{k_1\ldots\,k_s}\right)
+\]
+
+\end{proof}
+
+
+
+
+ Addition of tensors is associative and commutative:
+\begin{equation}
+\left(\vector{A}+\vector{B}\right)+\vector{C}=\vector{A}+\left(\vector{B}+\vector{C}\right)
+\end{equation}
+\begin{equation}
+\vector{A}+\vector{B}=\vector{B}+\vector{A}
+\end{equation}
+
+
+
+\subsection{Multiplication by Scalar\label{subMultiplicationbyScalar}}
+
+ A tensor can be multiplied by a scalar, which generally
+should not be zero, to produce a tensor of the same variance type
+and rank, e.g.
+\begin{equation}
+\tsor{A}_{ik}^{j}=a\tsor{B}_{ik}^{j}
+\end{equation}
+where $a$ is a non-zero scalar.
+
+\begin{df} Given $\tsor{X}^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}$ a tensor of type $(r,s)$  and $\alpha$ a scalar we define the  multiplication of $\tsor{X}^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}$ by $\alpha$ as:
+$$
+\tsor{Y}^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}=\alpha\,
+\tsor{X}^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}.
+$$
+\end{df}
+
+\begin{theorem}
+ Given $\tsor{X}^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}$ a tensor of type $(r,s)$  and $\alpha$ a scalar then 
+$$
+\tsor{Y}^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}=\alpha\,
+\tsor{X}^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}.
+$$
+is also a tensor of type $(r,s)$
+\end{theorem}
+The proof of this Theorem is very similar to the proof of the Theorem \ref{sum-tensors} and the proof is left as an exercise to the reader.
+
+
+
+ As indicated above, multiplying a tensor by a scalar means
+multiplying each component of the tensor by that scalar.
+
+ Multiplication by a scalar is commutative, and associative
+when more than two factors are involved.
+
+
+\subsection{Tensor Product \label{subTensorMultiplication} }
+
+ This may also be called outer or exterior or direct or
+dyadic multiplication, although some of these names may be reserved
+for operations on vectors.
+
+   The tensor product is defined by a more tricky formula. Suppose
+we have tensor $\tsor{X}$ of type $(r,s)$ and tensor $\tsor{Y}$
+of type $(p,q)$, then we can write:
+$$
+\hskip -2em
+\tsor{Z}^{i_1\ldots\,i_{r+p}}_{j_1\ldots\,j_{s+q}}=
+\tsor{X}^{i_1\ldots\,i_r}_{j_1\ldots\,j_s}\,
+\tsor{Y}^{i_{r+1}\ldots\,i_{r+p}}_{j_{s+1}\ldots\,j_{s+q}}.
+\label{product-tensor}
+$$
+Formula \ref{product-tensor} produces new tensor $\bold Z$
+of the type $(r+p,s+q)$. It is called \negrito{ the tensor product}
+of $\tsor{X}$ and $\tsor{Y}$ and denoted $\bold Z=\tsor{X}
+\otimes\tsor{Y}$. 
+
+
+\begin{exa}
+ \begin{equation}
+\tsor{A}_{i}\tsor{B}_{j}=\tsor{C}_{ij}
+\end{equation}
+\begin{equation}
+A^{ij}\tsor{B}_{kl}=\tsor{C}_{\,\,\,kl}^{ij}
+\end{equation}
+\end{exa}
+
+
+
+ Direct multiplication of tensors is not commutative.
+
+ 
+ \begin{exa}[Outer Product of Vectors]
+  The outer product of two vectors is equivalent to a matrix multiplication
+$\vector{uv}^T$, provided that $\vector{u}$ is represented
+as a column vector and $\vector{v}$ as a column
+vector. And so $\vector{v}^T$ is a row
+vector.
+
+\begin{align}\vector{u} \otimes \vector{v} = \vector{u} \vector{v}^\mathrm{T}
+= \begin{bmatrix}u_1 \\ u_2 \\ u_3 \\ u_4\end{bmatrix}
+\begin{bmatrix}v_1 & v_2 & v_3\end{bmatrix}
+= \begin{bmatrix}u_1v_1 & u_1v_2 & u_1v_3 \\ u_2v_1 & u_2v_2 & u_2v_3 \\ u_3v_1 & u_3v_2 & u_3v_3 \\ u_4v_1 & u_4v_2 & u_4v_3\end{bmatrix}.\end{align}
+
+In index notation:
+
+\[(\vector{u} \vector{v}^\mathrm{T})_{ij}=u_iv_j\]
+
+ \end{exa}
+
+ 
+ 
+ The outer product operation is distributive with respect
+to the algebraic sum of tensors:
+\begin{equation}
+\vector{A}\left(\vector{B}\pm\vector{C}\right)=\vector{A}\vector{B}\pm\vector{A}\vector{C}\,\,\,\,\,\,\,\,\,\,\,\&\,\,\,\,\,\,\,\,\,\,\,\,\left(\vector{B}\pm\vector{C}\right)\vector{A}=\vector{B}\vector{A}\pm\vector{C\vector{A}}
+\end{equation}
+
+
+ Multiplication of a tensor by a scalar (refer to $\S$
+\ref{subMultiplicationbyScalar}) may be regarded as a special case
+of direct multiplication.
+
+ The rank-2 tensor constructed as a result of the direct
+multiplication of two vectors is commonly called dyad.
+
+ Tensors may be expressed as an outer product of vectors
+where the rank of the resultant product is equal to the number of
+the vectors involved (e.g. 2 for dyads and 3 for triads).
+
+ Not every tensor can be synthesized as a product of lower
+rank tensors.
+
+
+
+\subsection{Contraction\label{subsubContraction}}
+
+ Contraction of a tensor of rank $>1$ is to make two free
+indices identical, by unifying their symbols, and perform summation
+over these repeated indices, e.g.
+\begin{equation}
+\tsor{A}_{i}^{j}\,\,\,\,\,\,\,\,\,\,\underrightarrow{\mathrm{contraction\,\,}}\,\,\,\,\,\,\,\,\,\,\tsor{A}_{i}^{i}
+\end{equation}
+\begin{equation}
+\tsor{A}_{il}^{jk}\,\,\,\,\,\,\,\,\,\,\underrightarrow{\mathrm{contraction\,\,on}\,\,jl\,\,}\,\,\,\,\,\,\,\,\,\,\tsor{A}_{im}^{mk}
+\end{equation}
+
+
+ Contraction results in a reduction of the rank by 2 since
+it implies the annihilation of two free indices. Therefore, the contraction
+of a rank-2 tensor is a scalar, the contraction of a rank-3 tensor
+is a vector, the contraction of a rank-4 tensor is a rank-2 tensor,
+and so on.
+
+ For  non-Cartesian coordinate systems, the pair
+of contracted indices should be different in their variance type,
+i.e. one upper and one lower. Hence, contraction of a mixed tensor
+of type ($m,n$) will, in general, produce a tensor of type ($m-1,n-1$).
+
+ A tensor of type ($p,q$) can have $p\times q$ possible
+contractions, i.e. one contraction for each pair of lower and upper
+indices.
+
+
+
+
+ \begin{exa}[Trace]
+   In matrix algebra, taking the trace (summing the diagonal
+elements) can also be considered as contraction of the matrix, which
+under certain conditions can represent a rank-2 tensor, and hence
+it yields the trace which is a scalar.
+
+ \end{exa}
+
+
+
+\todoin{Exemplo}
+
+\subsection{Inner Product\label{secInnerProduct}}
+
+ On taking the outer product 
+of two tensors of rank $\ge1$ followed by a contraction on two indices
+of the product, an inner product of the two tensors is formed. Hence
+if one of the original tensors is of rank-$m$ and the other is of
+rank-$n$, the inner product will be of rank-($m+n-2$).
+
+ The inner product operation is usually symbolized by a
+single dot between the two tensors, e.g. $\vector{A}\cdot\vector{B}$,
+to indicate contraction following outer multiplication.
+
+ In general, the inner product is not commutative. When
+one or both of the tensors involved in the inner product are of rank
+$>1$ the order of the multiplicands does matter.
+
+ The inner product operation is distributive with respect
+to the algebraic sum of tensors:
+\begin{equation}
+\vector{A}\cdot\left(\vector{B}\pm\vector{C}\right)=\vector{A}\cdot\vector{B}\pm\vector{A}\cdot\vector{C}\,\,\,\,\,\,\,\,\,\,\,\&\,\,\,\,\,\,\,\,\,\,\,\,\left(\vector{B}\pm\vector{C}\right)\cdot\vector{A}=\vector{B}\cdot\vector{A}\pm\vector{C}\cdot\vector{A}
+\end{equation}
+
+
+ \begin{exa}[Dot Product]
+ A common example of contraction is the dot product operation
+on vectors which can be regarded as a direct multiplication (refer
+to $\S$ \ref{subTensorMultiplication}) of the two vectors, which
+results in a rank-2 tensor, followed by a contraction.
+  
+ \end{exa}
+
+
+ \begin{exa}[Matrix acting on vectors]
+ Another common example (from linear algebra) of inner product
+is the multiplication of a matrix (representing a rank-2 tensor)  by a vector (rank-1 tensor) to produce a vector,
+e.g.
+\begin{equation}
+\left[\vector{A}\vector{b}\right]_{ij}^{\,\,\,k}=\tsor{A}_{ij}b^{k}\,\,\,\,\,\,\,\,\,\,\underrightarrow{\mathrm{contraction\,\,on}\,\,jk\,\,}\,\,\,\,\,\,\,\,\,\,\left[\vector{A}\cdot\vector{b}\right]_{i}=\tsor{A}_{ij}b^{j}
+\end{equation}
+\end{exa}
+
+
+The multiplication of two $n\times n$ matrices is another example
+of inner product (see Eq. \ref{eqMatrixMultiplication}).
+
+ For tensors whose outer product produces a tensor of rank
+$>2$, various contraction operations between different sets of indices
+can occur and hence more than one inner product, which are different
+in general, can be defined. Moreover, when the outer product produces
+a tensor of rank $>3$ more than one contraction can take place simultaneously.
+
+
+\subsection{Permutation}
+
+ A tensor may be obtained by exchanging the indices of another
+tensor, e.g. transposition of rank-2 tensors.
+
+ Obviously, tensor permutation applies only to tensors of rank $\ge2$.
+
+ The collection of tensors obtained by permuting the indices
+of a basic tensor may be called \negrito{isomers}.
+
+
+\section{Tensor Test: Quotient Rule}
+
+ Sometimes a tensor-like object may be suspected for being
+a tensor; in such cases a test based on the ``quotient rule'' can
+be used to clarify the situation. According to this rule, if the inner
+product of a suspected tensor with a known tensor is a tensor then
+the suspect is a tensor. In more formal terms, if it is not known
+if $\vector{A}$ is a tensor but it is known that $\vector{B}$ and
+$\vector{C}$ are tensors; moreover it is known that the following
+relation holds true in all rotated (properly-transformed) coordinate
+frames:
+\begin{equation}
+\tsor{A}_{pq\ldots k\ldots m}\tsor{B}_{ij\ldots k\ldots n}=\tsor{C}_{pq\ldots mij\ldots n}\label{eqQuotientRule}
+\end{equation}
+then $\vector{A}$ is a tensor. Here, $\vector{A}$, $\vector{B}$
+and $\vector{C}$ are respectively of ranks $m,\,n$ and ($m+n-2$),
+due to the contraction on $k$ which can be any index of $\vector{A}$
+and $\vector{B}$ independently.
+
+ Testing for being a tensor can also be done by applying
+first principles through direct substitution in the transformation
+equations. However, using the quotient rule is generally more convenient
+and requires less work.
+
+ The quotient rule may be considered as a replacement for
+the division operation which is not defined for tensors.
+
+
+
+
+\section{Kronecker and Levi-Civita Tensors}
+
+ These tensors are of particular importance in tensor calculus
+due to their distinctive properties and unique transformation attributes.
+They are numerical tensors with fixed components in all coordinate
+systems. The first is called Kronecker delta or unit tensor, while
+the second is called Levi-Civita
+
+ The $\delta$ and $\epsilon$ tensors are conserved under
+coordinate transformations and hence they are the same for all systems
+of coordinate.\footnote{For the permutation tensor, the statement applies to proper coordinate
+transformations.}
+
+
+\subsection{Kronecker $\delta$\label{subKronecker}}
+
+ This is a rank-2 symmetric tensor in all dimensions, i.e.
+\begin{equation}
+\delta_{ij}=\delta_{ji}\,\,\,\,\,\,\,\,\,\,\,\,\,\left(i,j=1,2,\ldots,n\right)
+\end{equation}
+Similar identities apply to the contravariant and mixed types of this
+tensor.
+
+ It is invariant in all coordinate systems, and hence it
+is an isotropic tensor.\footnote{In fact it is more general than isotropic as it is invariant even
+under improper coordinate transformations.}
+
+ It is defined as:
+\begin{equation}
+\delta_{ij}=\begin{cases}
+1 & (i=j)\\
+0\,\,\,\,\,\,\,\,\,\,\,\,\,\, & (i\neq j)
+\end{cases}\label{eqKroneckerDefinitionNormal}
+\end{equation}
+and hence it can be considered as the identity matrix, e.g. for 3D
+\begin{equation}
+\left[\delta_{ij}\right]=\left[\begin{array}{ccc}
+\delta_{11} & \delta_{12} & \delta_{13}\\
+\delta_{21} & \delta_{22} & \delta_{23}\\
+\delta_{31} & \delta_{32} & \delta_{33}
+\end{array}\right]=\left[\begin{array}{ccc}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{array}\right]
+\end{equation}
+
+
+ Covariant, contravariant and mixed type of this tensor
+are the same, that is
+\begin{equation}
+\delta_{\,j}^{i}=\delta_{i}^{\,j}=\delta^{ij}=\delta_{ij}
+\end{equation}
+
+
+
+\subsection{Permutation $\epsilon$\label{subPermutation}}
+
+ This is an isotropic tensor. It has a rank equal to the
+number of dimensions; hence, a rank-$n$ permutation tensor has $n^{n}$
+components.
+
+ It is totally anti-symmetric in each pair of its indices,
+i.e. it changes sign on swapping any two of its indices, that is
+\begin{equation}
+\epsilon_{i_{1}\ldots i_{k}\ldots i_{l}\ldots i_{n}}=-\epsilon_{i_{1}\ldots i_{l}\ldots i_{k}\ldots i_{n}}
+\end{equation}
+The reason is that any exchange of two indices requires an even/odd
+number of single-step shifts to the right of the first index plus
+an odd/even number of single-step shifts to the left of the second
+index, so the total number of shifts is odd and hence it is an odd
+permutation of the original arrangement.
+
+ It is a pseudo tensor since it acquires a minus sign under
+improper orthogonal transformation of coordinates (inversion of axes
+with possible superposition of rotation).
+
+ Definition of rank-2 $\epsilon$ ($\epsilon_{ij}$):
+\begin{equation}
+\epsilon_{12}=1,\,\,\,\,\,\,\,\,\,\,\epsilon_{21}=-1\,\,\,\,\,\,\,\,\,\,\&\,\,\,\,\,\,\,\,\,\,\epsilon_{11}=\epsilon_{22}=0
+\end{equation}
+
+
+ Definition of rank-3 $\epsilon$ ($\epsilon_{ijk}$):
+\begin{equation}
+\epsilon_{ijk}=\begin{cases}
+\,\,\,\,\,1 & (i,j,k\text{ is even permutation of 1,2,3})\\
+-1 & (i,j,k\text{ is odd permutation of 1,2,3})\\
+\,\,\,\,\,0\,\,\,\,\,\,\,\,\,\,\,\,\,\, & (\text{repeated\,index})
+\end{cases}\label{eqEpsilon3Definition}
+\end{equation}
+
+
+ The definition of rank-$n$ $\epsilon$ ($\epsilon_{i_{1}i_{2}\ldots i_{n}}$)
+is similar to the definition of rank-3 $\epsilon$ considering index
+repetition and even or odd permutations of its indices $\left(i_{1},i_{2},\cdots,i_{n}\right)$
+corresponding to $\left(1,2,\cdots,n\right)$, that is
+\begin{equation}
+\epsilon_{i_{1}i_{2}\ldots i_{n}}=\begin{cases}
+\,\,\,\,\,1 & \left[\left(i_{1},i_{2},\ldots,i_{n}\right)\text{ is even permutation of (\ensuremath{1,2,\ldots,n})}\right]\\
+-1 & \left[\left(i_{1},i_{2},\ldots,i_{n}\right)\text{ is odd permutation of (\ensuremath{1,2,\ldots,n})}\right]\\
+\,\,\,\,\,0\,\,\,\,\,\,\,\,\,\,\,\,\,\, & \text{\ensuremath{\left[\mathrm{repeated\,index}\right]}}
+\end{cases}\label{eqEpsilonnDefinition}
+\end{equation}
+
+
+ $\epsilon$ may be considered a contravariant relative
+tensor of weight $+1$ or a covariant relative tensor of weight $-1$.
+Hence, in 2, 3 and $n$ dimensional spaces respectively we have:
+\begin{eqnarray}
+\epsilon_{ij} & = & \epsilon^{ij}\\
+\epsilon_{ijk} & = & \epsilon^{ijk}\\
+\epsilon_{i_{1}i_{2}\ldots i_{n}} & = & \epsilon^{i_{1}i_{2}\ldots i_{n}}
+\end{eqnarray}
+
+
+
+\subsection{Useful Identities Involving $\delta$ or/and $\epsilon$}
+
+
+\subsubsection{Identities Involving $\delta$}
+
+ When an index of the Kronecker delta is involved in a contraction
+operation by repeating an index in another tensor in its own term,
+the effect of this is to replace the shared index in the other tensor
+by the other index of the Kronecker delta, that is
+\begin{equation}
+\delta_{ij}\tsor{A}_{j}=\tsor{A}_{i}\label{EqIndexReplace}
+\end{equation}
+In such cases the Kronecker delta is described as the substitution
+or index replacement operator. Hence,
+\begin{equation}
+\delta_{ij}\delta_{jk}=\delta_{ik}
+\end{equation}
+Similarly,
+\begin{equation}
+\delta_{ij}\delta_{jk}\delta_{ki}=\delta_{ik}\delta_{ki}=\delta_{ii}=n\label{eqdeltas}
+\end{equation}
+where $n$ is the space dimension.
+
+ Because the coordinates are independent of each other:
+\begin{equation}
+\dfrac{\partial x_{i}}{\partial x_{j}}=\partial_{j}x_{i}=x_{i,j}=\delta_{ij}\label{eqdxdelta}
+\end{equation}
+Hence, in an $n$ dimensional space we have
+\begin{equation}
+\partial_{i}x_{i}=\delta_{ii}=n\label{eqdxn}
+\end{equation}
+
+
+ For orthonormal Cartesian systems:
+\begin{equation}
+\dfrac{\partial x^{i}}{\partial x^{j}}=\dfrac{\partial x^{j}}{\partial x^{i}}=\delta_{ij}=\delta^{ij}\label{eqdxdxdelta}
+\end{equation}
+
+
+ For a set of orthonormal basis vectors in orthonormal Cartesian
+systems:
+\begin{equation}
+\vector{e}_{i}\cdot\vector{e}_{j}=\delta_{ij}
+\end{equation}
+
+
+ The double inner product of two dyads formed by orthonormal
+basis vectors of an orthonormal Cartesian system is given by:
+\begin{equation}
+\vector{e}_{i}\vector{e}_{j}\colon\vector{e}_{k}\vector{e}_{l}=\delta_{ik}\delta_{jl}
+\end{equation}
+
+
+
+\subsubsection{Identities Involving $\epsilon$}
+
+ For rank-3 $\epsilon$:
+\begin{equation}
+\epsilon_{ijk}=\epsilon_{kij}=\epsilon_{jki}=-\epsilon_{ikj}=-\epsilon_{jik}=-\epsilon_{kji}\,\,\,\,\,\,\,\,\,\,\text{(sense of cyclic order)}\label{EqEpsilonCycle}
+\end{equation}
+These equations demonstrate the fact that rank-3 $\epsilon$ is totally
+anti-symmetric in all of its indices since a shift of any two indices
+reverses the sign. This also reflects the fact that the above tensor
+system has only one independent component.
+
+ For rank-2 $\epsilon$:
+\begin{equation}
+\epsilon_{ij}=\left(j-i\right)
+\end{equation}
+
+
+ For rank-3 $\epsilon$:
+\begin{equation}
+\epsilon_{ijk}=\dfrac{1}{2}\left(j-i\right)\left(k-i\right)\left(k-j\right)
+\end{equation}
+
+
+ For rank-4 $\epsilon$:
+\begin{equation}
+\epsilon_{ijkl}=\dfrac{1}{12}\left(j-i\right)\left(k-i\right)\left(l-i\right)\left(k-j\right)\left(l-j\right)\left(l-k\right)
+\end{equation}
+
+
+ For rank-$n$ $\epsilon$:
+\begin{equation}
+\epsilon_{a_{1}a_{2}\cdots a_{n}}=\prod_{i=1}^{n-1}\left[\dfrac{1}{i!}\prod_{j=i+1}^{n}\left(a_{j}-a_{i}\right)\right]=\dfrac{1}{S(n-1)}\prod_{1\le i<j\le n}\left(a_{j}-a_{i}\right)
+\end{equation}
+where $S(n-1)$ is the super-factorial function of $(n-1)$ which
+is defined as
+\begin{equation}
+S(k)=\prod_{i=1}^{k}i!=1!\cdot2!\cdot\ldots\cdot k!
+\end{equation}
+A simpler formula for rank-$n$ $\epsilon$ can be obtained from the
+previous one by ignoring the magnitude of the multiplication factors
+and taking only their signs, that is
+\begin{equation}
+\epsilon_{a_{1}a_{2}\cdots a_{n}}=\prod_{1\le i<j\le n}\sigma\left(a_{j}-a_{i}\right)=\sigma\left(\prod_{1\le i<j\le n}\left(a_{j}-a_{i}\right)\right)
+\end{equation}
+where
+\begin{equation}
+\sigma(k)=\begin{cases}
++1 & (k>0)\\
+-1 & (k<0)\\
+\,\,\,\,\,0\,\,\,\,\,\,\,\,\,\,\,\,\,\, & (k=0)
+\end{cases}
+\end{equation}
+
+
+ For rank-$n$ $\epsilon$:
+\begin{equation}
+\epsilon_{i_{1}i_{2}\cdots i_{n}}\,\epsilon_{i_{1}i_{2}\cdots i_{n}}=n!
+\end{equation}
+because this is the sum of the squares of $\epsilon_{i_{1}i_{2}\cdots i_{n}}$
+over all the permutations of $n$ different indices which is equal
+to $n!$ where the value of $\epsilon$ of each one of these permutations
+is either $+1$ or $-1$ and hence in both cases their square is 1.
+
+ For a symmetric tensor $\tsor{A}_{jk}$:
+\begin{equation}
+\epsilon_{ijk}\tsor{A}_{jk}=0
+\end{equation}
+because an exchange of the two indices of $\tsor{A}_{jk}$ does not affect
+its value due to the symmetry whereas a similar exchange in these
+indices in $\epsilon_{ijk}$ results in a sign change; hence each
+term in the sum has its own negative and therefore the total sum will
+vanish.
+
+
+\begin{equation}
+\epsilon_{ijk}\tsor{A}_{i}\tsor{A}_{j}=\epsilon_{ijk}\tsor{A}_{i}\tsor{A}_{k}=\epsilon_{ijk}\tsor{A}_{j}\tsor{A}_{k}=0\label{eqPermutingTwoFactors}
+\end{equation}
+because, due to the commutativity of multiplication, an exchange of
+the indices in $A$'s will not affect the value but a similar exchange
+in the corresponding indices of $\epsilon_{ijk}$ will cause a change
+in sign; hence each term in the sum has its own negative and therefore
+the total sum will be zero.
+
+ For a set of orthonormal basis vectors in a 3D space with
+a right-handed orthonormal Cartesian coordinate system:
+\begin{equation}
+\vector{e}_{i}\times\vector{e}_{j}=\epsilon_{ijk}\vector{e}_{k}
+\end{equation}
+\begin{equation}
+\vector{e}_{i}\cdot\left(\vector{e}_{j}\times\vector{e}_{k}\right)=\epsilon_{ijk}
+\end{equation}
+
+
+
+\subsubsection{Identities Involving $\delta$ and $\epsilon$}
+
+
+\begin{equation}
+\epsilon_{ijk}\delta_{1i}\delta_{2j}\delta_{3k}=\epsilon_{123}=1
+\end{equation}
+
+
+ For rank-2 $\epsilon$:
+\begin{equation}
+\epsilon_{ij}\epsilon_{kl}=\begin{vmatrix}\begin{array}{cc}
+\delta_{ik} & \delta_{il}\\
+\delta_{jk} & \delta_{jl}
+\end{array}\end{vmatrix}=\delta_{ik}\delta_{jl}-\delta_{il}\delta_{jk}
+\end{equation}
+\begin{equation}
+\epsilon_{il}\epsilon_{kl}=\delta_{ik}
+\end{equation}
+\begin{equation}
+\epsilon_{ij}\epsilon_{ij}=2
+\end{equation}
+
+
+ For rank-3 $\epsilon$:
+\begin{equation}
+\epsilon_{ijk}\epsilon_{lmn}=\begin{vmatrix}\begin{array}{ccc}
+\delta_{il} & \delta_{im} & \delta_{in}\\
+\delta_{jl} & \delta_{jm} & \delta_{jn}\\
+\delta_{kl} & \delta_{km} & \delta_{kn}
+\end{array}\end{vmatrix}=\delta_{il}\delta_{jm}\delta_{kn}+\delta_{im}\delta_{jn}\delta_{kl}+\delta_{in}\delta_{jl}\delta_{km}-\delta_{il}\delta_{jn}\delta_{km}-\delta_{im}\delta_{jl}\delta_{kn}-\delta_{in}\delta_{jm}\delta_{kl}
+\end{equation}
+\begin{equation}
+\epsilon_{ijk}\epsilon_{lmk}=\begin{vmatrix}\begin{array}{cc}
+\delta_{il} & \delta_{im}\\
+\delta_{jl} & \delta_{jm}
+\end{array}\end{vmatrix}=\delta_{il}\delta_{jm}-\delta_{im}\delta_{jl}\label{EqEpsilonDelta}
+\end{equation}
+The last identity is very useful in manipulating and simplifying tensor
+expressions and proving vector and tensor identities.
+\begin{equation}
+\epsilon_{ijk}\epsilon_{ljk}=2\delta_{il}
+\end{equation}
+\begin{equation}
+\epsilon_{ijk}\epsilon_{ijk}=2\delta_{ii}=6
+\end{equation}
+since the rank and dimension of $\epsilon$ are the same, which is
+3 in this case.
+
+ For rank-$n$ $\epsilon$:
+\begin{equation}
+\epsilon_{i_{1}i_{2}\cdots i_{n}}\,\epsilon_{j_{1}j_{2}\cdots j_{n}}=\begin{vmatrix}\begin{array}{cccc}
+\delta_{i_{1}j_{1}} & \delta_{i_{1}j_{2}} & \cdots & \delta_{i_{1}j_{n}}\\
+\delta_{i_{2}j_{1}} & \delta_{i_{2}j_{2}} & \cdots & \delta_{i_{2}j_{n}}\\
+\vdots & \vdots & \ddots & \vdots\\
+\delta_{i_{n}j_{1}} & \delta_{i_{n}j_{2}} & \cdots & \delta_{i_{n}j_{n}}
+\end{array}\end{vmatrix}\label{eqEpsilon2}
+\end{equation}
+
+
+ According to Eqs. \ref{eqEpsilon3Definition} and \ref{EqIndexReplace}:
+\begin{equation}
+\epsilon_{ijk}\delta_{ij}=\epsilon_{ijk}\delta_{ik}=\epsilon_{ijk}\delta_{jk}=0
+\end{equation}
+
+
+
+
+\subsection{$\star$ Generalized Kronecker delta}
+
+ The generalized Kronecker delta is defined by:
+\begin{equation}
+\delta_{j_{1}\ldots j_{n}}^{i_{1}\ldots i_{n}}=\begin{cases}
+\,\,\,\,\,1 & \left[(j_{1}\ldots j_{n})\text{ is even permutation of (\ensuremath{i_{1}\ldots i_{n})}}\right]\\
+-1 & \left[(j_{1}\ldots j_{n})\text{ is odd permutation of (\ensuremath{i_{1}\ldots i_{n})}}\right]\\
+\,\,\,\,\,0\,\,\,\,\,\,\,\,\,\,\,\,\,\, & \left[\text{repeated\,\,\ensuremath{j}'s}\right]
+\end{cases}\label{eqGeneralizedKronecker}
+\end{equation}
+It can also be defined by the following $n\times n$ determinant:
+\begin{equation}
+\delta_{j_{1}\ldots j_{n}}^{i_{1}\ldots i_{n}}=\begin{vmatrix}\begin{array}{cccc}
+\delta_{j_{1}}^{i_{1}} & \delta_{j_{2}}^{i_{1}} & \cdots & \delta_{j_{n}}^{i_{1}}\\
+\delta_{j_{1}}^{i_{2}} & \delta_{j_{2}}^{i_{2}} & \cdots & \delta_{j_{n}}^{i_{2}}\\
+\vdots & \vdots & \ddots & \vdots\\
+\delta_{j_{1}}^{i_{n}} & \delta_{j_{2}}^{i_{n}} & \cdots & \delta_{j_{n}}^{i_{n}}
+\end{array}\end{vmatrix}\label{eqGeneralizedKronecker2}
+\end{equation}
+where the $\delta_{j}^{i}$ entries in the determinant are the normal
+Kronecker delta as defined by Eq. \ref{eqKroneckerDefinitionNormal}.
+
+ Accordingly, the relation between the rank-$n$ $\epsilon$
+and the generalized Kronecker delta in an $n$ dimensional space is given by:
+\begin{equation}
+\epsilon_{i_{1}i_{2}\ldots i_{n}}=\delta_{i_{1}i_{2}\ldots i_{n}}^{1\,2\ldots n}\,\,\,\,\,\,\,\,\,\,\&\,\,\,\,\,\,\,\,\,\,\epsilon^{i_{1}i_{2}\ldots i_{n}}=\delta_{1\,2\ldots n}^{i_{1}i_{2}\ldots i_{n}}
+\end{equation}
+Hence, the permutation tensor $\epsilon$ may be considered as a special
+case of the generalized Kronecker delta. Consequently the permutation
+symbol can be written as an $n\times n$ determinant consisting of
+the normal Kronecker deltas.
+
+ If we define
+\begin{equation}
+\delta_{lm}^{ij}=\delta_{lmk}^{ijk}
+\end{equation}
+then Eq. \ref{EqEpsilonDelta} will take the following form:
+\begin{equation}
+\delta_{lm}^{ij}=\delta_{l}^{i}\delta_{m}^{j}-\delta_{m}^{i}\delta_{l}^{j}
+\end{equation}
+Other identities involving $\delta$ and $\epsilon$ can also be formulated
+in terms of the generalized Kronecker delta.
+
+ On comparing Eq. \ref{eqEpsilon2} with Eq. \ref{eqGeneralizedKronecker2}
+we conclude
+\begin{equation}
+\delta_{j_{1}\ldots j_{n}}^{i_{1}\ldots i_{n}}=\epsilon^{i_{1}\ldots i_{n}}\,\epsilon_{j_{1}\ldots j_{n}}
+\end{equation}
+
+
+
+\section{Types of Tensors Fields}
+
+ In the following subsections we introduce a number of tensor
+types and categories and highlight their main characteristics and
+differences. These types and categories are not mutually exclusive
+and hence they overlap in general; moreover they may not be exhaustive
+in their classes as some tensors may not instantiate any one of a
+complementary set of types such as being symmetric or anti-symmetric.
+
+
+\subsection{Isotropic and Anisotropic Tensors}
+
+ Isotropic tensors are characterized by the property that
+the values of their components are invariant under coordinate transformation
+by proper rotation of axes. In contrast, the values of the components
+of anisotropic tensors are dependent on the orientation of the coordinate
+axes. Notable examples of isotropic tensors are scalars (rank-0),
+the vector $\vector{0}$ (rank-1), Kronecker delta $\delta_{ij}$
+(rank-2) and Levi-Civita tensor $\epsilon_{ijk}$ (rank-3). Many tensors
+describing physical properties of materials, such as stress and magnetic
+susceptibility, are anisotropic.
+
+ Direct and inner products of isotropic tensors are isotropic
+tensors.
+
+ The zero tensor of any rank is isotropic; therefore if
+the components of a tensor vanish in a particular coordinate system
+they will vanish in all properly and improperly rotated coordinate
+systems.\footnote{For improper rotation, this is more general than being isotropic.}
+Consequently, if the components of two tensors are identical in a
+particular coordinate system they are identical in all transformed
+coordinate systems.
+
+ As indicated, all rank-0 tensors (scalars) are isotropic.
+Also, the zero vector, $\vector{0}$, of any dimension is isotropic;
+in fact it is the only rank-1 isotropic tensor.
+
+
+\begin{theorem}
+Any isotropic second order tensor $T_{ij}$ we can be written as 
+\[T_{ij} = \lambda \delta_{ij}\] for some scalar $\lambda$.
+\end{theorem}
+
+
+\begin{proof}
+First we will prove that $T$ is diagonal. Let
+$R$ be the reflection in the hyperplane perpendicular to the $j$-th vector in the standard ordered basis.
+$$R_{kl}=\begin{cases}
+ -1 & \text{if }k=l=j\\
+ \delta_{kl} & \text{otherwise}\\
+\end{cases}$$ 
+therefore 
+$$R=R^T\land R^2=I\Rightarrow R^TR=RR^T=I$$
+Therefore:
+$$T_{ij}=\sum_{p,q}R_{ip}R_{jq}T_{pq}=R_{ii}R_{jj}T_{ij}\\
+i\neq j\Rightarrow T_{ij}=-T_{ij}\Rightarrow T_{ij}=0$$
+
+Now we will prove that  $T_{jj} = T_{11}$. Let  $P$ be the permutation matrix that interchanges the 1st and j-th rows when acrting by  left multiplication.
+$$P_{kl}=\begin{cases}
+ \delta_{jl} & \text{if } k=1\\
+ \delta_{1l} & \text{if } k=j\\
+ \delta_{kl} & \text{otherwise} 
+\end{cases}$$
+$$(P^TP)_{kl}=\sum_{m}P^T_{km}P_{ml}=\sum_{m}P_{mk}P_{ml}=\sum_{m\neq1,j}P_{mk}P_{ml}+\sum_{m=1,j}P_{mk}P_{ml}\\
+=\sum_{m\neq1,j}\delta_{mk}\delta_{ml}+\delta_{jk}\delta_{jl}+\delta_{1k}\delta_{1l}=\sum_{m}\delta_{mk}\delta_{ml}=\delta_{kl}$$
+Therefore:
+$$T_{jj}=\sum_{p,q}P_{jp}P_{jq}T_{pq}=\sum_{q}P_{jq}^2T_{qq}=\sum_{q}\delta_{1q}^2T_{qq}=\sum_{q}\delta_{1q}T_{qq}=T_{11}$$
+\end{proof}
+
+
+
+\subsection{Symmetric and Anti-symmetric Tensors}
+
+ These types of tensor apply to high ranks only (rank $\ge2$).
+Moreover, these types are not exhaustive, even for tensors of ranks
+$\ge2$, as there are high-rank tensors which are neither symmetric
+nor anti-symmetric.
+
+ A rank-2 tensor $\tsor{A}_{ij}$ is symmetric \textit{iff }for
+all $i$ and $j$
+\begin{equation}
+\tsor{A}_{ji}=\tsor{A}_{ij}
+\end{equation}
+and anti-symmetric or skew-symmetric \textit{iff}
+\begin{equation}
+\tsor{A}_{ji}=-\tsor{A}_{ij}
+\end{equation}
+Similar conditions apply to contravariant type tensors (refer also
+to the following).
+
+ A rank-$n$ tensor $\tsor{A}_{i_{1}\ldots i_{n}}$ is symmetric
+in its two indices $i_{j}$ and $i_{l}$ \textit{iff}
+\begin{equation}
+\tsor{A}_{i_{1}\ldots i_{l}\ldots i_{j}\ldots i_{n}}=\tsor{A}_{i_{1}\ldots i_{j}\ldots i_{l}\ldots i_{n}}
+\end{equation}
+and anti-symmetric or skew-symmetric in its two indices $i_{j}$ and
+$i_{l}$ \textit{iff}
+\begin{equation}
+\tsor{A}_{i_{1}\ldots i_{l}\ldots i_{j}\ldots i_{n}}=-\tsor{A}_{i_{1}\ldots i_{j}\ldots i_{l}\ldots i_{n}}
+\end{equation}
+
+
+ Any rank-2 tensor $\tsor{A}_{ij}$ can be synthesized from (or
+decomposed into) a symmetric part $\tsor{A}_{(ij)}$ (marked with round brackets
+enclosing the indices) and an anti-symmetric part $\tsor{A}_{[ij]}$ (marked
+with square brackets) where
+\begin{equation}
+\tsor{A}_{ij}=\tsor{A}_{(ij)}+\tsor{A}_{[ij]},\,\,\,\,\,\,\,\,\,\,\tsor{A}_{(ij)}=\dfrac{1}{2}\left(\tsor{A}_{ij}+\tsor{A}_{ji}\right)\,\,\,\,\,\,\,\,\,\&\,\,\,\,\,\,\,\,\,\tsor{A}_{[ij]}=\dfrac{1}{2}\left(\tsor{A}_{ij}-\tsor{A}_{ji}\right)
+\end{equation}
+
+
+ A rank-3 tensor $\tsor{A}_{ijk}$ can be symmetrized by
+\begin{equation}
+\tsor{A}_{(ijk)}=\dfrac{1}{3!}\left(\tsor{A}_{ijk}+\tsor{A}_{kij}+\tsor{A}_{jki}+\tsor{A}_{ikj}+\tsor{A}_{jik}+\tsor{A}_{kji}\right)
+\end{equation}
+and anti-symmetrized by
+\begin{equation}
+\tsor{A}_{[ijk]}=\dfrac{1}{3!}\left(\tsor{A}_{ijk}+\tsor{A}_{kij}+\tsor{A}_{jki}-\tsor{A}_{ikj}-\tsor{A}_{jik}-\tsor{A}_{kji}\right)
+\end{equation}
+
+
+ A rank-$n$ tensor $\tsor{A}_{i_{1}\ldots i_{n}}$ can be symmetrized
+by
+\begin{equation}
+\tsor{A}_{(i_{1}\ldots i_{n})}=\dfrac{1}{n!}\left(\text{sum of all even \& odd permutations of indices \ensuremath{i}'s}\right)
+\end{equation}
+and anti-symmetrized by
+\begin{equation}
+\tsor{A}_{\left[i_{1}\ldots i_{n}\right]}=\dfrac{1}{n!}\left(\text{sum of all even permutations minus sum of all odd permutations}\right)
+\end{equation}
+
+
+ For a symmetric tensor $\ensuremath{\tsor{A}_{ij}}$ and an anti-symmetric
+tensor $\ensuremath{\tsor{B}^{ij}}$ (or the other way around) we have
+\begin{equation}
+\tsor{A}_{ij}\tsor{B}^{ij}=0
+\end{equation}
+
+
+ The indices whose exchange defines the symmetry and anti-symmetry
+relations should be of the same variance type, i.e. both upper or
+both lower.
+
+ The symmetry and anti-symmetry characteristic of a tensor
+is invariant under coordinate transformation.
+
+ A tensor of high rank ($>2$) may be symmetrized or anti-symmetrized
+with respect to only some of its indices instead of all of its indices,
+e.g.
+\begin{equation}
+\tsor{A}_{(ij)k}=\dfrac{1}{2}\left(\tsor{A}_{ijk}+\tsor{A}_{jik}\right)\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\&\,\,\,\,\,\,\,\,\,\,\,\,\,\,\,\tsor{A}_{[ij]k}=\dfrac{1}{2}\left(\tsor{A}_{ijk}-\tsor{A}_{jik}\right)
+\end{equation}
+
+
+ A tensor is totally symmetric \textit{iff}
+\begin{equation}
+\tsor{A}_{i_{1}\ldots i_{n}}=\tsor{A}_{(i_{1}\ldots i_{n})}
+\end{equation}
+and totally anti-symmetric \textit{iff}
+\begin{equation}
+\tsor{A}_{i_{1}\ldots i_{n}}=\tsor{A}_{[i_{1}\ldots i_{n}]}
+\end{equation}
+
+
+ For a totally skew-symmetric tensor (i.e. anti-symmetric
+in all of its indices), nonzero entries can occur only when all the
+indices are different.
+
+
+
+
+

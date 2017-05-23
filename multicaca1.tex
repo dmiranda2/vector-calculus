@@ -1,0 +1,954 @@
+\begin{Answer}{2.2}
+ Since polynomials are continuous
+functions and the image of a connected set is connected for a
+continuous function, the image must be an interval of some sort. If
+the image were a finite interval, then $f(x,kx)$ would be bounded
+for every constant $k$, and so the image would just be the point
+$f(0,0).$ The possibilities are thus
+\begin{enumerate}\item  a single point (take for example,
+$p(x,y)= 0$), \item  a semi-infinite interval with an endpoint (take
+for example $p(x,y) = x^2$ whose image is $[0; +\infty[$),
+\item  a semi-infinite interval with no endpoint (take for example
+$p(x,y) = (xy - 1)^2 + x^2$ whose image is $]0; +\infty[$),
+\item  all real numbers (take for example $p(x,y) =
+x$).
+\end{enumerate}
+\end{Answer}
+\begin{Answer}{2.8}
+ $0$ 
+\end{Answer}
+\begin{Answer}{2.9}
+ $2$ 
+\end{Answer}
+\begin{Answer}{2.10}
+$c=0$.
+\end{Answer}
+\begin{Answer}{2.11}
+ $0$ 
+\end{Answer}
+\begin{Answer}{2.14}
+By AM-GM, $$\dfrac{x^2y^2z^2}{x^2+y^2+z^2} \leq
+\dfrac{(x^2+y^2+z^2)^3}{27(x^2+y^2+z^2)} =
+\dfrac{(x^2+y^2+z^2)^2}{27}\to 0$$ as $(x,y,z)\to (0,0,0)$.
+\end{Answer}
+\begin{Answer}{2.21}
+ $0$ 
+\end{Answer}
+\begin{Answer}{2.22}
+ $2$ 
+\end{Answer}
+\begin{Answer}{2.23}
+$c=0$.
+\end{Answer}
+\begin{Answer}{2.24}
+ $0$ 
+\end{Answer}
+\begin{Answer}{2.27}
+By AM-GM, $$\dfrac{x^2y^2z^2}{x^2+y^2+z^2} \leq
+\dfrac{(x^2+y^2+z^2)^3}{27(x^2+y^2+z^2)} =
+\dfrac{(x^2+y^2+z^2)^2}{27}\to 0$$ as $(x,y,z)\to (0,0,0)$.
+\end{Answer}
+\begin{Answer}{3.4}
+ We have
+$$\renewcommand{\arraystretch}{1.7}
+{\everymath{\displaystyle}\begin{array}{lll} F(\vector{x} +
+\vector{h})
+- F(\vector{x}) & = & (\vector{x} + \vector{h})\cross L(\vector{x} + \vector{h}) - \vector{x}\cross L(\vector{x})\\
+& = & (\vector{x} + \vector{h})\cross (L(\vector{x}) +
+L(\vector{h})) - \vector{x}\cross L(\vector{x})\\
+& = & \vector{x}\cross L(\vector{h}) + \vector{h}\cross
+L(\vector{x}) + \vector{h}\cross
+L(\vector{h}) \\
+\end{array}}
+$$\renewcommand{\arraystretch}{1}
+Now, we will prove that  $|| \vector{h}\cross L(\vector{h})|| =
+\smallosans{\norm{\vector{h}}}$ as $\vector{h} \rightarrow
+\vector{0}$. For let $$\vector{h} = \sum_{k = 1} ^n h_k
+\vector{e}_k,$$where the $\vector{e}_k$ are the standard basis for
+$\reals^n$. Then
+$$L(\vector{h}) = \sum_{k = 1} ^n h_k L(\vector{e}_k),$$and hence
+by the triangle inequality, and by the Cauchy-Bunyakovsky-Schwarz
+inequality,
+$$\renewcommand{\arraystretch}{1.7}\begin{array}{ccc}||L(\vector{h})|| & \leq & \sum_{k = 1} ^n |h_k| ||L(\vector{e}_k)|| \\ &
+\leq&  \left(\sum_{k = 1} ^n |h_k|^2\right)^{1/2}\left(\sum_{k = 1}
+^n ||L(\vector{e}_k)||^2\right)^{1/2} \\ &  = &
+\norm{\vector{h}}(\sum_{k = 1} ^n
+||L(\vector{e}_k)||^2)^{1/2}, \\
+\end{array}$$whence, again by the  Cauchy-Bunyakovsky-Schwarz
+Inequality, $$|| \vector{h}\cross L(\vector{h})|| \leq||
+\vector{h}||||L(\vector{h})|\leq
+||\vector{h}||^2|||L(\vector{e}_k)||^2)^{1/2} =
+\smallosans{||\vector{h}||},$$ as it was to be shewn.
+\end{Answer}
+\begin{Answer}{3.5}
+ Assume that $\vector{x} \neq
+\vector{0}.$ We use the fact that $(1 + t)^{1/2} = 1 + \dfrac{t}{2}
++ \smallosans{t}$ as $t \rightarrow 0$. We have
+$$\renewcommand{\arraystretch}{1.7}
+{\everymath{\displaystyle}\begin{array}{lll} \funvect{f}(\vector{x} +
+\vector{h}) - \funvect{f}(\vector{x}) & = & ||\vector{x}+\vector{h}|| - \norm{\vector{x}}  \\
+& = & \sqrt{(\vector{x} + \vector{h})\bp (\vector{x} + \vector{h})} - \norm{\vector{x}} \\
+& = & \sqrt{\norm{\vector{x}}^2 + 2\vector{x}\bp\vector{h}+
+\norm{\vector{h}}^2} - \norm{\vector{x}}
+\\
+& = & \dfrac{2\dotprod{x}{h}+
+\norm{\vector{h}}^2}{\sqrt{\norm{\vector{x}}^2 +
+2\vector{x}\bp\vector{h}+ \norm{\vector{h}}^2}  + \norm{\vector{x}}}.\\
+\end{array}}$$\renewcommand{\arraystretch}{1}
+As $\vector{h} \rightarrow \vector{0}$,
+$$\sqrt{\norm{\vector{x}}^2 +
+2\vector{x}\bp\vector{h}+ \norm{\vector{h}}^2}  + \norm{\vector{x}}
+\rightarrow 2\norm{\vector{x}}.$$Since $\norm{\vector{h}}^2 =
+\smallosans{\norm{\vector{h}}}$ as $\vector{h} \rightarrow
+\vector{0}$, we have
+$$\dfrac{2\dotprod{x}{h}+ \norm{\vector{h}}^2}{\sqrt{\norm{\vector{x}}^2 +
+2\vector{x}\bp\vector{h}+ \norm{\vector{h}}^2}  + \norm{\vector{x}}}
+\rightarrow \dfrac{\vector{x}\bp\vector{h}}{\norm{\vector{h}}} +
+\smallosans{\norm{\vector{h}}},$$proving the first assertion.
+
+
+
+      To prove the second assertion, assume that there is a linear
+transformation $\deriv{0}{f} = L$,   $L:\reals^n \rightarrow \reals$
+such that
+$$||\funvect{f}(\vector{0} + \vector{h}) - \funvect{f}(\vector{0}) - L(\vector{h})|| = \smallosans{\norm{\vector{h}}},$$as $\norm{\vector{h}}\rightarrow
+0$.  Recall that by theorem \ref{thm:lipschitzlin}, $L(\vector{0}) =
+\vector{0}$, and so by example \ref{exa:derivlintran},
+$\deriv{0}{L}(\vector{0}) = L(\vector{0}) = \vector{0}$. This
+implies that $\dis{\dfrac{L(\vector{h})}{\norm{\vector{h}}}}
+\rightarrow \deriv{0}{L}(\vector{0}) = \vector{0}$, as
+$\norm{\vector{h}}\rightarrow 0$. Since $\funvect{f}(\vector{0}) = \norm{0} =
+0, \funvect{f}(\vector{h}) = \norm{\vector{h}}$ this would imply that
+$$\left|\left|\norm{\vector{h}} - L(\vector{h})\right|\right| = \smallosans{\norm{\vector{h}}},$$or
+$$\left|\left| 1 -  \dfrac{L(\vector{h})}{\norm{\vector{h}}}\right|\right| = \smallosans{1}.$$
+But the left side $\rightarrow 1$ as $\vector{h} \rightarrow
+\vector{0}$, and the right side $\rightarrow 0$ as $\vector{h}
+\rightarrow \vector{0}$. This is a contradiction, and so, such
+linear transformation $L$ does not exist at the point $\vector{0}$.
+\end{Answer}
+\begin{Answer}{3.7}
+Observe that
+$$\funvect{f}(x,y)=\left\{\begin{array}{ll} x & \mathrm{if}\ x \leq y^2 \\   y^2 & \mathrm{if}\ x > y^2 \\ \end{array}\right. $$
+Hence
+$$\dfrac{\partial}{\partial x}\funvect{f}(x,y)=\left\{\begin{array}{ll} 1 & \mathrm{if}\ x > y^2 \\   0 & \mathrm{if}\ x > y^2 \\ \end{array}  \right. $$ and
+$$\dfrac{\partial}{\partial y}\funvect{f}(x,y)=\left\{\begin{array}{ll} 0 & \mathrm{if}\ x > y^2 \\   2y & \mathrm{if}\ x > y^2 \\ \end{array}\right. $$
+\end{Answer}
+\begin{Answer}{3.8}
+Observe that
+$$\funvect{g}(1,0,1) = \coord{3 \\ 0}, \qquad f'(x,y) = \begin{bmatrix} y^2 &
+2xy \cr 2xy & x^2
+\end{bmatrix}, \qquad g'(x,y) =\begin{bmatrix} 1 & -1 & 2  \cr y & x & 0
+\cr
+\end{bmatrix},  $$
+and hence
+$$ g'(1,0,1) = \begin{bmatrix} 1 & -1 & 2  \cr 0 & 1 & 0
+\cr
+\end{bmatrix},\qquad  f'(\funvect{g}(1,0,1)) =  f'(3,0) = \begin{bmatrix} 0  &  0  \cr 0 & 9
+\cr
+\end{bmatrix}. $$This gives, via the Chain-Rule,
+$$(f\circ g)'(1,0,1)  = f'(\funvect{g}(1,0,1))g'(1,0,1) = \begin{bmatrix} 0  &  0  \cr 0 & 9
+\cr
+\end{bmatrix}\begin{bmatrix} 1 & -1 & 2  \cr 0 & 1 & 0
+\cr
+\end{bmatrix} = \begin{bmatrix} 0 & 0 & 0  \cr 0 & 9 & 0
+\cr
+\end{bmatrix}. $$
+The composition $g\circ \funvect{f}$ is undefined. For, the output of $\funvect{f}$ is
+$\reals^2$, but the input of $\funvect{g}$ is in $\reals^3$.
+
+\end{Answer}
+\begin{Answer}{3.9}
+Since $\funvect{f}(0,1) = \coord{0\\ 1}$, the Chain Rule gives
+$$(g\circ f)'(0,1) = (g'(\funvect{f}(0,1)))(f'(0,1)) = (g'(0,1))(f'(0,1)) =\begin{bmatrix} 1 & -1\\ 0 &
+0 \\ 1 & 1 \\
+\end{bmatrix}\begin{bmatrix} 1 & 0\\ 1 & 1
+\end{bmatrix} = \begin{bmatrix} 0 & -1\\ 0 & 0 \\ 2 & 1 \\
+\end{bmatrix}   $$
+
+\end{Answer}
+\begin{Answer}{3.13}
+We have
+$$  \dfrac{\partial }{\partial x}(x+z)^2+\dfrac{\partial }{\partial x}(y+z)^2= \dfrac{\partial }{\partial x}8
+\implies 2(1+ \dfrac{\partial z}{\partial x})(x+z) +
+2\dfrac{\partial z}{\partial x}(y+z)=0.  $$ At $(1,1,1)$ the last
+equation becomes
+$$ 4(1+ \dfrac{\partial z}{\partial x}) +
+4\dfrac{\partial z}{\partial x}=0\implies \dfrac{\partial
+z}{\partial x} = -\dfrac{1}{2}.  $$
+\end{Answer}
+\begin{Answer}{3.14}
+a) Here $\nabla T = (y+z) \vector{ i} + (x+z) \vector{ j} + (y+x) \vector{ k}$.
+The maximum rate of change at $(1,1,1)$ is
+$|\nabla T(1,1,1)| = 2 \sqrt{3}$ and direction cosines are
+\begin{eqnarray*}
+\dfrac{\nabla T}{|\nabla T|} =
+\dfrac{1}{\sqrt{3}} \vector{ i} +
+\dfrac{1}{\sqrt{3}} \vector{ j} +
+\dfrac{1}{\sqrt{3}} \vector{ k} =
+\cos \alpha \vector{ i} + \cos \beta \vector{ j} + \cos \gamma \vector{ k}
+\end{eqnarray*}
+
+
+b) The required derivative is
+\begin{eqnarray*}
+\nabla T(1,1,1) \bp
+\dfrac{3 \vector{ i} - 4 \vector{ k}}{|3 \vector{ i} - 4 \vector{ k}|} =
+- \dfrac{2}{5}
+\end{eqnarray*}
+
+\end{Answer}
+\begin{Answer}{3.15}
+
+a) Here $\nabla \phi = \vector{ F}$ requires $\nabla \times \vector{ F} = 0$ which is
+not the case here, so no solution.
+
+
+b) Here $\nabla \times \vector{ F} = 0$ so that
+\begin{eqnarray*}
+\phi(x,y,z) = x^{2} y + y^{2} z + z + c
+\end{eqnarray*}
+
+\end{Answer}
+\begin{Answer}{3.16}
+$\nabla f(x,y,z)=\coord{e^{yz} ,xze^{yz},xye^{yz}}\implies
+(\nabla f)(2,1,1) =  \coord{e,2e,2e} $.
+\end{Answer}
+\begin{Answer}{3.17}
+$(\nabla \cross f)(x,y,z)=\coord{0,x, ye^{xy}} \implies (\nabla
+\cross f)(2,1,1)=\coord{0,2 ,e^2}$.
+\end{Answer}
+\begin{Answer}{3.19}
+ The vector $\coord{1 ,-7 ,0}$ is perpendicular to the plane. Put $\funvect{f}(x,y,z)=x^2+y^2-5xy+xz-yz+3$. Then $(\nabla f)(x,y,z)=\coord{2x-5y+z ,2y-5x-z \\
+x-y}$. Observe that $\nabla f(x,y,z)$ is parallel to the vector
+$\coord{1 ,-7 ,0}$, and hence there exists a constant $a$ such
+that $$ \coord{2x-5y+z ,2y-5x-z \\
+x-y}=a\coord{1 ,-7 ,0} \implies x=a, \quad y=a, \quad z=4a.$$
+Since the point is on the plane $$x-7y=-6 \implies a-7a=-6 \implies
+a=1.$$ Thus $x=y=1$ and $z=4$.
+\end{Answer}
+\begin{Answer}{3.22}
+Observe that $$\funvect{f}(0,0) =1, \quad f_x(x,y) = (\cos 2y)e^{x\cos 2y}
+\implies f_x(0,0)=1, $$ $$ f_y(x,y) = -2x\sin 2ye^{x\cos 2y}
+\implies f_y(0,0) = 0.
+$$Hence
+$$\funvect{f}(x,y) \approx \funvect{f}(0,0) + f_x(0,0)(x-0) + f_y(0,0)(y-0) \implies \funvect{f}(x,y)\approx 1 + x. $$
+This gives $\funvect{f}(0.1,-0.2)\approx 1+0.1 = 1.1$.
+\end{Answer}
+\begin{Answer}{3.23}
+This is essentially the product rule: $\d{uv} = u\d{v}+v\d{u}$,
+where $\nabla$ acts the differential operator and $\cross$ is the
+product. Recall that when we defined the volume of a parallelepiped
+spanned by the vectors $\vector{a},$ $\vector{b}$, $\vector{c}$, we
+saw that
+$$ \vector{a}\bullet (\crossprod{b}{c}) = (\crossprod{a}{b})\bullet \vector{c}.  $$
+Treating $\nabla = \nabla _{\vector{u}}+ \nabla _{\vector{v}}$ as a
+vector, first keeping $\vector{v}$ constant and then keeping
+$\vector{u}$ constant  we then see that
+$$ \nabla _{\vector{u}} \bullet (\crossprod{u}{v})= (\crossprod{\nabla}{u})\bullet \vector{v}, \qquad   \nabla  _{\vector{v}} \bullet (\crossprod{u}{v})=  -\nabla \bullet (\crossprod{v}{u})  = -(\crossprod{\nabla}{v})\bullet \vector{u}. $$
+Thus
+$$\nabla \bullet (\point{u}\cross \point{v}) = (\nabla _{\vector{u}} + \nabla _{\vector{v}}) \bullet (\point{u}\cross \point{v})
+= \nabla _{\vector{u}} \bullet (\crossprod{u}{v}) + \nabla
+_{\vector{v}} \bullet (\crossprod{u}{v}) =
+(\crossprod{\nabla}{u})\bullet \vector{v}-
+(\crossprod{\nabla}{v})\bullet \vector{u}.
+   $$
+\end{Answer}
+\begin{Answer}{3.26}
+An angle of $ \dfrac{\pi}{6}$ with the $x$-axis and $
+\dfrac{\pi}{3}$ with the $y$-axis.
+\end{Answer}
+\begin{Answer}{5.1}
+ Let $\colpoint{x\\ y\\ z}$ be a point on $S$. If this point were on
+the $xz$ plane, it would be on the ellipse, and its distance to the
+axis of rotation would be $|x| = \dfrac{1}{2}\sqrt{1 -
+z^2}$. Anywhere else, the distance from $\colpoint{x\\ y\\
+z}$ to the $z$-axis  is the distance of this point to the point
+$\colpoint{0\\ 0\\ z}$ : $\sqrt{x^2 + y^2}$. This distance is the
+same as the length of the segment on the $xz$-plane going from the
+$z$-axis. We thus have
+$$ \sqrt{x^2 + y^2} = \dfrac{1}{2}\sqrt{1 -
+z^2},$$or
+$$4x^2 + 4y^2 + z^2 = 1.$$
+\end{Answer}
+\begin{Answer}{5.2}
+ Let $\colpoint{x\\ y\\ z}$ be a point on $S$. If this point were on the
+$xy$ plane, it would be on the line, and its distance to the axis of
+rotation would be $|x| = \dfrac{1}{3}|1 - 4y|$. Anywhere else, the
+distance of $\colpoint{x\\ y\\ z}$ to the axis of rotation is the
+same as the distance of $\colpoint{x\\ y\\ z}$ to $\colpoint{0\\
+y \\ 0}$, that is $\sqrt{x^2 + z^2}$. We must have
+$$\sqrt{x^2 + z^2} = \dfrac{1}{3}|1 - 4y|, $$which is to say
+$$9x^2 + 9z^2 - 16y^2 + 8y - 1 = 0.$$
+\end{Answer}
+\begin{Answer}{5.3}
+A spiral staircase.
+\end{Answer}
+\begin{Answer}{5.4}
+A spiral staircase.
+\end{Answer}
+\begin{Answer}{5.6}
+ The planes $A: x + z = 0$ and $B: y = 0$ are secant. The
+surface has equation of the form $f(A, B) = e^{A^2 + B^2} - A = 0$,
+and it is thus a cylinder.  The directrix has direction $\vector{i}
+- \vector{k}$.
+\end{Answer}
+\begin{Answer}{5.7}
+ Rearranging,
+$$ (x^2 + y^2 + z^2)^2 - \dfrac{1}{2}((x + y + z)^2 - (x^2 + y^2 + z^2)) - 1 = 0,$$
+and so we may take $A: x + y + z = 0, \superficie : x^2 + y^2 + z^2 = 0$,
+shewing that the surface is of revolution. Its axis is the line in
+the direction $\vector{i} + \vector{j} + \vector{k}$.
+\end{Answer}
+\begin{Answer}{5.8}
+ Considering the planes $A: x - y = 0, B: y - z = 0$,
+the equation takes the form
+$$f(A, B) = \dfrac{1}{A} + \dfrac{1}{B} - \dfrac{1}{A + B} - 1 =
+0,$$thus the equation represents a cylinder. To find its directrix,
+we find the intersection of the planes $x = y$ and $y = z$. This
+gives $\colvec{x \\ y \\ z} = t\colvec{1 \\ 1 \\ 1}$. The direction
+vector is thus $\vector{i}+ \vector{j} + \vector{k}$.
+\end{Answer}
+\begin{Answer}{5.9}
+ Rearranging,
+$$(x + y + z)^2 - (x ^2 + y ^2 + z ^2) + 2(x + y + z) + 2 = 0,$$so we
+may take $A: x + y + z = 0, \superficie : x ^2 + y ^2 + z ^2 = 0$ as our
+plane and sphere. The axis of revolution is then in the direction of
+$\vector{i} + \vector{j} + \vector{k}$.
+\end{Answer}
+\begin{Answer}{5.10}
+ After rearranging, we obtain
+$$(z - 1)^2 - xy = 0,$$or
+$$-\dfrac{x}{z - 1}\dfrac{y}{z - 1} + 1 = 0.$$Considering the planes
+$$A: x = 0, \ B: y = 0, \ \ C: z = 1,$$we see that our surface is
+a cone, with apex at $(0,0,1)$.
+\end{Answer}
+\begin{Answer}{5.11}
+ The largest circle has radius $b$. Parallel cross sections of
+the ellipsoid are similar ellipses, hence we may increase the size
+of these by moving towards the centre of the ellipse.  Every plane
+through the origin which makes a circular cross section must
+intersect the $yz$-plane, and the diameter of any such cross section
+must be a diameter of the ellipse $x = 0, \dfrac{y^2}{b^2} +
+\dfrac{z^2}{c^2} = 1.$ Therefore, the radius of the circle is at most
+$b$. Arguing similarly on the $xy$-plane shews that the radius of
+the circle is at least $b$. To shew that circular cross section of
+radius $b$ actually exist, one may verify that the two planes given
+by $a^2(b^2 - c^2)z^2 = c^2(a^2 - b^2)x^2$ give circular cross
+sections of radius $b$.
+\end{Answer}
+\begin{Answer}{5.12}
+Any hyperboloid oriented like the one on the figure has an equation
+of the form
+$$ \dfrac{z^2}{c^2}=\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}-1. $$ When $z=0$ we must have
+$$4x^2+y^2=1 \implies a=\dfrac{1}{2}, \ b=1.   $$
+Thus
+$$ \dfrac{z^2}{c^2}= 4x^2+y^2-1. $$Hence, letting $z=\pm 2$,
+$$  \dfrac{4}{c^2} =4x^2+y^2-1 \implies \dfrac{1}{c^2}= x^2+\dfrac{y^2}{4}-\dfrac{1}{4}=1-\dfrac{1}{4}=\dfrac{3}{4},$$
+since at $z=\pm 2$, $x^2+\dfrac{y^2}{4}=1$. The equation is thus
+$$ \dfrac{3z^2}{4}=  4x^2+y^2-1.$$
+\end{Answer}
+\begin{Answer}{13.1}
+\noindent
+\begin{enumerate}
+\item  Let $L_1: y =x+1$, $L_2: -x+1$. Then
+$$
+\begin{array}{lll}
+\dint _C x\d{x}+y\d{y} & = & \dint _{L_1} x\d{x}+y\d{y}+\dint _{L_2}
+x\d{x}+y\d{y}\\
+& = & \dint _{-1} ^1 x\d{x} (x+1)\d{x} + \dint _0 ^1 x\d{x}
+-(-x+1)\d{x}\\
+& = & 0.
+\end{array}
+$$
+Also, both on $L_1$ and on $L_2$ we have
+$\norm{\d{\point{x}}}=\sqrt{2}\d{x}$, thus
+$$
+\begin{array}{lll}
+\dint _C xy \norm{\d{\point{x}}}& = & \dint _{L_1}xy
+\norm{\d{\point{x}}}+\dint _{L_2}
+xy \norm{\d{\point{x}}}\\
+& = & \sqrt{2}\dint _{-1} ^1 x(x+1)\d{x} - \sqrt{2}\dint _0 ^1 x(-x+1)\d{x}\\
+& = & 0.
+\end{array}
+$$
+
+\item We put $x=\sin t$, $y = \cos t$, $t\in\lcrc{-\frac{\pi}{2}}{\frac{\pi}{2}}$. Then
+
+$$
+\begin{array}{lll}
+\dint _C x\d{x}+y\d{y} & = & \dint _{-\pi/2} ^{\pi/2}
+(\sin t)(\cos t)\d{t}-(\cos t)(\sin t)\d{t}\\
+& = & 0.
+\end{array}
+$$
+Also, $\norm{\d{\point{x}}}=\sqrt{(\cos t)^2+(-\sin
+t)^2}\d{t}=\d{t}$, and thus
+$$
+\begin{array}{lll}
+\dint _C xy \norm{\d{\point{x}}}& = & \dint _{-\pi/2} ^{\pi/2} (\sin
+t)(\cos t) \d{t}\\
+& = & \dfrac{(\sin t)^2}{2}\Big| _{-\pi/2} ^{\pi/2} \\
+& = & 0.
+\end{array}
+$$
+\end{enumerate}
+\end{Answer}
+\begin{Answer}{13.2}
+Let $\Gamma _1$ denote the straight line segment path from $O$ to
+$A=(2\sqrt{3},2)$ and $\Gamma _2$ denote the arc of the circle
+centred at $(0,0)$ and radius $4$ going counterclockwise from
+$\theta=\dfrac{\pi}{6}$ to  $\theta=\dfrac{\pi}{5}$.
+
+\bigskip
+
+Observe that the Cartesian equation of the line  $\line{OA}$ is $y
+=\dfrac{x}{\sqrt{3}}$. Then on $\Gamma _1$
+$$x\d{x} + y\d{y} = x\d{x}+ \dfrac{x}{\sqrt{3}}\d{\dfrac{x}{\sqrt{3}}} = \dfrac{4}{3}x\d{x}.$$
+Hence $$\dint _{\Gamma _1} x\d{x} + y\d{y} = \dint _0 ^{2\sqrt{3}}
+\dfrac{4}{3}x\d{x} = 8.
+$$
+
+On the arc of the circle we may put $x=4\cos \theta$, $y = 4\sin
+\theta$ and integrate from $\theta = \dfrac{\pi}{6}$ to $\theta =
+\dfrac{\pi}{5}$. Observe that there
+$$ x\d{x} + y\d{y} = (\cos \theta )\d{\cos \theta}  +(\sin\theta)\d{\sin \theta} = -\sin\theta\cos\theta\d{\theta}+\sin\theta\cos\theta\d{\theta}=0,$$
+and since the integrand is $0$, the integral will be zero.
+
+\bigskip
+
+Assembling these two pieces,
+$$\dint _{\Gamma} x\d{x} + y\d{y} = \dint _{\Gamma _1} x\d{x} + y\d{y} +\dint _{\Gamma _2} x\d{x} + y\d{y}=8+0=8.    $$
+
+
+\bigskip
+
+Using the parametrisations from the solution of  problem
+\ref{pro:path-integral2}, we find on $\Gamma _1$ that
+$$ x\norm{\d{\point{x}}} = x\sqrt{(\d{x})^2+ (\d{y})^2} =x\sqrt{1+\dfrac{1}{3}}\d{x}=\dfrac{2}{\sqrt{3}}x\d{x},  $$
+whence
+$$ \dint _{\Gamma _1} x\norm{\d{\point{x}}} = \dint _0 ^{2\sqrt{3}}
+\dfrac{2}{\sqrt{3}}x\d{x} = 4\sqrt{3}.  $$ On $\Gamma _2$ that
+$$ x\norm{\d{\point{x}}} = x\sqrt{(\d{x})^2+ (\d{y})^2} =16\cos \theta\sqrt{\sin^2\theta + \cos^2\theta}\d{\theta}=16\cos\theta\d{\theta},  $$
+whence
+$$ \dint _{\Gamma _2} x\norm{\d{\point{x}}} = \dint _{\pi /6} ^{\pi /5}
+16\cos\theta\d{\theta} = 16\sin \dfrac{\pi}{5} -16\sin
+\dfrac{\pi}{6}= 4\sin \dfrac{\pi}{5}-8.
+$$Assembling these we gather that
+$$ \dint _{\Gamma } x\norm{\d{\point{x}}} =\dint _{\Gamma _1} x\norm{\d{\point{x}}}+\dint _{\Gamma _2}
+x\norm{\d{\point{x}}}= 4\sqrt{3}-8+16\sin \dfrac{\pi}{5}.$$
+
+
+
+\end{Answer}
+\begin{Answer}{13.3}
+ The
+curve lies on the sphere, and to parametrise this curve, we dispose
+of one of the variables, $y$ say, from where $y = 1-x$ and $x^2 +
+y^2 + z^2 = 1$ give
+$$\begin{array}{lll}x^2 + (1 - x)^2 + z^2 = 1  & \implies & 2x^2 -2x + z^2 = 0\\ & \implies & 2\left(x - \frac{1}{2}\right)^2   + z^2 = \frac{1}{2}\\
+& \implies & 4\left(x - \frac{1}{2}\right)^2 + 2z^2 =
+1.\end{array}$$ So we now put $$x = \frac{1}{2} +  \frac{\cos t}{2},
+\ \ \ z = \dfrac{\sin t}{\sqrt{2}},\ \ \  y = 1 - x =
+\frac{1}{2}-\frac{\cos t}{2}.
+$$We must integrate on the side of the plane that can be viewed
+from   the point $(1,1,0)$ (observe that the vector  $\colvec{1\\ 1 \\
+0}$ is normal to the plane). On the $zx$-plane, $4\left(x -
+\frac{1}{2}\right)^2 + 2z^2 = 1$ is an ellipse. To obtain a positive
+parametrisation we must integrate from $t = 2\pi$ to $t = 0$ (this
+is because when you look at the ellipse from the point $(1,1,0)$ the
+positive $x$-axis is to your left, and not your right).   Thus
+$$\begin{array}{lll}\doint _\Gamma  z\d{x} + x\d{y} + y\d{z} & = &
+\dint ^0 _{2\pi} \dfrac{\sin
+t}{\sqrt{2}} \d{\left( \frac{1}{2} + \frac{\cos t}{2}\right)}  \\
+& & + \dint ^0 _{2\pi} \left( \frac{1}{2} + \frac{\cos
+t}{2}\right)\d{\left(\frac{1}{2} -\frac{\cos t}{2}\right)} \\ & & +
+\dint ^0 _{2\pi} \left(\frac{1}{2} -\frac{\cos
+t}{2}\right)\d{\left(\dfrac{\sin t}{\sqrt{2}}\right)} \\
+& = & \dint ^0 _{2\pi} \left(\frac{\sin t}{4}+ \frac{\cos
+t}{2\sqrt{2}}+ \frac{\cos t\sin t}{4}  -
+\frac{1}{2\sqrt{2}}\right)\ \d{t}  \\
+& = & \dfrac{\pi}{\sqrt{2}}.
+\end{array}$$
+
+\end{Answer}
+\begin{Answer}{13.4}
+ We parametrise the surface by letting $x = u, y =
+v, z = u + v^2.$ Observe that the domain $D$ of $\Sigma$ is the
+square $[0; 1]\times [0; 2]$. Observe that
+$$\d{x} \wedge \d{y}
+=   \d{u} \wedge \d{v} ,$$
+$$\d{y} \wedge \d{z} = -\d{u} \wedge \d{v}, $$
+$$\d{z} \wedge \d{x} = -2v\d{u} \wedge \d{v},
+$$and so
+$$\norm{\d{ ^2\vector{x}}} = \sqrt{2 + 4v^2}\d{u} \wedge \d{v}.$$
+The integral becomes
+$$\begin{array}{lll}
+\dint \limits_\Sigma y \norm{\d{ ^2\vector{x}}} & = & \dint_0 ^2\dint _0
+^1
+v\sqrt{2 + 4v^2}\d{u}\d{v} \\
+& = & \left(\dint_0 ^1 \d{u}\right) \left(\dint_0 ^2 y\sqrt{2 +
+4v^2}\d{v}\right) \\
+& = & \dfrac{13\sqrt{2}}{3}.
+\end{array}$$
+\end{Answer}
+\begin{Answer}{13.5}
+Using $x=r\cos \theta$, $y=r\sin \theta$, $1\leq r \leq 2$, $0 \leq
+\theta \leq 2\pi$, the surface area is
+$$ \sqrt{2}\dint _0  ^{2\pi}\dint _1 ^2 r\d{r}\d{\theta}=3\pi\sqrt{2}.  $$
+\end{Answer}
+\begin{Answer}{13.6}
+ We use spherical coordinates, $(x, y, z) =
+(\cos\theta\sin\phi, \sin\theta\sin\phi, \cos\phi)$. Here $\theta
+\in [0; 2\pi]$ is the latitude and $\phi \in [0; \pi]$ is the
+longitude. Observe that
+$$\d{x}\wedge\d{y}=
+\sin\phi\cos\phi \d{\phi}\wedge\d{\theta} ,$$
+$$\d{y}\wedge\d{z} = \cos\theta\sin^2\phi \d{\phi}\wedge\d{\theta},
+$$
+$$\d{z}\wedge\d{x}= -\sin\theta\sin^2\phi \d{\phi}\wedge\d{\theta},
+$$and so
+$$\norm{\d{ ^2 \vector{x}}} = \sin\phi \d{\phi}\wedge\d{\theta}.$$
+The integral becomes
+$$\begin{array}{lll}
+\dint \limits_\Sigma x^2 \norm{\d{ ^2\vector{x}}} & = & \dint _0 ^{2\pi}
+\dint _{0} ^{\pi} \cos^2\theta\sin^3\phi \d{\phi}  \d{\theta} \\
+& = & \dfrac{4\pi}{3}.
+\end{array}$$
+\end{Answer}
+\begin{Answer}{13.7}
+ Put $x
+= u, y = v, z^2 = u^2 + v^2$. Then
+$$\d{x} = \d{u}, \ \d{y} = \d{v}, \ z\d{z} = u\d{u} + v\d{v},    $$
+whence
+$$\d{x} \wedge \d{y} =  \d{u} \wedge \d{v}, \d{y} \wedge \d{z} = -\dfrac{u}{z}  \d{u} \wedge \d{v},
+\d{z} \wedge \d{x} = -\dfrac{v}{z}  \d{u} \wedge \d{v},  $$ and so
+$$\begin{array}{lll}\norm{\d{ ^2\vector{x}}} & = &  \sqrt{(\d{x} \wedge \d{y})^2 + (\d{z} \wedge \d{x})^2 + (\d{y} \wedge \d{z})^2} \\
+& = & \sqrt{1 + \dfrac{u^2 + v^2}{z^2}}\ \d{u}\wedge\d{v} \\ &  = &
+\sqrt{2}\ \d{u}\wedge\d{v}.
+\end{array}$$ Hence $$\dint \limits_{\Sigma} \ z\norm{\d{ ^2\vector{x}}} =
+\dint\limits_{u^2 + v^2 \leq 1} \sqrt{u^2 + v^2}\ \sqrt{2}\
+\d{u}\d{v} = \sqrt{2}\dint _0 ^{2\pi}\dint _0 ^1  \rho^2\
+\d{\rho}\d{\theta} = \dfrac{2\pi\sqrt{2}}{3}.
+$$
+\end{Answer}
+\begin{Answer}{13.8}
+ If the egg
+has radius $R$,  each slice will have height $2R/n$. A slice can be
+parametrised by $0 \leq \theta \leq 2\pi$, $\phi_1 \leq \phi \leq
+\phi_2$, with $$R\cos\phi_1 - R\cos\phi_2 = 2R/n.$$ The area of the
+part of the surface of the sphere in slice is $$\dint _0
+^{2\pi}\dint_{\phi_1} ^{\phi_2} R^2\sin\phi \d{\phi}\d{\theta} = 2\pi
+R^2(\cos\phi_1 - \cos\phi_2 ) = 4\pi R^2/n.$$ This means that each
+of the $n$ slices has identical area $4\pi R^2 /n$.
+\end{Answer}
+\begin{Answer}{13.9}
+ We project this plane
+onto the coordinate axes obtaining
+$$ \dint \limits_\Sigma xy\d{y}\d{z} = \dint _0 ^6 \dint _0 ^{3-z/2} (3-y-z/2)y \d{y}  \d{z} =  \frac{27}{4},  $$
+$$ -\dint \limits_\Sigma x^2\d{z}\d{x} = -\dint _0 ^3 \dint _0 ^{6-2x} x^2 \d{z}  \d{x} =  -\frac{27}{2},  $$
+$$ \dint \limits_\Sigma (x + z)\d{x}\d{y} = \dint _0 ^3 \dint _0 ^{3 - y} (6 - x - 2y) \d{x}  \d{y} =  \frac{27}{2},  $$
+and hence
+$$\dint \limits_\Sigma xy\d{y}\d{z} -
+x^2\d{z} \d{x} + (x + z)\d{x} \d{y} = \frac{27}{4}.
+$$
+\end{Answer}
+\begin{Answer}{13.10}
+Evaluating this directly would result in evaluating four path
+integrals, one for each side of the square. We will use Green's
+Theorem. We have
+$$\begin{array}{lll}\d{\omega} &  = &  \d (x^3y) \wedge \d{x}+ \d (xy) \wedge \d{y}\\
+& = & (3x^2y\d{x}+ x^3\d{y}) \wedge \d{x}+ (y\d{x}+
+x\d{y} ) \wedge \d{y} \\
+& = & (y - x^3)\d{x}\wedge \d{y}.
+\end{array}$$
+The region $M$ is the area enclosed by the square. The integral
+equals
+$$\begin{array}{lll}
+\doint _C x^3y\d{x}+ xy\d{y} & = & \dint _0 ^2 \dint _0 ^2 (y
+- x^3)\d{x} \d{y} \\
+& = & -4.
+\end{array}$$
+\end{Answer}
+\begin{Answer}{13.11}
+We have
+\begin{dingautolist}{202} \item $L_{AB}$ is $y = x$;  $L_{AC}$  is
+$y = -x$, and  $L_{BC}$ is clearly $y = -\dfrac{1}{3}x +
+\dfrac{4}{3}$.
+ \item  We have \renewcommand{\arraystretch}{1.5}
+$${\everymath{\dis}\begin{array}{lllll}  \dint _{AB} y^2\d{x}+ x\d{y}  & = &  \dint _0 ^1 (x^2 + x)\d{x}            & = &  \dfrac{5}{6}  \\
+\dint _{BC} y^2\d{x}+ x\d{y}  & = &  \dint _1 ^{-2}
+\left(\left(-\dfrac{1}{3}x + \dfrac{4}{3}\right)^2 -\dfrac{1}{3}x \right)\d{x}            & = &  -\dfrac{15}{2}  \\
+\dint _{CA} y^2\d{x}+ x\d{y}  & = &  \dint _{-2} ^0 (x^2 - x)\d{x}            & = &  \dfrac{14}{3}  \\
+\end{array} }$$Adding these integrals we find $$ \doint _\triangle y^2\d{x}+ x\d{y} = -2.$$
+
+ \item   We have
+$${\everymath{\dis}\begin{array}{lll}\dint\limits_{D} (1 - 2y) \d{x}\wedge\d{y} & = & \dint _{-2} ^0 \left(\dint _{-x} ^{-x/3 + 4/3} (1 - 2y)
+\d{y}\right) \d{x}\\ & &\quad + \dint _{0} ^1 \left(\dint _{x} ^{-x/3
++ 4/3}
+(1 - 2y)\d{y}\right) \d{x} \\
+& = & -\dfrac{44}{27} - \dfrac{10}{27} \\
+& = & -2.
+\end{array}}$$
+\end{dingautolist}
+\end{Answer}
+\begin{Answer}{13.15}
+ Observe that
+$$ \d{(x^2 + 2y^3)\wedge\d{y}} = 2x\d{x}\wedge\d{y}.$$Hence by the
+generalised Stokes' Theorem the integral equals $$\dint
+\limits_{\{(x - 2)^2 + y^2 \leq 4\}} 2x\d{x}\wedge\d{y} = \dint
+_{-\pi/2} ^{\pi/2} \dint _0 ^{4\cos\theta} 2\rho^2 \cos\theta\d{\rho}
+\wedge\d\theta = 16\pi .
+$$
+To do it directly, put $x - 2 = 2\cos t, y = 2\sin t, 0 \leq t \leq
+2\pi$. Then the integral becomes
+$$\begin{array}{lll}\dint _0 ^{2\pi} ((2 + 2\cos t)^2 + 16\sin^3t)\d{2\sin t} & = & \dint _0 ^{2\pi} (8\cos t + 16\cos^2 t\\ & & \qquad  + 8\cos^3t + 32\cos t\sin^3t) \d{t}\\ & =  & 16\pi.  \end{array}  $$
+
+\end{Answer}
+\begin{Answer}{13.16}
+ At the
+intersection path
+$$ 0 = x^2 + y^2 + z^2 - 2(x + y) = (2 - y)^2 + y^2 + z^2 - 4 = 2y^2 - 4y + z^2 = 2(y - 1)^2 + z^2 - 2,  $$
+which describes an ellipse on the $yz$-plane. Similarly we get $2(x
+- 1)^2 + z^2 = 2$ on the $xz$-plane.  We have
+$$ \d{\left(y\d{x} + z\d{y} + x\d{z}\right)}  = \d{y}\wedge\d{x} +
+\d{z}\wedge\d{y} + \d{x}\wedge\d{z} = -\d{x}\wedge\d{y}
+-\d{y}\wedge\d{z} - \d{z}\wedge\d{x}.$$ Since $\d{x}\wedge \d{y} =
+0$, by Stokes' Theorem the integral sought is
+$$ -\dint \limits_{2(y - 1)^2 + z^2 \leq 2} \d{y}\d{z}  -\dint \limits_{2(x- 1)^2 + z^2 \leq 2} \d{z}\d{x}
+= -2\pi (\sqrt{2}). $$ (To evaluate the integrals you may resort to
+the fact that  the area of the elliptical region
+$\dfrac{(x-x_0)^2}{a^2} + \dfrac{(y-y_0)^2}{b^2} \leq 1$ is $\pi
+ab)$.
+
+\bigskip
+
+If we were to evaluate this integral directly, we would set $$  y =
+1 + \cos \theta, \ z =  \sqrt{2}\sin \theta , x = 2 - y = 1 -
+\cos\theta .
+$$The integral becomes
+$$ \dint _0 ^{2\pi} (1 + \cos \theta)\d{(1 - \cos \theta)} + \sqrt{2}\sin\theta\d{(1 + \cos\theta)} + (1 - \cos\theta)\d{(\sqrt{2}\sin\theta)} $$
+which in turn $$ = \dint_0 ^{2\pi} \sin\theta + \sin\theta\cos\theta
+- \sqrt{2} + \sqrt{2}\cos\theta \d{\theta} = -2\pi\sqrt{2}.$$
+\end{Answer}
+\begin{Answer}{B.2.18}
+ This is clearly
+$(1\ 2\ 3 \ 4)(6\ 8\ 7) $ of order ${\textrm  lcm} (4, 3) = 12$.
+\end{Answer}
+\begin{Answer}{B.3.26}
+ Multiplying the first column of the given matrix  by $a$,
+its second column by $b$, and its third column by $c$, we obtain
+$$abc\Omega =  \begin{bmatrix} abc & abc & abc \cr a^2 & b^2 & c^2 \cr a^3 & b^3 & c^3 \cr\end{bmatrix}. $$ We may factor out
+$abc$ from the first row of this last matrix thereby obtaining
+$$abc\Omega = abc\det
+\begin{bmatrix} 1 & 1 & 1 \cr a^2 & b^2 & c^2 \cr a^3 & b^3 & c^3
+\cr\end{bmatrix}. $$Upon dividing by $abc$,
+$$\Omega = \det
+\begin{bmatrix} 1 & 1 & 1 \cr a^2 & b^2 & c^2 \cr a^3 & b^3 & c^3
+\cr\end{bmatrix}.
+$$
+\end{Answer}
+\begin{Answer}{B.3.27}
+ Performing $R_1 + R_2 + R_3 \rightarrow R_1$ we have
+$$\begin{array}{l}
+\Omega = \det\begin{bmatrix} a - b - c & 2a & 2a \cr 2b & b - c -
+a & 2b \cr 2c & 2c & c - a - b \cr
+\end{bmatrix}\vspace{2mm}\\ \qquad = \det\begin{bmatrix} a + b + c & a + b + c & a + b + c \cr 2b
+& b - c - a & 2b \cr 2c & 2c & c - a - b \cr
+\end{bmatrix}.\end{array}$$ Factorising $(a + b + c)$ from the first row of
+this last determinant, we have
+$$\Omega =   (a + b + c)\det\begin{bmatrix} 1 & 1 & 1 \cr 2b
+& b - c - a & 2b \cr 2c & 2c & c - a - b \cr
+\end{bmatrix}. $$Performing $C_2 - C_1 \rightarrow C_2$ and $C_3 - C_1 \rightarrow
+C_3$,
+$$\Omega =   (a + b + c)\det\begin{bmatrix} 1 & 0 & 0 \cr 2b
+& -b - c - a & 0 \cr 2c & 0 & -c - a - b \cr
+\end{bmatrix}. $$This last matrix is triangular, hence $$\Omega = (a + b + c)(-b - c - a)(-c -a - b) = (a + b + c)^3,  $$
+as wanted.
+\end{Answer}
+\begin{Answer}{B.3.28}
+ $\det A_1 = \det A = -540$ by multilinearity. $\det A_2 = -\det
+ A_1 = 540$ by alternancy. $\det A_3 = 3\det A_2 = 1620$  by both
+ multilinearity and homogeneity from one column. $\det A_4 = \det A_3
+ = 1620$ by multilinearity, and $\det A_5 = 2\det A_4 = 3240$ by
+ homogeneity from one column.
+ 
+\end{Answer}
+\begin{Answer}{B.3.30}
+ From the given data, $\det B = -2.$ Hence
+ $$\det ABC = (\det A)(\det B)(\det C) = -12,$$
+ $$\det 5AC = 5^3\det AC = (125)(\det A)(\det C) = 750,$$
+ $$(\det A^3B^{-3}C^{-1}) = \frac{(\det A)^3}{(\det B)^3(\det C)} = -\frac{27}{16}.$$
+\end{Answer}
+\begin{Answer}{B.3.31}
+ Pick $\lambda \in \bbR \setminus \{0,
+a_{11}, a_{22}, \ldots , a_{nn}\}$. Put
+$$X = \begin{bmatrix} a_{11} - \lambda & 0 & 0 & \cdots &  0 \cr a_{21}  & a_{22} - \lambda & 0 & \cdots & 0 \cr
+a_{31}  & a_{32}  & a_{33} - \lambda & \cdots &  0 \cr \vdots &
+\vdots & \vdots & \vdots & \vdots \cr a_{n1} & a_{n2} & a_{n3} &
+\cdots & a_{nn} - \lambda
+\end{bmatrix}$$and
+$$Y = \begin{bmatrix}
+\lambda & a_{12} & a_{13} & \vdots & a_{1n} \cr   0 & \lambda &
+a_{23} & \vdots & a_{2n} \cr
+ 0 & 0 &
+\lambda & \vdots & a_{3n} \cr \vdots & \vdots & \vdots & \vdots &
+\vdots \cr
+ 0 & 0 &
+0 & \vdots & \lambda \cr
+
+
+\end{bmatrix}$$ Clearly  $A = X + Y$, $\det X = (a_{11} - \lambda)(a_{22} -
+\lambda)\cdots (a_{nn} - \lambda) \neq 0$, and $\det Y = \lambda^n
+\neq 0$. This completes the proof.
+\end{Answer}
+\begin{Answer}{B.3.32}
+No.
+\end{Answer}
+\begin{Answer}{B.4.8}
+ We have
+\begin{eqnarray*}\det A  & = & 2(-1)^{1 + 2}\det
+\begin{bmatrix} 4 & 6 \cr 7 & 9 \end{bmatrix} + 5(-1)^{2 + 2}\det
+\begin{bmatrix} 1 & 3 \cr 7 & 9 \end{bmatrix} + 8(-1)^{2 + 3}\det
+\begin{bmatrix} 1 & 3 \cr 4 & 6 \end{bmatrix} \\ &  =  & -2(36 - 42) +
+5(9 - 21) - 8(6 - 12) = 0. \end{eqnarray*}
+\end{Answer}
+\begin{Answer}{B.4.9}
+ Simply expand along the first row$$a\det\begin{bmatrix} a & b
+\cr c & a
+\end{bmatrix} - b\det\begin{bmatrix}
+c & b \cr b & a
+\end{bmatrix} + c\det\begin{bmatrix}
+c & a \cr b & c\end{bmatrix} = a(a^2 -bc ) - b(ca - b^2) + c(c^2 -
+ab) = a^3+b^3+c^3-3abc .
+$$
+\end{Answer}
+\begin{Answer}{B.4.10}
+ Since the second column has three $0$'s, it is advantageous
+to expand along it, and thus we are reduced to calculate
+$$-3(-1)^{3 + 2} \det \begin{bmatrix}
+                1 & -1 & 1 \cr
+                2 & 0 & 1 \cr
+                1 & 0 & 1 \cr
+\end{bmatrix}$$
+Expanding this last determinant along the second column, the
+original determinant is thus
+$$-3(-1)^{3 + 2}(-1)(-1)^{1 + 2}\det \begin{bmatrix}
+            2 & 1 \cr
+            1 & 1 \cr
+\end{bmatrix} = -3(-1)(-1)(-1)(1) = 3.$$
+\end{Answer}
+\begin{Answer}{B.4.12}
+ Expanding along the first column,
+$$\begin{array}{lll} 0 & = &  \det\begin{bmatrix} 1 & 1 & 1 & 1 \cr x & a & 0 & 0 \cr
+x & 0 & b & 0 \cr x & 0 & 0 & c\cr \end{bmatrix} \\
+& = & \det\begin{bmatrix}a & 0 & 0 \cr 0 & b & 0 \cr 0 & 0 & c \cr
+\end{bmatrix} - x\det\begin{bmatrix} 1 & 1 & 1 \cr 0 & b & 0 \cr 0
+& 0 & c \cr \end{bmatrix} \\ & & \qquad  + x\det\begin{bmatrix}1 &
+1 & 1 \cr a & 0 & 0 \cr 0 & 0 & c \cr  \end{bmatrix}
+- x\det\begin{bmatrix} 1 & 1 & 1 \cr a & 0 & 0 \cr  0 & b & 0 \cr \end{bmatrix} \\
+& = & xabc - xbc + x\det\begin{bmatrix}1 & 1 & 1 \cr a & 0 & 0 \cr
+0 & 0 & c \cr  \end{bmatrix} - x\det\begin{bmatrix} 1 & 1 & 1 \cr
+a & 0 & 0 \cr  0 & b & 0 \cr \end{bmatrix}.\\ \end{array}$$
+Expanding these  last  two determinants along the third row,
+$$\begin{array}{lll} 0 & = & abc - xbc
++ x\det\begin{bmatrix}1 & 1 & 1 \cr a & 0 & 0 \cr 0 & 0 & c \cr
+\end{bmatrix}
+- x\det\begin{bmatrix} 1 & 1 & 1 \cr a & a & 0 \cr  0 & b & 0 \cr \end{bmatrix}\\
+& = &   abc - xbc + xc\det \begin{bmatrix} 1 & 1 \cr  a & 0 \cr\end{bmatrix}  + xb\det \begin{bmatrix} 1 & 1 \cr  a & 0 \cr\end{bmatrix} \\
+& = & abc - xbc - xca -xab.
+     \end{array}$$It follows that $$abc = x(bc + ab + ca), $$whence$$\frac{1}{x} = \frac{bc + ab + ca}{abc} = \frac{1}{a} +\frac{1}{b} + \frac{1}{c},  $$as wanted.
+
+\end{Answer}
+\begin{Answer}{B.4.14}
+ Expanding along the first row the determinant equals
+$$\begin{array}{lll}-a\det\begin{bmatrix} a & b & 0 \cr
+0 & 0 & b \cr 1 & 1 & 1 \cr \end{bmatrix} + b\det\begin{bmatrix} a
+& 0 & 0 \cr 0 & a & b \cr 1 & 1 & 1 \cr\end{bmatrix}  & = &  ab
+\det\begin{bmatrix} a & b \cr 1 & 1  \cr
+\end{bmatrix} + ab\det\begin{bmatrix} a & b \cr 1 & 1  \cr
+\end{bmatrix}  \\ & =  & 2ab (a - b), \end{array}$$as wanted.
+\end{Answer}
+\begin{Answer}{B.4.15}
+ Expanding along the first row, the determinant equals
+$$ a\det\begin{bmatrix} a & 0 & b \cr 0 & d & 0 \cr c & 0 & d \cr  \end{bmatrix}
++ b \det\begin{bmatrix} 0 & a & b \cr c & 0 & 0 \cr 0 & c & d \cr
+\end{bmatrix}.
+$$Expanding the resulting two determinants along the second row,
+we obtain $$ad\det\begin{bmatrix}a & b \cr c & d\cr \end{bmatrix}
++ b(-c)\det\begin{bmatrix}a & b \cr c & d\cr  \end{bmatrix} =
+ad(ad - bc) - bc(ad - bc) = (ad - bc)^2,
+$$as wanted.
+\end{Answer}
+\begin{Answer}{B.4.16}
+ For $n = 1$ we
+have $\det (1) = 1 = (-1)^{1 + 1}$. For $n = 2$ we have
+$$\det \begin{bmatrix} 1 & 1 \cr 1 & 0 \cr
+\end{bmatrix} = -1 = (-1)^{2 + 1}.
+$$Assume that the result is true for $n -1$. Expanding the
+determinant along the first column
+$$ \begin{array}{lll}\det\begin{bmatrix} 1 & 1 & 1 & \cdots & 1 &
+1 \cr  1& 0 & 0 & \vdots & 0  & 0 \cr  0 & 1 & 0 & \cdots & 0  & 0
+\cr 0 & 0 & 1& \cdots & 0  & 0 \cr \vdots & \vdots & \cdots &
+\vdots & \vdots \cr 0 & 0 & 0 & \cdots & 1 & 0 \cr
+\end{bmatrix} &  = & 1\det\begin{bmatrix}  0 & 0 & \vdots & 0  & 0 \cr   1 & 0 & \cdots & 0  & 0
+\cr  0 & 1& \cdots & 0  & 0 \cr  \vdots & \cdots & \vdots & \vdots
+\cr  0 & 0 & \cdots & 1 & 0 \cr
+\end{bmatrix} \\ & & \qquad - 1 \det\begin{bmatrix}  1 & 1 & \cdots & 1 &
+1 \cr  1& 0 & \cdots & \vdots & 0   \cr  0 & 1 & \cdots & \cdots &
+0 \cr 0 & 0 & \cdots & \cdots & 0   \cr \vdots & \vdots & \cdots &
+\vdots \cr 0 & 0 & \cdots & 1 & 0 \cr
+\end{bmatrix}\\
+& = & 1(0) - (1)(-1)^{n}\\
+& = &  (-1)^{n + 1},\\ \end{array}$$giving the result.
+\end{Answer}
+\begin{Answer}{B.4.17}
+Perform $C_k - C_1 \rightarrow C_k$ for $k \in [2; n]$. Observe that
+these operations do not affect the value of the determinant. Then
+$$\det A = \det\begin{bmatrix} 1 & n - 1 & n - 1 & n - 1 & \cdots & n - 1 \cr n & 2 - n &
+0 & 0 & \vdots & 0 \cr n & 0 & 3 - n & 0 & \cdots & 0 \cr n & 0 &
+0 & 4-n & \cdots & 0 \cr \vdots & \vdots & \vdots & \cdots &
+\vdots \cr n & 0 & 0 & 0 & 0 & 0 \cr
+\end{bmatrix}.
+$$Expand this last determinant along the $n$-th row, obtaining,
+$$\begin{array}{lll}\det A & = &  (-1)^{1 + n}n\det\begin{bmatrix}  n - 1 & n - 1 & n - 1 & \cdots & n - 1 & n - 1 \cr  2 - n &
+0 & 0 & \vdots & 0  & 0 \cr  0 & 3 - n & 0 & \cdots & 0  & 0 \cr 0
+& 0 & 4-n & \cdots & 0  & 0 \cr  \vdots & \vdots & \cdots & \vdots
+& \vdots \cr 0 & 0 & 0 & \cdots & -1 & 0  \cr
+\end{bmatrix} \\
+& = & (-1)^{1 + n}n(n - 1)(2 - n)(3 - n)\\ & & \qquad \cdots
+(-2)(-1) \det\begin{bmatrix}  1 & 1 & 1 & \cdots & 1 & 1 \cr  1& 0
+& 0 & \vdots & 0  & 0 \cr  0 & 1 & 0 & \cdots & 0  & 0 \cr 0 & 0 &
+1& \cdots & 0  & 0 \cr  \vdots & \vdots & \cdots & \vdots & \vdots
+\cr 0 & 0 & 0 & \cdots & 1 & 0  \cr
+\end{bmatrix} \\
+& = & -(n!)\det\begin{bmatrix}  1 & 1 & 1 & \cdots & 1 & 1 \cr  1&
+0 & 0 & \vdots & 0  & 0 \cr  0 & 1 & 0 & \cdots & 0  & 0 \cr 0 & 0
+& 1& \cdots & 0  & 0 \cr  \vdots & \vdots & \cdots & \vdots &
+\vdots \cr 0 & 0 & 0 & \cdots & 1 & 0  \cr
+\end{bmatrix} \\
+& = & -(n!)(-1)^{n} \\
+& = & (-1)^{n + 1}n!,
+\end{array}$$
+upon using the result of problem
+\ref{exa:determinant_bunch_of_ones}.
+\end{Answer}
+\begin{Answer}{B.4.18}
+ Recall
+that $\binom{n}{k} = \binom{n}{n - k}$, $$ \sum _{k = 0} ^n
+\binom{n}{k} = 2^n  $$ and$$ \sum _{k = 0} ^n (-1)^{k}\binom{n}{k}
+= 0, \ \ \ \ {\textrm  if}\ \ n > 0. $$ Assume that $n$ is odd. Observe
+that then there are $n + 1$  (an even number) of columns and that
+on the same row, $\binom{n}{k}$ is on a column of opposite parity
+to that of $\binom{n}{n - k}$. By performing  $C_1 - C_2 + C_3 -
+C_4 + \cdots + C_n - C_{n + 1} \rightarrow C_1$, the first column
+becomes all $0$'s, whence the determinant if $0$ if $n$ is odd.
+\end{Answer}
+\begin{Answer}{B.4.22}
+I will prove that
+$$\det \begin{bmatrix}  (b+c)^2 &  ab & ac \cr
+ab & (a+c)^2 & bc\cr ac & bc & (a+b)^2 \cr
+\end{bmatrix} = 2abc(a+b+c)^3. $$
+Using permissible row and column operations,
+$$\begin{array}{lll}
+\det \begin{bmatrix}  (b+c)^2 &  ab & ac \cr ab & (a+c)^2 & bc\cr ac
+& bc & (a+b)^2 \cr
+\end{bmatrix} & = & \det \begin{bmatrix}  b^2+2bc+c^2 &  ab & ac \cr ab & a^2+2ca+c^2 & bc\cr ac
+& bc & a^2+2ab+b^2 \cr
+\end{bmatrix}\\
+& = \grstep{C_1+C_2+C_3\to C_1} & \det
+\begin{bmatrix} b^2+2bc+c^2+ab+ac & ab & ac \cr ab+a^2+2ca+c^2+bc & a^2+2ca+c^2 & bc\cr
+ac+bc+a^2+2ab+b^2 & bc & a^2+2ab+b^2 \cr
+\end{bmatrix}\\
+& =  & \det
+\begin{bmatrix} (b+c)(a+b+c) & ab & ac \cr (a+c)(a+b+c) & a^2+2ca+c^2 & bc\cr
+(a+b)(a+b+c) & bc & a^2+2ab+b^2 \cr
+\end{bmatrix}\\
+\end{array}$$
+Pulling out a factor, the above equals
+$$
+ (a+b+c)\det
+\begin{bmatrix} b+c & ab & ac \cr a+c & a^2+2ca+c^2 & bc\cr
+a+b & bc & a^2+2ab+b^2 \cr
+\end{bmatrix}
+$$ and performing $R_1+R_2+R_3\to R_1$, this is  $$ (a+b+c)\det
+\begin{bmatrix} 2a+2b+2c & ab+a^2+2ca+c^2+bc & ac+bc+ a^2+2ab+b^2 \cr a+c & a^2+2ca+c^2 & bc\cr
+a+b & bc & a^2+2ab+b^2 \cr
+\end{bmatrix}$$
+Factoring this is
+$$ (a+b+c)\det
+\begin{bmatrix} 2(a+b+c) & (a+c)(a+b+c) & (a+b)(a+b+c) \cr a+c & a^2+2ca+c^2 & bc\cr
+a+b & bc & a^2+2ab+b^2 \cr
+\end{bmatrix},$$which in turn is  $$(a+b+c)^2\det
+\begin{bmatrix} 2 & a+c & a+b \cr a+c & a^2+2ca+c^2 & bc\cr
+a+b & bc & a^2+2ab+b^2 \cr
+\end{bmatrix}$$
+Performing $C_2-(a+c)C_1\to C_2$ and $C_3-(a+b)C_1\to C_3$ we obtain
+ $$(a+b+c)^2\det
+\begin{bmatrix} 2 & -a-c & -a-b \cr a+c & 0 & -a^2-ab-ac\cr
+a+b &-a^2- ab-ac & 0 \cr
+\end{bmatrix}$$
+This last matrix we will expand by the second column, obtaining that
+the original determinant is thus
+$$ (a+b+c)^2\left((a+c)\det\begin{bmatrix}a+c & -a^2-ab-ac \cr  a+b & 0  \end{bmatrix} +(a^2+ab+ac)\det\begin{bmatrix} 2 & -a-b \cr a+c & -a^2-ab-ac \end{bmatrix}\right)  $$
+This simplifies to
+$$\begin{array}{lll}
+(a+b+c)^2\left((a+c)(a+b)(a^2+ab+ac\right.)\\
+\qquad \left.+(a^2+ab+ac)(-a^2-ab-ac+bc)\right) & = &
+a(a+b+c)^3((a+c)(a+b)-a^2-ab-ac+bc)\\ & = &
+2abc(a+b+c)^3,\end{array}
+$$ as claimed.
+
+
+
+
+\end{Answer}
+\begin{Answer}{B.4.23}
+ We have
+
+ \begin{eqnarray*}\det \begin{bmatrix} a & b & c & d \cr d & a & b
+& c \cr c & d & a & b \cr b & c & d & a\cr         \end{bmatrix} &
+\grstep[=]{R_1+R_2+R_3+R_4\to R_1} & \det \begin{bmatrix} a+b+c+d &
+a+b+c+d & a+b+c+d & a+b+c+d \cr d & a & b & c \cr c & d & a & b \cr
+b & c & d & a\cr
+\end{bmatrix}\\
+& = & (a+b+c+d)\det \begin{bmatrix} 1 & 1 & 1 & 1 \cr d & a & b & c
+\cr c & d & a & b \cr b & c & d & a\cr         \end{bmatrix}\\
+& \grstep[=]{C_4-C_3+C_2-C_1\to C_4} & (a+b+c+d)\begin{bmatrix} 1 &
+1 & 1 & 0\cr d & a & b & c-b+a-d \cr c & d & a & b-a+d-c \cr b & c &
+d & a-d+c-b\cr
+\end{bmatrix}\\
+& = &  (a+b+c+d)(a-b+c-d)\begin{bmatrix} 1 & 1 & 1 & 0\cr d & a & b
+& 1\cr c & d & a & -1 \cr b & c & d & 1\cr
+\end{bmatrix}\\
+& \grstep[=]{R_2+R_3\to R_2,\ R_4+R_3\to R_4} &
+(a+b+c+d)(a-b+c-d)\begin{bmatrix} 1 & 1 & 1 & 0\cr d+c & a+d & b+a &
+0\cr c & d & a & -1 \cr b+c & c+d & a+d & 0\cr
+\end{bmatrix}\\
+&= & (a+b+c+d)(a-b+c-d)\begin{bmatrix} 1 & 1 & 1 \cr d+c & a+d & b+a
+\cr  b+c & c+d & a+d \cr
+\end{bmatrix}\\
+& \grstep[=]{C_1-C_3\to C_1, \ C_2-C_3\to C_2} &
+(a+b+c+d)(a-b+c-d)\begin{bmatrix} 0 & 0 & 1 \cr d+c-b-a & d-b & b+a
+\cr b+c-a-d & c-a
+ & a+d \cr
+\end{bmatrix}\\
+& = & (a+b+c+d)(a-b+c-d)\begin{bmatrix}  d+c-b-a & d-b \cr b+c-a-d &
+c-a
+ \cr
+\end{bmatrix}\\
+& = & (a+b+c+d)(a-b+c-d) (d+c-b-a)(c-a)-(d-b)(b+c-a-d)
+\\
+& = & (a+b+c+d)(a-b+c-d)\\
+& & \qquad
+((c-a)(c-a)+(c-a)(d-b)-(d-b)(c-a)-(d-b)(b-d))
+\\
+& = & (a+b+c+d)(a-b+c-d)((a-c)^2+(b-d)^2).
+\end{eqnarray*}
+\begin{rem}
+Since $$ (a-c)^2+(b-d)^2=(a-c+i(b-d))(a-c-i(b-d)), $$ the
+above determinant is then
+$$ (a+b+c+d)(a-b+c-d)(a+ib-c-id)(a-ib-c+id). $$
+Generalisations of this determinant are possible using roots of
+unity.
+\end{rem}
+\end{Answer}

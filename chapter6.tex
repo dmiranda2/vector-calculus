@@ -1,0 +1,1152 @@
+\chapter{Tensors}
+
+
+
+
+
+In this chapter we define a tensor  as a multilinear  map. 
+
+
+\section{Linear Functional }
+\label{sec:DS}
+
+
+
+\begin{df}
+A function $f:\bbR^n\to \bbR$ is a  \negrito{linear functional} if satisfies the 
+$$
+\text{\textbf linearity condition:\quad}
+f(a \vector{u}+ b \vector{v}) = a f(\vector{u}) + b f(\vector{v})\,,
+$$
+or in words:
+``the value on a linear combination  is the the linear combination of the values."
+\end{df}
+
+A linear functional  is also called  \negrito{linear function}, \negrito{1-form}, or \negrito{covector}.
+
+
+
+
+This easily extends to linear combinations with any number of terms; for example 
+$$
+ f(\vector{v}) =f\left(\dsum_{i=1}^N v_i \vector{e}_i\right) = \dsum_{i=1}^N v_i f(\vector{e}_i)
+$$
+where the coefficients $f_i\equiv f(\vector{e}_i) $ are the ``components" of a covector with respect to the basis $\{\vector{e}_i\}$,
+or in our shorthand notation 
+\begin{align*}
+f(\vector{v}) &= f(v_i \vector{e}_i) &&\text{(express in terms of basis)}\\
+&= v_i f(\vector{e}_i) &&\text{(linearity)}\\
+&= v_i f_i \,.&&\text{(definition of components)}
+\end{align*}
+A covector $f$ is entirely determined by its values $f_i$ on the basis vectors, namely its components with respect to that basis. 
+
+Our linearity condition is usually presented separately as a pair of separate conditions on the two operations which define a vector space:
+\begin{itemize}
+  \item sum rule: the value of the function on a sum of vectors is the sum of the values, $f(\vector{u}+\vector{v})=f(\vector{u})+f(\vector{v})$,
+  \item scalar multiple rule: the value of the function on a scalar multiple of a vector is the scalar times the value on the vector, $f(c\vector{u})=cf(\vector{u})$.
+\end{itemize}
+
+ \begin{exa}
+In the usual notation on $\bbR^3$, with Cartesian coordinates $(x^1,x^2,x^3)=(x,y,z)$, linear functions are of the form $f(x,y,z)=ax+by+cz$, 
+ \end{exa}
+
+\begin{exa}
+
+If we fixed a vector $\vector{n}$ we have a function $\vector{n}^*: \bbR^n\to \bbR$ defined by
+\[\vector{n}^*(\vector{v}):=\vector{n}\cdot \vector{v}\]
+ is a linear function.
+ \end{exa}
+ 
+ 
+
+
+
+ 
+ 
+\section{Dual Spaces}
+
+\begin{df}
+We define the  \negrito{dual space} of $\bbR^n$,  denoted as $\left(\bbR^n\right)^*$, as the set  of  all real-valued linear functions on $\bbR^n$;
+
+\[\left(\bbR^n\right)^*=\{f: \,f:\bbR^n\to \bbR \text{ is a linear function }\}\]
+\end{df}
+
+
+
+
+The dual space $\left(\bbR^n\right)^*$ is itself an $n$-dimensional vector space, with linear combinations of covectors defined in the usual way that one can takes linear combinations of any functions, i.e., in terms of values
+$$
+\text{\textbf covector addition:}\quad
+(af+bg)(\vector{v}) \equiv a f(\vector{v})+ b g(\vector{v})\,,
+\qquad 
+f, g\ \textrm{covectors},\ v\ \textrm{a\ vector} \,.
+$$
+
+\begin{thm}
+Suppose that vectors in $\bbR^n$ represented as column vectors
+
+\[\vector{x} = \begin{bmatrix}x_1\\ \vdots\\ x_n\end{bmatrix}.\]
+For each row vector 
+\[[a]= [a^1 \dots a^n ]\] there is a linear functional $f$ defined by
+\[f(\vector{x}) = [a_1 \dots a_n] \begin{bmatrix}x_1\\ \vdots\\ x_n\end{bmatrix}.\]
+\[f(\vector{x}) = a_1x_1 + \cdots + a_n x_n,\]
+and each linear functional   in $\bbR^n$ can be expressed in this form
+% 
+% \[f(\vector{x}) = [a_1 \dots a_n] \begin{bmatrix}x_1\\ \vdots\\ x_n\end{bmatrix}.\]
+\end{thm}
+
+
+\begin{remark}
+As consequence of the previous theorem we can see vectors as column and covectors as row matrix. And the action of covectors in vectors as  the matrix product of the row vector and the column vector.
+\begin{align}
+\bbR^n &=\left\{ \begin{bmatrix}x_1\\ \vdots\\ x_n\end{bmatrix}, x_i\in \bbR\right\}\\
+ \left(\bbR^n\right)^*&=\left\{ [a_1 \dots a_n], a_i\in \bbR \right\}
+\end{align}
+
+
+\end{remark}
+
+
+
+
+
+\begin{pro}\label{exercise:linearfunctions} \negrito{closure of the dual space}
+
+Show that  the dual  space is closed under this linear combination operation. In other words, show that if $f,g$ are linear functions, satisfying our linearity condition, then $a\, f + b\, g$ also satisfies the linearity condition for linear functions:
+$$
+ (a\,f + b\,g)(c_1\vector{u}+c_2\vector{v}) = c_1 (a\,f + b\,g)(\vector{u}) + c_2 (a\,f + b\,g)(\vector{v})\,.
+$$
+\end{pro}
+
+
+
+
+
+\subsection{Duas Basis}
+
+Let us produce a basis for $\left(\bbR^n\right)^*$, called the dual basis $\{\vector{e}^i\}$ or ``the basis dual to $\{\vector{e}_i\}$," by defining $n$ covectors which satisfy the following ``duality relations"
+$$
+ \vector{e}^i(\vector{e}_j) =\delta^i{}_j\equiv
+ \begin{cases} 1& \text{if $i=j$\,,}\\
+	 0& \text{if  $i\not =j$\,,}
+\end{cases} 
+$$
+where the symbol $\delta^i{}_j$ is called the ``Kronecker delta,"
+nothing more than a symbol for the components of the $n\times n$ identity matrix $I=(\delta^i{}_j)$. We then extend them to any other vector by linearity.
+Then by linearity
+\begin{align*}
+   \vector{e}^i(\vector{v}) &= \vector{e}^i(v_j \vector{e}_j)
+&& \text{(expand in basis)}
+\\
+               &= v_j\vector{e}^i(\vector{e}_j)
+&& \text{(linearity)}
+\\
+               &= v_j\delta^i{}_j
+&& \text{(duality)}
+\\
+               &=v_i
+&& \text{(Kronecker delta definition)}
+\end{align*}
+where the last equality follows since for each $i$, only the term with $j=i$  in the sum over $j$ contributes to the sum.
+Alternatively matrix multiplication of a vector on the left by the identity matrix $\delta^i{}_j v_j = v_i$ does not change the vector.
+Thus the calculation shows that the $i$-th dual basis covector $\vector{e}^i$ picks out the $i$-th component $v_i$ of a vector $v$. 
+
+
+\begin{theorem}
+ The $n$ covectors $\{\vector{e}^i\}$ form a basis of $\left(\bbR^n\right)^*$.
+\end{theorem}
+
+
+\begin{proof}
+\begin{enumerate}
+\item
+\textbf{ spanning condition:}\\
+Using linearity and the definition $f_i=f(\vector{e}_i)$, this calculation shows that every linear function $f$ can be written as a linear combination of these covectors
+\begin{align*}
+f(\vector{v})&= f(v_i \vector{e}_i) &&\text{(expand in basis)}
+\\
+&=v_i f(\vector{e}_i) &&\text{(linearity)}
+\\
+&= v_i f_i &&\text{(definition of components)}
+\\
+&= v_i\delta^j{}_i f_j &&\text{(Kronecker delta definition)}
+\\
+&=v_i\vector{e}^j(\vector{e}_i) f_j&&\text{(dual basis definition)}
+\\
+&=(f_j\vector{e}^j)(v^i \vector{e}_i)&&\text{(linearity)}
+\\
+&=(f_j\vector{e}^j)(\vector{v}) \,. &&\text{(expansion in basis, in reverse)}
+\end{align*}
+Thus $f$ and $f_i\vector{e}^i$ have the same value on every $\vector{v} \in \bbR^n$ so they are the same function:
+$f=f_i\vector{e}^i$, where $f_i = f(\vector{e}_i)$ are the
+``components" of $f$ with respect to the basis $\{\vector{e}^i\}$ of $\left(\bbR^n\right)^*$ also said to be the ``components" of $f$ with respect to the basis $\{\vector{e}_i\}$ of $\bbR^n$ already introduced above. The index $i$ on $f_i$ labels the components of $f$, while the index $i$ on $\vector{e}^i$ labels the dual basis covectors.
+\item
+\textbf{ linear independence}: \\
+Suppose $f_i\vector{e}^i=0$ is the zero covector.
+Then evaluating each side of this equation on $\vector{e}_j$ and using linearity
+\begin{align*}
+0 &= 0(\vector{e}_j) &&\text{(zero scalar = value of zero linear function)}
+\\
+&= (f_i\vector{e}^i)(\vector{e}_j) &&\text{(expand zero vector in basis)}
+\\
+&= f_i\vector{e}^i(\vector{e}_j) &&\text{(definition of linear combination function value)}
+\\
+&= f_i\delta^i{}_j &&\text{(duality)}
+\\
+&= f_j &&\text{(Knonecker delta definition)}
+\end{align*}
+forces all the coefficients of $\vector{e}^i$ to vanish, i.e., no nontrivial linear combination of these covectors exists which equals the zero covector so these covectors are linearly independent. Thus $\left(\bbR^n\right)^*$ is also an $n$-dimensional vector space. 
+\end{enumerate}
+
+\end{proof}
+
+
+% 
+% 
+% \section{Vectors and Covectors as Functions}
+
+\section{Bilinear Forms}
+
+A bilinear form is a function that is  linear in each argument
+separately:
+
+\begin{enumerate}
+\item $B(\vector{u} + \vector{v}, \vector{w}) = B(\vector{u},
+\vector{w}) + B(\vector{v}, \vector{w}) \quad \text{ and }
+B(\lambda \vector{u}, \vector{v}) = \lambda B(\vector{u},
+\vector{v})$
+
+\item  $B(\vector{u}, \vector{v} + \vector{w}) = B(\vector{u},
+\vector{v}) + B(\vector{u}, \vector{w})  \quad \text{ and }
+B(\vector{u}, \lambda\vector{v}) = \lambda B(\vector{u},
+\vector{v})$
+\end{enumerate}
+
+
+Let $f(\vector{v},\vector{w})$ be a bilinear form  and let $\bold \vector{e}_1,\,\dots,\,\bold e_n$ be a basis
+in this space. The numbers $f_{ij}$ determined by formula
+\begin{equation}
+\hskip -2em
+f_{ij}=f( \vector{e}_i, \vector{e}_j)
+\label{1.7}\end{equation}
+are called the \negrito{coordinates} or the \negrito{components} of the form $f$
+in the basis $\bold \vector{e}_1,\,\dots,\,\bold e_n$. The numbers \ref{1.7} 
+are written in form of a matrix 
+\begin{equation}
+F=\begin{bmatrix}
+ f_{11} & \hdots & f_{1n}\\
+\vspace{1.5ex}
+\vdots & \ddots & \vdots\\
+\vspace{1.5ex}
+f_{n1} & \hdots & f_{nn}
+\end{bmatrix},
+\label{1.8}
+\end{equation}
+which is called the matrix of the bilinear form $f$ in the basis $\bold \vector{e}_1,
+\,\dots,\,\bold e_n$. For the element $f_{ij}$ in the matrix \ref{1.8} the first index $i$ specifies the row number, the second index $j$ specifies
+the column number. The matrix of a symmetric bilinear form $g$ is also
+symmetric: $g_{ij}=g_{ji}$. Further, saying the matrix of a quadratic
+form $g(\bold \vector{v})$, we shall assume the matrix of an associated symmetric bilinear form $g(\vector{v},\vector{w})$.\par
+     Let $v^1,\,\dots,\,v^n$ and $w^1,\,\dots,\,w^n$ be coordinates of
+two vectors $\vector{v}$ and $\vector{w}$ in the basis $\bold \vector{e}_1,\,\dots,\,
+\bold e_n$. Then the values $f(\vector{v},\vector{w})$ and $g(\bold \vector{v})$ of a
+bilinear form and of a quadratic form respectively are calculated by the
+following formulas:
+
+\begin{alignat}{2}
+&\hskip -2em
+f(\vector{v},\vector{w})=\dsum^n_{i=1}\dsum^n_{j=1} f_{ij}\,v^i\,w^j,
+&&g(\vector{v})=\dsum^n_{i=1}\dsum^n_{j=1} g_{ij}\,v^i\,v^j.
+\label{1.9}
+\end{alignat}
+
+In the case when $g_{ij}$ is a diagonal matrix, the formula for $g(\bold \vector{v})$
+contains only the squares of coordinates of a vector $\vector{v}$:
+\begin{equation}
+\hskip -2em
+g(\bold \vector{v})=g_{11}\,(v^1)^2+\dots+g_{nn}\,(v^n)^2.
+\label{1.10}
+\end{equation}
+This supports the term quadratic form.
+Bringing a quadratic form to the form \ref{1.10} by means of choosing
+proper basis $\bold \vector{e}_1,\,\dots,\,\bold e_n$ in a linear space $V$ is one
+of the problems which are solved in the theory of quadratic form.\par
+
+\section{Tensor } \index{tensor}
+
+
+
+
+Let $V=\bbR^n$ and let $V^*={\bbR^n}^*$ denote its dual space.  We let 
+\[V^k = \underbrace{V \times \cdots \times V}_{\text{ k times }}.\]
+
+\begin{definition}
+  A $k$-\negrito{multilinear map}  on $V$ is a function $\tsor{T}: V^k \to \bbR$ which is linear in each  variable.  
+  \[ \tsor{T}(\vector{v}_1, \ldots ,\lambda \vector{v}+\vector{w},\vector{v}_{i+1}, \ldots ,\vector{v}_k)=\lambda \tsor{T}(\vector{v}_1, \ldots ,\vector{v},\vector{v}_{i+1}, \ldots ,\vector{v}_k)+\tsor{T}(\vector{v}_1, \ldots ,\vector{w},\vector{v}_{i+1}, \ldots ,\vector{v}_k)\]
+\end{definition}
+
+ In other words, given $(k-1)$ vectors
+  $v_1,v_2, \ldots ,v_{i-1},v_{i+1}, \ldots ,v_k$, the map $\tsor{T}_i: V \to \bbR$ defined by $\tsor{T}_i(\vector{v}) = \tsor{T}(\vector{v}_1,\vector{v}_2, \ldots ,\vector{v},\vector{v}_{i+1}, \ldots ,\vector{v}_k)$ is linear.
+  
+\begin{df} \mbox{}
+ 
+
+\begin{itemize} 
+\item A  \negrito{tensor of type $(r,s)$} on $V$ is a multilinear map $\tsor{T}\colon V^r \times (V^*)^s \to \mathbb{R}$.
+\item  A  \negrito{covariant} $k$-tensor on $V$ is a multilinear map $\tsor{T}\colon V^k \to \mathbb{R}$
+\item  A  \negrito{contravariant} $k$-tensor on $V$ is a multilinear map $\tsor{T}\colon (V^*)^k\to \mathbb{R}$.
+
+\end{itemize}
+\end{df}
+
+
+
+
+In other words, a covariant $k$-tensor is a tensor of type $(k,0)$ and a contravariant $k$-tensor is a tensor of type $(0,k)$.
+
+
+\begin{exa}
+  \mbox{}
+\begin{itemize}
+\item Vectors can be seem as functions $V^*\to \bbR$, so vectors are contravariant tensor.
+\item Linear functionals are covariant tensors.
+\item Inner product are functions from $V\times V \to \bbR$ so covariant tensor.
+\item
+  The determinant of a matrix is an
+ multilinear function of the
+  columns (or rows) of a square matrix, so is a covariant tensor.
+\end{itemize}
+
+\end{exa}
+
+
+
+The above terminology seems backwards, Michael Spivak explains:
+\begin{quotation}
+''Nowadays such situations are always distinguished by calling the things which go in the same direction “covariant” and the things which go in the opposite direction “contravariant.” Classical terminology used these same words, and it just happens to have reversed this... And no one had the gall or authority to reverse terminology sanctified by years of usage. So it’s very easy to remember which kind of tensor is covariant, and which is contravariant — it’s just the opposite of what it logically ought to be.''
+\end{quotation}
+
+
+\begin{df}
+We  denote the  \negrito{space of tensors} of type $(r,s)$ by $\tsor{T}^r_s(V)$. 
+We will write also:
+\[ \tsor{T}^r_s(V) =  \underbrace{ V^*\otimes \dots \otimes V^*}_{r } \otimes  \underbrace{ V\otimes \dots \otimes V}_{s} = V^{* \otimes r}\otimes V^{\otimes s}. \]
+ \end{df}
+ 
+ The  operation $\otimes$ is denoted tensor product and will be explained better latter.
+
+
+
+
+
+So, in particular,
+
+\begin{align*}
+\tsor{T}^k(V) := \tsor{T}^k_0(V) & = \{\text{covariant $k$-tensors}\} \\
+\tsor{T}_k(V) := \tsor{T}^0_k(V) & = \{\text{contravariant $k$-tensors}\}.
+\end{align*}
+
+Two important special cases are:
+\begin{align*}
+\tsor{T}^1(V) & = \{\text{covariant $1$-tensors}\} = V^* \\
+\tsor{T}_1(V) & = \{\text{contravariant $1$-tensors}\} = V^{**} \cong V.
+\end{align*}
+
+This last line means that we can regard vectors $\vector{v} \in V$ as contravariant 1-tensors.  That is, every vector $\vector{v} \in V$ can be regarded as a linear functional $V^* \to \mathbb{R}$ via
+$$v(\omega) := \omega(\vector{v}),$$
+where $\omega \in V^*$.
+
+The \negrito{rank of an $(r,s)$-tensor} is defined to be $r+s$.
+
+In particular, vectors (contravariant 1-tensors) and dual vectors (covariant 1-tensors) have rank 1.
+
+
+
+\begin{df}
+If $\tsor{S} \in \tsor{T}^{r_1}_{s_1}(V)$ is an $(r_1,s_1)$-tensor, and $\tsor{T} \in \tsor{T}^{r_2}_{s_2}(V)$ is an $(r_2,s_2)$-tensor, we can define their \negrito{tensor product} $\tsor{S} \otimes \tsor{T} \in \tsor{T}^{r_1 + r_2}_{s_1 + s_2}(V)$ by
+
+$$(\tsor{S}\otimes \tsor{T})(v_1, \ldots, v_{r_1 + r_2}, \omega_1, \ldots, \omega_{s_1 + s_2}) = 
+\tsor{S}(v_1, \ldots, v_{r_1}, \omega_1, \ldots,\omega_{s_1})\cdot \tsor{T}(v_{r_1 + 1}, \ldots, v_{r_1 + r_2}, \omega_{s_1 + 1}, \ldots, \omega_{s_1 + s_2}).$$
+
+ 
+\end{df}
+
+
+
+
+
+
+
+
+
+
+\begin{exa}
+Let $u, \vector{v} \in V$.  Again, since $V \cong \tsor{T}_1(V)$, we can regard $u, \vector{v} \in \tsor{T}_1(V)$ as $(0,1)$-tensors.  Their tensor product $\vector{u}\otimes \vector{v} \in \tsor{T}_2(V)$ is a $(0,2)$-tensor defined by
+$$(\vector{u}\otimes \vector{v})(\omega, \eta) = u(\omega)\cdot v(\eta)$$
+ 
+\end{exa}
+ 
+
+% --------
+% 
+% 
+% Admittedly, sometimes the notation can be constraining.  That is, we're used to considering vectors as _column vectors_, and dual vectors as _row vectors_.  So, when we write something like $$u^\top A v,$$
+% our notation suggests that $u^\top \in \tsor{T}^1(V)$ is a dual vector and that $v \in T_1(V)$ is a vector.  This means that the bilinear map $V \times V^* \to \mathbb{R}$ given by
+% $$(v, u^\top) \mapsto u^\top A v$$
+% is a type $(1,1)$-tensor.
+
+\begin{exa} Let $V = \mathbb{R}^3$.  Write $\vector{u}= (1,2,3) \in V$ in the standard basis, and $\eta = (4,5,6)^\top \in V^*$ in the dual basis.  For the inputs, let's also write $\omega = (x,y,z)^\top \in V^*$ and $\vector{v} = (p,q,r) \in V$.  Then
+\begin{align*}
+(\vector{u}\otimes \eta)(\omega, \vector{v}) & = u(\omega) \cdot \eta(\vector{v}) \\
+& = \begin{bmatrix}
+ 1 \\
+ 2 \\
+ 3
+\end{bmatrix} \rowpoint{x,y,z}
+\cdot
+\rowpoint{4,5,6} \begin{bmatrix}
+ p \\
+ q \\
+ r
+\end{bmatrix} \\
+& = (x + 2y + 3z)(4p + 5q + 6r) \\
+& = 4px + 5 qx + 6rx \\
+& \ \ \ \ \ 8py + 10qy + 12py \\
+& \ \ \ \ \ 12pz + 15qz + 18rz \\
+& = \rowpoint{x,y,z}\begin{bmatrix}
+ 4 & 5 & 6 \\
+ 8 & 10 & 12 \\
+ 12 & 15 & 18
+\end{bmatrix}\begin{bmatrix}
+ p \\
+ q \\
+ r
+\end{bmatrix} \\
+& = \omega \begin{bmatrix}
+ 4 & 5 & 6 \\
+ 8 & 10 & 12 \\
+ 12 & 15 & 18
+\end{bmatrix} v.
+\end{align*}
+\end{exa}
+
+
+\begin{example}
+If $\tsor{S}$ has components $\alpha_i{}^j{}_k$, and $\tsor{T}$ has components
+$\beta^{rs}$ then $\tsor{S} \otimes \tsor{T}$ has components
+$\alpha_i{}^j{}_k\beta^{rs}$, because
+\[
+S \otimes \tsor{T}(u_i,u^j,u_k,u^r,u^s) = \tsor{S}(u_i,u^j,u_k)\tsor{T}(u^r,u^s).
+\]
+\end{example}
+
+Tensors satisfy algebraic laws such as:
+\begin{enumerate}[(i)]
+\item
+$\tsor{\tsor{R}} \otimes (\tsor{S}+\tsor{T}) = \tsor{R} \otimes \tsor{S} + \tsor{R} \otimes \tsor{T}$,
+\item
+$(\lambda \tsor{R}) \otimes \tsor{S} = \lambda(\tsor{R} \otimes \tsor{S}) = \tsor{R} \otimes (\lambda \tsor{S})$,
+\item
+$(\tsor{R} \otimes \tsor{S}) \otimes \tsor{T} = \tsor{R} \otimes (\tsor{S} \otimes \tsor{T})$.
+\end{enumerate}
+But
+\[
+\tsor{S}) \otimes \tsor{T} \not= \tsor{T} \otimes \tsor{S}) 
+\]
+in general. To prove those we look at components wrt a basis, and note
+that
+\[
+\alpha^i{}_{jk}(\beta^r{}_s +\gamma^r{}_s) =
+\alpha^i{}_{jk}\beta^r{}_s + \alpha^i{}_{jk}\gamma^r{}_s,
+\]
+for example, but
+\[
+\alpha^i\beta^j \not= \beta^j\alpha^i 
+\]
+in general.
+
+
+
+Some authors take the definition of an $(r,s)$-tensor to mean a multilinear map $V^s \times (V^*)^r \to \mathbb{R}$ (note that the $r$ and $s$ are reversed).  
+
+
+
+
+\subsection{Basis of Tensor}
+
+\begin{thm}
+Let $\tsor{T}^r_s(V)$ be the space of tensors of type $(r,s)$. Let 
+\(\{\vector{e}_{1},\ldots,\vector{e}_{n}\}\) be a basis for $V$, and 
+\(\{\vector{e}^{1},\ldots,\vector{e}^{n}\}\) be the dual basis for $V^*$
+
+Then 
+
+\[\{\vector{e}^{j_1}\otimes \ldots, \otimes \vector{e}^{j_r} \otimes \vector{e}_{j_{r+1}} \otimes \ldots \otimes  \vector{e}_{j_n} \quad 1\leq j_i\leq n \}\]
+
+is a base for $\tsor{T}^r_s(V)$.
+\end{thm}
+
+So any tensor $\tsor{T} \in \tsor{T}^r_s(V)$ can be written as combination of this basis.
+Let  $\tsor{T}\in \tsor{T}^r_s(V)$
+be   a $(r,s)$ tensor  and let 
+\(\{\vector{e}_{1},\ldots,\vector{e}_{n}\}\) be a basis for $V$, and 
+\(\{\vector{e}^{1},\ldots,\vector{e}^{n}\}\) be the dual basis for $V^*$
+then we can define a collection of scalars
+\(\tsor{A}{j_1\cdots j_n}^{r+s}\) by
+\[\tsor{T}(\vector{e}_{j_1},\ldots,\vector{e}_{j_r}, \vector{e}^{j_{r+1}}\ldots \vector{e}^{j_n}) = \tsor{A}{j_1\cdots j_r} ^{j_{r+1}\cdots j_n}\]
+
+Then the scalars
+\(\tsor{A}{j_1\cdots j_r} ^{j_{r+1}\cdots j_n}\mid  1\leq j_i\leq n \}\)
+completely determine the multilinear function \(\tsor{T}\!\)
+
+
+
+\begin{theorem} \label{tensor-coordinate}
+ Given $\tsor{T} \in \tsor{T}^r_s(V)$  a $(r,s)$ tensor. Then we can define a collection of scalars
+\(\tsor{A}{j_1\cdots j_n}^{r+s}\) by
+\[ \tsor{A}{j_1\cdots j_r} ^{j_{r+1}\cdots j_n}=\tsor{T}(\vector{e}_{j_1},\ldots,\vector{e}_{j_r}, \vector{e}^{j_{r+1}}\ldots \vector{e}^{j_n})\]
+The tensor $\tsor{T}$ can be expressed as:
+\[\tsor{T}=\dsum_{j_1=1}^{n} \cdots \dsum_{j_n=1}^{n}  \tsor{A}{j_1\cdots j_r} ^{j_{r+1}\cdots j_n} \vector{e}^{j_1}\otimes \vector{e}^{j_r} \otimes \vector{e}_{j_{r+1}} \cdots \otimes \vector{e}_{j_{r+s}}
+\]
+\end{theorem}
+
+
+As consequence of the previous theorem we have the following expression for the value of a tensor:
+
+
+\begin{theorem} \label{tensor-coordinate2}
+
+Given $\tsor{T}\ in \tsor{T}^r_s(V)$
+be   a $(r,s)$ tensor. And 
+\[\vector{v}_i = \dsum_{j_i=1}^{n} v_{ij_i} \vector{e}_{j_i}\!\]
+for \(1 <i <r\!\), and 
+\[\vector{v}^i = \dsum_{j_i=1}^{n} v^{ij_i} \vector{e}^{j_i}\!\]
+for \(r+1 <i <r+s\!\),  then
+\[\tsor{T}(\vector{v}_1,\ldots,\vector{v}^n) = \dsum_{j_1=1}^{n} \cdots \dsum_{j_n=1}^{n}  \tsor{A}{j_1\cdots j_r} ^{j_{r+1}\cdots j_n} v_{1j_1}\cdots v^{nj_n} \]
+ 
+\end{theorem}
+
+\begin{exa}
+
+Let's take a trilinear function
+
+\[f\colon \bbR^2\times \bbR^2\times \bbR^2\to \bbR.\] 
+
+A basis for $\bbR^2$ is
+\(\{\vector{e}_{1}, \vector{e}_{2}\} = \{(1,0), (0,1)\}.\)
+Let
+
+\[f(\vector{e}_{i},\vector{e}_{j},\vector{e}_{k}) = \tsor{A}{ijk},\]
+where \(i,j,k \in \{1,2\}\). In other words, the constant \(\tsor{A}{i j k}\)
+is a function value at one of the eight possible triples of basis
+vectors (since there are two choices for each of the three \(V_i\)),
+namely:
+
+\[\{\vector{e}_1, \vector{e}_1, \vector{e}_1\}, 
+\{\vector{e}_1, \vector{e}_1, \vector{e}_2\}, 
+\{\vector{e}_1, \vector{e}_2, \vector{e}_1\},
+\{\vector{e}_1, \vector{e}_2, \vector{e}_2\},
+\{\vector{e}_2, \vector{e}_1, \vector{e}_1\}, 
+\{\vector{e}_2, \vector{e}_1, \vector{e}_2\}, 
+\{\vector{e}_2, \vector{e}_2, \vector{e}_1\},
+\{\vector{e}_2, \vector{e}_2, \vector{e}_2\}.\]
+
+Each vector \(\vector{v}_i \in V_i = \bbR^2\) can be expressed as a linear
+combination of the basis vectors
+
+\[\vector{v}_i = \dsum_{j=1}^{2} v_{ij} \vector{e}_{ij} = v_{i1} \times \vector{e}_1 + v_{i2} \times \vector{e}_2 = v_{i1} \times (1, 0) + v_{i2} \times (0, 1).\]
+
+The function value at an arbitrary collection of three vectors
+\(\vector{v}_i \in \bbR^2\) can be expressed as
+
+\[f(\vector{v}_1,\vector{v}_2, \vector{v}_3) = \dsum_{i=1}^{2} \dsum_{j=1}^{2} \dsum_{k=1}^{2} \tsor{A}{i j k} v_{1i} v_{2j} v_{3k}.\]
+Or, in expanded form as
+
+\begin{align}
+f((a,b),(c,d)&, (e,f)) = ace \times f(\vector{e}_1, \vector{e}_1, \vector{e}_1) + acf \times f(\vector{e}_1, \vector{e}_1, \vector{e}_2) \\
+&+ ade \times f(\vector{e}_1, \vector{e}_2, \vector{e}_1) +
+adf \times f(\vector{e}_1, \vector{e}_2, \vector{e}_2) +
+bce \times f(\vector{e}_2, \vector{e}_1, \vector{e}_1) +
+bcf \times f(\vector{e}_2, \vector{e}_1, \vector{e}_2) \\ 
+&+ bde \times f(\vector{e}_2, \vector{e}_2, \vector{e}_1) +
+bdf \times f(\vector{e}_2, \vector{e}_2, \vector{e}_2).
+\end{align}
+\end{exa}
+
+
+
+\subsection{Contraction}
+
+
+The simplest case of contraction is the  pairing of $V$ with
+its dual vector space $V^*$. 
+
+\begin{align}
+ C &:  V^* \otimes V \rightarrow \bbR \\
+C(f \otimes \vector{v})&= f(\vector{v})
+\end{align}
+
+where $f$ is in $V^*$ and $v$ is in
+$V$. 
+
+
+The above operation can be generalized to  a tensor of type $(r,s)$ (with $r>1,s>1$)
+
+\begin{align}
+C_{ks}&: \tsor{T}^r_s(V)\to \tsor{T}^{r-1}_{s-1}(V) \\
+C_{ks}(v_1,\dots, v_k, \dots v_r, &
+\end{align}
+
+
+
+
+
+
+
+
+\section{Change of Coordinates}
+
+\subsection{ Vectors and Covectors}
+
+
+
+Suppose that $V$ is a vector space and $E=\{v_1,\cdots,v_n\}$ and $F = \{w_1,\cdots,w_n\}$ are two ordered basis for $V$. $E$ and $F$ give rise to the dual basis $E^*=\{v^1,\cdots,v^n\}$ and $F^*=\{w^1,\cdots,w^n\}$ for $V^*$ respectively. 
+
+If $[T]_{F}^{E}=[\lambda_{i}^{j}]$ is the matrix representation of coordinate transformation from $E$ to $F$, i.e. 
+
+$$\begin{bmatrix} w_1 \\ \vdots \\ w_n \end{bmatrix}= \begin{bmatrix} \lambda_1^1 & \lambda_1^2 & \dots &\lambda_1^n \\ \vdots & \vdots & \ddots & \vdots \\ \lambda_n^1 & \lambda_n^2 & \cdots & \lambda_n^n\end{bmatrix} \begin{bmatrix} v_1 \\ \vdots \\ v_n \end{bmatrix}$$
+
+What is the matrix of coordinate transformation from $E^*$ to $F^*$?
+
+We can write $w^j \in F^*$ as a linear combination of basis elements in $E^*$:
+
+
+$$w^j=\mu_{1}^{j}v^1+\cdots+\mu_n^{j}v^n$$
+
+We get a matrix representation $[S]_{F^*}^{E^*}=[\mu_{i}^{j}]$ as the following:
+
+
+$$\begin{bmatrix} w^1 & \cdots & w^n \end{bmatrix}= \begin{bmatrix} v^1 & \cdots & v^n \end{bmatrix}\begin{bmatrix} \mu_1^1 & \mu_1^2 & \dots &\mu_1^n \\ \vdots & \vdots & \ddots & \vdots \\ \mu_n^1 & \mu_n^2 & \cdots & \mu_n^n\end{bmatrix} $$
+
+We know that $w_i = \lambda_{i}^1v_1+\cdots+\lambda_{i}^nv_n$.
+Evaluating this functional at $w_i \in V$ we get:
+
+$$w^j(w_i)=\mu_{1}^{j}v^1(w_i)+\cdots+\mu_n^{j}v^n(w_i)=\delta_{i}^j$$
+$$w^j(w_i)=\mu_{1}^{j}v^1(\lambda_{i}^1v_1+\cdots+\lambda_{i}^nv_n)+\cdots+\mu_n^{j}v^n(\lambda_{i}^1v_1+\cdots+\lambda_{i}^nv_n)=\delta_{i}^j$$
+$$w^j(w_i)=\mu_{1}^{j}\lambda_{i}^1+\cdots+\mu_n^{j}\lambda_{i}^n=\dsum_{k=1}^n\mu_{k}^j \lambda_{i}^k=\delta_{i}^j$$
+
+But $\dsum_{k=1}^n\mu_{k}^j \lambda_{i}^k$ is the $(i,j)$ entry of the matrix product $\tsor{T}S$. Therefore $\tsor{T}S=I_n$ and $\tsor{S}=\tsor{T}^{-1}$.
+
+If we want to write down the transformation from $E^*$ to $F^*$ as column vectors instead of row vector and name the new matrix that represents this transformation as $U$, we observe that $U=S^{t}$ and therefore $U=(\tsor{T}^{-1})^t$.
+
+Therefore if $\tsor{T}$ represents the transformation from $E$ to $F$ by the equation $\mathbf{w}=T\mathbf{v}$, then $\mathbf{w^*}=U\mathbf{v^*}$.
+
+
+\subsection{Bilinear Forms}
+
+     Let $\bold \vector{e}_1,\,\dots,\,\bold e_n$ and $\tilde{\bold \vector{e}_1},\,\dots,
+\tilde{\bold e_n}$ be two basis in a linear vector space $V$. Let's denote
+by $\tsor{S}$ the transition matrix for passing from the first basis to the second
+one. Denote $\tsor{T}=S^{-1}$. From \ref{1.7} we easily derive the formula relating the components of a bilinear form $\tsor{f}(\vector{v},\vector{w})$ these two
+basis. For this purpose it is sufficient to substitute the expression for a change of basis into
+the formula \ref{1.7} and use the bilinearity of the form $\tsor{f}(\bold
+v,\vector{w})$:
+$$
+\tsor{f}_{ij}=\tsor{f}(\bold \vector{e}_i,\bold \vector{e}_j)=\dsum^n_{k=1}\dsum^n_{q=1}\tsor{T}^k_i\,
+\tsor{T}^q_j\,\tsor{f}(\tilde{\bold \vector{e}_k},\tilde{\bold e_q})=\dsum^n_{k=1}\dsum^n_{q=1}
+\tsor{T}^k_i\,\tsor{T}^q_j\,\tilde{ f_{kq}}.
+$$
+The reverse formula expressing $\tilde f_{kq}$ through $f_{ij}$ is derived
+similarly:
+
+\begin{alignat}{2}
+&\hskip -2em
+f_{ij}=\dsum^n_{k=1}\dsum^n_{q=1}\tsor{T}^k_i\,\tsor{T}^q_j\,\tilde f_{kq},
+&&\tilde f_{kq}=\dsum^n_{i=1}\dsum^n_{j=1}S^i_k\,S^j_q\,f_{ij}.
+\label{1.11}
+\end{alignat}
+
+In matrix form these relationships are written as follows:
+
+\begin{alignat}{2}
+&\hskip -2em
+F=\tsor{T}^{T}\,\tilde F\,T,
+&&\tilde F=S^{T}\,F\,S.
+\label{1.12}
+\end{alignat}
+
+Here $\tsor{S}^{T}$ and $\tsor{T}^{T}$ are two matrices obtained from 
+$\tsor{S}$ and $\tsor{T}$ by transposition.\par
+
+
+
+
+\section{Symmetry properties of tensors}
+
+    Symmetry properties involve the behavior of a tensor under the interchange of two or more arguments. Of course to even consider the value of a tensor after the permutation of some of its arguments, the arguments must be  of the same type, i.e., covectors have to go in covector arguments and vectors in vectors arguments and no other combinations are allowed.
+
+    The simplest case to consider are tensors with only 2 arguments of the same type. For vector arguments we have ($0,2$)-tensors. For such a tensor $\tsor{T}$ introduce the following terminology:
+\begin{align*}
+    \tsor{T}(Y,X)&=\tsor{T}(X,Y)\,,\quad  &&\text{$\tsor{T}$ is  \negrito{symmetric} in $X$ and $Y$,}
+\\
+    \tsor{T}(Y,X)&=-\tsor{T}(X,Y)\,,\quad  &&\text{$\tsor{T}$ is  \negrito{antisymmetric} or `` \negrito{alternating}" in $X$ and $Y$.}
+\end{align*}
+    Letting $(X,Y)=(\vector{e}_i,\vector{e}_j)$ and using the definition of components, we get a corresponding condition on the components
+\begin{align*} 
+    T_{ji} &= T_{ij}\,, \quad &&\text{$\tsor{T}$ is symmetric in the index pair $(i,j)$,}
+\\
+    T_{ji} &=- T_{ij}\,, \quad &&\text{$\tsor{T}$ is antisymmetric (alternating) in the index pair $(i,j)$.}
+\end{align*}
+For an antisymmetric tensor, the last condition immediately implies that no index can be repeated without the corresponding component being zero
+$$
+ T_{ji} =- T_{ij} \rightarrow T_{ii}=0\,.
+$$
+
+Any ($0,2$)-tensor can be decomposed into symmetric and antisymmetric parts by defining
+\begin{align*} 
+    [\SYM(\tsor{T})](X,Y) &= \dfrac12 [\tsor{T}(X,Y)+\tsor{T}(Y,X)]\,, \quad  &&\text{(``the symmetric part of $\tsor{T}$"),}
+\\
+    [\ALT(\tsor{T})](X,Y) &= \dfrac12 [\tsor{T}(X,Y)-\tsor{T}(Y,X)]\,, \quad &&\text{(``the antisymmetric part of $\tsor{T}$"),}
+\\
+    T &= \SYM(\tsor{T}) + \ALT(\tsor{T})\,.
+\end{align*}
+The last equality holds since evaluating it on the pair $(X,Y)$ immediately leads to an identity. [Check.]
+
+Again letting $(X,Y)=(\vector{e}_i,\vector{e}_j)$ leads to corresponding component formulas
+\begin{align*} 
+    [\SYM(\tsor{T})]_{ij} &= \dfrac12 (T_{ij}+T_{ji}) \equiv T_{(ij)}\,,
+\quad && \text{($n(n+1)/2$ independent components),}
+\\
+    [\ALT(\tsor{T})]_{ij} &= \dfrac12 (T_{ij}-T_{ji}) \equiv T_{[ij]}\,,
+\quad && \text{($n(n-1)/2$ independent components),}
+\\
+    T_{ij} &=T_{(ij)} +T_{[ij]}\,,
+\quad &&\text{($n^2 = n(n+1)/2 + n(n-1)/2$ independent components).}
+\end{align*}
+
+    Round brackets around a pair of indices denote the symmetrization operation, while square brackets denote antisymmetrization. This is a very convenient shorthand. All of this can be repeated for ($^2_0$)-tensors and just reflects what we already know about the symmetric and antisymmetric parts of matrices.
+
+
+\section{Forms}
+\subsection{Motivation\label{sub:Motivation-for-exterior}}
+
+
+
+\paragraph{Oriented area and Volume\label{sub:Two-dimensional-oriented}}
+
+We define the \negrito{oriented
+area}\index{oriented area} function $A(\mathbf{a},\mathbf{b})$ by \[
+A(\mathbf{a},\mathbf{b})=\pm\left|\mathbf{a}\right|\cdot\left|\mathbf{b}\right|\cdot\sin\alpha,\]
+where the sign is chosen positive when the angle $\alpha$ is measured
+from the vector $\mathbf{a}$ to the vector $\mathbf{b}$ in the counterclockwise
+direction, and negative otherwise.
+
+
+\paragraph{Statement:}
+
+The oriented area $A(\mathbf{a},\mathbf{b})$ of a parallelogram spanned
+by the vectors $\mathbf{a}$ and $\mathbf{b}$ in the two-dimen\-sion\-al
+Euclidean space is an antisymmetric and bilinear function of the vectors
+$\mathbf{a}$ and $\mathbf{b}$:\begin{align*}
+A(\mathbf{a},\mathbf{b}) & =-A(\mathbf{b},\mathbf{a}),\\
+A(\lambda\mathbf{a},\mathbf{b}) & =\lambda\, A(\mathbf{a},\mathbf{b}),\\
+A(\mathbf{a},\mathbf{b}+\mathbf{c}) & =A(\mathbf{a},\mathbf{b})+A(\mathbf{a},\mathbf{c}).\qquad\text{(the sum law)}\end{align*}
+
+
+%
+\begin{figure}
+\begin{centering}
+\psfrag{0}{0}\psfrag{A}{$A$} \psfrag{B}{$B$} \psfrag{D}{$D$} \psfrag{C}{$C$} \psfrag{E}{$E$} \psfrag{v1}{$\mathbf{b}$} \psfrag{v2}{$\mathbf{a}$} \psfrag{v1lambda}{$\mathbf{b}+\alpha\mathbf{a}$}\includegraphics[width=3in]{./figs/v1v2-vol}
+\par\end{centering}
+
+\caption{The area of the parallelogram $0ACB$ spanned by $\mathbf{a}$ and
+$\mathbf{b}$ is equal to the area of the parallelogram $0ADE$ spanned
+by $\mathbf{a}$ and $\mathbf{b}+\alpha\mathbf{a}$ due to the equality
+of areas $ACD$ and $0BE$.\label{fig:The-area-of1}}
+
+\end{figure}
+
+
+
+The ordinary (unoriented) area is then obtained as the absolute value
+of the oriented area, $Ar(\mathbf{a},\mathbf{b})=\left|A(\mathbf{a},\mathbf{b})\right|$.
+It turns out that the oriented area, due to its strict linearity properties,
+is a much more convenient and powerful construction than the unoriented
+area.
+
+
+
+\begin{thm}\label{thm:vol-parallelepiped}
+Let $\vector{a}$, $\vector{b}$, $\vector{c}$, be linearly
+independent vectors in $\reals^3$. The signed volume of the
+parallelepiped spanned by them is $(\crossprod{a}{b})\bp
+\vector{c}$.
+\end{thm}
+
+
+
+\paragraph{Statement:}
+
+The oriented volume $V(\mathbf{a},\mathbf{b},\mathbf{c})$ of a parallelepiped spanned
+by the vectors $\mathbf{a}, \mathbf{b}$ and $\mathbf{c}$ in the three-dimen\-sion\-al
+Euclidean space is an antisymmetric and trilinear function of the vectors
+$\mathbf{a},\mathbf{b}$ and $\mathbf{c}$:\begin{align*}
+V(\mathbf{a},\mathbf{b},\mathbf{c}) & =-V(\mathbf{b},\mathbf{a},\mathbf{c}),\\
+V(\lambda\mathbf{a},\mathbf{b},\mathbf{c}) & =\lambda\, V(\mathbf{a},\mathbf{b},\mathbf{c}),\\
+V(\mathbf{a},\mathbf{b}+\mathbf{d},\mathbf{c}) & =V(\mathbf{a},\mathbf{b})+V(\mathbf{a},\mathbf{d},\mathbf{c}).\qquad\text{(the sum law)}\end{align*}
+\todoin{finish!!!}
+
+
+
+
+
+\subsection{Exterior product\label{sub:Definition-of-the-exterior}}
+
+
+In three dimensions, an oriented area is represented by the cross
+product $\mathbf{a}\times\mathbf{b}$, which is indeed an antisymmetric
+and bilinear product. So we expect that the oriented area in higher
+dimensions can be represented by some kind of new antisymmetric product
+of $\mathbf{a}$ and $\mathbf{b}$; let us denote this product (to
+be defined below) by $\mathbf{a}\wedge\mathbf{b}$, pronounced {}``a
+wedge b.'' The value of $\mathbf{a}\wedge\mathbf{b}$ will be a vector
+in a \emph{new} vector space. We will also construct this new space
+explicitly.
+
+
+\paragraph{Definition of exterior product}
+
+We
+will construct an antisymmetric product  using the
+tensor product space.
+
+
+\begin{df}
+Given a vector space $V$, we define a new vector space $V\wedge V$
+called the \negrito{exterior product}\index{exterior product} (or
+antisymmetric tensor product, or alternating product, or \negrito{wedge
+product}\index{wedge product}) of two copies of $V$. The space $V\wedge V$
+is the subspace in $V\otimes V$ consisting of all \negrito{antisymmetric}
+tensors, i.e.~tensors of the form\[
+\mathbf{v}_{1}\otimes\mathbf{v}_{2}-\mathbf{v}_{2}\otimes\mathbf{v}_{1},\quad\mathbf{v}_{1,2}\in V,\]
+and all linear combinations of such tensors. The exterior product
+of two vectors $\mathbf{v}_{1}$ and $\mathbf{v}_{2}$ is the expression
+shown above; it is obviously an antisymmetric and bilinear function
+of $\mathbf{v}_{1}$ and $\mathbf{v}_{2}$.
+\end{df}
+
+For example, here is one particular element from $V\wedge V$, which
+we write in two different ways using the properties of the tensor product:\begin{align}
+\left(\mathbf{u}+\mathbf{v}\right)\otimes\left(\mathbf{v}+\mathbf{w}\right)-\left(\mathbf{v}+\mathbf{w}\right)\otimes\left(\mathbf{u}+\mathbf{v}\right)=\mathbf{u}\otimes\mathbf{v}-\mathbf{v}\otimes\mathbf{u}\nonumber \\
++\mathbf{u}\otimes\mathbf{w}-\mathbf{w}\otimes\mathbf{u}+\mathbf{v}\otimes\mathbf{w}-\mathbf{w}\otimes\mathbf{v}\in V\wedge V.\label{eq:uvw calc 1}\end{align}
+
+
+
+\subparagraph{Remark:}
+
+A tensor $\mathbf{v}_{1}\otimes\mathbf{v}_{2}\in V\otimes V$ is not
+equal to the tensor $\mathbf{v}_{2}\otimes\mathbf{v}_{1}$ if $\mathbf{v}_{1}\neq\mathbf{v}_{2}$.
+
+
+
+
+It is quite cumbersome to perform calculations in the tensor product
+notation as we did in Eq.~(\ref{eq:uvw calc 1}). So let us write
+the exterior product as $\mathbf{u}\wedge\mathbf{v}$ instead of $\mathbf{u}\otimes\mathbf{v}-\mathbf{v}\otimes\mathbf{u}$.
+It is then straightforward to see that the {}``wedge'' symbol $\wedge$
+indeed works like an anti-commutative multiplication, as we intended.
+The rules of computation are summarized in the following statement.
+
+
+\paragraph{Statement 1:}
+
+One may save time and write $\mathbf{u}\otimes\mathbf{v}-\mathbf{v}\otimes\mathbf{u}\equiv\mathbf{u}\wedge\mathbf{v}\in V\wedge V$,
+and the result of any calculation will be correct, as long as one
+follows the rules:\begin{align}
+\mathbf{u}\wedge\mathbf{v} & =-\mathbf{v}\wedge\mathbf{u},\label{eq:uv antisymm}\\
+\left(\lambda\mathbf{u}\right)\wedge\mathbf{v} & =\lambda\left(\mathbf{u}\wedge\mathbf{v}\right),\\
+\left(\mathbf{u}+\mathbf{v}\right)\wedge\mathbf{x} & =\mathbf{u}\wedge\mathbf{x}+\mathbf{v}\wedge\mathbf{x}.\label{eq:uv distrib}\end{align}
+It follows also that $\mathbf{u}\wedge\left(\lambda\mathbf{v}\right)=\lambda\left(\mathbf{u}\wedge\mathbf{v}\right)$
+and that $\mathbf{v}\wedge\mathbf{v}=0$. (These identities hold for
+any vectors $\mathbf{u},\mathbf{v}\in V$ and any scalars $\lambda\in\mathbb{K}$.)
+
+
+\subparagraph{Proof:}
+
+These properties are direct consequences of the properties of the tensor
+product when applied to antisymmetric tensors. For example, the calculation~(\ref{eq:uvw calc 1})
+now requires a simple expansion of brackets,\[
+\left(\mathbf{u}+\mathbf{v}\right)\wedge\left(\mathbf{v}+\mathbf{w}\right)=\mathbf{u}\wedge\mathbf{v}+\mathbf{u}\wedge\mathbf{w}+\mathbf{v}\wedge\mathbf{w}.\]
+Here we removed the term $\mathbf{v}\wedge\mathbf{v}$ which vanishes
+due to the antisymmetry of $\wedge$. Details left as exercise.\hfill{}$\blacksquare$
+
+Elements of the space $V\wedge V$, such as $\mathbf{a}\wedge\mathbf{b}+\mathbf{c}\wedge\mathbf{d}$,
+are sometimes called \negrito{bivectors}\index{bivector}.%
+\footnote{It is important to note that a bivector is not necessarily expressible
+as a single-term product of two vectors; see the Exercise at the end
+of Sec.~\ref{sub:Properties-of-the-ext-powers}.\index{single-term exterior products}%
+} We will also want to define the exterior product of more than two
+vectors. To define the exterior product of \emph{three} vectors, we
+consider the subspace of $V\otimes V\otimes V$ that consists of antisymmetric
+tensors of the form\begin{align}
+\mathbf{a}\otimes\mathbf{b}\otimes\mathbf{c}-\mathbf{b}\otimes\mathbf{a}\otimes\mathbf{c}+\mathbf{c}\otimes\mathbf{a}\otimes\mathbf{b}-\mathbf{c}\otimes\mathbf{b}\otimes\mathbf{a}\nonumber \\
++\mathbf{b}\otimes\mathbf{c}\otimes\mathbf{a}-\mathbf{a}\otimes\mathbf{c}\otimes\mathbf{b}\label{eq:antisym 3}\end{align}
+and linear combinations of such tensors. These tensors are called
+\textbf{totally antisymmetric\index{totally antisymmetric}} because
+they can be viewed as (tensor-valued) functions of the vectors $\mathbf{a},\mathbf{b},\mathbf{c}$
+that change sign under exchange of any two vectors. The expression
+in Eq.~(\ref{eq:antisym 3}) will be denoted for brevity by $\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}$,
+similarly to the exterior product of two vectors, $\mathbf{a}\otimes\mathbf{b}-\mathbf{b}\otimes\mathbf{a}$,
+which is denoted for brevity by $\mathbf{a}\wedge\mathbf{b}$. Here
+is a general definition.
+
+
+\paragraph{Definition 2:}
+
+The \negrito{exterior product}\index{exterior product} of $k$ copies
+of $V$ (also called the \negrito{$k$-th exterior power} of $V$)
+is denoted by $\wedge^{k}V$ and is defined as the subspace of totally
+antisymmetric tensors within $V\otimes...\otimes V$. In the concise
+notation, this is the space spanned by expressions of the form\[
+\mathbf{v}_{1}\wedge\mathbf{v}_{2}\wedge...\wedge\mathbf{v}_{k},\quad\mathbf{v}_{j}\in V,\]
+assuming that the properties of the wedge product (linearity and antisymmetry)
+hold as given by Statement~1. For instance, \begin{equation}
+\mathbf{u}\wedge\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{k}=\left(-1\right)^{k}\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{k}\wedge\mathbf{u}\label{eq:uv pull}\end{equation}
+({}``pulling a vector through $k$ other vectors changes sign $k$
+times'').\hfill{}$\blacksquare$
+
+The previously defined space of bivectors is in this notation $V\wedge V\equiv\wedge^{2}V$.
+A natural extension of this notation is $\wedge^{0}V=\mathbb{K}$
+and $\wedge^{1}V=V$. I will also use the following {}``wedge product''
+notation,\[
+\bigwedge_{k=1}^{n}\mathbf{v}_{k}\equiv\mathbf{v}_{1}\wedge\mathbf{v}_{2}\wedge...\wedge\mathbf{v}_{n}.\]
+
+
+Tensors from the space $\wedge^{n}V$ are also called $n$-\textbf{vectors}\index{$n$-vectors}
+or \negrito{antisymmetric tensors}\index{antisymmetric tensor} of
+rank $n$.
+
+
+\paragraph{Question:}
+
+How to compute expressions containing multiple products such as $\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}$?
+
+
+\subparagraph{Answer:}
+
+Apply the rules shown in Statement~1. For example, one can permute
+adjacent vectors and change sign,\[
+\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}=-\mathbf{b}\wedge\mathbf{a}\wedge\mathbf{c}=\mathbf{b}\wedge\mathbf{c}\wedge\mathbf{a},\]
+one can expand brackets,\[
+\mathbf{a}\wedge(\mathbf{x}+4\mathbf{y})\wedge\mathbf{b}=\mathbf{a}\wedge\mathbf{x}\wedge\mathbf{b}+4\mathbf{a}\wedge\mathbf{y}\wedge\mathbf{b},\]
+and so on. If the vectors $\mathbf{a},\mathbf{b},\mathbf{c}$ are
+given as linear combinations of some basis vectors $\left\{ \mathbf{e}_{j}\right\} $,
+we can thus reduce $\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}$ to
+a linear combination of exterior products of basis vectors, such as
+$\mathbf{e}_{1}\wedge\mathbf{e}_{2}\wedge\mathbf{e}_{3}$, $\mathbf{e}_{1}\wedge\mathbf{e}_{2}\wedge\mathbf{e}_{4}$,
+etc.
+
+
+
+\paragraph{Example~1:}
+
+Suppose we work in $\mathbb{R}^{3}$ and have vectors $\mathbf{a}=\left(0,\dfrac{1}{2},-\dfrac{1}{2}\right)$,
+$\mathbf{b}=\left(2,-2,0\right)$, $\mathbf{c}=\left(-2,5,-3\right)$.
+Let us compute various exterior products. Calculations are easier
+if we introduce the basis $\left\{ \mathbf{e}_{1},\mathbf{e}_{2},\mathbf{e}_{3}\right\} $
+explicitly:\[
+\mathbf{a}=\dfrac{1}{2}\left(\mathbf{e}_{2}-\mathbf{e}_{3}\right),\quad\mathbf{b}=2(\mathbf{e}_{1}-\mathbf{e}_{2}),\quad\mathbf{c}=-2\mathbf{e}_{1}+5\mathbf{e}_{2}-3\mathbf{e}_{3}.\]
+We compute the 2-vector $\mathbf{a}\wedge\mathbf{b}$ by using the
+properties of the exterior product, such as $\mathbf{x}\wedge\mathbf{x}=0$
+and $\mathbf{x}\wedge\mathbf{y}=-\mathbf{y}\wedge\mathbf{x}$, and
+simply expanding the brackets as usual in algebra:\begin{align*}
+\mathbf{a}\wedge\mathbf{b} & =\dfrac{1}{2}\left(\mathbf{e}_{2}-\mathbf{e}_{3}\right)\wedge2\left(\mathbf{e}_{1}-\mathbf{e}_{2}\right)\\
+ & =\left(\mathbf{e}_{2}-\mathbf{e}_{3}\right)\wedge\left(\mathbf{e}_{1}-\mathbf{e}_{2}\right)\\
+ & =\mathbf{e}_{2}\wedge\mathbf{e}_{1}-\mathbf{e}_{3}\wedge\mathbf{e}_{1}-\mathbf{e}_{2}\wedge\mathbf{e}_{2}+\mathbf{e}_{3}\wedge\mathbf{e}_{2}\\
+ & =-\mathbf{e}_{1}\wedge\mathbf{e}_{2}+\mathbf{e}_{1}\wedge\mathbf{e}_{3}-\mathbf{e}_{2}\wedge\mathbf{e}_{3}.\end{align*}
+The last expression is the result; note that now there is nothing
+more to compute or to simplify. The expressions such as $\mathbf{e}_{1}\wedge\mathbf{e}_{2}$
+are the basic expressions out of which the space $\mathbb{R}^{3}\wedge\mathbb{R}^{3}$
+is built. 
+
+Let us also compute the 3-vector $\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}$,\begin{align*}
+ & \mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}=\left(\mathbf{a}\wedge\mathbf{b}\right)\wedge\mathbf{c}\\
+ & =\left(-\mathbf{e}_{1}\wedge\mathbf{e}_{2}+\mathbf{e}_{1}\wedge\mathbf{e}_{3}-\mathbf{e}_{2}\wedge\mathbf{e}_{3}\right)\wedge(-2\mathbf{e}_{1}+5\mathbf{e}_{2}-3\mathbf{e}_{3}).\end{align*}
+When we expand the brackets here, terms such as $\mathbf{e}_{1}\wedge\mathbf{e}_{2}\wedge\mathbf{e}_{1}$
+will vanish because \[
+\mathbf{e}_{1}\wedge\mathbf{e}_{2}\wedge\mathbf{e}_{1}=-\mathbf{e}_{2}\wedge\mathbf{e}_{1}\wedge\mathbf{e}_{1}=0,\]
+so only terms containing all different vectors need to be kept, and
+we find\begin{align*}
+\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c} & =3\mathbf{e}_{1}\wedge\mathbf{e}_{2}\wedge\mathbf{e}_{3}+5\mathbf{e}_{1}\wedge\mathbf{e}_{3}\wedge\mathbf{e}_{2}+2\mathbf{e}_{2}\wedge\mathbf{e}_{3}\wedge\mathbf{e}_{1}\\
+ & =\left(3-5+2\right)\mathbf{e}_{1}\wedge\mathbf{e}_{2}\wedge\mathbf{e}_{3}=0.\end{align*}
+We note that all the terms are proportional to the 3-vector $\mathbf{e}_{1}\wedge\mathbf{e}_{2}\wedge\mathbf{e}_{3}$,
+so only the coefficient in front of $\mathbf{e}_{1}\wedge\mathbf{e}_{2}\wedge\mathbf{e}_{3}$
+was needed; then, by coincidence, that coefficient turned out to be
+zero. So the result is the zero 3-vector.\hfill{}$\blacksquare$
+
+
+
+\paragraph{Remark: Origin of the name {}``exterior.''}
+
+The construction of the exterior product\index{exterior product!origin of the name}
+is a modern formulation of the ideas dating back to H. Grassmann (1844).
+A 2-vector $\mathbf{a}\wedge\mathbf{b}$ is interpreted geometrically
+as the oriented area of the parallelogram spanned by the vectors $\mathbf{a}$
+and $\mathbf{b}$. Similarly, a 3-vector $\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}$
+represents the oriented 3-volume of a parallelepiped spanned by $\left\{ \mathbf{a},\mathbf{b},\mathbf{c}\right\} $.
+Due to the antisymmetry of the exterior product, we have $(\mathbf{a}\wedge\mathbf{b})\wedge(\mathbf{a}\wedge\mathbf{c})=0$,
+$(\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c})\wedge(\mathbf{b}\wedge\mathbf{d})=0$,
+etc. We can interpret this geometrically by saying that the {}``product''
+of two volumes is zero if these volumes have a vector in common. This
+motivated Grassmann to call his antisymmetric product {}``exterior.''
+In his reasoning, the product of two {}``extensive quantities''
+(such as lines, areas, or volumes) is nonzero only when each of the
+two quantities is geometrically {}``to the exterior'' (outside)
+of the other.
+
+
+\paragraph{Exercise 2:}
+
+Show that in a \emph{two}-dimensional space $V$, any 3-vector such
+as $\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c}$ can be simplified
+to the zero 3-vector. Prove the same for $n$-vectors in $N$-dimensional
+spaces when $n>N$.\hfill{}$\blacksquare$
+
+One can also consider the exterior powers of the \emph{dual} space
+$V^{*}$. Tensors from $\wedge^{n}V^{*}$ are usually (for historical
+reasons) called $n$-\textbf{forms}\index{$n$-forms} (rather than
+{}``$n$-covectors'').
+
+
+
+\paragraph{Definition 3:}
+
+The action of a $k$-form $\mathbf{f}_{1}^{*}\wedge...\wedge\mathbf{f}_{k}^{*}$
+on a $k$-vector $\mathbf{v}_{1}\wedge...\wedge\mathbf{v}_{k}$ is
+defined by\[
+\dsum_{\sigma}(-1)^{\left|\sigma\right|}\mathbf{f}_{1}^{*}(\mathbf{v}_{\sigma(1)})...\mathbf{f}_{k}^{*}(\mathbf{v}_{\sigma(k)}),\]
+where the summation is performed over all permutations $\sigma$ of
+the ordered set $\left(1,...,k\right)$.
+
+
+\paragraph{Example~2:}
+
+With $k=3$ we have\begin{align*}
+ & (\mathbf{p}^{*}\wedge\mathbf{q}^{*}\wedge\mathbf{r}^{*})(\mathbf{a}\wedge\mathbf{b}\wedge\mathbf{c})\\
+ & =\mathbf{p}^{*}(\mathbf{a})\mathbf{q}^{*}(\mathbf{b})\mathbf{r}^{*}(\mathbf{c})-\mathbf{p}^{*}(\mathbf{b})\mathbf{q}^{*}(\mathbf{a})\mathbf{r}^{*}(\mathbf{c})\\
+ & +\mathbf{p}^{*}(\mathbf{b})\mathbf{q}^{*}(\mathbf{c})\mathbf{r}^{*}(\mathbf{a})-\mathbf{p}^{*}(\mathbf{c})\mathbf{q}^{*}(\mathbf{b})\mathbf{r}^{*}(\mathbf{a})\\
+ & +\mathbf{p}^{*}(\mathbf{c})\mathbf{q}^{*}(\mathbf{a})\mathbf{r}^{*}(\mathbf{b})-\mathbf{p}^{*}(\mathbf{c})\mathbf{q}^{*}(\mathbf{b})\mathbf{r}^{*}(\mathbf{a}).\end{align*}
+
+
+
+\paragraph{Exercise 3:}
+
+a) Show that $\mathbf{a}\wedge\mathbf{b}\wedge\omega=\omega\wedge\mathbf{a}\wedge\mathbf{b}$
+where $\omega$ is any antisymmetric tensor (e.g.~$\omega=\mathbf{x}\wedge\mathbf{y}\wedge\mathbf{z}$).
+
+b) Show that\[
+\omega_{1}\wedge\mathbf{a}\wedge\omega_{2}\wedge\mathbf{b}\wedge\omega_{3}=-\omega_{1}\wedge\mathbf{b}\wedge\omega_{2}\wedge\mathbf{a}\wedge\omega_{3},\]
+where $\omega_{1}$, $\omega_{2}$, $\omega_{3}$ are arbitrary antisymmetric
+tensors and $\mathbf{a},\mathbf{b}$ are vectors. 
+
+c) Due to antisymmetry,  $\mathbf{a}\wedge\mathbf{a}=0$ for any vector
+$\mathbf{a}\in V$. Is it also true that $\omega\wedge\omega=0$ for
+any bivector $\omega\in\wedge^{2}V$?
+
+
+
+\subsection{Forms}
+
+We will now consider integration in several variables. In order to
+smooth our discussion, we need to consider the concept of
+differential forms.
+\begin{df}
+Consider $n$ variables $$x_1, x_2, \ldots , x_n$$  in
+$n$-dimensional space (used as the names of the axes), and let
+$$ \point{a}_j = \colvec{a_{1j} \\ a_{2j} \\ \vdots \\ a_{nj}} \in \reals^n,  \ \ 1 \leq j \leq k,   $$
+be $k \leq n$ vectors in $\reals^n$. Moreover, let $\{j_1, j_2,
+\ldots , j_k\} \subseteq \{1,2,\ldots, n\}$ be a collection of $k$
+sub-indices. An \textbf{elementary $k$-differential form ($k > 1$)
+acting on the vectors $\point{a}_j,$ $ 1\leq j \leq k$} is defined
+and denoted by
+$$\d{x_{j_1}}\wedge\d{x_{j_2}}\wedge  \cdots\wedge \d{x_{j_k}} (\point{a}_1, \point{a_2}, \ldots , \point{a_k})
+= \det \begin{bmatrix} a_{j_11} & a_{j_12} & \cdots & a_{j_1k} \cr
+a_{j_21} & a_{j_22} & \cdots & a_{j_2k} \cr \vdots & \vdots &
+\cdots & \vdots \cr a_{j_k1} & a_{j_k2} & \cdots & a_{j_kk} \cr
+\end{bmatrix}.$$
+In other words, $\d{x_{j_1}}\wedge\d{x_{j_2}}\wedge  \cdots\wedge
+\d{x_{j_k}} (\point{a}_1, \point{a_2}, \ldots , \point{a_k})$ is the
+$x_{j_1}x_{j_2}\ldots  x_{j_k}$ component of the signed $k$-volume
+of a $k$-parallelotope in $\reals^n$ spanned by $\point{a}_1,
+\point{a_2}, \ldots , \point{a_k}.$
+\end{df}
+\begin{rem}
+By virtue of being a determinant, the wedge product $\wedge$ of
+differential forms has the following properties
+\begin{dingautolist}{202}
+\item \textbf{ anti-commutativity:} $\d{a} \wedge \d{b} = -\d{b}\wedge
+\d{a}$. \item \textbf{ linearity:} $\d{(a + b)} = \d{a} + \d{b}$.
+\item \textbf{ scalar homogeneity:} if $\lambda \in \reals$, then
+$\d{\lambda a} = \lambda \d{a}$. \item \textbf{ associativity:}
+$(\d{a} \wedge \d{b}) \wedge \d{c} = \d{a} \wedge (\d{b} \wedge
+\d{c})$.\footnote{Notice that associativity does not hold for the
+wedge product of {\em vectors}.}
+
+
+\end{dingautolist}
+
+\end{rem}
+\begin{rem}
+Anti-commutativity yields
+$$\d{a} \wedge \d{a}  = 0.$$
+\end{rem}
+\begin{exa}
+Consider $$ \point{a} = \colvec{1 \\ 0 \\ -1} \in \reals^3.
+$$ Then $$ \d{x}(\point{a}) = \det (1)
+ = 1,$$ $$ \d{y}(\point{a}) = \det (0)
+ = 0,$$ $$ \d{z}(\point{a}) = \det (-1)
+ = -1,$$ are the (signed) 1-volumes (that is, the length) of the
+ projections of $\point{a}$ onto the coordinate axes.
+\end{exa}
+
+\begin{exa}
+In $\reals^3$ we have $\d{x}\wedge \d{y} \wedge \d{x} = 0$, since we
+have a repeated variable.
+\end{exa}
+\begin{exa}
+In $\reals^3$ we have $$\d{x}\wedge \d{z}  + 5 \d{z}\wedge \d{x} + 4
+\d{x}\wedge \d{y} - \d{y}\wedge \d{x} + 12\d{x}\wedge \d{x} =
+-4\d{x}\wedge \d{z} + 5\d{x}\wedge \d{y}.$$
+\end{exa}
+
+\begin{rem}
+In order to avoid redundancy we will make the convention that if a
+sum of two or more terms have the same differential form up to
+permutation of the variables, we will simplify the summands and
+express the other differential forms in terms of the one
+differential form whose indices appear in increasing order.
+\end{rem}
+
+
+
+
+\subsection{Hodge star operator}
+\index{Hodge!Star} \index{star}
+
+Given an orthonormal basis $(\vector{e}_1,\cdots,e_n)$ we define 
+\[\star : \bigwedge^{k} V \to \bigwedge^{n-k} V\]
+\[\star (e_{i_1} \wedge e_{i_2}\wedge \cdots \wedge e_{i_k})= e_{i_{k+1}} \wedge e_{i_{k+2}} \wedge \cdots \wedge e_{i_n},\]
+
+where \[(i_1, i_2, \cdots, i_n)\] is an even permutation of $\{1, 2, ..., n\}.$ \footnote{The parity of a permutation $\sigma$ of   $\{1, 2, \dots, n\}$  can be defined as the parity of the number of inversions, i.e., of pairs of elements $x,y$ of $\{1, 2, ..., n\}$ such that $x < y$ and $\displaystyle \sigma (x)>\sigma (y)$.
+}
+
+
+
+
+
+
+\begin{example} In $\bbR^n$:
+\[\star (\vector{e}_1\wedge \vector{e}_2\wedge \cdots \wedge \vector{e}_k)= e_{k+1}\wedge e_{k+2}\wedge \cdots \wedge e_n.\]
+\end{example}
+
+\todoin{Grad and curl in Forms!}

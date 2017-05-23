@@ -1,0 +1,3657 @@
+\chapter{Differentiation of  Vector Function}
+
+In this chapter  we  consider functions $\funvect{f}: \bbR^n\to \bbR^m$.  This functions are usually classified based on the dimensions $n$ and $m$:
+
+\begin{dingautolist}{202}
+\item if the  dimensions $n$ and $m$ are equal to $1$, such a function is called a \negrito{real function of a
+real variable}. 
+\item if  $m = 1$ and $n>1$ the function is called a
+real-valued function of a vector variable or, more briefly, a \index{scalar fiels}\negrito{scalar field}. 
+\item if  $n = 1$ and $m > 1$ it is called a \negrito{vector-valued function of a real variable}.
+\item if  $n>1$ and $m > 1$ it is called a vector-valued function of a vector variable, or simply a \negrito{vector field}.
+\end{dingautolist}
+We suppose that the  cases of real function of a real variable and of scalar fields  have been studied before.
+
+
+This chapter extends the concepts of limit, continuity, and derivative to vector-valued function and
+vector fields.
+
+We start with the simplest one: vector-valued function.
+
+
+\section{Differentiation of Vector Function  of a Real Variable}
+
+
+
+
+\statedefn{defn:vecfcn}{
+ {A \negrito{vector-valued function of a real variable} is a rule that associates a vector $\funvect{f}(t)$ with a real
+  number $t$, where $t$ is in some subset $D$ of $\bbR$ (called the \negrito{domain} of $\funvect{f}$). We write
+  $\funvect{f}: D \rightarrow \bbR^n$ to denote that $\funvect{f}$ is a mapping of $D$ into $\bbR^n$.}
+}
+
+\[
+\begin{array}{c}
+\funvect{f}: {\bbR\rightarrow \bbR^n} \\ 
+\funvect{f}(t)=\left(f_1(t),f_2(t),\dots, f_n(t)\right)
+\end{array}
+\]
+with 
+\[
+f_1,f_2,\dots,f_n:{\bbR\rightarrow \bbR.} 
+\]
+called the \negrito{component functions} of $\funvect{f}$.
+
+
+
+
+In $\bbR^3$ vector-valued function of a real variable can be written in component form as
+\begin{displaymath}
+ \funvect{f}(t) = \ssub{f}{1}(t) \vector{i} + \ssub{f}{2}(t) \vector{j} + \ssub{f}{3}(t) \vector{k}
+\end{displaymath}
+or in the form
+\begin{displaymath}
+ \funvect{f}(t) = ( \ssub{f}{1}(t),\ssub{f}{2}(t),\ssub{f}{3}(t) )
+\end{displaymath}
+for some real-valued functions $\ssub{f}{1}(t)$, $\ssub{f}{2}(t)$, $\ssub{f}{3}(t)$.  The first form is often used when emphasizing that $\funvect{f}(t)$ is a vector, and the
+second form is useful when considering just the terminal points of the vectors.
+By identifying vectors with their terminal points, a curve in space can be written as a vector-valued function.
+
+
+
+\begin{exa}
+For example, $\funvect{f}(t) = t \vector{i} + t^2 \vector{j} + t^3 \vector{k}$ is a vector-valued function in $\bbR^3$,
+defined for all real numbers $t$.  At $t = 1$
+the value of the function is the vector $\vector{i} + \vector{j} + \vector{k}$, which in Cartesian coordinates has the
+terminal point $(1,1,1)$.
+\end{exa}
+
+
+\begin{figure}[h]
+\centering
+\begin{tikzpicture}
+ \usetikzlibrary{arrows}
+ \usetikzlibrary{snakes}
+ \definecolor{spherecolor}{HTML}{80DCFF}
+ \definecolor{planecolor}{HTML}{FFB270}
+ \draw [rotate=-90][snake=coil,segment amplitude=1.1cm,segment length=.8cm,segment aspect=0.4] (-1.4,0) -- (1.5,0);
+ \draw [black!60,line width=0.3pt,-latex] (0,0) -- (2,0,0);
+ \draw [black!60,line width=0.3pt,-latex] (0,-1.5) -- (0,2,0);
+ \draw [black!60,line width=0.3pt,-latex] (0,0) -- (0,0,4);
+ \pgfputat{\pgfpointxyz{1.9}{0.2}{0}}{\pgfbox[center,center]{\small $y$}};
+ \pgfputat{\pgfpointxyz{0.2}{1.9}{0}}{\pgfbox[center,center]{\small $z$}};
+ \pgfputat{\pgfpointxyz{0.2}{0}{3.8}}{\pgfbox[center,center]{\small $x$}};
+ \pgfputat{\pgfpointxyz{0.05}{-0.2}{0}}{\pgfbox[center,center]{\small $0$}};
+ \fill (0,0,1.75) circle (1.5pt);
+ \node [below,left] at (-0.1,-0.1,1.78) {$\funvect{f}(0)$};
+ \fill (0,0.8,1.75) circle (1.5pt);
+ \node [below,left] at (0,0.64,1.75) {$\funvect{f}(2 \pi)$};
+\end{tikzpicture}
+
+\end{figure}
+
+
+
+\begin{exa}
+ Define $\funvect{f}: \mathbb{R} \rightarrow \bbR^3$ by $\funvect{f}(t) = ( 
+\cos t , \sin t , t )$.\\ This is
+ the equation of a \emph{helix}\index{helix} (see Figure 1.8.1). As the value of $t$ increases, the terminal points of
+ $\funvect{f}(t)$ trace out a curve spiraling upward. For each $t$, the $x$- and $y$-coordinates of $\funvect{f}(t)$
+ are $x = \cos t$ and $y = \sin t$, so
+ \begin{displaymath}
+ x^2 + y^2 = \cos^2 t + \sin^2 t = 1.
+ \end{displaymath}
+ Thus, the curve lies on the surface of the right circular cylinder $x^2 + y^2 = 1$.
+\end{exa}
+\vspace{2mm}
+
+It may help to think of vector-valued functions of a real variable in $\bbR^n$ as a generalization of the
+parametric functions in $\bbR^2$ which you learned about in single-variable calculus.
+Much of the theory of real-valued functions of a single real variable can be applied to vector-valued functions of a
+real variable. 
+
+\statedefn{defn:veccont}{Let $\funvect{f}(t) = ( \ssub{f}{1}(t),\ssub{f}{2}(t),\dots,\ssub{f}{n}(t) )$ be a vector-valued function, and let $a$ be a
+ real number in its domain.  The \negrito{derivative} of $\funvect{f}(t)$ at 
+$a$, denoted by $\funvect{f}'(a)$ or $\dfrac{\d \funvect{f}}{\dt}(a)$,
+ is the limit
+ \begin{displaymath}
+  \funvect{f}'(a) = \lim_{h \to 0} \dfrac{\funvect{f}(a + h) - 
+\funvect{f}(a)}{h}
+ \end{displaymath}
+ \par\noindent if that limit exists. Equivalently, $\funvect{f}'(a) = ( 
+\ssub{f}{1}'(a),\ssub{f}{2}'(a), \dots,
+ \ssub{f}{n}'(a) )$, if the component derivatives exist. We say that 
+$\funvect{f}(t)$ is \negrito{differentiable} at
+ $a$ if $\funvect{f}'(a)$ exists.
+}
+
+The derivative of a vector-valued function is a
+\negrito{tangent vector}\index{vector!tangent} to the curve in space which the 
+function represents, and it lies on the
+\emph{tangent line} to the curve (see
+Figure \ref{fig:vectangent}).\vspace{-4mm}
+
+\begin{figure}[h]
+ \begin{center}
+  \begin{tikzpicture}
+  \usetikzlibrary{arrows}
+  \draw [black!60,line width=0.3pt,-latex] (0,0) -- (6,0,0);
+  \draw [black!60,line width=0.3pt,-latex] (0,0) -- (0,2.8,0);
+  \draw [black!60,line width=0.3pt,-latex] (0,0) -- (0,0,2);
+  \pgfputat{\pgfpointxyz{5.9}{0.2}{0}}{\pgfbox[center,center]{\small $y$}};
+  \pgfputat{\pgfpointxyz{0.2}{2.7}{0}}{\pgfbox[center,center]{\small $z$}};
+  \pgfputat{\pgfpointxyz{0.2}{0}{1.8}}{\pgfbox[center,center]{\small $x$}};
+  \pgfputat{\pgfpointxyz{0.05}{-0.2}{0}}{\pgfbox[center,center]{\small $0$}};
+  \draw [blue!60,line width=0.3pt] (1.2,2.51) -- (5.2,1.79);
+  \draw [rounded corners,line width=0.6pt](0.75,2.1) .. controls (2.95,3) and 
+(3.55,1.2) .. (4,0.75) ..
+   controls (4.3,0.45) and (4.9,0.3) .. (5.35,0.6);
+  \draw [black,line width=1.2pt,-latex] (0,0) -- (2.2,2.3);
+  \draw [black,line width=1.2pt,-latex] (0,0) -- (4.22,0.55);
+  \draw [black,line width=1.2pt,-latex] (2.2,2.3) -- (4.22,0.55);
+  \draw [black,line width=1.2pt,-latex] (2.2,2.33) -- (3.7,2.06);
+  \node [above] at (5.2,1.79) {$L$};
+  \node [above] at (5.35,0.6) {$\funvect{f}(t)$};
+  \node [above] at (3.7,2.06) {$\funvect{f}'(a)$};
+  \node [left,above] at (1,1.2) {$\funvect{f}(a)$};
+  \node [below] at (3.8,0.5) {$\funvect{f}(a + h)$};
+  \node [below,rotate=-40] at (3.05,1.52) {$\funvect{f}(a + h) - 
+\funvect{f}(a)$};
+  \end{tikzpicture}\vspace{-5mm}
+ \end{center}
+ \caption[]{\quad Tangent vector $\funvect{f}'(a)$ and tangent line $L = 
+\funvect{f}(a) + s \funvect{f}'(a)$}
+ \label{fig:vectangent}
+\end{figure}
+\begin{exa}
+ Let $\funvect{f}(t) = ( \cos t , \sin t , t )$. Then $\funvect{f}'(t) = ( 
+-\sin t , \cos t , 1 )$ for all $t$. The
+ tangent line $L$ to the curve at $\funvect{f}(2\pi) = (1,0,2\pi)$ is $L = 
+\funvect{f}(2\pi) + s\,\funvect{f}'(2\pi) =
+ (1,0,2\pi) + s(0,1,1)$, or in parametric form: $x = 1$, $y = s$, $z = 2\pi + s$ 
+for $-\infty < s < \infty$.
+\end{exa}
+
+Note that if $u(t)$ is a scalar function and $\funvect{f}(t)$ is a vector-valued 
+function, then their product, defined by
+$(u\,\funvect{f})(t) = u(t)\,\funvect{f}(t)$ for all $t$, is a vector-valued 
+function (since the product of a scalar
+with a vector is a vector).
+
+The basic properties of derivatives of vector-valued functions are summarized in 
+the following theorem.
+
+\statethm{thm:vecdiffprops}{
+ {Let $\funvect{f}(t)$ and $\funvect{g}(t)$ be differentiable vector-valued 
+functions, let $u(t)$ be a differentiable
+ scalar function, let $k$ be a scalar, and let $\vector{c}$ be a constant 
+vector. Then\\
+ \begin{dingautolist}{202}
+  \item $\dfrac{\d}{\dt} \vector{c}  = \vector{0}$\vspace{2mm}
+ \item $\dfrac{\d}{\dt} \left( k \funvect{f} \right) = k \dfrac{\d 
+\funvect{f}}{\dt}$\vspace{2mm}
+ \item $\dfrac{\d}{\dt} \left( \funvect{f} + \funvect{g} \right) = \dfrac{\d 
+\funvect{f}}{\dt} \,+\,
+  \dfrac{\d \funvect{g}}{\dt}$\vspace{2mm}
+\item $\dfrac{\d}{\dt} \left( \funvect{f} - \funvect{g} \right) = \dfrac{\d 
+\funvect{f}}{\dt} \,-\,
+  \dfrac{\d \funvect{g}}{\dt}$\vspace{2mm}
+\item $\dfrac{\d}{\dt} \left( u\,\funvect{f} \right) = \dfrac{\du}{\dt}\,\funvect{f} \,+\,
+  u \dfrac{\d \funvect{f}}{\dt}$\vspace{2mm}
+ \item $\dfrac{\d}{\dt} \left( \Dotprod{\funvect{f}}{\funvect{g}} \right) = 
+\Dotprod{\dfrac{\d \funvect{f}}{\dt}}{\funvect{g}}
+  \,+\, \Dotprod{\funvect{f}}{\dfrac{\d \funvect{g}}{\dt}}$\vspace{2mm}
+ \item $\dfrac{\d}{\dt} \left( \Crossprod{\funvect{f}\,}{\,\funvect{g}} \right) =
+  \Crossprod{\dfrac{\d \funvect{f}}{\dt}}{\,\funvect{g}} \,+\, 
+\Crossprod{\funvect{f}\,}{\dfrac{\d \funvect{g}}{\dt}}$
+   \end{dingautolist}
+ }
+}
+\begin{proof}
+ The proofs of parts (1)-(5) follow easily by differentiating the component 
+functions and using the rules for
+ derivatives from single-variable calculus. We will prove part (6), and leave 
+the proof of part (7) as an exercise for
+ the reader.\vspace{1mm}\\ (6)
+ Write $\funvect{f}(t) = \left( \ssub{f}{1}(t),\ssub{f}{2}(t),\ssub{f}{3}(t) \right)$ and
+ $\funvect{g}(t) = \left( \ssub{g}{1}(t),\ssub{g}{2}(t),\ssub{g}{3}(t) \right)$, where the 
+component functions
+ $\ssub{f}{1}(t)$, $\ssub{f}{2}(t)$, $\ssub{f}{3}(t)$, $\ssub{g}{1}(t)$, 
+$\ssub{g}{2}(t)$, $\ssub{g}{3}(t)$ are all
+ differentiable real-valued functions. Then
+ \begin{align}\begin{split}
+  \dfrac{\d}{\dt} ( \Dotprod{\funvect{f}(t)}{\funvect{g}(t)} ) &= 
+\dfrac{\d}{\dt} ( \ssub{f}{1}(t)\,\ssub{g}{1}(t) +
+   \ssub{f}{2}(t)\,\ssub{g}{2}(t) + \ssub{f}{3}(t)\,\ssub{g}{3}(t) )\\
+  &= \dfrac{\d}{\dt} ( \ssub{f}{1}(t)\,\ssub{g}{1}(t) ) +
+   \dfrac{\d}{\dt} ( \ssub{f}{2}(t)\,\ssub{g}{2}(t) ) + \dfrac{\d}{\dt} ( 
+\ssub{f}{3}(t)\,\ssub{g}{3}(t) )\\
+  &= \dfrac{\d\ssub{f}{1}}{\dt}(t)\,\ssub{g}{1}(t) + 
+\ssub{f}{1}(t)\,\dfrac{\d\ssub{g}{1}}{\dt}(t) +
+   \dfrac{\d\ssub{f}{2}}{\dt}(t)\,\ssub{g}{2}(t) + 
+\ssub{f}{2}(t)\,\dfrac{\d\ssub{g}{2}}{\dt}(t) +
+   \dfrac{\d\ssub{f}{3}}{\dt}(t)\,\ssub{g}{3}(t) + 
+\ssub{f}{3}(t)\,\dfrac{\d\ssub{g}{3}}{\dt}(t)\\
+  &= \Dotprod{\biggl( 
+\dfrac{\d\ssub{f}{1}}{\dt}(t),\dfrac{\d\ssub{f}{2}}{\dt}(t),\dfrac{\d\ssub{f}{3}
+}{ dt} (t) \biggr)}{
+   \left( \ssub{g}{1}(t),\ssub{g}{2}(t),\ssub{g}{3}(t) \right)}\\
+   &\mathrel{\phantom{=}} {} + \Dotprod{\left( 
+\ssub{f}{1}(t),\ssub{f}{2}(t),\ssub{f}{3}(t) \right)}{
+   \biggl( 
+\dfrac{\d\ssub{g}{1}}{\dt}(t),\dfrac{\d\ssub{g}{2}}{\dt}(t),\dfrac{\d\ssub{g}{3}
+}{ dt} (t) \biggr)}\end{split}\\
+  &= \Dotprod{\dfrac{\d\funvect{f}}{\dt}(t)}{\funvect{g}(t)} \,+\, 
+\Dotprod{\funvect{f}(t)}{\dfrac{\d\funvect{g}}{\dt}(t)}
+   \text{~~for all $t$.} \qed
+ \end{align}
+\end{proof}
+
+\begin{exa}\label{exa:absvecderiv}
+ Suppose $\funvect{f}(t)$ is differentiable. Find the derivative of 
+$\norm{\funvect{f}(t)}$.\vspace{1mm}
+\begin{solu}
+ 
+Since $\norm{\funvect{f}(t)}$ is a real-valued 
+function of $t$, then by the Chain
+ Rule for real-valued functions, we know that
+  $\dfrac{\d}{\dt} \norm{\funvect{f}(t)}^2 = 2 \norm{\funvect{f}(t)} \, 
+\dfrac{\d}{\dt} \norm{\funvect{f}(t)}$.
+
+ \par\noindent But $\norm{\funvect{f}(t)}^2 = 
+\Dotprod{\funvect{f}(t)}{\funvect{f}(t)}$, so
+ $\dfrac{\d}{\dt} \norm{\funvect{f}(t)}^2 = \dfrac{\d}{\dt} ( 
+\Dotprod{\funvect{f}(t)}{\funvect{f}(t)} )$.
+ Hence, we have
+ \begin{align*}
+  2 \norm{\funvect{f}(t)}\,\dfrac{\d}{\dt} \norm{\funvect{f}(t)} &= 
+\dfrac{\d}{\dt} (\Dotprod{\funvect{f}(t)}{\funvect{f}(t)})
+  = \Dotprod{\funvect{f}'(t)}{\funvect{f}(t)} \, + \, 
+\Dotprod{\funvect{f}(t)}{\funvect{f}'(t)}
+   \text{~~by Theorem \ref{thm:vecdiffprops}(f), so}\\
+  &= 2 \Dotprod{\funvect{f}'(t)}{\funvect{f}(t)} \text{~,~so if 
+$\norm{\funvect{f}(t)} \ne 0$ then}\\
+  \dfrac{\d}{\dt} \norm{\funvect{f}(t)} &= 
+\dfrac{\Dotprod{\funvect{f}'(t)}{\funvect{f}(t)}}{\norm{\funvect{f}(t)}} .
+ \end{align*}
+\end{solu}
+
+ 
+We know that $\norm{\funvect{f}(t)}$ is constant if and only if 
+$\dfrac{\d}{\dt} \norm{\funvect{f}(t)} = 0$ for all $t$.
+Also, $\funvect{f}(t) \perp \funvect{f}'(t)$ if and only if 
+$\Dotprod{\funvect{f}'(t)}{\funvect{f}(t)} = 0$. Thus, the
+above example shows this important fact:
+\begin{prop}
+ If $\norm{\funvect{f}(t)} \ne 0$, then $\norm{\funvect{f}(t)}$ 
+is constant if and only if $\funvect{f}(t)
+ \perp \funvect{f}'(t)$ for all $t$.
+\end{prop}
+
+This means that if a curve lies completely on a sphere (or circle) centered at 
+the origin, then the tangent vector
+$\funvect{f}'(t)$ is always perpendicular to the \emph{position vector} 
+$\funvect{f}(t)$.\index{position vector}
+\end{exa}
+\begin{exa}\label{exa:sphspiral}
+ The \emph{spherical spiral}\index{spherical spiral}
+ $\funvect{f}(t) = \biggl( \dfrac{\cos t}{\sqrt{1 + a^2 t^2}},\dfrac{\sin 
+t}{\sqrt{1 + a^2 t^2}},
+  \dfrac{-at}{\sqrt{1 + a^2 t^2}} \biggr)$, for $a \ne 0$.\vspace{1.5mm}
+  \par\noindent Figure \ref{fig:sphspiral} shows the graph of the curve when $a 
+= 0.2$. In the exercises, the reader will be asked to
+  show that this curve lies on the sphere $x^2 + y^2 + z^2 = 1$ and to verify 
+directly that
+  $\Dotprod{\funvect{f}'(t)}{\funvect{f}(t)} = 0$ for all $t$.
+  
+ \begin{figure}[h]
+  \begin{center}
+   \input{./figs/fig183}
+  \end{center}
+ \caption[]{\quad Spherical spiral with $a = 0.2$}
+ \label{fig:sphspiral}
+ \end{figure}
+\end{exa}\vspace{-4mm}
+
+Just as in single-variable calculus, higher-order derivatives of vector-valued 
+functions are obtained by repeatedly
+differentiating the (first) derivative of the function:
+\begin{displaymath}
+ \funvect{f}''(t) = \dfrac{\d}{\dt} \funvect{f}'(t) \; , \qquad 
+\funvect{f}'''(t) = \dfrac{\d}{\dt} \funvect{f}''(t) \;
+ , \quad \ldots \quad , \quad \dfrac{\d^{n}\funvect{f}}{\dt^{n}} =
+ \dfrac{\d}{\dt} \biggl( \dfrac{\d^{n-1}\funvect{f}}{\dt^{n-1}} \biggr) 
+\text{~~~(for $n = 2, 3, 4,\ldots$)}
+\end{displaymath}
+
+We can use vector-valued functions to represent physical quantities, such as 
+velocity, acceleration, force, momentum,
+etc. For example, let the real variable $t$ represent time elapsed from some 
+initial time ($t = 0$), and suppose
+that an object of constant mass $m$ is subjected to some force so that it moves 
+in space, with its position $(x,y,z)$ at
+time $t$ a function of $t$. That is, $x = x(t)$, $y = y(t)$, $z = z(t)$ for 
+some real-valued functions $x(t)$, $y(t)$,
+$z(t)$. Call $\vector{r}(t) = (x(t),y(t),z(t))$ the \negrito{position 
+vector}\index{position vector} of the object. We
+can define various physical quantities associated with the object as 
+follows:\footnote{We will often use the
+older dot notation for derivatives when physics is involved.}
+\begin{align*}
+ \text{\emph{position}: } \vector{r}(t) &= (x(t),y(t),z(t))\\
+ \text{\emph{velocity}: } \vector{v}(t) &= \dot{\vector{r}}(t) = 
+\vector{r}'(t) = \dfrac{\d \vector{r}}{\dt}\\
+ &= (x'(t),y'(t),z'(t))\\
+ \text{\emph{acceleration}: } \vector{a}(t) &= \dot{\vector{v}}(t) = 
+\vector{v}'(t) = \dfrac{\d \vector{v}}{\dt}\\
+ &= \ddot{\vector{r}}(t) = \vector{r}''(t) = \dfrac{\d^2 \vector{r}}{\dt^2}\\
+ &= (x''(t),y''(t),z''(t))\\
+ \text{\emph{momentum}: } \vector{p}(t) &= m \vector{v}(t)\\
+ \text{\emph{force}: } \vector{F}(t) &= \dot{\vector{p}}(t) = \vector{p}'(t) 
+= \dfrac{\d \vector{p}}{\dt}
+ \text{~~~~(Newton's Second Law of Motion)}
+\end{align*}
+The magnitude $\norm{\vector{v}(t)}$ of the velocity vector is called the 
+\emph{speed} of the object.
+Note that since the mass $m$ is a constant, the force equation becomes the 
+familiar
+$\vector{F}(t) = m 
+\vector{a}(t)$.\index{velocity}\index{acceleration}\index{momentum}\index{force}
+
+\vspace{2mm}
+\begin{exa}
+ Let $\vector{r}(t) = (5 \cos t , 3 \sin t , 4 \sin t )$ be the position vector 
+of an object at time $t \ge 0$. Find
+ its (a) velocity and (b) acceleration vectors.\vspace{1mm}
+\end{exa}
+
+ \begin{solu}
+ 
+(a) $\vector{v}(t) = \dot{\vector{r}}(t) = (-5 
+\sin t , 3 \cos t ,
+ 4 \cos t )$\vspace{1mm}
+ \par\noindent (b) $\vector{a}(t) = \dot{\vector{v}}(t) = (-5 \cos t , -3 \sin 
+t , -4 \sin t )$\vspace{1mm}
+ 
+ \par\noindent Note that $\norm{\vector{r}(t)} = \sqrt{25 \cos^2 t + 25 \sin^2 
+t} = 5$ for all $t$, so by Example
+ \ref{exa:absvecderiv} we know that 
+$\Dotprod{\vector{r}(t)}{\dot{\vector{r}}(t)} = 0$ for all $t$ (which we can 
+verify
+ from part (a)). In fact, $\norm{\vector{v}(t)} = 5$ for all $t$ also. And not 
+only does $\vector{r}(t)$ lie on the
+ sphere of radius $5$ centered at the origin, but perhaps not so obvious is 
+that it lies completely within a
+ \emph{circle} of radius 5 centered at the origin. Also, note that 
+$\vector{a}(t) = -\vector{r}(t)$. It turns out (see
+ Exercise 16) that whenever an object moves in a circle with constant speed, 
+the acceleration vector will point in the
+ opposite direction of the position vector\index{position vector} (i.e. towards 
+the center of the circle).
+\end{solu}
+
+
+
+\begin{comment}
+\subsection{Bézier Curves}
+
+Recall from Section 1.5 that if $\ssub{\vector{r}}{1}$, $\ssub{\vector{r}}{2}$ 
+are position vectors to distinct points
+then $\ssub{\vector{r}}{1} + t (\ssub{\vector{r}}{2} - \ssub{\vector{r}}{1})$ 
+represents a line through those two
+points as $t$ varies over all real numbers. That vector sum can be written as 
+$(1 - t) \ssub{\vector{r}}{1} +
+t \ssub{\vector{r}}{2}$. So the function $\vector{l}(t) = (1 - t) 
+\ssub{\vector{r}}{1} +
+t \ssub{\vector{r}}{2}$ is a line through the terminal points of 
+$\ssub{\vector{r}}{1}$ and $\ssub{\vector{r}}{2}$, and
+when $t$ is restricted to the interval $\left[ 0,1 \right]$ it is the line 
+segment between the points, with
+$\vector{l}(0) = \ssub{\vector{r}}{1}$ and $\vector{l}(1) = 
+\ssub{\vector{r}}{2}$.
+
+In general, a function of the form
+$\funvect{f}(t) = (\ssub{a}{1}t + \ssub{b}{1},\ssub{a}{2}t + 
+\ssub{b}{2},\ssub{a}{3}t + \ssub{b}{3})$ represents a line
+in $\bbR^n$. A function of the form
+$\funvect{f}(t) = (\ssub{a}{1}t^2 + \ssub{b}{1}t + \ssub{c}{1},\ssub{a}{2}t^2 + 
+\ssub{b}{2}t + \ssub{c}{2},
+\ssub{a}{3}t^2 + \ssub{b}{3}t + \ssub{c}{3})$ represents a (possibly 
+degenerate) parabola in $\bbR^n$.
+
+\vspace{2mm}
+\begin{exa}\label{exa:bezier}
+ \emph{Bézier curves}\index{Bézier curve} are used in Computer Aided 
+Design (CAD) to approximate the shape of a
+ polygonal path in space (called the \emph{Bézier polygon} or \emph{control 
+polygon}). For instance, given three
+ points (or position vectors) $\ssub{\vector{b}}{0}$, $\ssub{\vector{b}}{1}$, 
+$\ssub{\vector{b}}{2}$ in $\bbR^n$,
+ define
+ \begin{align*}
+  \ssub{\vector{b}}{0}^{\scriptscriptstyle 1}(t) &= ( 1 - t 
+)\ssub{\vector{b}}{0} + t \ssub{\vector{b}}{1}\\
+  \ssub{\vector{b}}{1}^{\scriptscriptstyle 1}(t) &= ( 1 - t 
+)\ssub{\vector{b}}{1} + t \ssub{\vector{b}}{2}\vspace{1mm}\\
+  \ssub{\vector{b}}{0}^{\scriptscriptstyle 2}(t) &=
+  ( 1 - t )\ssub{\vector{b}}{0}^{\scriptscriptstyle 1}(t) + t 
+\ssub{\vector{b}}{1}^{\scriptscriptstyle 1}(t)\\
+  &= (1 - t)^2 \ssub{\vector{b}}{0} + 2t(1 - t) \ssub{\vector{b}}{1} + t^2 
+\ssub{\vector{b}}{2}
+ \end{align*}
+ for all real $t$. For $t$ in the interval $[0,1]$, we see that 
+$\ssub{\vector{b}}{0}^{\scriptscriptstyle 1}(t)$ is the
+ line segment between $\ssub{\vector{b}}{0}$ and $\ssub{\vector{b}}{1}$, and
+ $\ssub{\vector{b}}{1}^{\scriptscriptstyle 1}(t)$ is the line segment between 
+$\ssub{\vector{b}}{1}$ and
+ $\ssub{\vector{b}}{2}$. The function $\ssub{\vector{b}}{0}^{\scriptscriptstyle 
+2}(t)$ is the
+ Bézier curve for the points $\ssub{\vector{b}}{0}$, 
+$\ssub{\vector{b}}{1}$, $\ssub{\vector{b}}{2}$. Note from the
+ last formula that the curve is a parabola that goes through 
+$\ssub{\vector{b}}{0}$ (when $t = 0$) and
+ $\ssub{\vector{b}}{2}$ (when $t = 1$).
+ 
+ As an example, let $\ssub{\vector{b}}{0} = (0,0,0)$, $\ssub{\vector{b}}{1} = 
+(1,2,3)$, and $\ssub{\vector{b}}{2} =
+ (4,5,2)$. Then the explicit formula for the Bézier curve is
+ $\ssub{\vector{b}}{0}^{\scriptscriptstyle 2}(t) = ( 2t + 2t^2, 4t + t^2, 6t - 
+4t^2 )$, as shown in Figure
+ \ref{fig:bezier2}, where the line segments are 
+$\ssub{\vector{b}}{0}^{\scriptscriptstyle 1}(t)$ and
+ $\ssub{\vector{b}}{1}^{\scriptscriptstyle 1}(t)$, and the curve is
+ $\ssub{\vector{b}}{0}^{\scriptscriptstyle 2}(t)$.
+ 
+ \begin{figure}[h]
+  \begin{center}
+   \input{./figs/fig184}
+  \end{center}
+ \caption[]{\quad Bézier curve approximation for three points}
+ \label{fig:bezier2}
+ \end{figure}
+  
+ In general, the polygonal path determined by $n \ge 3$ noncollinear points in 
+$\bbR^n$ can be used to define
+ the Bézier curve recursively by a process called \emph{repeated linear 
+interpolation}. This curve will be a
+ vector-valued function whose components are polynomials of degree $n-1$, and 
+its formula is given by
+ \emph{de Casteljau's algorithm}.\footnote{See pp. 27-30 in \cite{far}.} In the 
+exercises, the reader will be given the
+ algorithm for the case of $n = 4$ points and asked to write the explicit 
+formula for the Bézier curve for the four
+ points shown in Figure \ref{fig:bezier3}.
+ 
+ \begin{figure}[h]
+  \begin{center}
+   \input{./figs/fig185}
+  \end{center}
+ \caption[]{\quad Bézier curve approximation for four points}
+ \label{fig:bezier3}
+ \end{figure}
+\end{exa}
+
+\todoin{Improve Bezier}
+\end{comment}
+\subsection{Antiderivatives}
+
+
+\begin{definition} An
+\textbf{antiderivative}\index{vector-valued function!antiderivative}
+of a vector-valued function $\vector{f}$ is a vector-valued function $\vector{F}$
+such that
+\[\vector{F}'(t) = \vector{f}(t).\]
+
+The \textbf{indefinite integral}\index{vector-valued
+function!indefinite integral} $\dint \vector{f}(t) \dt$ of a vector-valued
+function $\vector{f}$ is the general antiderivative of $\vector{f}$ and represents the
+collection of all antiderivatives of $\vector{f}$. \end{definition} 
+
+
+The same reasoning that allows us to differentiate a vector-valued
+function componentwise applies to integrating as well. Recall that the
+integral of a sum is the sum of the integrals and also that we can
+remove constant factors from integrals. So, given ${\vector{f}(t) = x(t)\ vi
++ y(t) \vector{j} + z(t) \vector{k}}$, it follows that we can integrate
+componentwise. Expressed more formally,
+
+If $\vector{f}(t) = x(t) \vector{i} + y(t) \vector{j} + z(t) \vector{k}$, then
+\[\dint \vector{f}(t) \ dt = \left(\dint x(t) \ dt\right) \vector{i} + \left( \dint
+y(t) \ dt \right) \vector{j} + \left(\dint z(t) \ dt\right) \vector{k}.\]
+
+\begin{prop}
+ Two antiderivarives of $\vector{f}(t) $ differs by a vector, i.e., if $\vector{F}(t)$ and $\vector{G}(t)$ are antiderivatives of $f$ then exists $\vector{c} \in \bbR^n$ such that
+ \[\vector{F}(t)-\vector{G}(t)=\vector{c}\]
+\end{prop}
+
+
+
+\section*{\psframebox{Exercises}}
+\begin{multicols}{2}\columnseprule 1pt \columnsep 45pt\multicoltolerance=900
+\begin{problem}
+\par\noindent For Exercises 1-4, calculate $\funvect{f}'(t)$ and find the 
+tangent line at $\funvect{f}(0)$.
+\begin{enumerate}[\bfseries 1.]
+ \begin{multicols}{2}
+  \item $\funvect{f}(t) = (t + 1 , t^2 + 1 , t^3 + 1)$
+  \item $\funvect{f}(t) = (e^t + 1 , e^{2t} + 1 , e^{t^2} + 1)$
+ \end{multicols}
+ \begin{multicols}{2}
+  \item $\funvect{f}(t) = (\cos 2t , \sin 2t , t)$
+  \item $\funvect{f}(t) = (\sin 2t , 2\sin^2 t , 2\cos t)$
+ \end{multicols}
+\suspend{enumerate}
+\par\noindent For Exercises 5-6, find the velocity $\vector{v}(t)$ and 
+acceleration $\vector{a}(t)$ of an object
+with the given position vector $\vector{r}(t)$.
+\resume{enumerate}[{[\bfseries 1.]}]
+ \begin{multicols}{2}
+  \item $\vector{r}(t) = (t, t - \sin t , 1 - \cos t)$
+  \item $\vector{r}(t) = (3\cos t , 2\sin t , 1)$
+ \end{multicols}
+\end{enumerate}
+\end{problem}
+\begin{problem}
+\begin{enumerate}
+
+
+ \item Let
+\[\funvect{f}(t) = \biggl( \dfrac{\cos t}{\sqrt{1 + a^2 
+t^2}},\dfrac{\sin t}{\sqrt{1 + a^2 t^2}},
+  \dfrac{-at}{\sqrt{1 + a^2 t^2}} \biggr),\]
+  with $a \ne 0$.
+  \begin{enumerate}[(a)]
+   \item Show that $\norm{\funvect{f}(t)} = 1$ for all $t$.
+   \item Show directly that $\Dotprod{\funvect{f}'(t)}{\funvect{f}(t)} = 0$ 
+for all $t$.
+  \end{enumerate}
+ \item If $\funvect{f}'(t) = \vector{0}$ for all $t$ in some interval 
+$(a,b)$, show that $\funvect{f}(t)$ is
+  a constant vector in $(a,b)$.
+ \item For a constant vector $\vector{c} \ne \vector{0}$, the function 
+$\funvect{f}(t) = t\vector{c}$ represents a line
+  parallel to $\vector{c}$.
+  \begin{enumerate}[(a)]
+   \item What kind of curve does $\funvect{g}(t) = t^3\vector{c}$ represent? 
+Explain.
+   \item What kind of curve does $\vector{h}(t) = e^t\vector{c}$ represent? 
+Explain.
+   \item Compare $\funvect{f}'(0)$ and $\funvect{g}'(0)$. Given your answer 
+to part (a), how do you explain the
+    difference in the two derivatives?
+  \end{enumerate}
+ \item Show that $\dfrac{\d}{\dt} \biggl( 
+\Crossprod{\funvect{f}\,}{\dfrac{\d\funvect{f}}{\dt}} \biggr) =
+  \Crossprod{\funvect{f}\,}{\dfrac{\d^2 \funvect{f}}{\dt^2}}$.
+ \item Let a particle of (constant) mass $m$ have position vector 
+$\vector{r}(t)$, velocity $\vector{v}(t)$,
+  acceleration $\vector{a}(t)$ and momentum $\vector{p}(t)$ at time $t$. The 
+\emph{angular momentum} $\vector{L}(t)$ of
+  the particle with respect to the origin at time $t$ is defined as 
+$\vector{L}(t) =
+  \Crossprod{\vector{r}(t)}{\,\vector{p}(t)}$. If $\vector{F}(t)$ is the force 
+acting on the particle at time $t$, then
+  define the \emph{torque} $\vector{N}(t)$ acting on the particle with respect 
+to the origin as
+  $\vector{N}(t) = \Crossprod{\vector{r}(t)}{\vector{F}(t)}$. Show that 
+$\vector{L}'(t) = \vector{N}(t)$.
+ \item Show that $\dfrac{\d}{\dt} ( \Dotprod{\funvect{f}}{( 
+\Crossprod{\funvect{g}\,}{\,\vector{h}} )} ) =
+\Dotprod{\dfrac{\d\funvect{f}}{\dt}}{(\Crossprod{\funvect{g}\,}{\,\vector{h}})} 
+\,+\,
+  \Dotprod{\funvect{f}}{\biggl(\Crossprod{\dfrac{\d 
+\funvect{g}}{\dt}}{\,\vector{h}}\biggr)} \,+\,
+  \Dotprod{\funvect{f}}{\biggl(\Crossprod{\funvect{g}\,}{\dfrac{\d 
+\vector{h}}{\dt}}\biggr)}$.
+ \item The Mean Value Theorem does not hold for vector-valued functions:
+ Show that for $\funvect{f}(t) = (\cos t, \sin t,t)$, there is no $t$ in the 
+interval $(0,2\pi)$ such that
+ \begin{displaymath}
+  \funvect{f}'(t) = \dfrac{\funvect{f}(2\pi) - \funvect{f}(0)}{2\pi - 0} .
+ \end{displaymath}
+ \end{enumerate}
+ 
+\end{problem}
+\begin{problem}
+ \begin{enumerate}
+ \item The Bézier curve $\ssub{\vector{b}}{0}^{\scriptscriptstyle 3}(t)$ 
+for four noncollinear points
+  $\ssub{\vector{b}}{0}$, $\ssub{\vector{b}}{1}$, $\ssub{\vector{b}}{2}$, 
+$\ssub{\vector{b}}{3}$ in $\bbR^n$ is
+  defined by the following algorithm (going from the left column to the right):
+  \begin{alignat*}{3}
+   \ssub{\vector{b}}{0}^{\scriptscriptstyle 1}(t) &= ( 1 - t 
+)\ssub{\vector{b}}{0} + t \ssub{\vector{b}}{1} \qquad
+    & \ssub{\vector{b}}{0}^{\scriptscriptstyle 2}(t) &=
+    ( 1 - t )\ssub{\vector{b}}{0}^{\scriptscriptstyle 1}(t) + t 
+\ssub{\vector{b}}{1}^{\scriptscriptstyle 1}(t) \qquad
+    & \ssub{\vector{b}}{0}^{\scriptscriptstyle 3}(t) &=
+    ( 1 - t )\ssub{\vector{b}}{0}^{\scriptscriptstyle 2}(t) + t 
+\ssub{\vector{b}}{1}^{\scriptscriptstyle 2}(t)\\
+   \ssub{\vector{b}}{1}^{\scriptscriptstyle 1}(t) &= ( 1 - t 
+)\ssub{\vector{b}}{1} + t \ssub{\vector{b}}{2} \qquad
+    & \ssub{\vector{b}}{1}^{\scriptscriptstyle 2}(t) &=
+    ( 1 - t )\ssub{\vector{b}}{1}^{\scriptscriptstyle 1}(t) + t 
+\ssub{\vector{b}}{2}^{\scriptscriptstyle 1}(t)\\
+   \ssub{\vector{b}}{2}^{\scriptscriptstyle 1}(t) &= ( 1 - t 
+)\ssub{\vector{b}}{2} + t \ssub{\vector{b}}{3}
+  \end{alignat*}
+  \begin{enumerate}[(a)]
+   \item Show that $\ssub{\vector{b}}{0}^{\scriptscriptstyle 3}(t) = (1 - t)^3 
+\ssub{\vector{b}}{0} +
+    3t(1 - t)^2 \ssub{\vector{b}}{1} + 3t^2 (1 - t) \ssub{\vector{b}}{2} + t^3 
+\ssub{\vector{b}}{3}$.
+   \item Write the explicit formula (as in Example \ref{exa:bezier}) for the 
+Bézier curve for the points
+   $\ssub{\vector{b}}{0} = (0,0,0)$, $\ssub{\vector{b}}{1} = (0,1,1)$, 
+$\ssub{\vector{b}}{2} = (2,3,0)$,
+   $\ssub{\vector{b}}{3} = (4,5,2)$.
+  \end{enumerate}
+ \item Let $\vector{r}(t)$ be the position vector for a particle moving in 
+$\bbR^n$. Show that
+  \begin{displaymath}
+   \dfrac{\d}{\dt} ( \Crossprod{\vector{r}}{( 
+\Crossprod{\vector{v}\,}{\,\vector{r}} )} ) =
+    \norm{\vector{r}}^2 \vector{a} + (\Dotprod{\vector{r}}{\vector{v}}) 
+\vector{v} -
+    (\norm{\vector{v}}^2 + \Dotprod{\vector{r}}{\vector{a}})\vector{r} .
+  \end{displaymath}
+ \item Let $\vector{r}(t)$ be the position vector in $\bbR^n$ for a particle 
+that moves with constant speed $c > 0$
+  in a circle of radius $a > 0$ in the $xy$-plane. Show that $\vector{a}(t)$ 
+points in the opposite direction as
+  $\vector{r}(t)$ for all $t$. (\emph{Hint: Use Example \ref{exa:absvecderiv} to 
+show that} $\vector{r}(t)
+  \perp \vector{v}(t)$ \emph{and} $\vector{a}(t) \perp \vector{v}(t)$, \emph{and 
+hence} $\vector{a}(t) \parallel
+  \vector{r}(t)$.)
+ \item Prove Theorem \ref{thm:vecdiffprops}(g).
+\end{enumerate}
+\end{problem}
+\end{multicols}
+
+\section{Kepler Law}
+
+Why do planets have elliptical orbits?
+In this section we will solve the two
+body system problem, i.e., describe the trajectory of two body that interact 
+under the force of gravity. In particular  we will proof that the trajectory of 
+a body is a ellipse with focus on the other body.
+
+\begin{figure}[h!]
+\centering
+    \begin{tikzpicture}[scale=2.5]
+        \def\rS{0.3}                                % Sun radius
+
+        \def\Earthangle{30}                         % angle wrt to horizontal    
+    
+        \def\rE{0.1}                                % Earth radius
+                                                    % Major radius of Earth's 
+elliptical orbit = 1
+        \def\eE{0.25}                               % Excentricity of Earth's 
+elliptical orbit       
+        \pgfmathsetmacro\bE{sqrt(1-\eE*\eE)}        % Minor radius of Earth's 
+elliptical orbit
+
+        \def\Moonangle{-45}                         % angle wrt to horizontal    
+       
+        \pgfmathsetmacro\rM{.7*\rE}                 % Moon radius
+        \pgfmathsetmacro\aM{2.5*\rE}                % Major radius of the Moon's 
+elliptical orbit
+        \def\eM{0.4}                                % Excentricity of Earth's 
+elliptical orbit
+        \pgfmathsetmacro\bM{\aM*sqrt(1-\eM*\eM)}    % Minor radius of the Moon's 
+elliptical orbit 
+        \def\offsetM{30}                            % angle offset between the 
+major axes of Earth's and the Moon's orbits
+
+
+
+        % This function computes the direction in which light hits the Earth.
+        \pgfmathdeclarefunction{fw}{1}{%
+            \pgfmathparse{
+                ((-\eE+cos(#1))<0) * ( 180 + atan( \bE*sin(#1)/(-\eE+cos(#1)) ) 
+) 
+                +
+                ((-\eE+cos(#1))>=0) * ( atan( \bE*sin(#1)/(-\eE+cos(#1)) ) ) 
+            }
+        }
+
+        % This function computes the distance between Earth and the Sun,
+        % which is used to calculate the varying radiation intensity on Earth.
+        \pgfmathdeclarefunction{d}{1}{%
+            \pgfmathparse{ 
+sqrt((-\eE+cos(#1))*(-\eE+cos(#1))+\bE*sin(#1)*\bE*sin(#1)) }
+        }
+
+        % Draw the elliptical path of the Earth.
+        \draw[thin,color=gray] (0,0) ellipse (1 and \bE);
+
+        % Draw the Sun at the right-hand-side focus
+        \shade[
+            top color=yellow!70,
+            bottom color=red!70,
+            shading angle={45},
+            ] ({sqrt(1-\bE*\bE)},0) circle (\rS);
+         %\draw ({sqrt(1-\b*\b)},-\rS) node[below] {Sun};
+
+
+        % Draw the Earth at \Earthangle
+        
+\pgfmathsetmacro{\radiation}{100*(1-\eE)/(d(\Earthangle)*d(\Earthangle))}
+        \colorlet{Earthlight}{yellow!\radiation!blue}
+        \shade[%
+            top color=Earthlight,%
+            bottom color=blue,%
+            shading angle={90+f(\Earthangle)},%
+        ] ({cos(\Earthangle)},{\bE*sin(\Earthangle)}) circle (\rE);
+%         \draw ({cos(\Earthangle)},{\bE*sin(\Earthangle)-\rE}) node[below] 
+{Earth};  
+
+        % Draw the Moon's (circular) orbit and the Moon at \Moonangle
+%         \draw[thin,color=gray,rotate 
+around={{\offsetM}:({cos(\Earthangle)},{\bE*sin(\Earthangle)})}]
+%             ({cos(\Earthangle)},{\bE*sin(\Earthangle)}) ellipse ({\aM} and 
+{\bM});
+%         \shade[
+%             top color=black!70,
+%             bottom color=black!30,
+%             shading angle={45},
+%         ]   
+({
+cos(\Earthangle)+\aM*cos(\Moonangle)*cos(\offsetM)-\bM*sin(\Moonangle)*
+sin(\offsetM)},%
+%             
+{
+\bE*sin(\Earthangle)+\aM*cos(\Moonangle)*sin(\offsetM)+\bM*sin(\Moonangle)*cos(\
+offsetM)}) circle (\rM);   
+    \end{tikzpicture}
+    \caption{Two Body System}
+\end{figure}
+
+We will made two simplifying assumptions:
+
+\begin{dingautolist}{202}
+\item  The bodies are spherically symmetric and can be treated as point
+masses.
+
+\item There are no external or internal forces acting upon the bodies other
+than their mutual gravitation.
+\end{dingautolist}
+
+
+Two point mass objects with masses $m_1$ and $m_2$ and position
+vectors $\vector{x}_1$ and $\vector{x}_2$ relative to some
+inertial reference frame experience
+gravitational forces:
+\[m_1 \ddot{\vector{x}}_1 = \dfrac{-G m_1 m_2}{r^2} \mathbf{\hat{r}}\]
+\[m_2 \ddot{\vector{x}}_2 = \dfrac{G m_1 m_2}{r^2} \mathbf{\hat{r}}\]
+
+where $\vector{x}$ is the relative position vector of mass 1 with
+respect to mass 2, expressed as:
+
+\[\vector{x} = \vector{x}_1 - \vector{x}_2\]
+
+and $\mathbf{\hat{r}}$ is the unit vector in that
+direction and $r$ is the length of
+that vector.
+
+Dividing by their respective masses and subtracting the second equation
+from the first yields the equation of motion for the acceleration of the
+first object with respect to the second:
+\begin{equation}
+  \ddot{\vector{x}} = - \dfrac{\mu}{r^2} \mathbf{\hat{r}} \label{newton-kepler}
+\end{equation}
+
+
+where $\mu$ is the parameter:
+\[\mu = G(m_1 + m_2)\]
+
+
+
+For movement under any central force, i.e. a force parallel to
+$\textbf{r}$, the relative angular momentum
+\[\bold{L} = \vector{r} \times {\dot{\vector{r}}}\] stays constant:\\
+\[\dot {\bold{L}} = \dfrac{\d}{\dt}\left(\vector{r} \times 
+{\dot{\vector{r}}}\right) = \dot{\vector{r}} \times {\dot{\vector{r}}} + 
+\vector{r} \times {\ddot{\vector{r}}} =\bold{0} + \bold{0} = \bold{0}\]\\
+
+Since the cross product of the position vector and its velocity stays
+constant, they must lie in the same plane, orthogonal to $\bold{L}$.
+This implies the vector function is a plane curve.\\
+
+
+With the versor $\hat{\vector{r}}$ we can write $\vector{r} = r\hat{\vector{r}}$ and with this notation  equation \ref{newton-kepler} can be written
+\[\ddot{\vector{r}} = -\dfrac{\mu}{r^2}\hat{\vector{r}}.\] It follows that\\
+\[\bold{L} = \vector{r} \times \dot{\vector{r}} = r\hat{\vector{r}} \times 
+\dfrac{\d}{\dt}(r\hat{\vector{r}}) = r\hat{\vector{r}} \times 
+(r\dot{\hat{\vector{r}}}+\dot{r}\hat{\vector{r}}) = r^2(\hat{\vector{r}} \times \dot{\hat{\vector{r}}}) 
++ r\dot{r}(\hat{\vector{r}} \times \hat{\vector{r}}) = r^2\hat{\vector{r}} \times 
+\dot{\hat{\vector{r}}}\]\\
+Now consider\\
+\[\ddot{\vector{r}} \times \bold{L} = -\dfrac{\mu}{r^2}\hat{\vector{r}} \times 
+(r^2\hat{\vector{r}} \times \dot{\hat{\vector{r}}}) = -\mu\hat{\vector{r}} \times (\hat{\vector{r}} 
+\times \dot{\hat{\vector{r}}}) = 
+-\mu[(\hat{\vector{r}}\bp\dot{\hat{\vector{r}}})\hat{\vector{r}}-(\hat{\vector{r}}\bp\hat{\vector{r}})\dot{
+\hat{\vector{r}}}]\]\\
+
+Since $\hat{\vector{r}}\bp\hat{\vector{r}} = |\hat{\vector{r}}|^2 = 1$ we have that
+\[\hat{\vector{r}}\bp\dot{\hat{\vector{r}}} = \dfrac{1}{2}(\hat{\vector{r}}\bp\dot{\hat{\vector{r}}} + 
+\dot{\hat{\vector{r}}}\bp\hat{\vector{r}}) = 
+\dfrac{1}{2}\dfrac{\d}{\dt}(\hat{\vector{r}}\bp\hat{\vector{r}}) = 0\]\\
+Substituting these values into the previous equation, we have:\\
+\[\ddot{\vector{r}}\times\bold{L}=\mu\dot{\hat{\vector{r}}}\]\\
+Now, integrating both sides:\\
+\[\dot{\vector{r}}\times\bold{L}=\mu\hat{\vector{r}} + \bold{c}\]\\
+Where \textbf{c} is a constant vector. If we calculate the inner product of  the previous equation  this with \textbf{r}
+yields an interesting result:\\
+\[\vector{r}\bp(\dot{\vector{r}}\times\bold{L})=\vector{r}\bp(\mu\hat{\vector{r}} + 
+\bold{c}) = \mu\vector{r}\bp\hat{\vector{r}} + \vector{r}\bp\bold{c} = \mu 
+r(\hat{\vector{r}}\bp\hat{\vector{r}})+rc\cos(\theta)=r(\mu + c\cos(\theta))\]\\
+Where $\theta$ is the angle between $\vector{r}$ and $\bold{c}$.
+Solving for r:\\
+\[r = \dfrac{\vector{r}\bp(\dot{\vector{r}}\times\bold{L})}{\mu + c\cos(\theta)} 
+= \dfrac{(\vector{r}\times\dot{\vector{r}})\bp\bold{L}}{\mu + c\cos(\theta)} = 
+\dfrac{|\bold{L}|^2}{\mu + c\cos(\theta)}\]\\
+Finally, we note  that \[(r,\theta)\] are effectively the polar coordinates of the
+vector function. Making the substitutions $p=\dfrac{|\bold{L}|^2}{\mu}$
+and $e=\dfrac{c}{\mu}$, we  arrive at the equation
+\begin{equation}
+ r = \dfrac {p}{1 + e \cdot \cos \theta} \label{polar:conic}
+\end{equation}
+
+
+
+The Equation \ref{polar:conic}  is the equation in polar coordinates for a
+conic section with  one focus at the origin. 
+
+
+\section{Definition of the Derivative of Vector Function}
+Before we begin, let us introduce some necessary notation. Let
+$\funvect{f}:\reals\rightarrow \reals$ be a function. We write
+$\funvect{f}(h)=\smallosans{h}$ if $\funvect{f}(h)$ goes faster to $0$ than $h$, that
+is, if $\lim _{h\to 0} \dfrac{\funvect{f}(h)}{h}=0$. For example, $h^3+2h^2 =
+\smallosans{h}$, since
+$$\lim _{h\to 0}\dfrac{h^3+2h^2}{h} = \lim_{h\to 0} h^2+2h=0.$$
+
+\bigskip
+
+We now define the derivative in the multidimensional space
+$\reals^n$. Recall that in one variable, a function $\funvect{g}:\reals
+\rightarrow \reals$ is said to be differentiable at $x = a$ if the
+limit
+$$\lim_{x \rightarrow a} \dfrac{\funvect{g}(x) - \funvect{g}(a)}{x - a} =
+g'(a)$$exists.  The limit condition above is equivalent to saying
+that
+$$\lim_{x \rightarrow a} \dfrac{\funvect{g}(x) - \funvect{g}(a) - g'(a)(x - a)}{x - a} =
+0,$$ or equivalently,
+$$\lim_{h \rightarrow 0} \dfrac{\funvect{g}(a + h) - \funvect{g}(a) - g'(a)(h)}{h} =
+0.$$  We may write this as
+$$\funvect{g}(a + h) - \funvect{g}(a) = g'(a)(h) + \smallosans{h}.$$
+The above analysis provides an analogue definition for the
+higher-dimensional case. Observe that since we may not divide by
+vectors, the corresponding definition in higher dimensions
+involves quotients of norms.
+\begin{df}
+Let $A\subseteq \reals^n$. A function $\funvect{f}:A \rightarrow \reals^m$ is
+said to be \negrito{ differentiable} at $\point{a}\in A$ if there is a
+linear transformation, called the \negrito{ derivative of $\funvect{f}$ at
+$\point{a}$}, $\deriv{a}{\funvect{f}}:\reals^n \rightarrow \reals^m$ such that
+$$\lim _{\point{x}\rightarrow\point{a}} \dfrac{||\funvect{f}(\point{x}) - \funvect{f}(\point{a}) - \deriv{a}{\funvect{f}}(\point{x} - \point{a})||}
+{||\point{x} - \point{a}||} = 0.$$Equivalently, $\funvect{f}$ is
+differentiable at $\point{a}$ if there is a linear transformation
+$\deriv{a}{\funvect{f}}$ such that
+$$ \funvect{f}(\point{a} + \point{h}) - \funvect{f}(\point{a})=  \deriv{a}{\funvect{f}}(\point{h}) + \smallosans{\norm{\point{h}}},$$
+as $\point{h} \rightarrow \point{0}$.
+ \label{df:deriv}\end{df}
+\begin{rem}
+The condition for differentiability at $\point{a}$ is equivalent to
+$$ \funvect{f}(\point{x}) - \funvect{f}(\point{a})=  \deriv{a}{f}(\point{x} - \point{a}) + \smallosans{||\point{x} -
+\point{a}||},$$as $\point{x} \rightarrow \point{a}$.
+\end{rem}
+\begin{thm}
+If $A$ is an open set in definition \ref{df:deriv}, $\deriv{a}{f}$
+is uniquely determined.
+\end{thm}
+\begin{proof}
+Let $L:\reals^n \rightarrow \reals^m$ be another linear
+transformation satisfying definition \ref{df:deriv}. We must prove
+that $\forall \point{v}\in\reals^n,  L(\point{v}) =
+\deriv{a}{f}(\point{v})$.
+ Since $A$ is open, $\point{a} + \point{h}\in A$ for
+sufficiently small $\norm{\point{h}}$. By definition, as $\point{h}
+\rightarrow \point{0}$, we have
+$$ \funvect{f}(\point{a} + \point{h}) - \funvect{f}(\point{a})= \deriv{a}{f}(\point{h}) + \smallosans{\norm{\point{h}}}.$$
+and
+$$ \funvect{f}(\point{a} + \point{h}) - \funvect{f}(\point{a})=  L(\point{h}) + \smallosans{\norm{\point{h}}}.$$
+Now, observe that
+$$\deriv{a}{f}(\point{v}) - L(\point{v}) =
+\deriv{a}{f}(\point{h}) - \funvect{f}(\point{a} + \point{h}) + \funvect{f}(\point{a})+
+\funvect{f}(\point{a} + \point{h}) - \funvect{f}(\point{a})- L(\point{h}) .$$ By the
+triangle inequality,
+$$\begin{array}{lll}
+||\deriv{a}{f}(\point{v}) - L(\point{v})|| & \leq &
+||\deriv{a}{f}(\point{h}) - \funvect{f}(\point{a} + \point{h}) +
+\funvect{f}(\point{a})||
+\\ & & \qquad + ||\funvect{f}(\point{a} + \point{h}) - \funvect{f}(\point{a})-
+L(\point{h}) || \\
+& = & \smallosans{\norm{\point{h}}} + \smallosans{\norm{\point{h}}} \\
+& = & \smallosans{\norm{\point{h}}}, \\
+\end{array}$$as $\point{h} \rightarrow \point{0}$
+This means that
+$$||L(\point{v}) - \deriv{a}{f}(\point{v})|| \rightarrow
+0,$$i.e., $L(\point{v}) = \deriv{a}{f}(\point{v})$, completing the
+proof.
+\end{proof}
+\begin{rem}
+If $A = \{\point{a}\}$, a singleton, then $\deriv{a}{f}$ is not
+uniquely determined. For $||\point{x} - \point{a}|| < \delta$ holds
+only for $\point{x} = \point{a}$, and so $\funvect{f}(\point{x}) =
+\funvect{f}(\point{a})$. Any linear transformation $T$ will satisfy the
+definition, as $T(\point{x} - \point{a}) = T(\point{0}) =
+\point{0}$, and
+$$||\funvect{f}(\point{x}) - \funvect{f}(\point{a})- T(\point{x} - \point{a}) || = ||\point{0}|| = 0,$$
+identically.
+\end{rem}
+\begin{exa}
+If $L:\reals^n \rightarrow \reals^m$ is a linear transformation,
+then $\deriv{a}{L} = L,$ for any $\point{a} \in \reals^n$.
+\label{exa:derivlintran}\end{exa}\begin{solu} Since $\reals^n$ is an
+open set, we know that $\deriv{a}{L}$ uniquely determined. Thus if
+$L$ satisfies definition \ref{df:deriv}, then the claim is
+established. But by linearity
+$$||L(\point{x}) - L(\point{a}) - L(\point{x} - \point{a}) || = ||L(\point{x}) - L(\point{a}) - L(\point{x}) + L(\point{a}) ||
+= \norm{0} = 0, $$whence the claim follows.
+\end{solu}
+
+\begin{exa}
+Let $$\fun{f}{(\vector{x},
+\vector{y})}{\vector{x}\bp\vector{y}}{\reals^3 \times
+\reals^3}{\reals}$$ be the usual dot product in $\reals^3$. Show
+that $\funvect{f}$ is differentiable and that $$\mathrm{D}_{(\vector{x},
+\vector{y})}\funvect{f}(\vector{h}, \vector{k}) = \vector{x}\bp\vector{k} +
+\vector{h}\bp\vector{y}.$$
+\end{exa}
+\begin{solu} We have
+$$\begin{array}{lll}
+\funvect{f}(\vector{x}+\vector{h}, \vector{y}+\vector{k}) - \funvect{f}(\vector{x},
+\vector{y}) & = & (\vector{x} + \vector{h})\bp (\vector{y} +
+\vector{k}) -
+\vector{x}\bp\vector{y} \\
+& = & \vector{x}\bp\vector{y} + \vector{x}\bp\vector{k} +
+\vector{h}\bp\vector{y} +
+\vector{h}\bp\vector{k} - \vector{x}\bp\vector{y} \\
+& = &  \vector{x}\bp\vector{k} + \vector{h}\bp\vector{y} + \vector{h}\bp\vector{k}. \\
+\end{array}$$As $(\vector{h}, \vector{k}) \rightarrow (\vector{0},
+\vector{0})$, we have by the Cauchy-Buniakovskii-Schwarz inequality,
+$|\vector{h}\bp\vector{k}| \leq \norm{\vector{h}}\norm{\vector{k}} =
+\smallosans{\norm{\vector{h}}}$, which proves the assertion.
+\end{solu}
+
+
+
+
+        Just like in the one variable case, differentiability at a
+point, implies continuity at that point.
+\begin{thm}
+Suppose $A\subseteq \reals^n$ is open and $\funvect{f}:A \rightarrow \reals^n$
+is differentiable on $A$. Then $\funvect{f}$ is continuous on $A$.
+\end{thm}
+\begin{proof}
+Given $\point{a}\in A$, we must shew that
+$$ \lim_{\point{x} \rightarrow \point{a}} \funvect{f}(\point{x}) =
+\funvect{f}(\point{a}).$$ Since $\funvect{f}$ is differentiable at $\point{a}$ we have
+$$ \funvect{f}(\point{x}) - \funvect{f}(\point{a})= \deriv{a}{f}(\point{x} - \point{a}) + \smallosans{||\point{x} -
+\point{a}||},$$and so
+$$\funvect{f}(\point{x}) - \funvect{f}(\point{a})\rightarrow \point{0},$$as $\point{x} \rightarrow
+\point{a},$ proving the theorem.
+\end{proof}
+
+ 
+
+\bigskip
+
+\section*{\psframebox{Exercises}}
+\begin{multicols}{2}\columnseprule 1pt \columnsep 25pt\multicoltolerance=900
+\begin{problem}
+Let $L:\reals^3 \rightarrow \reals^3$ be a linear transformation
+and
+$$\fun{F}{\vector{x}}{\vector{x}\cross
+L(\vector{x})}{\reals^3}{\reals^3}.$$ Shew that $F$ is
+differentiable and that $$\deriv{x}{F}(\vector{h}) =
+\vector{x}\cross L(\vector{h}) + \vector{h}\cross L(\vector{x}).$$
+\begin{answer} We have
+$$\renewcommand{\arraystretch}{1.7}
+{\everymath{\displaystyle}\begin{array}{lll} F(\vector{x} +
+\vector{h})
+- F(\vector{x}) & = & (\vector{x} + \vector{h})\cross L(\vector{x} + \vector{h}) - \vector{x}\cross L(\vector{x})\\
+& = & (\vector{x} + \vector{h})\cross (L(\vector{x}) +
+L(\vector{h})) - \vector{x}\cross L(\vector{x})\\
+& = & \vector{x}\cross L(\vector{h}) + \vector{h}\cross
+L(\vector{x}) + \vector{h}\cross
+L(\vector{h}) \\
+\end{array}}
+$$\renewcommand{\arraystretch}{1}
+Now, we will prove that  $|| \vector{h}\cross L(\vector{h})|| =
+\smallosans{\norm{\vector{h}}}$ as $\vector{h} \rightarrow
+\vector{0}$. For let $$\vector{h} = \sum_{k = 1} ^n h_k
+\vector{e}_k,$$where the $\vector{e}_k$ are the standard basis for
+$\reals^n$. Then
+$$L(\vector{h}) = \sum_{k = 1} ^n h_k L(\vector{e}_k),$$and hence
+by the triangle inequality, and by the Cauchy-Bunyakovsky-Schwarz
+inequality,
+$$\renewcommand{\arraystretch}{1.7}\begin{array}{ccc}||L(\vector{h})|| & \leq & \sum_{k = 1} ^n |h_k| ||L(\vector{e}_k)|| \\ &
+\leq&  \left(\sum_{k = 1} ^n |h_k|^2\right)^{1/2}\left(\sum_{k = 1}
+^n ||L(\vector{e}_k)||^2\right)^{1/2} \\ &  = &
+\norm{\vector{h}}(\sum_{k = 1} ^n
+||L(\vector{e}_k)||^2)^{1/2}, \\
+\end{array}$$whence, again by the  Cauchy-Bunyakovsky-Schwarz
+Inequality, $$|| \vector{h}\cross L(\vector{h})|| \leq||
+\vector{h}||||L(\vector{h})|\leq
+||\vector{h}||^2|||L(\vector{e}_k)||^2)^{1/2} =
+\smallosans{||\vector{h}||},$$ as it was to be shewn.
+\end{answer}
+\end{problem}
+\begin{problem}
+Let $\funvect{f}: \reals^n \rightarrow \reals, n \geq 1, \funvect{f}(\vector{x}) =
+\norm{\vector{x}}$ be the usual norm in $\reals^n$, with
+$\norm{\vector{x}}^2 = \vector{x}\bp\vector{x}$.  Prove that
+$$\deriv{x}{f}(\vector{v}) = \dfrac{\vector{x}\bp\vector{v}}{\norm{\vector{x}}},  $$
+for $\vector{x} \neq \vector{0},$ but that $\funvect{f}$ is not differentiable
+at $\vector{0}$. \begin{answer} Assume that $\vector{x} \neq
+\vector{0}.$ We use the fact that $(1 + t)^{1/2} = 1 + \dfrac{t}{2}
++ \smallosans{t}$ as $t \rightarrow 0$. We have
+$$\renewcommand{\arraystretch}{1.7}
+{\everymath{\displaystyle}\begin{array}{lll} \funvect{f}(\vector{x} +
+\vector{h}) - \funvect{f}(\vector{x}) & = & ||\vector{x}+\vector{h}|| - \norm{\vector{x}}  \\
+& = & \sqrt{(\vector{x} + \vector{h})\bp (\vector{x} + \vector{h})} - \norm{\vector{x}} \\
+& = & \sqrt{\norm{\vector{x}}^2 + 2\vector{x}\bp\vector{h}+
+\norm{\vector{h}}^2} - \norm{\vector{x}}
+\\
+& = & \dfrac{2\dotprod{x}{h}+
+\norm{\vector{h}}^2}{\sqrt{\norm{\vector{x}}^2 +
+2\vector{x}\bp\vector{h}+ \norm{\vector{h}}^2}  + \norm{\vector{x}}}.\\
+\end{array}}$$\renewcommand{\arraystretch}{1}
+As $\vector{h} \rightarrow \vector{0}$,
+$$\sqrt{\norm{\vector{x}}^2 +
+2\vector{x}\bp\vector{h}+ \norm{\vector{h}}^2}  + \norm{\vector{x}}
+\rightarrow 2\norm{\vector{x}}.$$Since $\norm{\vector{h}}^2 =
+\smallosans{\norm{\vector{h}}}$ as $\vector{h} \rightarrow
+\vector{0}$, we have
+$$\dfrac{2\dotprod{x}{h}+ \norm{\vector{h}}^2}{\sqrt{\norm{\vector{x}}^2 +
+2\vector{x}\bp\vector{h}+ \norm{\vector{h}}^2}  + \norm{\vector{x}}}
+\rightarrow \dfrac{\vector{x}\bp\vector{h}}{\norm{\vector{h}}} +
+\smallosans{\norm{\vector{h}}},$$proving the first assertion.
+
+
+
+      To prove the second assertion, assume that there is a linear
+transformation $\deriv{0}{f} = L$,   $L:\reals^n \rightarrow \reals$
+such that
+$$||\funvect{f}(\vector{0} + \vector{h}) - \funvect{f}(\vector{0}) - L(\vector{h})|| = \smallosans{\norm{\vector{h}}},$$as $\norm{\vector{h}}\rightarrow
+0$.  Recall that by theorem \ref{thm:lipschitzlin}, $L(\vector{0}) =
+\vector{0}$, and so by example \ref{exa:derivlintran},
+$\deriv{0}{L}(\vector{0}) = L(\vector{0}) = \vector{0}$. This
+implies that $\dis{\dfrac{L(\vector{h})}{\norm{\vector{h}}}}
+\rightarrow \deriv{0}{L}(\vector{0}) = \vector{0}$, as
+$\norm{\vector{h}}\rightarrow 0$. Since $\funvect{f}(\vector{0}) = \norm{0} =
+0, \funvect{f}(\vector{h}) = \norm{\vector{h}}$ this would imply that
+$$\left|\left|\norm{\vector{h}} - L(\vector{h})\right|\right| = \smallosans{\norm{\vector{h}}},$$or
+$$\left|\left| 1 -  \dfrac{L(\vector{h})}{\norm{\vector{h}}}\right|\right| = \smallosans{1}.$$
+But the left side $\rightarrow 1$ as $\vector{h} \rightarrow
+\vector{0}$, and the right side $\rightarrow 0$ as $\vector{h}
+\rightarrow \vector{0}$. This is a contradiction, and so, such
+linear transformation $L$ does not exist at the point $\vector{0}$.
+\end{answer}
+\end{problem}
+\end{multicols}
+
+
+\section{Partial and Directional Derivatives}
+\todoin{Directional Derivatives}
+
+
+\begin{df}
+Let $A \subseteq \reals^n$,  $\funvect{f}:A \rightarrow \reals^m$, and put
+$$\funvect{f}(\point{x}) = \colvec{f_1(x_1,  \ldots, x_n) \\ f_2(x_1,  \ldots, x_n) \\ \vdots \\
+f_m(x_1,  \ldots, x_n)}.$$ Here $f_i:\reals^n \rightarrow
+\reals.$ The \negrito{ partial derivative} $\partiald{j}{f_i}{x}$ is
+defined as
+$$ \partial_j f_i(x):=\partiald{j}{f_i}{x} := \lim _{h \rightarrow 0} \dfrac{f_i(x_1,, \ldots, x_j + h, \ldots, x_n)
+- f_i(x_1, \ldots, x_j, \ldots,  x_n)}{h}, $$whenever this
+limit exists.
+\end{df}
+
+To find partial derivatives with respect to the $j$-th variable,
+we simply keep the other variables fixed and differentiate with
+respect to the $j$-th variable.
+
+
+\begin{figure}[h]
+\centering
+
+\begin{tikzpicture}[scale = 1.1]
+
+    \begin{axis}[grid=none,zmin=-33,zmax=10,
+       title={$x_i=cte$},enlarge x limits, xtick=\empty, ytick=\empty,ztick=\empty,
+      view={110}{40},
+] 
+  
+     \addplot3[surf,shading=interp,
+    domain=-2:1, y domain=-2:2
+               ]
+          {-(y-4)^2-x^2+10};
+
+              \addplot3[surf,shading=interp,faceted color=blue,opacity=.5,
+              color=blue,domain=-2:2,y domain=-33:10,samples=15,point meta=y]({1},{x},{y});    
+              
+                        \addplot3[surf,shading=interp,
+        domain=1:2, y domain=-2:2
+           ]
+          {-(y-4)^2-x^2+10};
+           \addplot3[black,domain=-2:2,samples=500,samples y=0, ultra thick]({1},{x},{-(x-4)^2+9});
+                      \addplot3[white,domain=-.03:.03,samples=500,samples y=0, ultra thick]({1},{x},{-(x-4)^2+9});
+
+ \end{axis} 
+\end{tikzpicture}
+ 
+\end{figure}
+
+
+
+
+\begin{exa}
+If $\funvect{f}:\reals^3 \rightarrow \reals,$ and $\funvect{f}(x,y,z)= x + y^2 + z^3 +
+3xy^2z^3$ then
+$$\dfrac{\partial f}{\partial x}(x, y, z) = 1 + 3y^2z^3,$$
+$$\dfrac{\partial f}{\partial y}(x, y, z) = 2y + 6xyz^3,$$
+and
+$$\dfrac{\partial f}{\partial z}(x, y, z) = 3z^2 + 9xy^2z^2.$$
+
+
+
+\end{exa}
+
+
+Let \(\vector{f}(\vector{x})\) be a vector valued function. Then the derivative of \(\vector{f}(\vector{x})\) in the direction
+\(\vector{u}\) is  defined as
+
+\[D_{\vector{u}}\vector{f}(\vector{x}) :=D\vector{f}(\vector{x})[\vector{u}] 
+     = \left[\frac{d }{d \alpha}~\vector{f}(\vector{v} + \alpha~\vector{u})\right]_{\alpha = 0}\]
+for all vectors \(\vector{u}\).
+
+\begin{prop} \mbox{}
+ \begin{dingautolist}{202}
+  \item If
+\(\vector{f}(\vector{x}) = \vector{f}_1(\vector{x}) + \vector{f}_2(\vector{x})\)
+then
+\(D_{\vector{u}}\vector{f}(\vector{x})  =  D_{\vector{u}}\vector{f}_1(\vector{x}) + D_{\vector{u}}\vector{f}_2(\vector{x})\)
+
+  \item If
+\(\vector{f}(\vector{x}) = \vector{f}_1(\vector{x})\times\vector{f}_2(\vector{x})\)
+then
+\(D_{\vector{u}}\vector{f}(\vector{x}) =  \left(D_{\vector{u}}\vector{f}_1(\vector{x})\right)\times\vector{f}_2(\vector{x}) + \vector{f}_1(\vector{v})\times\left(D_{\vector{u}}\vector{f}_2(\vector{x}) \right)\)
+
+ \end{dingautolist}
+
+\end{prop}
+
+
+
+\section{The Jacobi Matrix}
+We now establish a way which simplifies the process of finding the
+derivative of a function at a given point.
+
+Since the derivative of a function $\funvect{f}:\reals^n \rightarrow \reals^m$
+is a linear transformation, it can be represented by aid of
+matrices. The following theorem will allow us to determine the
+matrix representation for  $\deriv{a}{f}$  under the standard bases
+of $\reals^n$ and $\reals^m$.
+\begin{thm}
+Let $$\funvect{f}(\point{x}) = \colvec{f_1(x_1,  \ldots, x_n) \\ f_2(x_1,  \ldots, x_n) \\ \vdots \\
+f_m(x_1,  \ldots, x_n)}.$$Suppose $A\subseteq \reals^n$ is an
+open set and $\funvect{f}:A \rightarrow \reals^m$ is differentiable. Then each
+partial derivative $\partiald{j}{f_i}{x}$ exists, and the matrix
+representation of $\deriv{x}{f}$ with respect to the standard bases
+of $\reals^n$ and $\reals^m$ is the \negrito{ Jacobi matrix}
+$$f'(\point{x}) = \begin{bmatrix}
+\partiald{1}{f_1}{x} & \partiald{2}{f_1}{x}  & \dots & \partiald{n}{f_1}{x}  \cr
+\partiald{1}{f_2}{x}  & \partiald{2}{f_2}{x} & \dots & \partiald{n}{f_2}{x} \cr \vdots & \vdots & \vdots & \vdots \cr
+\partiald{1}{f_m}{x} & \partiald{2}{f_m}{x} & \dots & \partiald{n}{f_m}{x} \cr
+\end{bmatrix}.$$
+\end{thm}
+\begin{proof}
+Let $\vector{e}_j,  1 \leq j \leq n, $ be the standard basis for
+$\reals^n$. To obtain the Jacobi matrix, we must compute
+$\deriv{x}{f}(\vector{e}_j)$, which will give us the $j$-th column
+of the Jacobi matrix. Let $f'(\point{x}) = (J_{ij})$, and observe
+that
+$$\deriv{x}{f}(\vector{e}_j) =
+\begin{bmatrix} J_{1j} \cr J_{2j} \cr \vdots \cr J_{mj}   \end{bmatrix}.$$ and put $\point{y} = \point{x} +
+\varepsilon\vector{e}_j, \varepsilon \in\reals$. Notice that
+$${\everymath{\displaystyle}\begin{array}{l}\dfrac{||\funvect{f}(\point{y}) - \funvect{f}(\point{x}) - \deriv{x}{f}(\point{y} - \point{x})||}{||\point{y} -
+\point{x}||}  \\  =
+ \dfrac{||\funvect{f}(x_1,  \ldots , x_j + h, \ldots , x_n) - \funvect{f}(x_1,
+ \ldots , x_j, \ldots , x_n) - \varepsilon
+\deriv{x}{f}(\vector{e}_j)||}{|\varepsilon|}.\end{array}}$$Since
+the sinistral side $\rightarrow 0$ as $\varepsilon \rightarrow 0$,
+the so does the $i$-th component of the numerator, and so,
+$$\dfrac{|f_i(x_1,  \ldots , x_j + h, \ldots , x_n) - f_i(x_1,
+ \ldots , x_j, \ldots , x_n) - \varepsilon J_{ij}
+|}{|\varepsilon|}\rightarrow 0.$$ This entails that
+$$J_{ij} =  \lim _{\varepsilon \rightarrow 0} \dfrac{f_i(x_1,  \ldots, x_j + \varepsilon, \ldots, x_n)
+- f_i(x_1,  \ldots, x_j, \ldots,  x_n)}{\varepsilon}     =
+\partiald{j}{f_i}{x}.$$
+
+This finishes the proof.
+\end{proof}
+\begin{rem}
+Strictly speaking, the Jacobi matrix is not the derivative of a
+function at a point. It is a matrix representation of the derivative
+in the standard basis of $\reals^n$. We will abuse language,
+however, and refer to $f'$ when we mean the Jacobi matrix of $\funvect{f}$.
+\end{rem}
+
+\begin{exa}
+Let $\funvect{f}:\reals^3 \rightarrow \reals^2$ be given by
+$$\funvect{f}(x,y) = (xy + yz, \log_e xy).$$
+Compute the Jacobi matrix of $\funvect{f}$.
+\end{exa}
+\begin{solu} The Jacobi matrix is the $2\times 3$ matrix
+$$f'(x,y) = \begin{bmatrix} \partialderiv{x}{f_1}(x,y) &
+\partialderiv{y}{f_1}(x,y) & \partialderiv{z}{f_1}(x,y) \cr
+\partialderiv{x}{f_2}(x,y) & \partialderiv{y}{f_2}(x,y) &
+\partialderiv{z}{f_2}(x,y) \cr \end{bmatrix} = \begin{bmatrix} y
+& x + z & y \cr \dfrac{1}{x} & \dfrac{1}{y} & 0\cr
+ \end{bmatrix}.$$
+\end{solu}
+\begin{exa}
+Let $\funvect{f}(\rho, \theta, z)    = (\rho\cos\theta, \rho\sin\theta, z)$ be
+the function which changes from cylindrical coordinates to Cartesian
+coordinates. We have
+$$f'(\rho, \theta, z) = \begin{bmatrix} \cos\theta
+& -\rho\sin\theta & 0 \cr \sin\theta & \rho\cos\theta & 0 \cr 0 &
+0 & 1 \cr
+\end{bmatrix}.$$
+\label{exa:jacobicylindrical}\end{exa}
+\begin{exa}
+Let $\funvect{f}(\rho, \phi, \theta)    = (\rho\cos\theta\sin\phi,
+\rho\sin\theta\sin\phi, \rho\cos\phi)$ be the function which changes
+from spherical coordinates to Cartesian coordinates. We have
+$$f'(\rho, \phi, \theta)  = \begin{bmatrix}
+\cos\theta\sin\phi & \rho\cos\theta\cos\phi &
+-\rho\sin\phi\sin\theta \cr \sin\theta\sin\phi &
+\rho\sin\theta\cos\phi & \rho\cos\theta\sin\phi \cr \cos\phi &
+-\rho\sin\phi & 0 \cr
+\end{bmatrix}.$$
+\label{exa:jacobispherical}\end{exa}
+
+
+
+
+
+
+
+
+The concept of \negrito{ repeated partial derivatives} is akin to the
+concept of repeated differentiation. Similarly with the concept of
+implicit partial differentiation. The following examples should be
+self-explanatory.
+
+\begin{exa}
+Let $\funvect{f}(u, v, w) = e^uv\cos w$. Determine $\dfrac{\partial ^2
+}{\partial u \partial v} \funvect{f}(u, v, w)$ at
+$(1,-1,\dfrac{\pi}{4})$.\end{exa}
+\begin{solu}
+We have $$\dfrac{\partial ^2 }{\partial u \partial v} (e^uv\cos w) =
+\dfrac{\partial}{\partial u } (e^u\cos w) = e^u\cos w,
+$$which is $\dfrac{e\sqrt{2}}{2}$ at the desired point.
+\end{solu}
+\begin{exa} The equation $z^{xy} + (xy)^z + xy^2z^3 =3$ defines $z$ as an
+implicit function of $x$ and $y$. Find $\dfrac{\partial z}{\partial
+x}$ and $\dfrac{\partial z}{\partial y}$ at $(1,1,1)$. \end{exa}
+\begin{solu}
+We have
+$$\begin{array}{lll} \dfrac{\partial }{\partial x} z^{xy}   & =  &  \dfrac{\partial }{\partial x} e^{xy\log z} \\
+& = & \left(y\log z + \dfrac{xy}{z}\dfrac{\partial z}{\partial
+x}\right)z^{xy},
+\end{array}  $$
+$$\begin{array}{lll} \dfrac{\partial }{\partial x} (xy)^z   & =  &  \dfrac{\partial }{\partial x} e^{z\log xy} \\
+& = & \left(\dfrac{\partial z}{\partial x} \log xy +
+\dfrac{z}{x}\right)(xy)^z,
+\end{array}  $$
+$$\begin{array}{lll} \dfrac{\partial }{\partial x} xy^2z^3   & =  &  y^2z^3 + 3xy^2z^2\dfrac{\partial z}{\partial
+x},\\
+\end{array}  $$
+Hence, at $(1,1,1)$ we have
+$$\dfrac{\partial z}{\partial x} + 1 + 1 +3\dfrac{\partial z}{\partial x} = 0 \implies \dfrac{\partial z}{\partial x} = -\dfrac{1}{2}.
+ $$
+Similarly,
+$$\begin{array}{lll} \dfrac{\partial }{\partial y} z^{xy}   & =  &  \dfrac{\partial }{\partial y} e^{xy\log z} \\
+& = & \left(x\log z + \dfrac{xy}{z}\dfrac{\partial z}{\partial
+y}\right)z^{xy},
+\end{array}  $$
+$$\begin{array}{lll} \dfrac{\partial }{\partial y} (xy)^z   & =  &  \dfrac{\partial }{\partial y} e^{z\log xy} \\
+& = & \left(\dfrac{\partial z}{\partial y} \log xy +
+\dfrac{z}{y}\right)(xy)^z,
+\end{array}  $$
+$$\begin{array}{lll} \dfrac{\partial }{\partial y} xy^2z^3   & =  &  2xyz^3 + 3xy^2z^2\dfrac{\partial z}{\partial
+y},\\
+\end{array}  $$
+Hence, at $(1,1,1)$ we have
+$$\dfrac{\partial z}{\partial y} + 1 + 2 +3\dfrac{\partial z}{\partial y} = 0 \implies
+\dfrac{\partial z}{\partial y} = -\dfrac{3}{4}.
+ $$
+\end{solu}
+
+
+
+
+
+
+
+
+
+
+
+% 
+% \begin{thm}[Chain rule]
+%   Suppose $g: \bbR^p\to\bbR^n$ and $f: \bbR^n \to \bbR^m$. Suppose that the coordinates of the vectors in $\bbR^p, \bbR^n$ and $\bbR^m$ are $u_a, x_i$ and $y_r$ respectively. By the chain rule,
+%   \[
+%     \dfrac{\partial y_r}{\partial u_a} = \dfrac{\partial y_r}{\partial x_i}\dfrac{\partial x_i}{\partial u_a},
+%   \]
+%   with summation implied. Writing in matrix form,
+%   \[
+%     M(f\circ g)_{ra} = M(f)_{ri}M(g)_{ia}.
+%   \]
+%   Alternatively, in operator form,
+%   \[
+%     \dfrac{\partial}{\partial u_a} = \dfrac{\partial x_i}{\partial u_a}\dfrac{\partial}{\partial x_i}.
+%   \]
+% \end{thm}
+
+
+
+
+
+% 
+% Under certain conditions we may differentiate under the integral
+% sign.
+% 
+% \begin{thm}[Differentiation under the integral sign]
+% Let $f\colon [a,b] \times Y \to \reals$ be a function, with $[a,b]$
+% being a closed interval, and $Y$ being a closed and bounded subset
+% of $\reals$. Suppose that both $\funvect{f}(x,y)$ and $\dfrac{\partial
+% }{\partial x}\funvect{f}(x,y)$ are continuous in the variables $x$ and $y$
+% jointly. Then $\dint_Y \funvect{f}(x.y) \, dy$ exists as a continuously
+% differentiable function of $x$ on $[a,b]$, with derivative
+% $$
+%  \dfrac{\d{} }{\d{x}}\dint_Y \funvect{f}(x, y) \, \d{y} = \dint_Y \dfrac{\partial }{\partial x}
+% \funvect{f}(x,y) \, \d{y}.
+% $$
+% \end{thm}
+% \begin{exa}
+% Prove that
+% $$F(x) = \dint _0 ^{\pi/2}\log (\sin^2\theta + x^2\cos^2\theta)\d{\theta} =\pi\log\dfrac{x+1}{2}.$$
+% \end{exa}
+% \begin{solu}
+% Differentiating under the integral,
+% $$\begin{array}{llll}F'(x)&  = &  \dint _0 ^{\pi/2}\dfrac{\partial}{\partial x}\log (\sin^2\theta +
+% x^2\cos^2\theta)\d{\theta}\\
+% & = & 2x\dint _0 ^{\pi/2}\dfrac{\cos^2\theta}{\sin^2\theta +
+% x^2\cos^2\theta}\d{\theta}
+% \end{array}$$.
+% The above implies that
+% $$\begin{array}{llll}\dfrac{(x^2-1)}{2x}\bp F'(x)
+% & = & \dint _0 ^{\pi/2}\dfrac{(x^2-1)\cos^2\theta}{\sin^2\theta +
+% x^2\cos^2\theta}\d{\theta}\\
+% & = & \dint _0
+% ^{\pi/2}\dfrac{x^2\cos^2\theta+\sin^2\theta-1}{\sin^2\theta +
+% x^2\cos^2\theta}\d{\theta}\\
+% & = & \dfrac{\pi}{2}-\dint _0 ^{\pi/2}\dfrac{\d{\theta}}{\sin^2\theta
+% +
+% x^2\cos^2\theta}\\
+% & = & \dfrac{\pi}{2}-\dint _0
+% ^{\pi/2}\dfrac{\sec^2\theta\d{\theta}}{\tan^2\theta +
+% x^2}\\[1ex]
+% & = & \dfrac{\pi}{2}-\dfrac{1}{x}\arctan \dfrac{\tan \theta}{x}\Big|
+% _0 ^{\pi/2}\\[1ex]
+% & = & \dfrac{\pi}{2}-\dfrac{\pi}{2x},
+% \end{array}$$which in turn implies that for $x>0$, $x\neq 1$,
+% $$F'(x) =
+% \dfrac{2x}{x^2-1}\left(\dfrac{\pi}{2}-\dfrac{\pi}{2x}\right)=\dfrac{\pi}{x+1}.$$For
+% $x=1$ one sees immediately that $F'(1)=2\dint_0^{\pi/2}\cos^2\theta
+% \d{\theta} = \dfrac{\pi}{2},$ agreeing with the formula. Now,
+% $$F'(x) =\dfrac{\pi}{x+1}\implies F(x)=\pi\log (x+1)+C.$$Since
+% $F(1)=\dint_0 ^{\pi/2}\log 1\d{\theta}=0$, we gather that $C=-\pi\log
+% 2$. Finally thus
+% $$ F(x)=\pi\log (x+1) -\pi\log
+% 2 = \pi\log\dfrac{x+1}{2}.$$
+% \end{solu}
+% 
+% Under certain conditions, the interval of integration in the above
+% theorem need not be compact.
+% \begin{exa}
+% Given that $\dint _0 ^{+\infty} \dfrac{\sin x}{x}\d{x} =
+% \dfrac{\pi}{2}$, compute $\dint _0 ^{+\infty} \dfrac{\sin^2
+% x}{x^2}\d{x}$.
+% \end{exa}
+% \begin{solu}
+% Put $I(a)=\dint _0 ^{+\infty} \dfrac{\sin^2a x}{x^2}\d{x}$, with
+% $a\geq 0$. Differentiating both sides with respect to $a$, and
+% making the substitution $u=2ax$, $$\begin{array}{lll}
+% I'(a)& = & \dint _0 ^{+\infty} \dfrac{2x\sin ax\cos ax}{x^2}\d{x}\\
+% & = & \dint _0 ^{+\infty} \dfrac{\sin 2ax}{x}\d{x}\\
+% & = & \dint _0 ^{+\infty} \dfrac{\sin u}{u}\d{u}\\
+% & = & \dfrac{\pi}{2}.
+% \end{array}$$
+% Integrating each side gives
+% $$I(a)=\dfrac{\pi}{2}a+C.  $$Since $I(0)=0$, we gather that $C=0$.
+% The desired integral is $I(1)=\dfrac{\pi}{2}$.
+% \end{solu}
+\section*{\psframebox{Exercises}}
+\begin{multicols}{2}\columnseprule 1pt \columnsep 25pt\multicoltolerance=900
+\begin{problem}
+Let $\funvect{f}:[0;+\infty[\times ]0;+\infty[\to \reals$, $\funvect{f}(r,t) =
+t^ne^{-r^2/4t}$, where $n$ is a constant. Determine $n$ such that
+$$\dfrac{\partial f}{\partial t} = \dfrac{1}{r^2}\dfrac{\partial }{\partial r} \left(r^2\dfrac{\partial f}{\partial r} \right). $$
+\end{problem}
+\begin{problem}
+Let
+$$\funvect{f}:\reals^2 \to \reals, \qquad \funvect{f}(x,y) = \min (x, y^2).  $$Find $\dfrac{\partial \funvect{f}(x,y)}{\partial x}$ and $\dfrac{\partial \funvect{f}(x,y)}{\partial y}$.
+\begin{answer}
+Observe that
+$$\funvect{f}(x,y)=\left\{\begin{array}{ll} x & \mathrm{if}\ x \leq y^2 \\   y^2 & \mathrm{if}\ x > y^2 \\ \end{array}\right. $$
+Hence
+$$\dfrac{\partial}{\partial x}\funvect{f}(x,y)=\left\{\begin{array}{ll} 1 & \mathrm{if}\ x > y^2 \\   0 & \mathrm{if}\ x > y^2 \\ \end{array}  \right. $$ and
+$$\dfrac{\partial}{\partial y}\funvect{f}(x,y)=\left\{\begin{array}{ll} 0 & \mathrm{if}\ x > y^2 \\   2y & \mathrm{if}\ x > y^2 \\ \end{array}\right. $$
+\end{answer}
+\end{problem}
+
+\begin{problem}
+Let $\funvect{f}:\reals^2\rightarrow \reals^2$ and $\funvect{g}:\reals^3 \rightarrow
+\reals^2$ be given by $$\funvect{f}(x,y) = \coord{xy^2 \\ x^2y}, \qquad
+\funvect{g}(x,y,z) = \coord{x-y+2z \\ xy}.
+$$
+Compute $(f\circ g)'(1,0,1)$, if at all defined. If undefined,
+explain.  Compute $(g\circ f)'(1,0)$, if at all defined. If
+undefined, explain.
+\begin{answer}
+Observe that
+$$\funvect{g}(1,0,1) = \coord{3 \\ 0}, \qquad f'(x,y) = \begin{bmatrix} y^2 &
+2xy \cr 2xy & x^2
+\end{bmatrix}, \qquad g'(x,y) =\begin{bmatrix} 1 & -1 & 2  \cr y & x & 0
+\cr
+\end{bmatrix},  $$
+and hence
+$$ g'(1,0,1) = \begin{bmatrix} 1 & -1 & 2  \cr 0 & 1 & 0
+\cr
+\end{bmatrix},\qquad  f'(\funvect{g}(1,0,1)) =  f'(3,0) = \begin{bmatrix} 0  &  0  \cr 0 & 9
+\cr
+\end{bmatrix}. $$This gives, via the Chain-Rule,
+$$(f\circ g)'(1,0,1)  = f'(\funvect{g}(1,0,1))g'(1,0,1) = \begin{bmatrix} 0  &  0  \cr 0 & 9
+\cr
+\end{bmatrix}\begin{bmatrix} 1 & -1 & 2  \cr 0 & 1 & 0
+\cr
+\end{bmatrix} = \begin{bmatrix} 0 & 0 & 0  \cr 0 & 9 & 0
+\cr
+\end{bmatrix}. $$
+The composition $g\circ \funvect{f}$ is undefined. For, the output of $\funvect{f}$ is
+$\reals^2$, but the input of $\funvect{g}$ is in $\reals^3$.
+
+\end{answer}
+
+
+\end{problem}
+
+\begin{problem}
+Let $\funvect{f}(x,y) = \coord{xy \\ x+y}$ and $\funvect{g}(x,y) =\coord{x-y \\ x^2y^2
+\\ x+y}$ Find $(g\circ f)'(0,1)$.
+\begin{answer}
+Since $\funvect{f}(0,1) = \coord{0\\ 1}$, the Chain Rule gives
+$$(g\circ f)'(0,1) = (g'(\funvect{f}(0,1)))(f'(0,1)) = (g'(0,1))(f'(0,1)) =\begin{bmatrix} 1 & -1\\ 0 &
+0 \\ 1 & 1 \\
+\end{bmatrix}\begin{bmatrix} 1 & 0\\ 1 & 1
+\end{bmatrix} = \begin{bmatrix} 0 & -1\\ 0 & 0 \\ 2 & 1 \\
+\end{bmatrix}   $$
+
+\end{answer}
+
+\end{problem}
+
+% \begin{problem}
+% Suppose $g\reals \rightarrow \reals$ is continuous and $a\in\reals$
+% is a constant. Find the partial derivatives with respect to $x$ and
+% $y$ of
+% $$\funvect{f}:\reals^2 \rightarrow \reals, \ \ \funvect{f}(x,y) = \dint _a ^{x^2y} g(t) \ \text{  d}t. $$
+% 
+% \begin{answer} We have
+% $$\partialderiv{x}{f}(x,y,z) = 2xyg(x^2y),$$and
+% $$\partialderiv{y}{f}(x,y,z) = x^2g(x^2y).$$
+% \end{answer}
+% \end{problem}
+% \begin{problem}
+% Given that $\dint _0 ^b \dfrac{\d{x}}{x^2+a^2} = \dfrac{1}{a} \arctan
+% \dfrac{b}{a}$, evaluate $\dint _0 ^b \dfrac{\d{x}}{(x^2+a^2)^2}$.
+% \begin{answer}Differentiating both sides with respect to the
+% parameter $a$, the integral is $\dfrac{1}{2a^3} \arctan
+% \dfrac{b}{a}+\dfrac{b}{2a^2(a^2+b^2)} $
+% \end{answer}
+% \end{problem}
+\begin{problem}
+Prove that  $$\dint _0 ^{+\infty} \dfrac{\arctan ax - \arctan
+x}{x}\d{x}=\dfrac{\pi}{2}\log \pi.$$
+\end{problem}
+\begin{problem}
+Assuming that the equation $xy^2 + 3z = \cos z^2$ defines $z$
+implicitly as a function of $x$ and $y$, find $\partialderiv{x}{z}$.
+\end{problem}
+\begin{problem}
+If $w = e^{uv}$ and $u = r + s$, $v = rs$,
+ determine $\dfrac{\partial{w}}{\partial{r}}$.
+\end{problem}
+
+\begin{problem}
+ Let $z$ be an implicitly-defined function of $x$ and $y$ through the equation $(x+z)^2+(y+z)^2=8$. Find
+$\dfrac{\partial z}{\partial x}$ at $(1,1,1)$.
+\begin{answer}
+We have
+$$  \dfrac{\partial }{\partial x}(x+z)^2+\dfrac{\partial }{\partial x}(y+z)^2= \dfrac{\partial }{\partial x}8
+\implies 2(1+ \dfrac{\partial z}{\partial x})(x+z) +
+2\dfrac{\partial z}{\partial x}(y+z)=0.  $$ At $(1,1,1)$ the last
+equation becomes
+$$ 4(1+ \dfrac{\partial z}{\partial x}) +
+4\dfrac{\partial z}{\partial x}=0\implies \dfrac{\partial
+z}{\partial x} = -\dfrac{1}{2}.  $$
+\end{answer}
+
+
+
+\end{problem}
+
+
+
+\end{multicols}
+
+\section{Properties of Differentiable Transformations}
+
+
+
+Just like in the one-variable case, we have the following rules of
+differentiation. 
+
+\begin{thm}
+ Let $A \subseteq \reals^n, B \subseteq \reals^m$ be
+open sets $f, \funvect{g}:A \rightarrow \reals^m, \alpha \in \reals$, be
+differentiable on $A$, $h:B \rightarrow \reals^l$ be differentiable
+on $B$, and $\funvect{f}(A) \subseteq B.$ Then we have
+\begin{itemize}
+\item {\textbf Addition Rule:} $\deriv{x}{(f + \alpha g)} =
+\deriv{x}{f} + \alpha \deriv{x}{g}$. 
+\item {\textbf Chain Rule: }
+$\deriv{x}{(h \circ f)} = \left(\deriv{{\funvect{f}(}x{
+)}}{h}\right)\circ\left(\deriv{x}{f}\right)$.
+\end{itemize}
+\end{thm}
+
+Since composition of linear mappings expressed as matrices is matrix
+multiplication, the Chain Rule takes the alternative form when
+applied to the Jacobi matrix. \begin{eqnarray} (h\circ f)' =
+(h'\circ f)(f'). \label{eqn:chainrulejacobi}
+\end{eqnarray}
+\begin{exa}
+Let$$\funvect{f}(u,v) = \coord{ue^v \\ u + v \\ uv },$$
+$$h(x,y) = \coord{x^2 + y \\ y + z}.$$Find $(f\circ h)'(x,y)$.
+\end{exa}
+\begin{solu} We have
+$$f'(u,v) = \begin{bmatrix} e^v & ue^v \cr 1 & 1 \cr v & u \cr
+\end{bmatrix},$$and
+$$h'(x,y) = \begin{bmatrix} 2x & 1 & 0 \cr 0 & 1 & 1 \cr
+\end{bmatrix}.$$Observe also  that
+$$f'(h(x,y)) = \begin{bmatrix} e^{y + z} & (x^2 + y)e^{y + z} \cr 1 & 1 \cr y + z & x^2 + y \end{bmatrix}.$$
+
+
+Hence
+$$\renewcommand{\arraystretch}{1.7}{\everymath{\displaystyle}\begin{array}{lll}(f\circ h)'(x,y) & =  &  f'(h(x,y))h'(x,y) \\ & = &
+\begin{bmatrix} e^{y + z} & (x^2 + y)e^{y + z} \cr 1 & 1 \cr y + z & x^2 + y \end{bmatrix} \begin{bmatrix} 2x & 1 & 0 \cr 0 & 1 & 1 \cr
+\end{bmatrix} \\ &  = & \begin{bmatrix} 2xe^{y + z} & (1 + x^2 + y)e^{y +
+z}& (x^2 + y)e^{y + z} \cr 2x & 2 & 1 \cr 2xy + 2xz & x^2 + 2y + z
+& x^2 + y \cr
+\end{bmatrix}. \end{array}}
+\renewcommand{\arraystretch}{1}$$\end{solu}
+\begin{exa}
+Let $$\funvect{f}:\reals^2 \rightarrow \reals, \  \ \ \ \funvect{f}(u,v) = u^2 + e^v,$$
+$$u, v:\reals^3 \rightarrow \reals \ \ \  u(x,y) = xz, \ v(x,y) = y + z.$$
+Put $h(x,y) = f\coord{u(x, y, z) \\ v(x, y, z)}$ . Find the partial
+derivatives of $h$.\end{exa} \begin{solu} Put $\funvect{g}:\reals^3
+\rightarrow \reals^2,
+\funvect{g}(x,y) = \coord{u(x,y) \\ v(x,y} = \coord{xz \\
+y + z}$. Observe that $h = f\circ g.$ Now,
+$$ g'(x,y) = \begin{bmatrix} z & 0 & x \cr 0 & 1 & 1 \cr   \end{bmatrix},$$
+$$f'(u,v) = \begin{bmatrix} 2u & e^v \cr \end{bmatrix},$$
+$$f'(h(x,y)) = \begin{bmatrix} 2xz  & e^{y + z} \cr \end{bmatrix}.$$
+Thus
+$$\renewcommand{\arraystretch}{1.7}{\everymath{\displaystyle}
+\begin{array}{lll}
+\begin{bmatrix} \dfrac{\partial h}{\partial
+x}(x,y)& \dfrac{\partial h}{\partial y}(x,y)& \dfrac{\partial
+h}{\partial z}(x,y)\cr
+\end{bmatrix} & = &
+h'(x,y) \\
+ &  = & (f'(\funvect{g}(x,y)))(g'(x,y)) \\
+ & = &  \begin{bmatrix} 2xz  & e^{y + z} \cr
+ \end{bmatrix}\begin{bmatrix} z & 0 & x \cr 0 & 1 & 1 \cr   \end{bmatrix}\\
+ & = & \begin{bmatrix}  2xz^2 & e^{y + z} & 2x^2z + e^{y + z}      \end{bmatrix}
+\end{array}}.$$
+\renewcommand{\arraystretch}{1}
+Equating components, we obtain
+$$\dfrac{\partial h}{\partial
+x}(x,y)= 2xz^2,$$
+$$\dfrac{\partial h}{\partial
+y}(x,y)=  e^{y + z},$$
+$$\dfrac{\partial h}{\partial
+z}(x,y)= 2x^2z + e^{y + z}.$$
+\end{solu}
+
+\begin{theorem}\label{thmtype:6.2.4}
+Let  $\mathbf{F}=(f_1,f_2, \dots,f_m):\bbR^n\to\bbR^m,$ and
+suppose that the partial derivatives
+\begin{equation}\label{eq:6.2.7}
+\frac{\partial f_i}{\partial x_j},\quad 1\le i\le m,\quad 1\le j\le
+n,
+\end{equation}
+exist on a neighborhood of $\vector{x}_0$ and
+are continuous at $\vector{x}_0.$ Then $\mathbf{F}$ is differentiable at
+$\vector{x}_0.$
+\end{theorem}
+
+We say that $\mathbf{F}$ is \negrito{continuously differentiable\/} on a set
+$S$ if $S$ is contained in an open set on which the partial
+derivatives
+in \eqref{eq:6.2.7} are continuous. The next three lemmas give properties
+of continuously differentiable transformations that we will need
+later.
+
+\begin{lemma}\label{thmtype:6.2.5}
+Suppose that $\mathbf{F}:\bbR^n\to\bbR^m$ is continuously
+differentiable on a neighborhood $N$ of $\vector{x}_0.$ Then$,$ for every
+$\epsilon>0,$ there is a $\delta>0$ such that
+\begin{equation}\label{eq:6.2.8}
+|\mathbf{F}(\vector{x})-\mathbf{F}(\vector{y})|<
+(\|\mathbf{F}'(\vector{x}_{0})\|
++\epsilon) |\vector{x}-\vector{y}|
+\mbox{\quad if\quad}\mathbf{A},\vector{y}\in B_\delta (\vector{x}_0).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+ Consider the auxiliary function
+\begin{equation} \label{eq:6.2.9}
+\mathbf{G}(\vector{x})=\mathbf{F}(\vector{x})-\mathbf{F}'(\vector{x}_0)\vector{x}.
+\end{equation}
+The components of $\mathbf{G}$ are
+$$
+g_i(\vector{x})=f_i(\vector{x})-\sum_{j=1}^n
+\frac{\partial f_i(\vector{x}_{0})
+\partial x_j} x_j,
+$$
+so
+$$
+\frac{\partial g_i(\vector{x})}{\partial x_j}=
+\frac{\partial f_i(\vector{x})}
+{\partial x_j}-\frac{\partial f_i(\vector{x}_0)}{\partial x_j}.
+$$
+
+Thus, $\partial g_i/\partial x_j$ is continuous on $N$ and zero at
+$\vector{x}_0$. Therefore, there is a $\delta>0$ such that
+\begin{equation}\label{eq:6.2.10}
+\left|\frac{\partial g_i(\vector{x})}{\partial x_j}\right|<\frac{\epsilon}{
+\sqrt{mn}}\mbox{\quad for \quad}1\le i\le m,\quad 1\le j\le n,
+\mbox{\quad if \quad}
+|\vector{x}-\vector{x}_0|<\delta.
+\end{equation}
+Now suppose that $\vector{x}$, $\vector{y}\in B_\delta(\vector{x}_0)$. By
+Theorem~\ref{thmtype:5.4.5},
+\begin{equation}\label{eq:6.2.11}
+g_i(\vector{x})-g_i(\vector{y})=\sum_{j=1}^n
+\frac{\partial g_i(\vector{x}_i)}{\partial x_j}(x_j-y_j),
+\end{equation}
+where $\vector{x}_i$ is on the line segment from $\vector{x}$ to $\vector{y}$,
+so  $\vector{x}_i\in B_\delta(\vector{x}_0)$. From \eqref{eq:6.2.10},
+\eqref{eq:6.2.11}, and Schwarz's inequality,
+$$
+(g_i(\vector{x})-g_i(\vector{y}))^2\le\left(\sum_{j=1}^n\left[\frac{\partial
+g_i
+(\vector{x}_i)}{\partial x_j}\right]^2\right)
+|\vector{x}-\vector{y}|^2
+<\frac{\epsilon^2}{ m} |\vector{x}-\vector{y}|^2.
+$$
+Summing this from $i=1$ to $i=m$ and taking square roots yields
+\begin{equation}\label{eq:6.2.12}
+|\mathbf{G}(\vector{x})-\mathbf{G}(\vector{y})|<\epsilon
+|\vector{x}-\vector{y}|
+\mbox{\quad if\quad}\vector{x}, \vector{y}\in B_\delta(\vector{x}_0).
+\end{equation}
+To complete the proof, we note that
+\begin{equation}\label{eq:6.2.13}
+\mathbf{F}(\vector{x})-\mathbf{F}(\vector{y})=
+\mathbf{G}(\vector{x})-\mathbf{G}(\vector{y})+\mathbf{F}'(\vector{x}_0)(\vector{x}-\vector{y}),
+\end{equation}
+ so \eqref{eq:6.2.12} and the triangle inequality imply \eqref{eq:6.2.8}.
+\end{proof}
+
+
+\begin{lemma}\label{thmtype:6.2.6}
+Suppose that $\mathbf{F}:\bbR^n\to\bbR^n$ is continuously
+differentiable on a neighborhood of $\vector{x}_0$
+ and $\mathbf{F}'(\vector{x}_0)$ is nonsingular$.$ Let
+\begin{equation}\label{eq:6.2.14}
+r=\frac{1}{\|(\mathbf{F}'(\vector{x}_0))^{-1}\|}.
+\end{equation}
+Then$,$ for every $\epsilon>0,$ there is a $\delta>0$ such that
+\begin{equation}\label{eq:6.2.15}
+|\mathbf{F}(\vector{x})-\mathbf{F}(\vector{y})|\ge (r-\epsilon)
+|\vector{x}-\vector{y}|\mbox{\quad if\quad} \vector{x},\vector{y}\in
+B_\delta(\vector{x}_{0}).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Let $\vector{x}$  and $\vector{y}$ be arbitrary points in
+$D_\mathbf{F}$  and let $\mathbf{G}$ be as in \eqref{eq:6.2.9}. From
+\eqref{eq:6.2.13},
+\begin{equation} \label{eq:6.2.16}
+|\mathbf{F}(\vector{x})-\mathbf{F}(\vector{y})|\ge\big|
+|\mathbf{F}'(\vector{x}_0)(\vector{x}
+-\vector{y})|-|\mathbf{G}(\vector{x})-\mathbf{G}(\vector{y})|\big|,
+\end{equation}
+Since
+$$
+\vector{x}-\vector{y}=[\mathbf{F}'(\vector{x}_0)]^{-1}
+\mathbf{F}'(\vector{x}_{0})
+(\vector{x}-\vector{y}),
+$$
+\eqref{eq:6.2.14} implies that
+$$
+|\vector{x}-\vector{y}|\le \frac{1}{ r} |\mathbf{F}'(\vector{x}_0)
+(\vector{x}-\vector{y}|,
+$$
+so
+\begin{equation}\label{eq:6.2.17}
+|\mathbf{F}'(\vector{x}_0)(\vector{x}-\vector{y})|\ge r|\vector{x}-\vector{y}|.
+\end{equation}
+ Now choose $\delta>0$ so that \eqref{eq:6.2.12} holds.
+Then \eqref{eq:6.2.16}  and \eqref{eq:6.2.17} imply \eqref{eq:6.2.15}.
+\end{proof}
+
+
+
+\begin{df}
+ A function $\vector{f}$ is said to be \negrito{continuously differentiable}
+if the derivative $\vector{f}'$  exists and is itself a continuous
+function.
+
+
+Continuously differentiable functions are said to be of
+\negrito{class $C^1$}. A function is of
+\negrito{class $C^2$} if the first and
+second derivative of the function both exist
+and are continuous. More generally, a function is said to be of
+\negrito{class $C^k$} if the first $k$
+derivatives  exist and are
+continuous. If derivatives $\vector{f}^{(n)}$ exist for all positive
+integers n, the function is said \negrito{smooth} or
+equivalently, of \negrito{class $C^\infty$}.
+\end{df}
+
+
+
+\section{Gradients, Curls and Directional Derivatives}
+
+\begin{df}
+Let $$\fun{f}{\point{x}}{ f(\point{x})}{\reals^n}{\reals}$$be a
+scalar field. The \negrito{ gradient} of $ f$ is the vector  defined and
+denoted by
+$$\nabla f(\point{x}) := \derivc f (\point{x}):= \coord{\partialds{1}{f}{x} ,\partialds{2}{f}{x} ,\dots ,\partialds{n}{f}{x}}.$$
+The \negrito{ gradient operator} is the operator
+$$\nabla =  \coord{\partial_1 ,\partial_2 ,\dots ,\partial_n}.$$
+\end{df}
+\begin{thm}
+Let $A \subseteq \reals^n$ be open and  let $ f:A \rightarrow \reals$
+be a scalar field, and assume that $ f$ is differentiable in $A$. Let
+$K\in\reals$ be a constant. Then $\nabla f(\point{x})$ is orthogonal
+to the surface implicitly defined by $ f(\point{x}) = K$.
+\end{thm}
+\begin{proof}
+Let $$\fun{\point{c}}{t}{\point{c}(t)}{\reals}{\reals^n}$$be a curve
+lying on this surface. Choose $t_0$ so that $\point{c}(t_0) =
+\point{x}$. Then
+$$ (f\circ \point{c})(t_0) =  f(\point{c}(t)) = K,$$ and using the chain rule
+$$ \derivc f(c(t_0)) \derivc c (t_0)=
+0,$$which translates to
+$$(\nabla f(\point{x}))\bp (\point{c}'(t_0))  = 0.$$
+Since $\point{c}'(t_0)$ is tangent to the surface and its dot
+product with $\nabla f(\point{x})$ is $0$, we conclude that $\nabla
+ f(\point{x})$ is normal to the surface.
+\end{proof}
+
+
+\begin{remark}
+Now let $c(t)$ be a curve in $\bbR^n$ (not necessarily in the surface).
+
+And let $\theta$ be the angle between $\nabla f(\point{x})$ and
+$\point{c}'(t_0)$. Since
+$$|(\nabla f(\point{x}))\bp (\point{c}'(t_0))| = ||\nabla f(\point{x})||||\point{c}'(t_0)||\cos\theta,$$
+$\nabla f(\point{x})$ is the direction in which $ f$ is changing the
+fastest.
+\end{remark}
+
+\begin{exa}
+Find a unit vector  normal to the surface $x^3 + y^3 + z = 4$ at
+the point $(1, 1, 2)$.
+\end{exa}
+\begin{solu} Here $ f(x, y, z) = x^3 + y^3 + z - 4$ has gradient
+$$\nabla f(x,y,z) = \coord{3x^2 ,3y^2 ,1}$$which at $(1, 1,
+2)$ is $\coord{3 ,3 ,1}$. Normalizing this vector we obtain
+$$\coord{\dfrac{3}{\sqrt{19}} ,\dfrac{3}{\sqrt{19}} ,\dfrac{1}{\sqrt{19}}}.$$
+
+
+\end{solu}
+\begin{exa}
+Find the direction of the greatest rate of increase of $ f(x, y, z)
+= xye^z$ at the point $(2, 1, 2)$.
+\end{exa}
+\begin{solu}  The direction is that of the gradient vector. Here
+$$\nabla f(x,y,z) = \coord{ye^z ,xe^z ,xye^z}$$which at
+$(2, 1, 2)$ becomes $\coord{e^2 ,2e^2 ,2e^2}.$ Normalizing
+this vector we obtain
+$$\dfrac{1}{\sqrt{5}}\coord{1 ,2 ,2}.$$
+\end{solu}
+
+\begin{exa}
+ Sketch the gradient vector field for $f(x,y)=x^2+y^2$ as well as several contours for this function.
+\end{exa}
+
+\begin{solu}
+The contours for a function are the curves defined by,
+\[f(x,y)=k  \]                                                           
+for various values of $k$.  So, for our function the contours are defined by the equation,
+\[x^2+y^2=k\]
+and so they are circles centered at the origin with radius $\sqrt{k}$ .
+The gradient vector field for this function is
+\[\nabla f(x,y)=2x\vector{i}+2y\vector{j}\]
+                                                     
+Here is a sketch of several of the contours as well as the gradient vector field.
+\end{solu}
+
+\begin{figure}[h]
+\begin{center}
+ \includegraphics[width=4cm]{./figs/vectorfield1.eps}
+  \includegraphics[width=4cm]{./figs/vectorfield4.eps}
+   \includegraphics[width=4cm]{./figs/vectorfield3.eps}
+ % vectorfield1.eps: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
+\end{center}
+
+ 
+\end{figure}
+
+
+
+
+
+\begin{exa}
+Let $ f:\reals^3 \rightarrow \reals$ be given by
+$$ f(x,y,z) = x + y^2  - z^2.$$Find the equation of
+the tangent plane to $ f$ at $(1, 2, 3).$
+\end{exa}
+\begin{solu}  A vector normal to the plane is $\nabla f(1, 2, 3)$. Now
+$$\nabla f(x,y,z) = \coord{1 ,2y ,-2z}$$which is
+$$\coord{1 ,4 ,-6}$$at $(1, 2, 3).$ The equation of the
+tangent plane is thus
+$$1(x - 1) + 4(y - 2) - 6(z - 3) = 0,$$or
+$$x + 4y - 6z = -9.$$
+\end{solu}
+\begin{df}
+Let $$\fun{f}{\point{x}}{\funvect{f}(\point{x})}{\reals^n}{\reals^n}$$be a
+vector field with
+$$\funvect{f}(\point{x}) = \coord{f_1(\point{x}) ,f_2(\point{x}) ,\dots ,f_n(\point{x})}.$$
+The \negrito{ divergence} of $\funvect{f}$ is defined and denoted by
+$$\div{f}{x} = \nabla\bp \funvect{f}(\point{x}) :=\Tr\left( \derivc f(\point{x})\right) :=   \partialds{1}{f_1}{x}  +  \partialds{2}{f_2}{x} +  \dots + \partialds{n}{f_n}{x}.$$
+\end{df}
+\begin{exa}If $\funvect{f}(x, y, z) = (x^2, y^2, ye^{z^2})$ then
+$$\div{f}{x} = 2x + 2y + 2yze^{z^2}. $$
+\end{exa}
+
+\paragraph{Mean Value Theorem for Scalar Fields}
+The mean value theorem generalizes to scalar fields. The trick is to use parametrization to create a real function
+of one variable, and then apply the one-variable theorem.
+
+\begin{thm}[Mean Value Theorem for Scalar Fields]
+ Let \(U\) be an open connected subset of \(\bbR^n\) , and let \(f:U\to\bbR\)
+be a differentiable function. Fix points \(\vector{x},\vector{y}\in U\) such that the
+ segment connecting $\vector{x}$ to $\vector{y}$ lies in \(U\). 
+ Then \[f(\vector{y})-f(\vector{x})=\nabla f(\vector{z})\cdot (\vector{y}-\vector{x})\]
+where $z$ is a point in the open segment connecting $x$ to $y$
+\end{thm}
+
+\begin{proof}
+Let \(U\) be an open connected subset of \(\bbR^n\) , and let \(f:U\to\bbR\)
+be a differentiable function. Fix points \(\vector{x},\vector{y}\in U\) such that the
+ segment connecting $\vector{x}$ to $\vector{y}$ lies in \(U\) , and define
+\(g(t):=f\Big((1-t)\vector{x}+t\vector{y}\Big)\).
+Since $f$ is a  differentiable function in $U$ the function $g$ is continuous function  in $[0,1]$
+and differentiable in $(0,1)$. The mean value theorem gives:
+\[g(1)-g(0)=g'(c)\]
+for some $c\in (0,1)$. But since \(g(0)=f(\vector{x})\)  and \(g(1)=f(\vector{y})\), computing \(g'(c)\) explicitly we have:
+
+\[f(\vector{y})-f(\vector{x})=\nabla f\Big((1-c)\vector{x}+c\vector{y}\Big)\cdot (\vector{y}-\vector{x})\]
+or 
+\[f(\vector{y})-f(\vector{x})=\nabla f(\vector{z})\cdot (\vector{y}-\vector{x})\]
+where $\vector{z}$ is a point in the open segment connecting $\vector{x}$ to $\vector{y}$
+\end{proof}
+
+By the
+\href{Cauchy-Schwarz_inequality}{Cauchy-Schwarz inequality}, the
+equation gives the estimate:
+
+\[\Bigg|f(\vector{y})-f(\vector{x})\Bigg|\le\Bigg|\nabla f\Big((1-c)\vector{x}+c\vector{y}\Big)\Bigg|\ \Big|\vector{y} - \vector{x}\Big|.\]
+
+
+\paragraph{Curl}
+
+ \begin{definition}
+    If $\funvect{F}:\bbR^3 \to \bbR^3$ is a vector field with components $\funvect{F}=(F_1,F_2,F_3)$, we define the \negrito{curl of $\funvect{F}$}
+    \begin{equation*}
+      \curlb \funvect{F} \defeq \colvec{
+	\partial_2 F_3 - \partial_3 F_2\\
+	\partial_3 F_1 - \partial_1 F_3\\
+	\partial_1 F_2 - \partial_2 F_1}.
+    \end{equation*}
+    This is sometimes also denoted by $\operatorname{curl}(\funvect{F})$.
+  \end{definition}
+
+  \begin{remark}
+    A mnemonic to remember this formula is to write
+    \begin{equation*}
+      \curlb \funvect{F} = \colvec{\partial_1\\\partial_2\\\partial_3} \times \colvec{F_1\\F_2\\F_3},
+    \end{equation*}
+    and compute the cross product treating both terms as 3-dimensional vectors.
+  \end{remark}
+
+%   \begin{remark}\label{rmkBallRotating}
+%     Let $u:\bbR^3 \to \bbR^3$ be a vector field representing the velocity of a fluid.
+%     The quantity $\curlb u$ measures the infinitesimal circulation of the fluid.
+%     Namely, if a small ball is placed in the fluid, then due to friction between the fluid and the ball's surface, the ball will start rotating.
+%     Indeed, a counter clockwise rotation about the $x_3$-axis will be produced if $u_2$ is smaller on the left of the ball than the right, or if $u_1$ is larger in the front of the ball than at the back.
+%     This velocity differential is captured by $\partial_1 u_2 - \partial_2 u_1$, which is exactly the third component of $\curlb u$.
+%     A more precise calculation can be used to show that the rotation axis of the ball (according to the right hand rule), will be parallel to $\curlb u$, and the angular speed will be exactly $\abs{\curlb u}/2$.
+%   \end{remark}
+
+  \begin{exa}
+    If $\funvect{F}(x) = x / \abs{x}^3$, then $\curlb \funvect{F} = 0$.
+  \end{exa}
+
+  \begin{remark}
+    In the example above, $\funvect{F}$ is proportional to a gravitational force exerted by a body at the origin.
+    We know from experience that when a ball is pulled towards the earth by gravity alone, it doesn't start to rotate; which is consistent with our computation $\curlb \funvect{F}  = 0$.
+  \end{remark}
+
+  \begin{exa}
+    If $v(x, y, z) = (\sin z, 0, 0)$, then $\curlb v = (0, \cos z, 0 )$.
+  \end{exa}
+  \begin{remark}
+    Think of $v$ above as the velocity field of a fluid between two plates placed at $z = 0$ and $z = \pi$.
+    A small ball placed closer to the bottom plate experiences a higher velocity near the top than it does at the bottom, and so should start rotating counter clockwise along the $y$-axis.
+    This is consistent with our calculation of $\curlb v$.
+  \end{remark}
+  
+  
+The definition of the curl operator can be generalized to the $n$ dimensional space.
+
+
+\begin{df} Let $g_k:\reals^n \rightarrow \reals^n$, $1 \leq k \leq n -
+2$ be vector fields with  $g_i = (g_{i1}, g_{i2}, \ldots ,
+g_{in}).$ Then the \negrito{ curl} of $(g_1, g_2, \ldots, g_{n - 2})$
+$$\curl{(g_1, g_2, \ldots, g_{n - 2})}{x}
+= \det\begin{bmatrix} \point{e}_1 &  \point{e}_2 &  \dots &
+\point{e}_{n}  \cr \partialderiv{1}{}&  \partialderiv{2}{} &
+\dots  &  \partialderiv{n}{} \cr g_{11}(\point{x}) &
+g_{12}(\point{x}) & \dots & g_{1n}(\point{x}) \cr g_{21}(\point{x})
+& g_{22}(\point{x}) & \ldots & g_{2n}(\point{x}) \cr \vdots & \vdots
+& \vdots & \vdots \cr g_{(n - 2)1}(\point{x}) & g_{(n -
+2)2}(\point{x}) & \ldots & g_{(n - 2)n}(\point{x}) \cr
+\end{bmatrix}.$$
+\end{df}
+
+\begin{exa}If $\funvect{f}(x, y, z, w) = (e^{xyz}, 0, 0, w^2), g(x, y, z, w) = (0, 0, z, 0)$ then
+$$\text{ curl} (f, g)(x,y,z,w) = \det \begin{bmatrix}
+\point{e}_1 & \point{e}_2 & \point{e}_3 & \point{e}_4 \cr
+\partialderiv{1}{} &  \partialderiv{2}{} &  \partialderiv{3}{}  &
+ \partialderiv{4}{} \cr e^{xyz} & 0 & 0 & w^2 \cr 0 & 0 & z & 0
+\end{bmatrix} = (xz^2e^{xyz})\point{e}_4.
+$$
+\end{exa}
+
+
+
+\begin{df}
+Let $A \subseteq \reals^n$ be open and  let $\funvect{f}:A \rightarrow \reals$
+be a scalar field, and assume that $\funvect{f}$ is differentiable in $A$. Let
+$\vector{v}\in \reals^n \setminus \{\point{0}\}$ be such that
+$\point{x} + t\vector{v} \in A$ for sufficiently small $t\in
+\reals$. Then the \negrito{ directional derivative of $\funvect{f}$ in the
+direction of $\vector{v}$ at the point $\point{x}$} is defined and
+denoted by
+
+$$\mathrm{D}_{\vector{v}}\funvect{f}(\point{x}) = \lim _{t\rightarrow 0} \dfrac{\funvect{f}(\point{x} + t\vector{v}) - \funvect{f}(\point{x})}{t}. $$
+
+\label{df:directionalderiv}\end{df}
+\begin{rem}
+Some authors require that the vector $\vector{v}$ in definition
+\ref{df:directionalderiv} be a unit vector.
+\end{rem}
+\begin{thm}
+Let $A \subseteq \reals^n$ be open and  let $\funvect{f}:A \rightarrow \reals$
+be a scalar field, and assume that $\funvect{f}$ is differentiable in $A$. Let
+$\vector{v}\in \reals^n \setminus \{\vector{0}\}$ be such that
+$\vector{x} + t\vector{v} \in A$ for sufficiently small $t\in
+\reals$. Then the \negrito{ directional derivative of $\funvect{f}$ in the
+direction of $\vector{v}$ at the point $\vector{x}$} is given by
+$$\nabla f(\point{x}) \bp \vector{v}.$$
+\end{thm}
+\begin{exa}
+Find the directional derivative of $\funvect{f}(x, y, z) = x^3 + y^3 - z^2$ in
+the direction of $\coord{1 ,2 ,3}$.
+\end{exa}
+\begin{solu} We have
+$$\nabla f(x,y,z) = \coord{3x^2 ,3y^2 ,-2z}$$and so
+$$ \nabla f(x,y,z)\bp \vector{v} = 3x^2 + 6y^2 - 6z. $$
+\end{solu}
+
+
+The following is a collection of useful differentiation formulae in $\bbR^3$.
+
+\begin{thm} \mbox{}
+ \begin{dingautolist}{202}
+\item $\nabla \bp \psi \vector{u} = \psi \nabla \bp \vector{u} + \vector{u} \bp \nabla \psi$
+\item $
+\nabla \times \psi \vector{u} = \psi \nabla \times \vector{u} + \nabla \psi \times \vector{u}$
+\item $ \nabla \bp \vector{u} \times \vector{v} = 
+\vector{v} \bp \nabla \times \vector{u} - 
+\vector{u} \bp \nabla \times \vector{v}$
+\item $ \nabla \times (\vector{u} \times \vector{v}) = 
+\vector{v} \bp \nabla \vector{u} - 
+\vector{u} \bp \nabla \vector{v} +
+\vector{u} (\nabla \bp  \vector{v}) -
+\vector{v} (\nabla \bp  \vector{u})$
+\item $ \nabla (\vector{u} \bp \vector{v}) = 
+\vector{u} \bp \nabla \vector{v} + 
+\vector{v} \bp \nabla \vector{u} +
+\vector{u} \times (\nabla \times  \vector{v}) +
+\vector{v} \times (\nabla \times  \vector{u})$
+\item $
+\nabla \times (\nabla \psi) = curl \hspace{0.1in}(grad \hspace{0.1in}\psi) = \vector{ 0}$
+\item $\nabla \bp (\nabla \times \vector{u}) = div \hspace{0.1in}(curl \hspace{0.1in}\vector{u}) = 0$
+\item $ \nabla \bp (\nabla \psi_{1} \times \nabla \psi_{2}) = 0$
+\item $ \nabla \times (\nabla \times \vector{u}) = curl \hspace{0.1in}(curl \hspace{0.1in}\vector{u}) =
+grad \hspace{0.1in}(div \hspace{0.1in}\vector{u}) - \nabla^{2} \vector{u}$
+\end{dingautolist}
+
+where 
+\begin{eqnarray*}
+\Delta f = \nabla^2 f = \nabla \cdot \nabla f  = 
+\dfrac{\partial^{2}}{\partial x^{2}} + 
+\dfrac{\partial^{2}}{\partial y^{2}} +
+\dfrac{\partial^{2}}{\partial z^{2}}
+\end{eqnarray*}
+is the Laplacian operator and
+\begin{eqnarray*}
+\nabla^{2} \vector{u} = 
+(\dfrac{\partial^{2}}{\partial x^{2}} + 
+\dfrac{\partial^{2}}{\partial y^{2}} +
+\dfrac{\partial^{2}}{\partial z^{2}}) 
+(u_{x} \vector{ i} + u_{y} \vector{ j} + u_{z} \vector{ k}) = \\
+(\dfrac{\partial^{2} u_{x}}{\partial x^{2}} + 
+ \dfrac{\partial^{2} u_{x}}{\partial y^{2}} +
+ \dfrac{\partial^{2} u_{x}}{\partial z^{2}}) \vector{ i} +
+(\dfrac{\partial^{2} u_{y}}{\partial x^{2}} + 
+ \dfrac{\partial^{2} u_{y}}{\partial y^{2}} +
+ \dfrac{\partial^{2} u_{y}}{\partial z^{2}}) \vector{ j} +
+(\dfrac{\partial^{2} u_{z}}{\partial x^{2}} + 
+ \dfrac{\partial^{2} u_{z}}{\partial y^{2}} +
+ \dfrac{\partial^{2} u_{z}}{\partial z^{2}}) \vector{ k}
+\end{eqnarray*}
+\end{thm}
+
+
+Finally, for the position vector $\vector{ r}$ the following 
+are valid
+ \begin{dingautolist}{202}
+\item $\nabla \bp \vector{ r} = 3$
+\item $ \nabla \times \vector{ r} = \vector{ 0}$
+\item $ \vector{u} \bp \nabla \vector{ r} = \vector{u}$
+\end{dingautolist}
+where $\vector{u}$ is any vector.
+
+
+
+\section*{\psframebox{Exercises}}
+\begin{multicols}{2}\columnseprule 1pt \columnsep 25pt\multicoltolerance=900
+
+\begin{problem}
+
+The temperature at a point in space is $T = xy + yz + zx$.
+
+a) Find the direction in which the temperature changes most rapidly with 
+distance from $(1,1,1)$. What is the maximum rate of change?
+
+b) Find the derivative of $T$ in the direction of the vector 
+$3 \vector{ i} - 4 \vector{ k}$ at $(1,1,1)$.
+
+
+\begin{answer}
+a) Here $\nabla T = (y+z) \vector{ i} + (x+z) \vector{ j} + (y+x) \vector{ k}$. 
+The maximum rate of change at $(1,1,1)$ is 
+$|\nabla T(1,1,1)| = 2 \sqrt{3}$ and direction cosines are
+\begin{eqnarray*}
+\dfrac{\nabla T}{|\nabla T|} = 
+\dfrac{1}{\sqrt{3}} \vector{ i} +
+\dfrac{1}{\sqrt{3}} \vector{ j} +
+\dfrac{1}{\sqrt{3}} \vector{ k} =
+\cos \alpha \vector{ i} + \cos \beta \vector{ j} + \cos \gamma \vector{ k}
+\end{eqnarray*}
+
+
+b) The required derivative is
+\begin{eqnarray*}
+\nabla T(1,1,1) \bp 
+\dfrac{3 \vector{ i} - 4 \vector{ k}}{|3 \vector{ i} - 4 \vector{ k}|} =
+- \dfrac{2}{5}
+\end{eqnarray*}
+
+\end{answer}
+\end{problem}
+
+\begin{problem}
+
+For each of the following vector functions $\vector{ F}$, 
+determine whether $\nabla \phi = \vector{ F}$ has a solution and 
+determine it if it exists.
+
+a) $\vector{ F} = 
+2 x y z^{3} \vector{ i} -
+(x^{2} z^{3} + 2 y) \vector{ j} +
+3 x^{2} y z^{2} \vector{ k}$
+
+b) $\vector{ F} = 
+2 x y \vector{ i} +
+(x^{2} + 2 y z) \vector{ j} +
+(y^{2} + 1) \vector{ k}$
+
+\begin{answer}
+ 
+a) Here $\nabla \phi = \vector{ F}$ requires $\nabla \times \vector{ F} = 0$ which is 
+not the case here, so no solution.
+
+
+b) Here $\nabla \times \vector{ F} = 0$ so that
+\begin{eqnarray*}
+\phi(x,y,z) = x^{2} y + y^{2} z + z + c
+\end{eqnarray*}
+
+\end{answer}
+
+\end{problem}
+
+
+\begin{problem}
+Let $\funvect{f}(x,y,z)=xe^{yz}$. Find $$(\nabla f)(2,1,1).$$
+\begin{answer}
+$\nabla f(x,y,z)=\coord{e^{yz} ,xze^{yz},xye^{yz}}\implies
+(\nabla f)(2,1,1) =  \coord{e,2e,2e} $.
+\end{answer}
+\end{problem}
+
+\begin{problem}
+Let $\funvect{f}(x,y,z)=\coord{xz,e^{xy} ,z}$. Find $$(\nabla \cross
+f)(2,1,1).$$
+
+\begin{answer}
+$(\nabla \cross f)(x,y,z)=\coord{0,x, ye^{xy}} \implies (\nabla
+\cross f)(2,1,1)=\coord{0,2 ,e^2}$.
+\end{answer}
+\end{problem}
+
+
+\begin{problem}
+Find the tangent plane to the surface  $\dfrac{x^2}{2}-y^2-z^2=0$ at
+the point  $(2,-1,1)$.
+\end{problem}
+\begin{problem}
+Find the point on the surface $$x^2+y^2-5xy+xz-yz=-3$$ for which the
+tangent plane is $x-7y=-6$.
+\begin{answer}
+ The vector $\coord{1 ,-7 ,0}$ is perpendicular to the plane. Put $\funvect{f}(x,y,z)=x^2+y^2-5xy+xz-yz+3$. Then $(\nabla f)(x,y,z)=\coord{2x-5y+z ,2y-5x-z \\
+x-y}$. Observe that $\nabla f(x,y,z)$ is parallel to the vector
+$\coord{1 ,-7 ,0}$, and hence there exists a constant $a$ such
+that $$ \coord{2x-5y+z ,2y-5x-z \\
+x-y}=a\coord{1 ,-7 ,0} \implies x=a, \quad y=a, \quad z=4a.$$
+Since the point is on the plane $$x-7y=-6 \implies a-7a=-6 \implies
+a=1.$$ Thus $x=y=1$ and $z=4$.
+\end{answer}
+\end{problem}
+
+\begin{problem}
+Find a vector pointing in the direction in which $\funvect{f}(x,y,z) = 3xy
+-9xz^2+y$ increases most rapidly at the point $(1, 1, 0)$.
+\end{problem}
+\begin{problem}
+Let  $\mathrm{D}_{\vector{u}}\funvect{f}(x,y)$ denote the directional
+derivative of $\funvect{f}$ at $(x,y)$ in the direction of the unit vector
+ $\vector{u}$. If $\nabla f(1,2) = 2\vector{i} - \vector{j}$, find
+$\mathrm{D}_{(\dfrac{3}{5},\dfrac{4}{5})}\funvect{f}(1,2)$.
+\end{problem}
+\begin{problem}
+Use a linear approximation of the function $\funvect{f}(x, y) = e^{x\cos 2y}$
+at (0, 0) to estimate $\funvect{f}(0.1, 0.2)$.
+\begin{answer}
+Observe that $$\funvect{f}(0,0) =1, \quad f_x(x,y) = (\cos 2y)e^{x\cos 2y}
+\implies f_x(0,0)=1, $$ $$ f_y(x,y) = -2x\sin 2ye^{x\cos 2y}
+\implies f_y(0,0) = 0.
+$$Hence
+$$\funvect{f}(x,y) \approx \funvect{f}(0,0) + f_x(0,0)(x-0) + f_y(0,0)(y-0) \implies \funvect{f}(x,y)\approx 1 + x. $$
+This gives $\funvect{f}(0.1,-0.2)\approx 1+0.1 = 1.1$.
+\end{answer}
+\end{problem}
+
+\begin{problem}
+Prove that
+$$ \nabla \bullet (\point{u}\cross \point{v}) = \point{v}\bullet ({\nabla}\cross \point{u}) - \point{u}\bullet ({\nabla}\cross \point{v}). $$
+\begin{answer}
+This is essentially the product rule: $\d{uv} = u\d{v}+v\d{u}$,
+where $\nabla$ acts the differential operator and $\cross$ is the
+product. Recall that when we defined the volume of a parallelepiped
+spanned by the vectors $\vector{a},$ $\vector{b}$, $\vector{c}$, we
+saw that
+$$ \vector{a}\bullet (\crossprod{b}{c}) = (\crossprod{a}{b})\bullet \vector{c}.  $$
+Treating $\nabla = \nabla _{\vector{u}}+ \nabla _{\vector{v}}$ as a
+vector, first keeping $\vector{v}$ constant and then keeping
+$\vector{u}$ constant  we then see that
+$$ \nabla _{\vector{u}} \bullet (\crossprod{u}{v})= (\crossprod{\nabla}{u})\bullet \vector{v}, \qquad   \nabla  _{\vector{v}} \bullet (\crossprod{u}{v})=  -\nabla \bullet (\crossprod{v}{u})  = -(\crossprod{\nabla}{v})\bullet \vector{u}. $$
+Thus
+$$\nabla \bullet (\point{u}\cross \point{v}) = (\nabla _{\vector{u}} + \nabla _{\vector{v}}) \bullet (\point{u}\cross \point{v})
+= \nabla _{\vector{u}} \bullet (\crossprod{u}{v}) + \nabla
+_{\vector{v}} \bullet (\crossprod{u}{v}) =
+(\crossprod{\nabla}{u})\bullet \vector{v}-
+(\crossprod{\nabla}{v})\bullet \vector{u}.
+   $$
+\end{answer}
+
+
+\end{problem}
+\begin{problem}
+Find the point on the surface  $$2x^2+xy+y^2+4x+8y-z+14=0$$ for
+which the tangent plane is  $4x+y-z=0$.
+\end{problem}
+\begin{problem}
+Let $\phi:\reals^3\to \reals$ be a scalar field, and let $\point{U},
+\point{V}:\reals^3\to \reals^3$ be vector fields. Prove that
+\begin{enumerate}
+\item $\nabla \bp \phi\point{V}=\phi\nabla\bp \point{V}+\point{V}\bp\nabla\phi$
+\item $\nabla \cross \phi\point{V}=\phi\nabla\cross \point{V}+(\nabla\phi)\cross \point{V}$
+\item $\nabla \cross (\nabla \phi)=\vector{0}$
+\item $\nabla \bp (\nabla \cross \point{V})=0$
+\item $\nabla (\point{U}\bp \point{V})=  (\point{U}\bp \nabla)\point{V}+(\point{V}\bp \nabla)\point{U} +\point{U}\cross (\nabla \cross\point{V})
+++\point{V}\cross (\nabla \cross\point{U})$
+\end{enumerate}
+\end{problem}
+\begin{problem}
+Find the angles made by the gradient of $\funvect{f}(x,y)=x^{\sqrt{3}}+y$ at
+the point $(1,1)$ with the coordinate axes.
+\begin{answer}
+An angle of $ \dfrac{\pi}{6}$ with the $x$-axis and $
+\dfrac{\pi}{3}$ with the $y$-axis.
+\end{answer}
+\end{problem}
+
+\end{multicols}
+
+
+% \section{The $\nabla$ Operator: Gradient, Divergence and Curl}
+% 
+% 
+% \todo{Add }
+%%%http://www.feynmanlectures.caltech.edu/II_02.html
+% 
+% 
+% \section{Extrema}
+% We now turn to the problem of finding maxima and minima for vector
+% functions. As in the one-variable case, the derivative will
+% provide us with information about the extrema, and the ``second
+% derivative'' will provide us with information about the nature of
+% these extreme points.
+% 
+% 
+% 
+% To define an analogue for the second derivative, let us consider the
+% following. Let $A \subset \reals^n$ and $\funvect{f}:A \rightarrow \reals^m$
+% be differentiable on $A$. We know that for fixed $\point{x}_0\in A
+% $, $\deriv{x_0}{f}$ is a linear transformation from $\reals^n$ to
+% $\reals^m$. This means that we have a function
+% $$\fun{T}{\point{x}}{\deriv{x}{f}}{A}{{\mathscr  L}(\reals^n, \reals^m)},$$
+% where  ${\mathscr  L}(\reals^n, \reals^m)$ denotes the space of
+% linear transformations from $\reals^n$ to $\reals^m$. Hence, if we
+% differentiate $T$ at $\point{x}_0$ again,   we obtain a linear
+% transformation $\deriv{x_0}{T} = \deriv{x_0}{\deriv{x_0}{f}}  =
+% \mathrm{D}_{\point{x}_0} ^2 (f) $ from $\reals^n$ to ${\mathscr
+% L}(\reals^n, \reals^m)$. Hence, given $\point{x_1}\in \reals^n,$ we
+% have $\mathrm{D}_{\point{x}_0} ^2 (f)(\point{x_1})\in {\mathscr
+% L}(\reals^n, \reals^m)$. Again, this means that given
+% $\point{x}_2\in \reals^n$, $\mathrm{D}_{\point{x}_0} ^2
+% (f)(\point{x_1}))(\point{x}_2) \in \reals^m .$ Thus the function
+% $$\fun{B_{\point{x_0}}}{(\point{x_1}, \point{x_2})}{\mathrm{D}_{\point{x}_0} ^2 (f)(\point{x_1}, \point{x_2})}{\reals^n\times \reals^n}{{\mathscr  L}(\reals^n, \reals^m)}$$
+% is well defined, and linear in each variable $\point{x_1}$ and
+% $\point{x_2}$, that is, it is a \negrito{ bilinear} function.
+% 
+% 
+% 
+% 
+% 
+%       Just as the Jacobi matrix was a handy tool for finding a
+% matrix representation of $\deriv{x}{f}$ in the natural bases, when
+% $\funvect{f}$ maps into $\reals$, we have the following analogue
+% representation of the second derivative.
+% \begin{thm}
+% Let $A \subseteq \reals^n$ be an open set, and $\funvect{f}:A \rightarrow
+% \reals$ be twice differentiable on $A$. Then the matrix of
+% $\mathrm{D}_{\point{x}} ^2 (f):\reals^n \times \reals^n
+% \rightarrow \reals$ with respect to the standard basis is given by
+% the \negrito{ Hessian matrix:}
+% $$\hessian{x}{f} = \begin{bmatrix} \hderiv{1}{1}{f}(\point{x}) & \hderiv{1}{2}{f}(\point{x})  & \dots & \hderiv{1}{n}{f}(\point{x}) \cr
+% \hderiv{2}{1}{f}(\point{x}) & \hderiv{2}{2}{f}(\point{x})  & \dots
+% & \hderiv{2}{n}{f}(\point{x}) \cr \vdots & \vdots & \vdots & \vdots
+% \cr \hderiv{n}{1}{f}(\point{x}) & \hderiv{n}{2}{f}(\point{x})  &
+% \dots & \hderiv{n}{n}{f}(\point{x}) \cr
+% \end{bmatrix}$$
+% 
+% 
+% \end{thm}
+% \begin{exa}
+% Let $\funvect{f}:\reals^3 \rightarrow \reals$ be given by
+% $$\funvect{f}(x,y,z)  = xy^2z^3.$$ Then
+% 
+% $$
+% \hessian{(x,y,z)}{f} = \begin{bmatrix}  0 & 2yz^3 & 3y^2z^2 \cr
+% 2yz^3 & 2xz^3 & 6xyz^2 \cr 3y^2z^2 & 6xyz^2 & 6xy^2z \cr
+% \end{bmatrix}$$
+% 
+% \end{exa}
+% 
+% From the preceding example, we notice that the Hessian is symmetric,
+% as the  mixed partial derivatives $\dfrac{\partial ^2}{\partial
+% x\partial y}f = \dfrac{\partial ^2}{\partial y\partial x}f $, etc.,
+% are equal. This is no coincidence, as guaranteed by the following
+% theorem.
+% \begin{thm}
+% Let $A \subseteq \reals^n$ be an open set, and $\funvect{f}:A \rightarrow
+% \reals$ be twice differentiable on $A$. If ${\mathscr
+% D}_{\point{x}_0} ^2 (f)$ is continuous, then ${\mathscr
+% D}_{\point{x}_0} ^2 (f)$ is symmetric, that is, $\forall
+% (\point{x_1}, \point{x_2})\in \reals^n\times \reals^n$ we have
+% $$\mathrm{D}_{\point{x}_0} ^2 (f)(\point{x_1}, \point{x_2}) = \mathrm{D}_{\point{x}_0} ^2 (f)(\point{x_2}, \point{x_1}). $$
+% \end{thm}
+% 
+% 
+% 
+% We are now ready to study extrema in several variables. The basic
+% theorems resemble those of one-variable calculus. First, we make
+% some analogous definitions.
+% \begin{df}
+% Let $A \subseteq \reals^n$ be an open set, and $\funvect{f}:A \rightarrow
+% \reals$. If there is some open ball $\ball{r}{\point{x_0}}$ on which
+% $\forall \point{x}\in\ball{r}{x_0}, \ \ \funvect{f}(\point{x}_0) \geq
+% \funvect{f}(\point{x})$, we say that $ \funvect{f}(\point{x}_0)$ is a \negrito{ local
+% maximum} of $\funvect{f}$. Similarly, if there is  some open ball
+% $\ball{r}{\point{x_1}}$ on which $\forall
+% \point{x}\in\ball{r'}{\point{x_0}}, \ \ \funvect{f}(\point{x}_1) \leq
+% \funvect{f}(\point{x})$, we say that $ \funvect{f}(\point{x}_1)$ is a \negrito{ local
+% maximum} of $\funvect{f}$. A point is called an \negrito{ extreme point} if it is
+% either a local minimum or local maximum. A point $\point{t}$ is
+% called a \negrito{ critical point} if $\funvect{f}$ is differentiable at
+% $\point{t}$ and $\deriv{\point{t}}{f} = 0$. A critical point which
+% is neither a maxima nor a minima is called a \negrito{ saddle point}.
+% \end{df}
+% \begin{thm}
+% Let $A \subseteq \reals^n$ be an open set, and $\funvect{f}:A \rightarrow
+% \reals$ be differentiable on $A$. If $\point{x}_0$ is an extreme
+% point, then $\deriv{\point{x_0}}{f} = 0,$ that is, $\point{x}_0$ is
+% a critical point. Moreover, if $\funvect{f}$ is twice-differentiable with
+% continuous second derivative and $\point{x_0}$ is a critical point
+% such that $\hessian{\point{x_0}}{f}$ is negative definite, then $\funvect{f}$
+% has a local maximum at $\point{x}_0$. If $\hessian{\point{x_0}}{f}$
+% is positive definite, then $\funvect{f}$ has a local minimum at $\point{x}_0$.
+% If $\hessian{\point{x_0}}{f}$ is indefinite, then $\funvect{f}$ has a saddle
+% point. If $\hessian{\point{x_0}}{f}$ is semi-definite (positive or
+% negative), the test is inconclusive.
+% \end{thm}
+% 
+% \begin{exa}
+% Find the critical points of  $$\fun{f}{(x, y)}{x^2 + xy + y^2 + 2x +
+% 3y}{\reals^2}{\reals}
+% $$and investigate their nature.
+% \end{exa}
+% \begin{solu} We have
+% $$(\nabla f)(x,y) = \begin{bmatrix}2x + y + 2 \\ x + 2y + 3
+% \end{bmatrix},$$and so to find the critical points we solve
+% $$2x + y + 2 = 0,$$
+% $$x + 2y  + 3= 0,$$which yields
+% $x = -\dfrac{1}{3}, y = -\dfrac{4}{3}.$
+% Now,
+% $$\hessian{(x,y)}{f} = \begin{bmatrix}2 & 1 \cr 1 & 2
+% \end{bmatrix},$$which is positive definite, since $\Delta_1 = 2 >
+% 0$ and $\Delta_2 = \det \begin{bmatrix}2 & 1 \cr 1 & 2
+% \end{bmatrix} = 3 > 0$. Thus $\point{x_0} =
+% \left(-\dfrac{1}{3}, -\dfrac{4}{3}\right)$ is a relative minimum and
+% we have
+% $$-\dfrac{7}{3} = f\left(-\dfrac{1}{3}, -\dfrac{4}{3}\right) \leq \funvect{f}(x, y) = x^2 + xy + y^2 + 2x + 3y.$$
+% \end{solu}
+% \begin{exa}
+% Find the extrema of $$\fun{f}{(x, y, z)}{x^2 + y^2 + 3z^2 - xy + 2xz
+% + yz }{\reals^3}{\reals}.$$
+% \end{exa}
+% \begin{solu}  We have
+% $$(\nabla f)(x,y,z)  = \begin{bmatrix}2x - y + 2z \\ 2y - x + z \\ 6z + 2x + y \cr
+% \end{bmatrix},$$which vanishes when $x = y = z = 0.$ Now,
+% $$\hessian{r}{f} = \begin{bmatrix}
+% 2 & -1 & 2 \cr -1 & 2 & 1 \cr 2 & 1 & 6 \cr
+% \end{bmatrix},$$which is positive definite, since $\Delta_1 = 2 > 0,$
+% $\Delta_2 = \det \begin{bmatrix} 2 & -1 \cr -1 & 2 \end{bmatrix} =
+% 3 > 0,$ and $\Delta_3 = \det \begin{bmatrix} 2 & -1 & 2 \cr -1 & 2
+% & 1 \cr 2 & 1 & 6 \cr
+% \end{bmatrix} = 4 > 0.$ Thus $\funvect{f}$ has a relative minimum at $(0, 0,
+% 0)$ and $$0 = \funvect{f}(0, 0, 0) \leq \funvect{f}(x, y, z) = x^2 + y^2 + 3z^2 - xy +
+% 2xz + yz. $$
+% \end{solu}
+% 
+% \begin{exa}
+% Let $\funvect{f}(x,y)=x^3-y^3+axy$, with $a\in \reals$ a parameter. Determine
+% the nature of the critical points of $\funvect{f}$.
+% \end{exa}
+% \begin{solu}
+% We have $$ (\nabla f)(x,y)=\coord{3x^2+ay \\  -3y^2+ax} = \coord{0
+% \\ 0} \implies 3x^2=-ay,\quad  3y^2=ax.  $$ If $a=0$, then $x=y=0$
+% and so $(0,0)$ is a critical point. If $a\neq 0$ then
+% $$\begin{array}{lll}3\left(3\dfrac{y^2}{a}\right)^2=-ay & \implies &  27y^4=-a^3y \\ &  \implies & y(27y^3+a^3)=0 \\ & \implies &  y(3y+a)(9y^2-3ay+a^2)=0\\
+% & \implies &  y=0\quad  \mathrm{or}\quad y = -\dfrac{a}{3}.
+% \end{array}
+% $$
+% If $y=0$ then $x=0$, so again $(0,0)$ is a critical point. If $ y =
+% -\dfrac{a}{3}$ then $x=\dfrac{3}{a}\bp
+% \left(-\dfrac{a}{3}\right)^2 = \dfrac{a}{3} $ so
+% $\left(\dfrac{a}{3}, -\dfrac{a}{3}\right)$  is a critical point.
+% 
+% 
+% Now,
+% $${\cal H}_{\funvect{f}(x,y)}
+% =
+% \begin{bmatrix} 6x & a \\ a & -6y  \end{bmatrix} \implies \Delta _1
+% =6x, \quad \Delta _2 = -36xy-a^2.  $$ At $(0,0)$, $\Delta _1 =0$,
+% $\Delta _2 =-a^2$. If $a\neq 0$ then there is a saddle point.  At
+% $\left(\dfrac{a}{3}, -\dfrac{a}{3}\right)$, $\Delta _1 = 2a$,
+% $\Delta _2 =3a^2$, whence $\left(\dfrac{a}{3}, -\dfrac{a}{3}\right)$
+% will be a local minimum if $a>0$ and a local maximum if $a<0$.
+% \end{solu}
+% 
+% 
+% \section*{\psframebox{Exercises}}
+% \begin{multicols}{2}\columnseprule 1pt \columnsep 25pt\multicoltolerance=900
+% 
+% \begin{problem}
+% Determine the nature of the critical points of $f (x,y)=
+% y^2-2x^2y+4x^3+20x^2$.
+% \end{problem}
+% \begin{problem}
+% Determine the nature of the critical points of $\funvect{f}(x,y)= (x-2)^2+2y^2
+% $.
+% \end{problem}
+% \begin{problem}
+% Determine the nature of the critical points of $\funvect{f}(x,y)= (x-2)^2-2y^2
+% $.
+% \end{problem}
+% \begin{problem}
+% Determine the nature of the critical points of $\funvect{f}(x,y)=
+% x^4+4xy-2y^2 $.
+% \end{problem}
+% \begin{problem}
+% Determine the nature of the critical points of $\funvect{f}(x,y)=
+% x^4+y^4-2x^2+4xy-2y^2 $.
+% \end{problem}
+% \begin{problem}
+% Determine the nature of the critical points of
+% $\funvect{f}(x,y,z)=x^2+y^2+z^2-xy+x-2z $.
+% \end{problem}
+% \begin{problem}
+% Determine the nature of the critical points of
+% $\funvect{f}(x,y)=x^4+y^4-2(x-y)^2$.
+% \begin{answer}
+% We have
+% $$ (\nabla f)(x,y)= \coord{4x^3-4(x-y)\\
+% 4y^3+4(x-y)}=\coord{0\\ 0}\implies 4x^3=4(x-y)=-4y^3 \implies x=-y.
+% $$
+% Hence $$ 4x^3-4(x-y)=0 \implies 4x^3-8x=0 \implies 4x(x^2-2)=0
+% \implies x\in\{-\sqrt{2},0,\sqrt{2}\}.
+% $$
+% Since $x=-y$,  the critical points are thus $(-\sqrt{2},\sqrt{2}),
+% (0,0), (\sqrt{2},-\sqrt{2})$. The Hessian is now,
+% $${\cal H}\funvect{f}(x,y)=\begin{bmatrix}  12x^2-4 & 4 \\ 4 & 12y^2-4   \end{bmatrix},  $$
+% and its principal minors are $\Delta _1 = 12x^2-4$ and $\Delta _2 =
+% (12x^2-4)(12y^2-4)-16$.
+% 
+% 
+% \bigskip
+% If $(x,y)=(-\sqrt{2},\sqrt{2})$ or  $(x,y)=(\sqrt{2},-\sqrt{2})$,
+% then $\Delta _1 =20>0$ and $\Delta _2 = 384>0$, so the matrix is
+% positive definite and we have a local minimum at each of these
+% points.
+% 
+% \bigskip
+% 
+% If $(x,y)=(0,0)$ then $\Delta _1 =-4<0$ and $\Delta _2 = 0$, so the
+% matrix is negative semidefinite and further testing is needed.  What
+% happens in a neighbourhood of $(0,0)$? We have
+% $$\funvect{f}(x,x)=2x^4 >0, \qquad \funvect{f}(x,-x)=2x^4-4x^2=2x^2(x^2-1).  $$
+% If $x$ is close enough to $0$,  $=2x^2(x^2-1)<0$, which means that
+% the function both increases and decreases to $0$ in a neighbourhood
+% of $(0,0)$, meaning that there is a saddle point there.
+% 
+% 
+% \end{answer}
+% \end{problem}
+% \begin{problem}
+% Determine the nature of the critical points of $$\funvect{f}(x, y, z)
+% =4x^2z-2xy-4x^2-z^2+y.$$ \begin{answer} We have
+% $$ \nabla f(x, y, z) = \begin{bmatrix} 8xz -2y-8x \\ -2x + 1 \\ 4x^2 -2z  \end{bmatrix} = \coord{0\\ 0 \\ 0} \implies x = 1/2;\quad
+% y = -1;\quad z = 1/2.  $$ The hessian is
+% $$\mathscr{H}  =\begin{bmatrix}8z-8 & -2 & 8x \cr -2 & 0 & 0 \cr 8x & 0 & -2 \cr \end{bmatrix} .
+% $$The principal minors are $8z-8$; $-4$, and $8$. At $z = 1/2$, the
+% matrix is negative definite and the critical point is thus a saddle
+% point.
+% \end{answer}
+% \end{problem}
+% \begin{problem}
+% Find the extrema of $$\funvect{f}(x,y,z)=x^2 + y^2 + z^2 + xyz. $$
+% \begin{answer} We have
+% $$(\nabla f)(x,y,z) = \begin{bmatrix} 2x + yz \\ 2y + xz \\ 2z + xy
+% \end{bmatrix},$$and
+% $$\hessian{r}{f} = \begin{bmatrix} 2 & z & y \cr
+% z & 2 & x \cr y & x & 2 \cr   \end{bmatrix}.$$ We see that
+% $\Delta_1(x, y, z) = 2, \Delta_2(x, y, z) = \det \begin{bmatrix} 2 &
+% z \cr z & 2
+% \end{bmatrix} = 4 - z^2$ and $\Delta_3(x, y, z) = \det\hessian{r}{f}  = 8 - 2x^2 - 2y^2 - 2z^2 +
+% 2xyz$.
+% 
+% 
+% 
+% 
+% If $(\nabla f)(x,y,z)  = \coord{0 \\ 0\\ 0}$ then we must have
+% $$2x = -yz,$$
+% $$2y = -xz,$$
+% $$2z = -xy,$$and upon multiplication of the three equations,
+% $$8xyz = -x^2y^2z^2,$$
+% that is,
+% $$xyz(xyz + 8) = 0.$$Clearly, if $xyz = 0$, then we must have at least one of the variables equalling $0$, in which case,
+% by virtue of the original three equations, all equal $0$. Thus $(0,
+% 0, 0)$ is a critical point. If $xyz = -8$, then none of the
+% variables is $0$, and solving for $x$, say, we must have $x =
+% -\dfrac{8}{yz}$, and substituting this into $2x + yz = 0$ we gather
+% $(yz)^2 = 16$, meaning that either $yz = 4,$ in which case $x = -2$,
+% or $zy = -4$, in which case $x = 2.$ It is easy to see then that
+% either exactly one of the variables is negative, or all three are
+% negative.  The other critical points are therefore $(-2, 2, 2 )$,
+% $(2, -2, 2)$, $(2, 2, -2)$, and $(-2, -2, -2)$.
+% 
+% 
+% 
+%     At $(0, 0, 0)$, $\Delta_1(0, 0, 0) = 2 > 0, \Delta_2(0, 0, 0) = 4 > 0, \Delta_1(0, 0, 0) = 8 >
+% 0$, and thus $(0, 0, 0)$ is a minimum point. If $x^2 = y^2 = z^2 =
+% 4, xyz = -8$, then $\Delta_2(x, y, z) = 0, \Delta_3 = -32,$ so these
+% points are saddle points.
+% \end{answer}
+% \end{problem}
+% \begin{problem} Find the extrema of $\funvect{f}(x,y,z)=x^2y + y^2z + 2x - z $.
+% \begin{answer} We have
+% $$(\nabla f)(x,y,z) = \begin{bmatrix} 2xy + 2 \\ x^2 + 2yz \\ y^2 - 1
+% \end{bmatrix},$$and
+% $$\hessian{r}{f} = \begin{bmatrix} 2y & 2x & 0 \cr
+% 2x & 2z & 2y \cr 0 & 2y & 0 \cr   \end{bmatrix}.$$ We see that
+% $\Delta_1(x, y, z) = 2y, \Delta_2(x, y, z) = \det \begin{bmatrix} 2y
+% & 2x \cr 2x & 2z
+% \end{bmatrix} = 4yz - 4x^2$ and $\Delta_3(x, y, z) = \det\hessian{r}{f}  = -8y^3$.
+% 
+% 
+% 
+% 
+% If $(\nabla f)(x,y,z)  = \coord{0\\ 0\\ 0}$ then we must have
+% $$xy = -1,$$
+% $$x^2 = -2yz,$$
+% $$y = \pm 1,$$and hence $(1, -1,
+% \dfrac{1}{2})$, and $(-1, 1, -\dfrac{1}{2})$ are the critical
+% points. Now, $\Delta_1(1, -1, \dfrac{1}{2}) = -2$, $\Delta_2(1, -1,
+% \dfrac{1}{2}) = -6,$ and $\Delta_3(1, -1, \dfrac{1}{2}) = 8.$ Thus
+% $(1, -1, \dfrac{1}{2})$ is a saddle point. Similarly, $\Delta_1(-1,
+% 1, -\dfrac{1}{2}) = 2$, $\Delta_2(-1, 1, -\dfrac{1}{2}) = -6,$ and
+% $\Delta_3(-1, 1, -\dfrac{1}{2}) = -8$, shewing that $(1, -1,
+% \dfrac{1}{2})$ is also a saddle point.
+% \end{answer}
+% \end{problem}
+% \begin{problem}
+% Determine the nature of the critical points of
+% $$\funvect{f}(x,y,z) = 4xyz - x^4 - y^4 - z^4. $$\begin{answer} We find $$\nabla f(x,y,z) = \coord{4yz - 4x^3 \\ 4xz - 4y^3
+% \\ 4xy - 4z^3}.
+% $$ Assume $\nabla f(x,y,z) = \point{0}$. Then $$4yz = 4x^3, \  4xz = 4y^3, \ 4xy = 4z^3 \implies xyz = x^4 = y^4 = z^4.   $$
+% Thus $xyz \geq 0$, and if one of the variables is $0$ so are the
+% other two. Thus $(0,0,0)$ is the only critical point with at least
+% one of the variables $0$. Assume now that $xyz \neq 0$. Then
+% $$(xyz)^3 = x^4y^4z^4 = (xyz)^4 \implies xyz = 1 \implies yz = \dfrac{1}{x} \implies x^4 = 1 \implies x = \pm 1.$$
+% Similarly, $y = \pm 1, z = \pm 1$. Since $xyz = 1$, exactly two of
+% the variables can be negative. Thus we find the following critical
+% points: $$(0,0,0), (1,1,1), (-1,-1,1), (-1,1,-1), (1,-1,-1).    $$
+% The Hessian is
+% $$ \hessian{x}{f} = \begin{bmatrix} -12x^2 &  4z & 4y \cr 4z & -12y^2 & 4x \cr
+% 4y & 4x & -12z^2 \cr    \end{bmatrix} .  $$ If $1 = xyz = x^2 = y^2
+% = z^2$, we have $\Delta_1 = -12x^2 = -12 < 0$, $\Delta_2 = 144x^2y^2
+% - 16z^2 = 144 - 16 = 128
+% > 0,$ and $$\begin{array}{lll}\Delta _3 & = & -1728x^2y^2z^2+192x^4+192z^4+128zyx+192y^4 \\ & = & -1728 + 192 + 192 + 128 + 192 \\ &  = &  -1024 \\ & < &  0.\end{array}$$
+% This means that for $xyz \neq 0$ the Hessian is negative definite
+% and the function has a local maximum at each of the four points
+% $(1,1,1), (-1,-1,1),$ $ (-1,1,-1)$, $(1,-1,-1). $ Observe that at
+% these critical points $f = 1.$ Now $\funvect{f}(0,0,0) = 0$ and $\funvect{f}(-1,1,1) =
+% -7$.
+% \end{answer}
+% \end{problem}
+% \begin{problem}
+% Determine the nature of the critical points of
+% $\funvect{f}(x,y,z)=xyz(4-x-y-z)$.
+% \begin{answer}Rewrite: $\funvect{f}(x,y,z)=xyz(4-x-y-z)=4xyz-x^2yz-xy^2z-xyz^2$.
+% Then,
+% $$ (\nabla f)(x,y,z)= \coord{4yz-2xyz-y^2z-yz^2\\
+% 4xz-x^2z-2xyz-xz^2\\ 4xy-x^2y-xy^2-2xyz},$$ $$ {\cal H}\funvect{f}(x,y,z)=
+% \begin{bmatrix} -2yz & z(4-2x-2y-z) & y(4-2x-y-2z)\cr
+% z(4-2x-2y-z)&-2xz&x(4-x-2y-2z)\cr y(4-2x-y-2z)&x(4- x-2y-2z)&-2xy
+% \cr
+% \end{bmatrix}
+%  $$
+% Equating the gradient to zero, we obtain,
+%  $$
+% yz(4-2x-y-z)=0, \quad xz(4-x-2y-z)=0, \quad xy(4-x-y-2z)=0.
+% $$
+% If $xyz\neq 0$ then we must have
+%  $$
+% 4-2x-y-z=0, \quad 4-x-2y-z=0, \quad 4-x-y-2z=0 \implies x=y =z =1.
+% $$
+% In this case
+% $$ {\cal H}\funvect{f}(1,1,1)=
+% \begin{bmatrix} -2 & -1 & -1 \cr -1 & -2 & -1 \cr -1 & -1 & -2 \cr
+% \end{bmatrix}
+%  $$and the principal minors are $\Delta _1 =-2<0$, $\Delta _2 = 3>0$, and $\Delta _3=-4<0$, so the matrix is negative
+%   definite and we have a local maximum at $(1,1,1)$.
+% 
+% \bigskip
+% 
+% If either of $x$, $y$, or $z$ is $0$, we will get $\Delta _3=0$, so
+% further testing is needed. Now,
+% $$\funvect{f}(x,x,x)=x^3(4-3x), \qquad \funvect{f}(x,-x,x)=x^3(-4+x). $$
+% Thus as $x\to 0+$ then $\funvect{f}(x,x,x)>0$ and $\funvect{f}(x,-x,x)<0$, which means
+% that in some neighbourhood of $(0,0,0)$ the function is both
+% decreasing towards $0$ and increasing towards $0$, which means that
+% $(0,0,0)$ is a saddle point.
+% \end{answer}
+% 
+% 
+% \end{problem}
+% 
+% 
+% \begin{problem} Determine the nature of the critical points of
+% $$g(x,y,z) = xyze^{-x^2-y^2-z^2}. $$ \begin{answer} To facilitate differentiation observe that $g(x,y,z) =
+% (xe^{-x^2})(ye^{-y^2})(ze^{-z^2})$. Now
+% $$ \nabla g(x,y,z) = \coord{(1 - 2x^2)(yz)(e^{-x^2})(e^{-y^2})(e^{-z^2})
+% \\ (1 - 2y^2)(xz)(e^{-x^2})(e^{-y^2})(e^{-z^2}) \\ (1 - 2z^2)(xy)(e^{-x^2})(e^{-y^2})(e^{-z^2})}. $$
+% The function is $0$ if any of the variables is $0$. Since the
+% function clearly assumes positive and negative values, we can
+% discard any point with a $0$. If $\nabla (x,y,z) = \point{0}$, then
+% $x = \pm \dfrac{1}{\sqrt{2}};\ y = \pm \dfrac{1}{\sqrt{2}}\ z = \pm
+% \dfrac{1}{\sqrt{2}}$. We find
+% $$\hessian{x}{g} = t(x,y,z)\begin{bmatrix} (4x^3 - 6x)(yz) &
+% (1 - 2x^2)(1 - 2y^2)z   & (1 - 2x^2)(1 - 2z^2)y\cr (1 - 2y^2)(1 -
+% 2x^2)z & (4y^3 - 6y)(xz) & (1 - 2y^2)(1 - 2z^2)x \cr (1 - 2z^2)(1 -
+% 2x^2)y & (1 - 2z^2)(1 - 2y^2)x & (4z^3 - 6z)(xy) \cr
+% \end{bmatrix},    $$
+% with $t(x,y,z) = (e^{-x^2})(e^{-y^2})(e^{-z^2})$. Since at the
+% critical points we have  $1 - 2x^2 = 1 - 2y^2 = 1 - 2z^2 = 0$, the
+% Hessian reduces to
+% 
+% $$\hessian{x}{g} = (e^{-3/2})\begin{bmatrix} (4x^3 - 6x)(yz) &
+% 0  & 0 \cr 0 & (4y^3 - 6y)(xz) & 0 \cr 0 & 0 & (4z^3 - 6z)(xy) \cr
+% \end{bmatrix}.    $$
+% We have $$\Delta_1  = (4x^3 - 6x)(yz)   $$
+% $$\Delta_2 = (4x^3 - 6x)(4y^3 - 6y)(xyz^2)   $$
+% $$\Delta_3=    (4x^3 - 6x)(4y^3 - 6y)(4z^3 - 6z)(x^2y^2z^2). $$
+% Also, $$ 4\left(\dfrac{1}{\sqrt{2}}\right)^3 -
+% 6\left(\dfrac{1}{\sqrt{2}}\right) = -2\sqrt{2} < 0, \ \ \
+% 4\left(-\dfrac{1}{\sqrt{2}}\right)^3 -
+% 6\left(-\dfrac{1}{\sqrt{2}}\right) = 2\sqrt{2} > 0.
+% $$
+% This means that if an even number of the variables is negative (0 or
+% 2), then we the Hessian is negative definite, and if an odd numbers
+% of the variables is positive (1 or 3), the Hessian is positive
+% definite. We conclude that we have  local maxima at
+% $$(\dfrac{1}{\sqrt{2}},  \dfrac{1}{\sqrt{2}}, \dfrac{1}{\sqrt{2}}),
+% (-\dfrac{1}{\sqrt{2}},  -\dfrac{1}{\sqrt{2}}, \dfrac{1}{\sqrt{2}}),
+% (-\dfrac{1}{\sqrt{2}},  \dfrac{1}{\sqrt{2}}, -\dfrac{1}{\sqrt{2}}),
+% (\dfrac{1}{\sqrt{2}},  -\dfrac{1}{\sqrt{2}}, -\dfrac{1}{\sqrt{2}})
+% $$ and  local minima at
+% $$(-\dfrac{1}{\sqrt{2}},  -\dfrac{1}{\sqrt{2}}, -\dfrac{1}{\sqrt{2}}),
+% (-\dfrac{1}{\sqrt{2}},  \dfrac{1}{\sqrt{2}}, \dfrac{1}{\sqrt{2}}),
+% (\dfrac{1}{\sqrt{2}},  -\dfrac{1}{\sqrt{2}}, \dfrac{1}{\sqrt{2}}),
+% (\dfrac{1}{\sqrt{2}},  \dfrac{1}{\sqrt{2}}, -\dfrac{1}{\sqrt{2}}).
+% $$
+% \end{answer}
+% \end{problem}
+% \begin{problem}
+% Let $\funvect{f}(x, y) = \dint _{y^2-x} ^{x^2+y} g(t)\d{t}$, where $\funvect{g}$ is a
+% continuously differentiable function defined over all real numbers
+% and $g(0) = 0, g'(0) \neq 0$. Prove that $(0,0)$ is a saddle point
+% for $\funvect{f}$. \begin{answer} By the Fundamental Theorem of Calculus,
+% there exists a continuously differentiable function $G$ such that
+% $$\funvect{f}(x, y) = \dint _{y^2-x} ^{x^2+y} g(t)\d{t} =
+% G(x^2+y)-G(y^2-x).$$Hence
+% $$\partialderiv{x}{f}(x,y) = 2xG'(x^2+y) +
+% G'(y^2-x)=2xg(x^2+y)+g(y^2-x);$$ $$ \partialderiv{y}{f}(x,y) =
+% G'(x^2+y) - 2yG'(y^2-x) = g(x^2+y)-2yg(y^2-x).
+% $$ This gives $$\partialderiv{x}{f}(0,0) = g(0) = \partialderiv{y}{f}(0,0)
+% = 0,
+% $$so $(0,0)$ is a critical point. Now, the Hessian of $\funvect{f}$ is
+% $$\mathscr{H}_\funvect{f}(x,y) = \begin{bmatrix}2g(x^2+y)+4x^2g'(x^2+y)-g'(y^2-x) & 2xg'(x^2+y) + 2yg'(y^2-x) \\
+% 2xg'(x^2-y)+2yg'(y^2-x) & g'(x^2+y)-2g(y^2-x)-4y^2g'(y^2-x)
+% \end{bmatrix},$$and so
+% $$\mathscr{H}_\funvect{f}(0,0) = \begin{bmatrix}-g'(0) & 0 \\ 0 & g'(0)
+% \end{bmatrix}.$$Regardless of the sign of $g'(0)$, the determinant of
+%  of this last matrix is $-(g'(0))^2 < 0$, and so $(0,0)$
+% is a saddle point.
+% 
+% \end{answer}
+% \end{problem}
+% \begin{problem}
+% Find the minimum of $$F(x, y) = (x-y)^2 +
+% \left(\dfrac{\sqrt{144-16x^2}}{3}-\sqrt{4-y^2}\right)^2,
+% $$for $-3 \leq x \leq 3$, $-2 \leq y \leq 2$.
+% \begin{answer}
+% Since the coordinates $(x, \dfrac{\sqrt{144-16x^2}}{3})$, $-3 \leq x
+% \leq 3$ describe an ellipse centred at the origin and semi-axes $3$
+% and $4$, and the coordinates $(y, \sqrt{4-y^2} )$, $-2 \leq y \leq
+% 2$ describe a circle centred at the origin with radius $2$, the
+% problem reduces to finding the minimum between the boundaries of the
+% circle and the ellipse. Geometrically this is easily seen to be $1$.
+% \end{answer}
+% \end{problem}
+% \end{multicols}
+% \section{Lagrange Multipliers}
+% In some situations we wish to optimise a function given a set of
+% constraints. For such cases, we have the following.
+% \begin{thm}
+% Let $A \subseteq \reals^n$ and let $\funvect{f}:A \rightarrow \reals$, $\funvect{g}:A
+% \rightarrow \reals$ be functions whose respective derivatives are
+% continuous. Let $g(\point{x}_0) = c_0$ and let $S = g^{-1}(c_0)$ be
+% the level set for $\funvect{g}$ with value $c_0$, and assume $\nabla
+% g(\point{x}_0) \neq 0$. If the restriction of $\funvect{f}$ to $S$ has an
+% extreme point at $\point{x}_0$, then  $\exists \lambda \in \reals$
+% such that
+% $$\nabla f(\point{x}_0) = \lambda \nabla g(\point{x}_0).$$
+% \end{thm}
+% \begin{rem}
+% The above theorem only locates extrema, it does not say anything
+% concerning the nature of the critical points found.
+% \end{rem}
+% \begin{exa}
+% Optimise $\funvect{f}:\reals^2 \rightarrow \reals, \funvect{f}(x, y) = x^2 - y^2$ given
+% that $x^2 + y^2 = 1$.
+% \end{exa}
+% \begin{solu} Let $g(x, y) = x^2 + y^2 - 1$. We solve
+% $$\nabla f\coord{x \\y } = \lambda \nabla g\coord{x \\ y}$$ for
+% $x, y, \lambda$. This requires
+% $$\coord{2x \\ -2y} = \coord{2x\lambda \\ 2y\lambda}.$$
+% From $2x = 2x\lambda$ we get either $x = 0$ or $\lambda = 1$. If
+% $x = 0$ then $y = \pm 1$ and $\lambda = -1$. If $\lambda = 1$,
+% then $y = 0, x = \pm 1$. Thus the potential critical points are
+% $(\pm 1, 0)$ and $(0, \pm 1)$. If $x^2 + y^2 = 1$ then
+% $$\funvect{f}(x, y) = x^2 - (1 - x^2) = 2x^2 - 1 \geq -1,$$
+% and
+% $$\funvect{f}(x, y) = 1 - y^2 -y^2 = 1 - 2y^2 \leq 1.$$Thus $(\pm 1, 0)$ are
+%  maximum points and $(0, \pm 1)$ are minimum points.
+%  \end{solu}
+%  \begin{exa}Find the maximum and the minimum points of
+% $\funvect{f}(x,y) = 4x + 3y$,  subject to the constraint $x^2 + 4y^2 = 4$,
+% using Lagrange multipliers. \end{exa} \begin{solu} Putting $g(x,y) =
+% x^2 + 4y^2 - 4$ we have $$\nabla f(x,y) = \lambda\nabla g(x,y)
+% \implies \coord{4 \\ 3} = \lambda \coord{2x \\ 8y}.$$ Thus $4 =
+% 2\lambda x, \  \ 3 = 8\lambda y.$ Clearly then $\lambda \neq 0$.
+% Upon division we find $\dfrac{x}{y} = \dfrac{16}{3}$. Hence $$x^2 +
+% 4y^2 = 4 \implies \dfrac{256}{9}y^2 + 4y^2 = 4 \implies y = \pm
+% \dfrac{3}{\sqrt{73}}, x = \pm \dfrac{16}{\sqrt{73}.}
+% $$ The maximum is clearly then $$4\left(\dfrac{16}{\sqrt{73}}\right) +
+% 3\left(\dfrac{3}{\sqrt{73}}\right)= \sqrt{73},
+% $$and the minimum is $-\sqrt{73}$.
+% \end{solu}
+% \begin{exa}Let $a > 0, b>0, c>0$. Determine the maximum and
+% minimum values of $\funvect{f}(x,y,z) = \dfrac{x}{a} + \dfrac{y}{b} +
+% \dfrac{z}{c}$ on the ellipsoid $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2}
+% + \dfrac{z^2}{c^2} = 1.$ \end{exa} \begin{solu} We use Lagrange
+% multipliers. Put $g(x,y,z) = \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} +
+% \dfrac{z^2}{c^2} - 1. $ Then
+% 
+% $$\nabla f(x,y,z) = \lambda \nabla g(x,y,z) \iff \coord{1/a \\ 1/b \\ 1/c} = \lambda \coord{2x/a^2 \\ 2y/b^2 \\ 2z/c^2}.     $$
+% It follows that $\lambda \neq 0$. Hence $x = \dfrac{a}{2\lambda}, y
+% = \dfrac{b}{2\lambda}, z = \dfrac{c}{2\lambda}$. Since
+% $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} = 1$, we
+% deduce $\dfrac{3}{4\lambda ^2} = 1$ or $\lambda = \pm
+% \dfrac{\sqrt{3}}{2}$.  Since $a, b, c$ are positive, $\funvect{f}$ will have a
+% maximum when all  $x, y, z$ are positive and a minimum when all
+% $x,y,z$ are negative. Thus the maximum is when $$ x =
+% \dfrac{a}{\sqrt{3}},  y= \dfrac{b}{\sqrt{3}}, z=
+% \dfrac{c}{\sqrt{3}},$$ and $$\funvect{f}(x,y,z) \leq  \dfrac{3}{\sqrt{3}} =
+% \sqrt{3}$$ and the minimum is when
+% $$
+% x = -\dfrac{a}{\sqrt{3}},  y= -\dfrac{b}{\sqrt{3}}, z=
+% -\dfrac{c}{\sqrt{3}},$$ and $$\funvect{f}(x,y,z) \geq
+% -\dfrac{3}{\sqrt{3}}=-\sqrt{3}.$$
+% 
+% \bigskip
+% 
+% {\em Aliter:} Using the CBS Inequality,
+% $$ \absval{\dfrac{x}{a}\bp 1 + \dfrac{y}{b}\bp 1 +
+% \dfrac{z}{c}\bp 1}\leq   \left(\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2}
+% + \dfrac{z^2}{c^2} \right)^{1/2}\left(1^2+1^2+1^2\right)^{1/2}
+% =(1)\sqrt{3} \implies  -\sqrt{3}\leq \dfrac{x}{a} + \dfrac{y}{b} +
+% \dfrac{z}{c}\leq\sqrt{3}.$$
+% 
+% \end{solu}
+% 
+% 
+% \begin{exa}
+% Let $a > 0, b>0, c>0$. Determine the maximum volume of the
+% parallelepiped with sides parallel to the axes that can be enclosed
+% inside  the ellipsoid $\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} +
+% \dfrac{z^2}{c^2} = 1.$
+% \end{exa}
+% \begin{solu}
+% Let $2x$, $2y$, $2z$, be the dimensions of the box. We must maximise
+% $\funvect{f}(x,y,z)=8xyz$ subject to the constraint $g(x,y,z) =
+% \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2} - 1. $ Using
+% Lagrange multipliers,
+% $$\nabla f(x,y,z) = \lambda \nabla g(x,y,z) \iff \coord{8yz \\ 8xz \\ 8xy} = \lambda \coord{2x/a^2 \\ 2y/b^2 \\ 2z/c^2}
+% \implies 4yz=\lambda \dfrac{x}{a^2},\ 4xz=\lambda \dfrac{y}{b^2},\
+% 4xy=\lambda \dfrac{z}{c^2}.     $$ Multiplying the first inequality
+% by $x$, the second by $y$, the third by $z$, and adding,
+% $$ 4xyz=\lambda \dfrac{x^2}{a^2},\ 4xyz=\lambda \dfrac{y^2}{b^2},\
+% 4xyz=\lambda \dfrac{z^2}{c^2},\implies 12xyz = \lambda
+% \left(\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} + \dfrac{z^2}{c^2}\right)
+% = \lambda .  $$ Hence
+% $$\dfrac{\lambda}{3} = \lambda \dfrac{x^2}{a^2} = \lambda \dfrac{y^2}{b^2}= \lambda \dfrac{z^2}{c^2}. $$
+% If $\lambda = 0$, then $8xyz=0$, which minimises the volume. If
+% $\lambda \neq 0$, then
+% $$ x=\dfrac{a}{\sqrt{3}}, \qquad y =\dfrac{b}{\sqrt{3}},\qquad  z = \dfrac{c}{\sqrt{3}},
+% $$and the maximum value is
+% $$8xyz \leq 8\dfrac{abc}{3\sqrt{3}}.  $$
+% 
+% \bigskip
+% 
+% {\em Aliter:} Using the AM-GM Inequality,
+% $$ (x^2y^2z^2)^{1/3} = (abc)^{2/3}\left(\dfrac{x^2}{a^2}\bp \dfrac{y^2}{b^2}\bp \dfrac{z^2}{a^2}\right)^{1/3}
+% \leq (abc)^{2/3} \bp \dfrac{\dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} +
+% \dfrac{z^2}{c^2} }{3}=\dfrac{1}{3} \implies 8xyz \leq
+% \dfrac{8}{3\sqrt{3}}(abc).
+% $$
+% 
+% 
+% 
+% \end{solu}
+% 
+% 
+% 
+% 
+% 
+% \section*{\psframebox{Exercises}}
+% \begin{multicols}{2}\columnseprule 1pt \columnsep 25pt\multicoltolerance=900
+% 
+% \begin{problem}
+% A closed box (with six outer faces), has fixed surface area of $S$
+% square units. Find its maximum volume using Lagrange multipliers.
+% That is, subject to the constraint $2ab+2bc+2ca=S$, you must
+% maximise $abc$.
+% \begin{answer}
+%  We have
+% $$\begin{array}{lll} \nabla (abc) = \lambda \nabla (2ab+2bc+2ca-S) & \implies &  \coord{bc \\ ca \\ ab} = \lambda \coord{2b+2c \\ 2a+2c \\ 2b+2a} \\
+% & \implies &  \begin{array}{lll} bc & = & 2\lambda (b+c) \\ ca & = &
+% 2\lambda (a+c)
+% \\ ab & = & 2\lambda (b+a) \end{array} \\
+%  \end{array}
+% $$
+% By physical considerations, $abc\neq 0$ and so $\lambda \neq 0$.
+% Hence, by successively dividing the equations,
+% $$\dfrac{b}{a} = \dfrac{b+c}{c+a} \implies a=b, \quad  \dfrac{c}{b} = \dfrac{a+c}{b+a} \implies b=c, \quad  \dfrac{a}{c} = \dfrac{b+a}{b+c} \implies a=c. $$
+% Therefore
+% $$ 2a^2+2a^2+2a^2=S \implies a=\dfrac{\sqrt{S}}{\sqrt{6}}, $$
+% and the maximum volume is
+% $$abc = \dfrac{(\sqrt{S})^3}{(\sqrt{6})^3}.  $$
+% 
+% 
+% The above result can be simply obtained by using the AM-GM
+% inequality:
+% $$ \dfrac{S}{3} = \dfrac{2ab+2bc+2ca}{3} \geq \left((2ab)(2bc)(2ca)\right)^{1/3} = 2(abc)^{2/3} \implies abc \leq \dfrac{S^{3/2}}{6^{3/2}}.$$
+% Equality happens if $$ 2ab=2bc=2ca \implies a=b=c
+% =\dfrac{\sqrt{S}}{\sqrt{6}}.
+% $$
+% \end{answer}
+% \end{problem}
+% \begin{problem}
+% Consider the problem of finding the closest point $P'$ on the plane
+% $\Pi : ax+by+cz = d$, $a,b,c$ non-zero constants with $a+b+c\neq d$
+% to the point $P(1,1,1)$. In this problem, you will do this in three
+% essentially different ways.
+% \begin{enumerate}
+% \item Do this by a geometric argument, arguing the the point $P'$ closest to $P$ on $\Pi$ is on the perpendicular passing through $P$ and $P'$.
+% \item Do this by means of Lagrange multipliers, by
+%  minimising a suitable function $\funvect{f}(x,y,z)$ subject to the constraint
+%  $g(x,y,z)=ax+by+cz-d$.
+% \item Do this considering the unconstrained  extrema of a suitable
+% function $h\left(x,y, \dfrac{\d-ax-by}{c}\right)$.
+% \end{enumerate}
+% \begin{answer}
+% \noindent
+% \begin{enumerate}
+% \item The vector $\coord{a\\ b \\ c}$ is perpendicular to $\Pi$. Hence,
+% the equation of the perpendicular passing through $P$ is $$
+% \colpoint{x\\ y \\ z} = \colpoint{1\\ 1\\ 1}+ t\coord{a\\ b \\ c}
+% \implies x=1+ta, \quad y = 1+tb, \quad z=1+tc.
+% $$The intersection of the line and the plane happens when
+% $$a(1+at) + b(1+tb) + c(1+tc) = d\implies t = \dfrac{d-a-b-c}{a^2+b^2+c^2}. $$
+% Hence $$P' = \colpoint{1 + a\bp \dfrac{d-a-b-c}{a^2+b^2+c^2} \\ 1
+% + b\bp \dfrac{d-a-b-c}{a^2+b^2+c^2}\\ 1 + c\bp
+% \dfrac{d-a-b-c}{a^2+b^2+c^2} }$$ The distance is then
+% $$\sqrt{\left(a\bp \dfrac{d-a-b-c}{a^2+b^2+c^2}\right)^2+\left(b\bp \dfrac{d-a-b-c}{a^2+b^2+c^2}\right)^2+\left(c\bp \dfrac{d-a-b-c}{a^2+b^2+c^2}\right)^2} $$
+%  \item  Let $\funvect{f}(x,y,z)=(x-1)^2+(y-1)^2+(z-1)^2$ be the square of the distance from $P$ to a point on the plane and let
+%  $g(x,y,z)=ax+by+cz-d$. Using Lagrange multipliers,
+%  $$\nabla f(x,y,z) = \lambda \nabla g(x,y,z) \implies \coord{2(x-1)\\ 2(y-1)\\ 2(z-1)} = \lambda \coord{a\\ b \\ c} \implies 2(x-1) = \lambda a, \quad  2(y-1) = \lambda b, \quad  2(z-1) = \lambda c.   $$
+% Since $(1,1,1)$ is not on the plane and $abc\neq 0$, we gather that
+% $\lambda \neq 0$. Now,
+% $$ x=1+\dfrac{\lambda a}{2}, \quad y = 1+\dfrac{\lambda b}{2}, \quad z=1+\dfrac{\lambda c}{2}. $$
+% Putting these into the equation of the plane,
+% $$ a\left(1+\dfrac{\lambda a}{2}\right)+ b\left(1+\dfrac{\lambda b}{2}\right)+c\left(1+\dfrac{\lambda c}{2}\right)=d\implies
+% \lambda = 2\bp \dfrac{d-a-b-c}{a^2+b^2+c^2}.  $$ Then the
+% coordinates of $P'$ are
+% $$ x=1+\dfrac{\lambda a}{2} = 1+ a\bp \dfrac{d-a-b-c}{a^2+b^2+c^2}, \quad
+% y=1+\dfrac{\lambda b}{2} = 1+ b\bp \dfrac{d-a-b-c}{a^2+b^2+c^2},
+% \quad z=1+\dfrac{\lambda c}{2} = 1+ c\bp
+% \dfrac{d-a-b-c}{a^2+b^2+c^2},
+%     $$as before.
+%  \item Consider the function
+%  $$ t(x,y) = (x-1)^2+(y-1)^2+\left(\dfrac{d-ax-by}{c}-1\right)^2, $$
+% which is the square of the distance from a point $(x,y,z)$ on the
+% plane to the point $(1,1,1)$.
+% 
+% Now,
+% $$ \nabla t(x,y)  = \coord{2(x-1)  -2\dfrac{a}{c}\left(\dfrac{d-ax-by}{c}-1\right) \\ 2(y-1) -2\dfrac{b}{c}\left(\dfrac{d-ax-by}{c}-1\right)}
+% =\coord{0\\ 0}$$ which implies
+% $$x=\dfrac{-b^2-c^2+ab-ad+ac}{a^2+b^2+c^2} = 1+ a\bp
+% \dfrac{d-a-b-c}{a^2+b^2+c^2}, \qquad   y
+% =\dfrac{c^2+a^2-ab+bd-bc}{a^2+b^2+c^2}  = 1+ b\bp
+% \dfrac{d-a-b-c}{a^2+b^2+c^2},$$ as before. Substituting this in the
+% equation of the plane gives the same coordinate of $z$, as before.
+% 
+% \end{enumerate}
+% 
+% \end{answer}
+% 
+% \end{problem}
+% \begin{problem}
+% Given that $x, y$ are positive real numbers such that $x^4+81y^4
+% =36$ find the maximum of $x+3y$.
+% \begin{answer}
+% 
+% Using CBS,
+% $$ \dfrac{x+3y}{2} \leq (\dfrac{x^4+81y^4}{2})^{1/4} =
+% \dfrac{36^{1/4}}{2^{1/4}} \implies x+3y \leq 2^{3/4}\sqrt{6} =
+% 2^{5/4}\sqrt{3}.
+% $$
+% \end{answer}
+% \end{problem}
+% \begin{problem}
+% If $x, y, z$ are positive real numbers such that $x^2y^3z
+% =\dfrac{1}{6^2}$, what is the minimum value of
+%   $\funvect{f}(x, y, z) = 2x+3y+z$?
+%   \begin{answer}
+% 
+% Using AM-GM,
+% $$ \dfrac{1}{6^{1/3}}=\sqrt[6]{x^2y^3z} \leq \dfrac{2x+3y+z}{6}  \implies 2x +3y+z \geq 6^{2/3}.$$
+% 
+% \end{answer}
+% \end{problem}
+% 
+% \begin{problem}
+%  Find the maximum and the minimum values of $\funvect{f}(x,y)=x^2+y^2$ subject to the constraint $5x^2 + 6xy + 5y^2 =
+% 8$.\begin{answer} We put $g(x, y) = 5x^2 + 6xy + 5y^2 -8$ and argue
+% using Lagrange multipliers. We have
+% $$\nabla f(x,y) = \lambda \nabla g(x,y) \implies \coord{2x\\ 2y} = \lambda \coord{10x + 6y\\ 6x + 10y}.
+% $$ This gives the three equations
+% $$0= 5(\lambda-1)x + 3y; \quad 0= 3x + 5(\lambda -1)y; \quad 5x^2 + 6xy + 5y^2 =8.
+% $$The linear system (the first two equations) will have the unique solution $(0,0)$ as long as
+% $25(\lambda-1)^2-9 \neq 0$, but this solution does not lie on the
+% third equation. If $25(\lambda-1)^2-9 = 0$, then we deduce that $x =
+% \pm y$. Substituting this into the third equation we gather that
+% $10x^2 \pm 6x^2 =8$, resulting in $x = \pm \sqrt{2}$ or $x=\pm
+% \dfrac{1}{\sqrt{2}}$. Taking into account the third equation, the
+% feasible values are $(\sqrt{2}, -\sqrt{2})$, $(-\sqrt{2},
+% \sqrt{2})$,  $(1/\sqrt{2}, 1/\sqrt{2})$, $(-1/\sqrt{2},
+% -1/\sqrt{2})$ The desired maximum is thus $$\funvect{f}(-\sqrt{2}, \sqrt{2})
+% =\funvect{f}(\sqrt{2}, -\sqrt{2}) = 4$$ and the minimum is $$\funvect{f}(1/\sqrt{2},
+% 1/\sqrt{2})= \funvect{f}(-1/\sqrt{2}, -1/\sqrt{2}) = 1.$$
+% 
+% 
+% {\em Aliter:} Observe that, using AM-GM,
+% $$ 5x^2 + 6xy + 5y^2 =8\implies x^2+y^2 = \dfrac{8}{5} -\dfrac{6}{5}xy \geq   \dfrac{8}{5} -\dfrac{6}{5}\bp \dfrac{x^2+y^2}{2}
+% \implies x^2+y^2 \geq \dfrac{5}{8}\bp \dfrac{8}{5}=1. $$
+% \end{answer}
+% \end{problem}
+% 
+% \begin{problem}
+% Let $a > 0, b > 0, p > 1$. Maximise $\funvect{f}(x, y) = ax + by$ subject to
+% the constraint $x^p + y^p = 1.$ \begin{answer} Put $g(x, y) = x^p +
+% y^p - 1$. We need $a = p\lambda x^{p - 1}$ and $b = p\lambda y^{p -
+% 1}$. Clearly then , $\lambda \neq 0.$ We then have $$x =
+% \left(\dfrac{a}{\lambda p}\right)^{1/(p - 1)}, \ \ y =
+% \left(\dfrac{b}{\lambda p}\right)^{1/(p - 1)}. $$ Thus
+% $$1 = x^p + y^p   =  \left(\dfrac{a}{\lambda
+% p}\right)^{p/(p - 1)} + \left(\dfrac{b}{\lambda p}\right)^{p/(p -
+% 1)}, $$which gives $$\lambda  = \left(\left(\dfrac{a}{
+% p}\right)^{p/(p - 1)} + \left(\dfrac{b}{ p}\right)^{p/(p -
+% 1)}\right)^{(p - 1)/p}. $$This gives
+% $$x  = \dfrac{a^{1/(p - 1)}}{(a^{1/(p - 1)} + b^{1/(p - 1)})^{1/p}}, \ \
+% y  = \dfrac{b^{1/(p - 1)}}{(a^{1/(p - 1)} + b^{1/(p -
+% 1)})^{1/p}}.$$Since $\funvect{f}$ is non-negative, these points define a
+% maximum for $\funvect{f}$ and so
+% $$ax + by \leq \dfrac{a^{p/(p - 1)}}{(a^{1/(p - 1)} + b^{1/(p - 1)})^{1/p}} + \dfrac{b^{p/(p - 1)}}{(a^{1/(p - 1)} + b^{1/(p - 1)})^{1/p}}.$$
+% \end{answer}
+% \end{problem}
+% \begin{problem}
+% Find the extrema of $$\funvect{f}(x, y, z) = x^2 + y^2 + z^2$$ subject to the
+% constraint $$( x - 1)^2 + (y - 2)^2 + (z - 3)^2 = 4.$$
+% \begin{answer} Let $g(x, y, z) = ( x - 1)^2 + (y - 2)^2 + (z - 3)^2
+% - 4$. We solve
+% $$\nabla f\coord{x \\y  \\ z} = \lambda \nabla g\coord{x \\ y \\ z}$$ for
+% $x, y, \lambda$. This requires
+% $$\coord{2x \\ 2y \\ 2z} = \coord{2(x - 1)\lambda \\ 2(y - 2)\lambda \\ 2(z - 3)\lambda}.$$
+% Clearly, $\lambda \neq 1$. This gives $x = \dfrac{-\lambda}{1 -
+% \lambda}$, $y = \dfrac{-2\lambda}{1 - \lambda}$, and $z =
+% \dfrac{-3\lambda}{1 - \lambda}$. Substituting into $( x - 1)^2 + (y
+% - 2)^2 + (z - 3)^2 = 4$, we gather that
+% $$\left( \dfrac{-\lambda}{1 -
+% \lambda} - 1\right)^2 + \left( \dfrac{-2\lambda}{1 - \lambda} -
+% 2\right)^2 + \left( \dfrac{-3\lambda}{1 - \lambda} - 3\right)^2 = 4,
+% $$from where $$\lambda = 1 \pm \dfrac{\sqrt{14}}{2}.$$
+% This gives the two points
+% $$(x, y, z) = \left(1 + \dfrac{2}{\sqrt{14}}, 2 + \dfrac{4}{\sqrt{14}}, 3 + \dfrac{6}{\sqrt{14}}\right)$$
+% and
+% $$(x, y, z) = \left(1 - \dfrac{2}{\sqrt{14}}, 2 - \dfrac{4}{\sqrt{14}}, 3 - \dfrac{6}{\sqrt{14}}\right).$$
+% The first point gives an absolute maximum of $18 +
+% \dfrac{12\sqrt{14}}{7}$ and the second an absolute minimum of $18 -
+% \dfrac{12\sqrt{14}}{7}$.
+% \end{answer}
+% \end{problem}
+% \begin{problem}
+% Find the axes of the ellipse $$5x^2+8xy+5y^2=9.$$
+% \begin{answer}
+% Observe that the ellipse is symmetric about the origin. Now maximise
+% and minimise the distance between a point on the ellipse and the
+% origin. If $a$ and $b$ are the semi-axes, you will find that $2a=2$
+% and $2b=6$
+% \end{answer}
+% \end{problem}
+% \begin{problem}
+% Optimise $\funvect{f}(x, y, z) = x + y + z$ subject to $x^2 + y^2 = 2$, and $x
+% + z = 1$. \begin{answer} Put $g(x, y, z) = x^2 + y^2 - 2, h(x, y, z)
+% = x + z - 1$. We must find $\lambda, \delta$ such that
+% $$\nabla f(x, y, z) = \lambda \nabla g(x, y, z) + \delta \nabla h(x, y,
+% z),$$which translates into
+% $$1 = 2\lambda x + \delta, $$
+% $$1 = 2\lambda y, $$
+% $$1 = \delta, $$and
+% $$x^2 + y^2 = 1,$$
+% $$x + z = 1.$$We deduce that $x = 0, y = \pm \sqrt{2}, z = 1$. We
+% may shew that $(0, \sqrt{2}, 1)$ yields a maximum and that $(0,
+% -\sqrt{2}, 1)$ yields a minimum.
+% \end{answer}
+% \end{problem}
+% \begin{problem}
+% 
+%  Let $x, y$ be strictly positive real numbers with $x + y =
+% 1$. What is the maximum value of $x + \sqrt{xy} $? \begin{answer}
+% One can use Lagrange multipliers here. But perhaps the easiest
+% approach is to put $y = 1-x$ and maximise $$\funvect{f}(x) = x +
+% \sqrt{x(1-x)}.$$ For this we have
+% $$ f'(x) = 0 \implies  1+\dfrac{1-2x}{2\sqrt{x(1-x)}} = 0 \implies x = \dfrac{1}{2}+\dfrac{\sqrt{2}}{4}.$$
+% Since $$f''(x) =
+% -\dfrac{(1-2x)^2}{4(x(1-x))^{3/2}}-\dfrac{1}{\sqrt{x(1-x)}} < 0,
+% $$the value sought is a maximum. This maximum is thus
+% $$f\left(\dfrac{1}{2}+\dfrac{\sqrt{2}}{4}\right) =  \dfrac{1}{2}+\dfrac{\sqrt{2}}{2}.  $$
+% \end{answer}
+% \end{problem}
+% \begin{problem}
+% Let $a, b$  be positive real constants. Maximise
+% $\funvect{f}(x,y)=x^ae^{-x}y^be^{-y}$ on the triangle in $\reals^2$ bounded by
+% the lines $x\geq 0$, $y \geq 0$, $x+y\leq 1$.
+% \begin{answer} Claim: the function achieves its maximum on the
+% boundary of the triangle. To prove  this claim we have to prove that
+% there are no critical points strictly inside the triangle. For this
+% we compute the gradient and set it equal to the zero vector:
+% $$ (\nabla f)(x,y) = \coord{-ax^{a-1}y^be^{-(x+y)}\\ -bx^ay^{b-1}e^{-(x+y)} } =\coord{0\\ 0} \implies x=0\ \mathrm{or}\ y=0, $$
+% which means that the critical points occur on the boundary. Since
+% the function is identically $0$ for $x=0$ or $y=0$, we only need to
+% look on the line $x+y=1$ for the maxima. Hence we maximise $\funvect{f}$
+% subject to the constraint $x+y=1$. Since $x+y=1$, we can see that
+% $\funvect{f}(x,y)= x^ay^be^{-(x+y)}=x^ay^be^{-1}$ on the line, so the problem
+% reduces to maximising $h(x,y)= x^ay^b$ subject to the constraint
+% $x+y=1$. Using Lagrange multipliers,
+% $$ (\nabla h)(x,y) = \lambda(\nabla g)(x,y) \implies \coord{ax^{a-1}y^b\\ bx^ay^{b-1}} = \lambda \coord{1 \\ 1},$$which in
+% turn $$\implies ax^{a-1}y^b=\lambda = bx^ay^{b-1} \implies ay=bx
+% \implies ay= b(1-y) \implies y= \dfrac{b}{a+b}, \quad
+% x=\dfrac{a}{a+b}.$$ Finally,
+% $$\funvect{f}(x,y) =  x^ay^be^{-(x+y)} \leq
+% x^ay^be^{-1}\leq
+% \left(\dfrac{a}{a+b}\right)^a\left(\dfrac{b}{a+b}\right)^be^{-1}.
+% $$
+% 
+% \end{answer}
+% \end{problem}
+% 
+% \begin{problem}
+% Determine the extrema of $\funvect{f}(x,y)=\cos^2x+\cos^2y$ subject to the
+% constraint $x-y=\dfrac{\pi}{4}$.
+% \end{problem}
+% \begin{problem}
+% Determine the extrema of $\funvect{f}(x,y,z)=x-2y+2z$ subject to the
+% constraint $x^2+y^2+z^2=1$.
+% \end{problem}
+% \begin{problem}Find the points on the curve determined by the equations
+% $$x^2+xy+y^2-z^2=1,
+% \quad  x^2+y^2=1  $$which are closest to the origin.
+% \end{problem}
+% 
+% \begin{problem}
+% Does there exist a polynomial in two variables with real
+% coefficients $p(x, y)$ such that $p(x, y)>0$ for all $x$ and $y$ and
+% that for all real numbers $c>0$ there exists $(x_0,y_0)\in\reals^2$
+% such that  $p(x_0,y_0)=c$?
+% \begin{answer}
+% Try $p(x,y)=(y^2+1)x^2+2xy+1$.
+% \end{answer}
+% \end{problem}
+% \begin{problem}
+% Maximise $$\funvect{f}(x,y,z)=\log x+\log y+3\log z$$ on the portion of sphere
+% $x^2+y^2+z^2=5r^2$ which lies on the first octant. Demonstrate using
+% this that for any positive real numbers  $a, b$ and $c$, there
+% follows the inequality
+% $$
+% abc^3\leq 27\left(\dfrac{a+b+c}{5}\right)^5.
+% $$
+% \end{problem}
+% \end{multicols}
+
+
+\section{The Geometrical Meaning of  Divergence and Curl}
+
+In this section we provide some heuristics about the meaning of Divergence and Curl. This interpretations will be formally proved in 
+the chapters \ref{chapter:line}  and \ref{chapter:surface}.
+
+\subsection{Divergence}
+
+
+
+
+\begin{figure}[h]
+\centering
+\newcommand{\Depth}{2}
+\newcommand{\Height}{2}
+\newcommand{\Width}{2}
+\scalebox{1.0}{ \begin{tikzpicture}[scale=2]
+\coordinate (O) at (0,0,0);
+\coordinate (A) at (0,\Width,0);
+\coordinate (B) at (0,\Width,\Height);
+\coordinate (C) at (0,0,\Height);
+\coordinate (D) at (\Depth,0,0);
+\coordinate (E) at (\Depth,\Width,0);
+\coordinate (F) at (\Depth,\Width,\Height);
+\coordinate (G) at (\Depth,0,\Height);
+
+\draw[blue,fill=yellow!80] (O) -- (C) -- (G) -- (D) -- cycle;% Bottom Face
+\draw[blue,fill=blue!30] (O) -- (A) -- (E) -- (D) -- cycle;% Back Face
+\draw[blue,fill=red!10] (O) -- (A) -- (B) -- (C) -- cycle;% Left Face
+\draw[blue,fill=red!20,opacity=0.8] (D) -- (E) -- (F) -- (G) -- cycle;% Right Face
+\draw[blue,fill=red!20,opacity=0.6] (C) -- (B) -- (F) -- (G) -- cycle;% Front Face
+\draw[blue,fill=red!20,opacity=0.8] (A) -- (B) -- (F) -- (E) -- cycle;% Top Face
+
+
+\draw[->] (1,2,1) -- (1,3,1) node[above] {$\vector{k}$};%top
+\draw[->] (1,0,1) -- (1,-1,1)  node[below] {$-\vector{k}$};; %down
+% \draw (1,3,1) node[above] {$\hat n$}--
+
+\draw[<->] (0.14,0.2,0.14) -- (0.14,1.9,0.14); %vertical
+\draw[<->] (0.2,0.15,0.15) -- (1.9,0.15,0.15); %x
+\draw[<->] (0.15,0.15,0.2) -- (0.15,0.15,1.9); %y
+
+\node at (0.54,1,0.54) {$\Delta z$};
+\node at (1,0.54,0.54) {$ \Delta y$};
+\node at (0.54,0.24,2) {$\Delta x$};
+
+  \foreach \x in {-0.5, 0, 0.5, 1, 1.5, 2,2.5} {
+    \foreach \y in {-0.5, 0, 0.5, 1, 1.5, 2,2.5}  {
+      \foreach \z in {  0.5, 1, 1.5, 2}  {
+        \node at (\x, \y,\z)[circle, fill=black!40, scale=0.15] {};
+        \pgfmathsetmacro{\vx}{0.1}
+        \pgfmathsetmacro{\vy}{\x*0.1}
+        \draw[->,black!40] (\x,\y,\z) -- (\x+\vx, \y+\vy,\z+\vx);
+    }
+}
+}
+
+%% Following is for debugging purposes so you can see where the points are
+%% These are last so that they show up on top
+%\foreach \xy in {O, A, B, C, D, E, F, G}{
+%    \node at (\xy) {\xy};
+% %}
+\end{tikzpicture}}
+\caption{Computing the vertical  contribution to the flux.} 
+\label{divf}
+\end{figure}
+
+
+
+Consider a small closed parallelepiped, with sides parallel to the coordinate planes, as shown in Figure \ref{divf}. What is the flux of $\vector{F}$ out of the parallelepiped?
+
+Consider first the vertical contribution, namely the flux up through the top face plus the flux  through the bottom face.
+These two sides each have area  $\Delta A=\Delta x\,\Delta y$, but the outward normal vectors point in opposite directions
+so we get
+\begin{align*} \sum_{\text{ top+bottom}}  \vector{F} \bp \Delta \vector{A}    &\approx\vector{F}(z+\Delta z) \bp \vector{k}\> \Delta x\,\Delta y - \vector{F}(z) \bp\vector{k}\> \Delta x\,\Delta y \\ 
+& \approx \Bigl( F_z(z+\Delta z) - F_z(z) \Bigr) \> \Delta x\,\Delta y \\ 
+ &\approx \dfrac{F_z(z+\Delta z) - F_z(z)}{\Delta z} \> \Delta x\,\Delta y\,\Delta z  \\ 
+ &\approx \Dh{F_z}{z} \>\> \Delta x\,\Delta y\,\Delta z \qquad\text{by Mean Value Theorem}
+\end{align*}
+where we have multiplied and divided by $\Delta z$ to obtain the volume  $\Delta V=\Delta x\,\Delta y\,\Delta z$ in the third step, and used the definition of the derivative in the final step.
+
+Repeating this argument for the  remaining pairs of faces, it follows that the total flux out of the parallelepiped is
+\begin{eqnarray*} {\text{ total flux}}  = \sum_\text{ parallelepiped} \vector{F} \bp \Delta \vector{A}  \approx \left( \Dh{F_x}{x} + \Dh{F_y}{y} + \Dh{F_z}{z} \right)  \> \Delta V \end{eqnarray*}
+Since the total flux is proportional to the volume of the parallelepiped, it approaches zero as the volume of the  parallelepiped shrinks down. The interesting quantity is therefore the ratio of the flux to volume; this ratio is called the divergence.
+
+At any point $P$, we can define the divergence of a vector field $\vector{F}$, written $\grad\bp\vector{F}$, to be the flux of $\vector{F}$ per unit volume leaving a small parallelepiped around the point  $P$. 
+
+Hence, the divergence of $\vector{F}$ at the point $P$ is the flux per unit volume through a small parallelepiped around $P$, which is given in rectangular coordinates by
+\begin{eqnarray*} \grad\bp\vector{F}   = \dfrac{\text{ flux}}{\text{ unit\ volume}}   = \Dh{F_x}{x} + \Dh{F_y}{y} + \Dh{F_z}{z} \end{eqnarray*}
+
+
+Analogous computations can be used to determine expressions for the divergence in other coordinate systems. This computations are presented in chapter 
+\ref{chapter:curv}.
+  
+  
+ \subsection{Curl}
+
+ \begin{figure}[h]
+ \centering
+ \begin{tikzpicture}
+ \draw[fill=blue!10]  (0,0) rectangle (4,4);
+ \draw[->] (0.3,0.1) -- (0.3,3.8); %vertical
+  \draw[->] (0.1,0.3) -- (3.8,0.3); %x
+  
+%  \draw[->] (1,2,1) -- (1,3,1) node[above] {$\hat n$};%top
+% \draw[->] (1,0,1) -- (1,-1,1)  node[below] {$\hat n$};; %down
+
+\node at (2,0.8) {$  \Delta y$};
+\node at (0.8,2) {$\Delta z$};
+  \draw[->,line width=0.8mm] (4,4.01) --(0,4.01);
+    \draw[->, line width=0.8mm] (0,0)--(4,0);
+
+
+\def\Radius{0.5}
+  \path
+    (2-\Radius, 2) coordinate (A)
+    -- coordinate (M)
+    (2+\Radius, 2) coordinate (B)
+    (M) +(60:\Radius) coordinate (C)
+    +(120:\Radius) coordinate (D)
+  ;
+  % Draw semicircle
+  \draw[->]
+    (B) arc(0:180:\Radius)
+  ;
+  
+  \foreach \x in {-0.5, 0, 0.5, 1.5, 2.5, 3.5, 4,4.5} {
+    \foreach \y in {-0.5, 0, 0.5, 1.5, 2.5, 3.5, 4,4.5} {
+        \node at (\x, \y)[circle, fill=black!40, scale=0.15] {};
+        \pgfmathsetmacro{\vx}{0.2}
+        \pgfmathsetmacro{\vy}{\x*0.1}
+        \draw[->,black!40] (\x,\y) -- (\x+\vx, \y+\vy);
+    }
+}
+
+\end{tikzpicture}
+ % curl-int.png: 0x0 pixel, 300dpi, 0.00x0.00 cm, bb=
+ \caption{Computing the horizontal contribution to the circulation around a small rectangle.}
+\end{figure}
+
+
+
+Consider a small rectangle in the $yz$-plane, with sides parallel to the coordinate axes, as shown in Figure 1. What is the circulation of $\vector{F}$ around this rectangle?
+
+Consider first the horizontal edges, on each of which $d\vector{r}=\Delta y\,\vector{j}$. However, when computing the circulation of $\vector{F}$ around this rectangle, we traverse these two edges in opposite directions. In particular, when traversing the rectangle in the counterclockwise direction, $\Delta y<0$ on top and $\Delta y>0$ on the bottom. 
+%We would like to compare these two edges, but we have
+% \begin{equation} \Delta y_{\hbox{top}} = -\Delta y_{\hbox{bottom}} \end{equation}
+% so if we  use the  $\Delta y=\Delta y_{\hbox{bottom}}$, leading to $\Delta y_{\hbox{top}}=-\Delta y$.
+% Thus,
+\begin{align} \label{topbot} \sum_\text{ top+bottom}  \vector{F} \bp d\vector{r}   &\approx- \vector{F}(z+\Delta z)\bp\vector{j}\> \Delta y  + \vector{F}(z)\bp\vector{j}\> \Delta y \\
+ &\approx - \Bigl( F_y(z+\Delta z) - F_y(z) \Bigr) \> \Delta y \nonumber\\
+ &\approx - \dfrac{F_y(z+\Delta z) - F_y(z)}{\Delta z} \> \Delta y\,\Delta z \nonumber\\
+ &\approx - \Dh{F_y}{z} \>\> \Delta y\,\Delta z \qquad \text{by Mean Value Theorem} \nonumber 
+\end{align}
+where we have multiplied and divided by $\Delta z$ to obtain the surface element $\Delta A=\Delta y\,\Delta z$ in the third step, and used the definition of the derivative in the final step.
+
+Just as with the divergence, in making this argument we are assuming that $\vector{F}$ doesn't change much in the x and y directions, while nonetheless caring about the change in the z direction. 
+
+Repeating this argument for the remaining two sides leads to
+\begin{eqnarray} \sum_\text{ sides}\vector{F} \bp d\vector{r}    &\approx   \vector{F}(y+\Delta y)\bp\vector{k}\> \Delta z  - \vector{F}(y)\bp\vector{k}\> \Delta z \\
+ &\approx \Bigl( F_z(y+\Delta y) - F_z(y) \Bigr) \> \Delta z \nonumber\\
+ &\approx \dfrac{F_z(y+\Delta y) - F_z(y)}{\Delta y} \> \Delta y\,\Delta z \nonumber\\
+ &\approx \Dh{F_z}{y} \>\> \Delta y\,\Delta z \nonumber \end{eqnarray}
+where care must be taken with the signs, which are different from those in (\ref{topbot}). Adding up both expressions, we obtain
+\begin{equation} \hbox{total $yz$-circulation}   \approx\left( \Dh{F_z}{y} - \Dh{F_y}{z} \right) \Delta x\,\Delta y \end{equation}
+Since this is proportional to the area of the rectangle, it approaches zero as the area of the rectangle converges to zero. The interesting quantity is therefore the ratio of the circulation to area. 
+
+
+
+We are computing the $\vector{i}$-component of the curl.
+
+\begin{equation} \hbox{curl}(\vector{F})\bp\vector{i}  : = \dfrac{\hbox{$yz$-circulation}}{\hbox{unit area}}   = \Dh{F_z}{y} - \Dh{F_y}{z} \end{equation}
+The rectangular expression for the full curl now follows by cyclic symmetry, yielding
+\begin{equation} \hbox{curl}(\vector{F}) = \left( \Dh{F_z}{y} - \Dh{F_y}{z} \right) \vector{i}  + \left( \Dh{F_x}{z} - \Dh{F_z}{x} \right) \vector{j}  + \left( \Dh{F_y}{x} - \Dh{F_x}{y} \right) \vector{k} \end{equation}
+which is more easily remembered in the form
+\begin{equation} \hbox{curl}(\vector{F}) = \grad\times\vector{F} = \left| \begin{matrix}\vector{i}& \vector{j}& \vector{k}\cr  \noalign{\smallskip}  \Dh{}{x}& \Dh{}{y}& \Dh{}{z}\cr  \noalign{\smallskip}  F_x& F_y& F_z\cr\end{matrix}\right| \end{equation}
+
+  
+
+
+\section{Maxwell's Equations}
+Maxwell's Equations is a set of four equations that describes the behaviors of electromagnetism. Together with the Lorentz Force Law, these equations  describe completely (classical) electromagnetism, i. e., all other results are simply mathematical consequences of these equations.
+
+To begin with, there are two fields that govern electromagnetism, known as the \emph{electric} and \emph{magnetic} field. These are denoted by $\mathbf{E}(r, t)$ and $\mathbf{B}(r, t)$ respectively.
+
+To understand electromagnetism, we need to explain  how the electric and magnetic fields are formed, and how these fields affect charged particles. The last  is rather straightforward, and is described by the Lorentz force law.
+
+\begin{df}[Lorentz force law]
+  A point charge $q$ experiences a force of
+  \[
+    \mathbf{F} = q(\mathbf{E} + \dot{\vector{r}} \times \mathbf{B}).
+  \]
+\end{df}
+
+The dynamics of the field itself is governed by Maxwell's Equations. To state the equations, first  we need to introduce two more concepts.
+
+\begin{df}[Charge and current density] \mbox{}
+\begin{itemize}
+ \item   $\rho(\vector{r}, t)$ is the \negrito{charge density}, defined as the charge per unit volume.
+\item    $\mathbf{j}(\vector{r}, t)$ is the \negrito{current density}, defined as the electric current per unit area of cross section.
+\end{itemize}
+
+
+\end{df}
+
+Then Maxwell's equations are
+\begin{df}[Maxwell's equations]
+  \begin{align*}
+    \nabla\cdot \mathbf{E} &= \dfrac{\rho}{\varepsilon_0}\\
+    \nabla\cdot \mathbf{B} &= 0\\
+    \nabla\times \mathbf{E} + \dfrac{\partial \mathbf{B}}{\partial t} &= 0\\
+    \nabla\times \mathbf{B} - \mu_0\varepsilon_0 \dfrac{\partial \mathbf{E}}{\partial t} &= \mu_0 \mathbf{j},
+  \end{align*}
+  where $\varepsilon_0$ is the electric constant (i.e, the permittivity of free space) and $\mu_0$ is the magnetic constant (i.e, the permeability of free space), which are constants.
+\end{df}
+
+
+
+
+
+  \section{Inverse Functions} \label{sec:curvilinear}
+  \todoin{Revise: Inverse}
+   
+ A function  $\funvect{f}$ is said \negrito{one-to-one\/} if $\funvect{f}(\vector{x}_1)$ and $\funvect{f}(\vector{x}_2)$ are
+distinct whenever $\vector{x}_1$ and $\vector{x}_2$ are distinct points of
+$\Dom(\funvect{f})$. In this case, we can define a function $\funvect{g}$ on the
+image
+$$
+\Img(\funvect{f})=\set{\mathbf{u}|\mathbf{u}=\funvect{f}(\vector{x})\mbox{ for
+some }\vector{x}\in \Dom(\funvect{f})}
+$$
+ of $\funvect{f}$ by defining $\funvect{g}(\mathbf{u})$
+ to be the unique point in $\Dom(\funvect{f})$ such that
+$\funvect{f}(\mathbf{u})
+=\mathbf{u}$. Then
+$$
+\Dom(\funvect{g})=\Img(\funvect{f})\mbox{\quad and\quad} \Img(\funvect{g})=\Dom(\funvect{f}).
+$$
+Moreover, $\funvect{g}$ is one-to-one,
+$$
+\funvect{g}(\funvect{f}(\vector{x}))=\vector{x},\quad \vector{x}\in \Dom(\funvect{f}),
+$$
+and
+$$
+\funvect{f}(\funvect{g}(\mathbf{u}))=\mathbf{u},\quad \mathbf{u}\in \Dom(\funvect{g}).
+$$
+We say that $\funvect{g}$ is the \negrito{inverse\/} of $\funvect{f}$, and
+ write $\funvect{g}=\funvect{f}^{-1}$. The relation between
+$\funvect{f}$ and $\funvect{g}$ is symmetric; that is, $\funvect{f}$ is
+also the
+inverse of $\funvect{g}$, and we  write $\funvect{f}= \funvect{g}^{-1}$.
+
+
+ 
+A transformation $\funvect{f}$ may fail to be one-to-one, but be
+one-to-one on a subset $S$ of $\Dom(\funvect{f})$. By this we mean that
+$\funvect{f}(\vector{x}_1)$ and $\funvect{f}(\vector{x}_2)$ are
+distinct whenever $\vector{x}_{1}$
+ and $\vector{x}_2$ are distinct points of $S$. In this case,
+$\funvect{f}$ is not invertible, but if $\restr{\funvect{f}}{S}$ is defined on
+$S$ by
+$$
+\restr{\funvect{f}}{S}(\vector{x})=\funvect{f}(\vector{x}),\quad \vector{x}\in S,
+$$
+and left undefined for $\vector{x}\not\in S$, then $\restr{\funvect{f}}{S}$ is
+invertible.
+
+We say that $\restr{\funvect{f}}{S}$ is the \negrito{restriction of
+$\funvect{f}$ to $S$},
+and that $\funvect{f}^{-1}_S$ is the \negrito{inverse of
+$\funvect{f}$ restricted to $S$}. The domain of $\funvect{f}^{-1}_S$ is
+$\funvect{f}(S)$.
+
+The question of invertibility of an arbitrary transformation $\funvect{f}:
+\bbR^n\to \bbR^n$ is too general to have a useful answer.
+However, there is a useful and easily applicable sufficient condition
+which implies that one-to-one restrictions of continuously
+differentiable transformations have continuously differentiable
+inverses.
+
+
+
+\begin{df}
+If the function $\funvect{f}$ is one-to-one on a neighborhood of the point $\vector{x}_0$, we say
+that $\funvect{f}$ is \negrito{locally invertible} at $\vector{x}_0$.
+ If aa function is locally invertible for every $\vector{x}_0$ in a set $S$, then $\funvect{f}$ is said \negrito{
+locally invertible on $S$}. 
+\end{df}
+
+
+
+To motivate our study of this question, let us first consider
+ the linear transformation
+$$
+\funvect{f}(\vector{x})=\mathbf{A}\vector{x}=\left[\begin{array}{cccc}
+a_{11}&a_{12}&\cdots&a_{1n}\\
+a_{21}&a_{22}&\cdots&a_{2n}\\\vdots&\vdots&\ddots&\vdots\\
+a_{n1}&a_{n2}&\cdots&a_{nn}\end{array}\right]
+\left[\begin{array}{c} x_1\\ x_2\\\vdots\\ x_n\end{array}\right].
+$$
+The function $\funvect{f}$ is invertible if and only if
+$\mathbf{A}$ is nonsingular, in which case $\Img(\funvect{f})=\bbR^n$ and
+$$
+\funvect{f}^{-1}(\vector{u})=\mathbf{A}^{-1}\vector{u}.
+$$
+Since $\mathbf{A}$ and $\mathbf{A}^{-1}$ are the differential matrices of
+$\funvect{f}$ and $\funvect{f}^{-1}$, respectively, we can say that a linear
+transformation is invertible if and only if its differential matrix
+$\funvect{f}'$ is nonsingular, in which case the differential matrix of
+$\funvect{f}^{-1}$ is given by
+$$
+(\funvect{f}^{-1})'=(\funvect{f}')^{-1}.
+$$
+Because of this, it is tempting to conjecture that if $\funvect{f}:
+\bbR^n\to \bbR^n$ is continuously differentiable
+ and $\mathbf{A}'(\vector{x})$
+ is nonsingular, or, equivalently, $\derivb{\funvect{f}}(\vector{x})\ne0$, for
+$\vector{x}$ in a set $S$, then $\funvect{f}$ is one-to-one on $S$. However,
+this is false. For example, if
+$$
+\funvect{f}(x,y)=\left[ e^x\cos y, e^x\sin
+y\right],
+$$
+then
+\begin{equation} \label{eq:6.3.19}
+\derivb{\funvect{f}}(x,y)=\left|\begin{array}{cr} e^x\cos y&-e^x\sin y\\
+e^x\sin y&e^x\cos y\end{array}\right|=e^{2x}\ne0,
+\end{equation}
+but $\funvect{f}$ is not one-to-one on $\bbR^2$. The best that can be said in general is
+that if $\funvect{f}$ is continuously differentiable and
+ $\derivb{\funvect{f}}(\vector{x})
+\ne0$ in an open set $S$, then $\funvect{f}$ is locally invertible on
+$S$, and the local inverses are continuously differentiable. This is
+part of the inverse function theorem, which we will prove presently.
+ 
+  \begin{theorem}[Inverse Function Theorem]
+    If $\funvect{f}: U \to \bbR ^n$ is differentiable at $a$ and $\deriv{a}{\funvect{f}}$ is invertible, then there exists a domains $U', V'$ such that $a \in U' \subseteq U$, $\funvect{f}(a) \in V'$ and $\funvect{f}: U' \to V'$ is bijective.
+    Further, the inverse function $\funvect{g}:V' \to U'$ is differentiable.
+  \end{theorem}
+
+  The proof of  the Inverse Function Theorem will be presented in the Section \ref{sec:proof-inverse-implicit}.
+  
+  
+
+ We note that the condition about the invertibility of $\deriv{a}{\funvect{f}}$ is necessary.  If $\funvect{f}$ has a differentiable inverse in a neighborhood of $a$, then $\deriv{a}{\funvect{f}}$ must be invertible. 
+    To see this differentiate the identity 
+    \[\funvect{f}(\funvect{g}(x))=x\]
+    
+
+  \section{Implicit Functions}
+
+  Let $U \subseteq \bbR ^{n+1}$ be a domain and $f:U \to \bbR $ be a differentiable function.
+  If $\vector{x} \in \bbR ^n$ and $y \in \bbR $, we'll concatenate the two vectors and write $(\vector{x}, y) \in \bbR ^{n+1}$.
+  \begin{theorem}[Special Implicit Function Theorem]\label{thmImplicit1}
+    Suppose $c = f(\vector{a}, b)$ and $\partial_y f(\vector{a}, b) \neq 0$.
+    Then, there exists a domain $U' \ni a$ and differentiable function $g:U' \to \bbR $ such that $g(\vector{a}) = b$ and $f(x, g(x)) = c$ for all $x \in U'$.
+    
+    Further, there exists a domain $V' \ni b$ such that 
+    \[\set{ (x, y) \st x \in U', y \in V', f(x, y) = c } = \set{ (x, g(x)) \st x \in U'}.\]
+  \end{theorem}
+    
+ In other words, for all $x \in U'$ the equation $f(x, y) = c$ has a unique solution in $V'$ and is given by $y = g(x)$.
+
+  
+  \begin{remark}
+    To see why $\partial_y f \neq 0$ is needed, let $f(x, y) = \alpha x + \beta y$ and consider the equation $f(x, y) = c$.
+    To express $y$ as a function of $x$ we need $\beta \neq 0$ which in this case is equivalent to $\partial_y f \neq 0$.
+  \end{remark}
+
+  \begin{remark}
+    If $n = 1$, one expects $f(x, y) = c$ to some curve in $\bbR ^2$.
+    To write this curve in the form $y = g(x)$ using a differentiable function $g$, one needs the curve to never be vertical.
+    Since $\grad f$ is perpendicular to the curve, this translates to $\grad f$ never being horizontal, or equivalently $\partial_y f \neq 0$ as assumed in the theorem.
+  \end{remark}
+
+  \begin{remark}
+    For simplicity we choose $y$ to be the last coordinate above.
+    It could have been any other, just as long as the corresponding partial was non-zero.
+    Namely if $\partial_i f(a) \neq 0$, then one can locally solve the equation $f(x) = f(a)$ (uniquely) for the variable $x_i$ and express it as a differentiable function of the remaining variables.
+  \end{remark}
+
+  \begin{exa}
+    $f(x, y) = x^2 + y^2$ with $c = 1$.
+  \end{exa}
+
+  \begin{proof} [of the Special  Implicit Function Theorem]  
+    Let $\funvect{f}(x, y) = (x, f(x, y))$, and observe $\derivb{\funvect{f}}_{(a, b)} \neq 0$. By the inverse function theorem $\funvect{f}$ has a unique local inverse $\funvect{g}$.
+    Note $\funvect{g}$ must be of the form $\funvect{g}(x, y) = (x, g(x, y))$.
+    Also $\funvect{f}\circ \funvect{g} = \text{Id}$ implies $(x, y) = \funvect{f}( x, g(x, y) ) = (x, f(x, g(x,y))$.
+    Hence $y = g(x, c)$ uniquely solves $f(x, y) = c$ in a small neighbourhood of $(a, b)$.
+  \end{proof}
+
+  Instead of $y \in \bbR $ above, we could have been fancier and allowed $y \in \bbR ^n$.
+  In this case $f$ needs to be an $\bbR ^n$ valued function, and we need to replace $\partial_y f \neq 0$ with the assumption that the $n \times n$ minor in $\derivb{f}$ (corresponding to the coordinate positions of $y$) is invertible.
+  This is the general version of the implicit function theorem.
+  
+
+  \begin{theorem}[General Implicit Function Theorem]
+    Let $U \subseteq \bbR ^{m + n}$ be a domain. Suppose $\vector{f}: \bbR^n\times\bbR^m \to \bbR^m$ is $C^1$ on an open set containing $(a,b)$ where
+  $a\in\bbR^n$ and $b\in\bbR^m$.  Suppose $\vector{f}(a,b)=0$ and that the $m\times m$
+  matrix $M=(D_{n+j}\vector{f}_i(a,b))$ is nonsingular.
+  Then that there is an open set $A\subset \bbR^n$ containing $a$ and an open set $B\subset \bbR^m$ 
+  containing $b$ such that, for each $x\in A$, there is a unique $\vector{g}(x)\in B$ such that
+  $\vector{f}(x, g(x))=0$.  Furthermore, $\vector{g}$ is differentiable.
+  \end{theorem}
+  
+  In other words: if the matrix $M$ is invertible, then one can locally solve the equation $\vector{f}(\vector{x}) =  \vector{f}(\vector{a}) $ (uniquely) for the variables $x_{i_1}$, \dots, $x_{i_m}$ and express them as a differentiable function of the remaining $n$ variables.
+  
+    The proof of  the General Implicit Function Theorem will be presented in the Section \ref{sec:proof-inverse-implicit}.
+
+  
+
+  \begin{exa}
+    Consider the equations
+    \begin{equation*}
+      (x-1)^2 + y^2 + z^2 = 5
+      \quad\text{and}\quad
+      (x+1)^2 + y^2 + z^2 = 5
+    \end{equation*}
+    for which $x = 0$, $y = 0$, $z = 2$ is one solution.
+    For all other solutions close enough to this point, determine which of variables $x$, $y$, $z$ can be expressed as differentiable functions of the others.
+  \end{exa}
+\begin{solu}    Let $a = (0, 0, 1)$ and
+    \begin{equation*}
+      F(x, y, z) = \colvec{
+	(x-1)^2 + y^2 + z^2\\
+	(x+1)^2 + y^2 + z^2}
+    \end{equation*}
+    Observe
+    \begin{equation*}
+      \derivc F_a = \colvec{-2 & 0 & 4\\\phantom{-}2 & 0 & 4},
+    \end{equation*}
+    and the $2 \times 2$ minor using the first and last column is invertible.
+    By the implicit function theorem this means that in a small neighborhood of $a$, $x$ and $z$ can be (uniquely) expressed in terms of $y$.
+  \end{solu}
+
+  \begin{remark}
+    In the above example, one can of course solve explicitly and obtain
+    \begin{equation*}
+      x = 0
+      \quad\text{and}\quad
+      z = \sqrt{4 - y^2},
+    \end{equation*}
+    but in general we won't be so lucky.
+  \end{remark}
+  
+
+
+

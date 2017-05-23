@@ -1,0 +1,3114 @@
+
+
+\begin{comment}
+
+\section{Linear transformations and tensors}
+
+\begin{Remark}
+The set of all invertible linear transformations of a vector space $V$ into itself is called the general linear group $GL(V)$ for that space. $ GL(n,\mathbb{R})$ is the space of invertible $n\times n$ matrices, which acts on $R^n$ as a transformation group $GL(\mathbb{R}^n)$ by matrix multiplication. Tensor transformation laws extend this action to the tensor spaces above $\mathbb{R}^n$, which we will understand only after we know what a tensor is. Both of the above 1-dimensional matrix groups (one free group parameter) are subgroups of $GL(2,\mathbb{R})$. In fact both are subgroups of the special linear group $SL(2,\mathbb{R})$ which consists of all unit determinant invertible matrices.
+\end{Remark}
+
+
+Suppose $A : V \rightarrow V$ is a linear transformation of $V$ into itself, i.e., a $V$-valued linear function on $V$, or equivalently a linear function on $V$ with values in V.
+For each $i$, the result $A(e_i)$ is a vector with components defined by $A^j{}_{i} \equiv \omega^j (A(e_i))$ 
+(note natural index positions up/down): $A(e_i)\equiv A^j{}_{i}e_j$.
+By linearity
+$$
+A(v) 
+= A(v^i e_i) 
+= v^i A(e_i) 
+= v^i (A^j{}_{i} e_j) 
+= (A^j{}_{i} v^i) e_j 
+ \qquad  \text{or} \qquad
+ [A(v)]^j = A^j{}_i v^i \,.
+$$
+The $j$-th component of the image vector is the $j$-th entry of the matrix product of the matrix $\underline {A}$ $\equiv (A^j{}_{i})$ (the row index $j$ is on the left, the column index $i$ is on the right)  with the column vector $\underline {v} \equiv (v^i)$. Here the underlined symbol $\underline{A}$ distinguishes the matrix of the linear transformation from the transformation $A$ itself.
+This matrix $\underline {A}=(\omega^j(A(e_i)))$ is referred to as the ``matrix of $A$ with respect to the basis $\{e_i\}$." Obviously if you change the basis, the matrix will change. We'll get to that later.
+
+
+Even if we are not working with ${\mathbb R}^n$, any choice of basis $\{e_i\}$ of $V$
+establishes an isomorphism with ${\mathbb R}^n$, namely the $n$-tuple of components of a vector with respect to this basis is a point in ${\mathbb R}^n$---this essentially identifies the basis $\{e_i\}$ of $V$ with the standard basis of ${\mathbb R}^n$. Recall the natural correspondence of quadratic polynomials with $R^3$ explored in the earlier Exercise \ref{exercise:quadpolys}.
+ 
+Expressing everything associated with an abstract vector space in terms of components with respect to a given basis leads us to matrix notation. Vectors in component form become column matrices, covectors become row matrices, and a linear transformation becomes a square matrix acting by matrix multiplication on the left, while natural evaluation of a covector on a vector is the matrix multiplication of the corresponding row (left) and column (right) matrices
+$$
+\underline {v} =
+\left(
+    \begin{array}{cc}
+    v^1 \\
+      \vdots   \\
+    v^n \\
+    \end{array}
+\right)\,,\
+\underline {f}^T = (f_1 \cdot \cdot \cdot f_n)\,,\
+\underline {A} = (A^i{}_{j})\,,\
+\quad \rightarrow\quad
+\left(
+    \begin{array}{cc}
+    [A(v)]^1 \\
+      \vdots   \\ \relax
+    [A(v)]^n \\
+    \end{array}
+\right)
+ = \underline {A}\, \underline {v} \,,\
+f(v)=\underline {f}^T\, \underline {v}\,. 
+$$
+Since $A(v)$ is another vector we can evaluate it on the covector $f$ to get a number which has the triple matrix product representation
+$$
+ f(A(v))= \underline{f}^T\, \underline{A} \, \underline{v} 
+\,. \qquad\hbox{(row $\times$ square matrix $\times$ column = scalar)}
+$$
+
+For every linear transformation $A$, this enables us to define an associated bi-linear real-valued function $\mathbb{A}$ of a pair of arguments consisting of a covector and a vector. Bi-linear simply means linear in each of two arguments. This bi-linear function is
+\begin{eqnarray}
+\mathbb{A}(f,v) \equiv f(A(v)) 
+&=& (f_i\omega^i) (A^j{}_{k} v^k e_j)
+ = f_i A^j{}_{k}v^k\omega^i(e_j)
+\nonumber\\
+&=& f_i A^j{}_{k}v^k \delta^i{}_j
+ = f_i A^i{}_{k}v^k \,,\
+\nonumber
+\end{eqnarray}
+noting that $A(v)$ is a vector and $f(A(v))$ is a scalar (real number).
+For fixed $f$, $\mathbb{A}(f,v)$ is a real-valued linear function of $v$, namely the covector with  components $f_i A^i{}_{k}$ (one free down index).
+For fixed $v$, it is a real-valued linear function of $f$, namely evaluation on the vector with  components $A^i{}_{k} v^k$ (one free up index). This reinterprets the linear transformation $A$ as a bilinear function $\mathbb{A}$ of a covector (first argument) and a vector (second argument), i.e., a ``tensor." Note the component relation 
+$A^i{}_j=\mathbb{A}(\omega^i,e_j)$. We will notationally identify $A$ and $\mathbb{A}$ once we are more familiar with these matters. Sometimes one writes the linear transformation as $u\to A(u)=\mathbb{A}(\ ,u)=C_{\ds u} \mathcal{A}$, namely as the tensor with only one of its two arguments evaluated, or sometimes as the ``contraction" of the tensor $\mathbb{A}$ with the vector $u$ to indicate its natural evaluation on that argument alone.
+
+In general a ($^p_q$)-tensor over $V$ is simply a real-valued multilinear function of $p$ covector arguments (listed first) and $q$ vector arguments (listed last):
+$$
+  T(\underbrace{f,g,\cdots}_p,\underbrace{v,u,\cdots}_q) \in \mathbb{R} \,.
+$$
+Listing all the covector arguments first and the vector arguments last is just an arbitrary choice, and later on it will be convenient to allow any ordering.
+By definition then, a covector is a ($^0_1$)-tensor over $V$ (1 vector argument, no covector arguments) while a vector is a ($^1_0$)-tensor over $V$ (1 covector argument, no vector argument) recalling that
+       $v(f) \equiv f(v)$ (the value of a vector on a covector is the value of the covector on the vector).
+
+Thus a linear transformation $A$ has (naturally) a ($^1_1$)-tensor $\mathbb{A}$ over $V$ associated with it.  Any time we have a space of linear functions over a vector space, it has a natural linear structure by defining linear combinations of functions through linear combination of values, i.e., is itself a vector space and we can look for a basis. In this case the space of bilinear real-valued functions on the Cartesian product vector space of pairs $(f,v)$ of covectors and vectors is itself a vector space and in the same way that a basis of $V$ determined a basis of the dual space $V^*$, they both together determine a basis of this latter vector space.
+
+Let $V \otimes V^*$ denote this space of ($^1_1$)-tensors over $V$. The symbol $\otimes$ is called the tensor product, explained below. The zero element of this vector space is a multilinear function
+$$
+ \underset{\rm zero\ tensor}{0(f,v)}
+ = \underset{\rm zero\ number}{0} 
+\longleftrightarrow  
+ \underset{\rm zero\ matrix}{0^i{}_j} 
+= \underset{\rm zero\ linear\ transformation}{\omega^i(0(e_j))} = 0 \,,
+$$ 
+whose square matrix of components is the zero matrix (note $0(e_j) = 0$ is the zero vector).
+Another special element in this space is the evaluation tensor associated with the identity transformation $I\!d(v)=v$
+$$
+EV\!\!AL(f,v) = f(v) = f_i\delta^i{}_j v^j
+\longleftrightarrow 
+(EV\!\!AL)^i{}_j =\omega(I\!d(e_j)) =\omega^i(e_j) = \delta^i{}_j
+$$
+whose square matrix of components is the unit matrix $\underline{I}$\,, the index symbol for which has been called the Knonecker delta. $EV\!\!AL$ is sometimes called the unit tensor, and the associated linear transformation of the vector space is just the identity transformation which sends each vector to itself.
+
+To come up with a basis of $V\otimes V^*$ we need a simple definition. Given a covector and a vector we produce a $(^1_1)$-tensor by defining
+$$
+(v\otimes f)(g,u) \equiv g(v)f(u) = (g_i v^i) (f_j u^j) = g_i(v^i f_j)u^j \,.
+$$
+Thus $(v^i f_j)$ is the matrix of components of $v\otimes f$, and is
+also the result of evaluating this tensor on the basis vectors and dual basis covectors 
+$$
+(v\otimes f)^i{}_j
+=(v\otimes f)(\omega^i,e_j) = \omega^i(v) f(e_j) = v^i f_j \,.
+$$
+The symbol $\otimes$ is called the tensor product and only serves to hold $v$ and $f$ apart until they acquire arguments to be evaluated on. It simply creates a function taking 2 arguments from two functions taking single arguments.
+The component expression shows that $v\otimes f$ is clearly bilinear in its arguments $g$ and $u$, so it is a ($^1_1$)-tensor.
+
+In terms of the corresponding matrix notation, given a column matrix $\ul{u}=\langle u^1,\ldots,u^n\rangle$ and a row matrix  $\ul{f}^T=\langle f_1|\ldots|f_n\rangle$, then the tensor product corresponds exactly to the other matrix product (column times row instead of row times column)
+$$
+ (u^i f_j)
+=
+   \underbrace{\underbrace{\ul{u}\strut}_{\ds n\times 1}\, \underbrace{\ul{f}^T}_{\ds 1\times n}}_{\ds n\times n} 
+\quad\text{in contrast with}\quad
+   \underbrace{\underbrace{\ul{f}^T}_{\ds 1\times n}\, \underbrace{\strut\ul{u}}_{\ds n\times 1}}_{\ds 1\times 1} =f(u)=f_i u^i\,.
+$$
+Thus the tensor product of a vector and a covector is just an abstract way of representing the multiplication of a column vector on the left by a row vector on the right to form a square matrix, a two-index object created out of two one-index objects.
+
+\begin{Example}\label{example:}\textbf{matrix product and linear function evaluation}
+
+A concrete example can help. The matrix product on the left below is the usual order of a row on the left and a column on the right, resulting in a scalar. The rows and columns of the matrix product on the right below of a column on the left multiplying a row on the right have only 1 entry each respectively so the row-column products are simply products of those two entries.
+$$
+  \ul{f}^T \, \ul{u} =\begin{pmatrix} f_1 & f_2 \end{pmatrix}  \begin{pmatrix} u^1 \\ u^2 \end{pmatrix} = f_1 u^1+f_2 u^2 \,,\quad
+  \ul{u}  \, \ul{f}^T =  \begin{pmatrix} u^1 \\ u^2 \end{pmatrix}  \begin{pmatrix} f_1 & f_2 \end{pmatrix} 
+ = \begin{pmatrix} f_1 u^1 & f_2 u^1 \\ f_1 u^2 & f_2 u^2 \end{pmatrix} 
+$$
+The latter matrix product is the matrix of components of the tensor product $u\otimes f$ of the vector $u$ with the 1-form $f$. Its matrix product with a component vector corresponds to a linear transformation of the vector space.
+\end{Example}
+
+
+We can use the tensor product $\otimes$ to create a basis for $V\otimes V^*$ from a basis $\{e_i\}$ and its dual basis $\{\omega^i\}$, namely the set $\{e_j \otimes \omega^i\}$ of 
+$n^2=n \times n$ such tensors.
+By definition 
+$$
+(e_j\otimes \omega^i)(g,u) 
+= g(e_j)\omega^i(u) 
+= g_j u^i = u^i g_j \,.
+$$
+We can use this to show the two conditions that they form a basis are satisfied: 
+\begin{enumerate}
+  \item 
+{\bf spanning set}:  
+$$
+\mathbb{A}(f,v)= \cdots 
+  = f_j A^j{}_{k} v^k
+  = A^j{}_{k} v^k f_j
+  =(A^j{}_{k}\, e_j\otimes \omega^k)(f,v)
+$$
+since $v^k f_j = (e_j\otimes \omega^k)(f,v)$,
+so $\mathbb{A}=A^j{}_{k}\, e_j\otimes \omega^k$  holds since the two bi-linear functions have the same values on all pairs of arguments. The components of the tensor $\mathbb{A}$ with respect to this basis are just the components of the linear transformation $A$ with respect to $\{e_i\}$ introduced above :  
+$A^j{}_{k} = \omega^j(A(e_k))$.
+\item
+{\bf linear independence}: if $A^j{}_{k}\, e_j\otimes \omega^k = 0$ (zero tensor) then evaluating both sides on the argument pair $(\omega^m,e_n)$ leads to 
+\begin{eqnarray}
+(A^j{}_{k}\, e_j\otimes \omega^k)(\omega^m,e_n) &=& 0(\omega^m,e_n) = 0
+\nonumber\\
+&=& A^j{}_{k}\, \omega^m(e_j)\omega^k(e_n) 
+ = A^j{}_{k}\, \delta^m{}_j \delta^k{}_n
+\nonumber\\
+&=& A^m{}_n \,,
+\end{eqnarray}
+so since this is true for all possible values of $(m,n)$, all the coefficients must be zero, proving linear independence.
+\end{enumerate}
+Thus $V \otimes V^*$ is the space of linear combinations of tensor products of vectors with covectors, explaining the notation.
+
+\begin{Example}\label{example:glnRbasis}\textbf{basis of the vector space of $m\times n$ matrices}
+
+We have no notation for the natural basis of the vector space $gl(n,\mathbb{R})$ of $n\times n$ matrices, namely the standard basis of the corresponding $\mathbb{R}^{n^2}$ we get by listing the entries of the matrix row by row as a single 1-dimensional array.
+Let $\ul{e}^j{}_i$ be the matrix whose only nonzero entry is a 1 in the $i$th row and $j$th column. Then $\ul{A} = A^i{}_j \ul{e}^j{}_i$ is how we represent the matrix in terms of its entries. The ordering of the indices  on $\ul{e}^j{}_i$
+allows us to think of this product as having adjacent indices (the $j$'s) being summed over and taking the trace of the result (the $i$s), which are  natural matrix kinds of index operations. (The equally acceptable alternative notation would be instead  $\ul{A} = A^i{}_j \ul{e}_i{}^j$, but for some reason the first index ordering pleases me more for the interpretational reason I stated.) Then to the matrix $\ul{A}$ corresponds a tensor $\mathbb{A} = A^i{}_j {e}_i\otimes \omega^j$, whose components with respect to this basis are just the corresponding entries of the matrix, so really the basis $\{e_i\otimes \omega^j\}$ of $\mathbb{R}^n \otimes \mathbb{R}^{n*}$ induced by the standard basis $\{e_i\}$ of  $\mathbb{R}^n$ corresponds exactly to the obvious basis $\{\ul{e}^j{}_i\}$ of the vector space of square matrices. Again we are taking familiar objects and looking deeper at their mathematical structure, which requires new notation like the tensor product to make explicit that structure.
+
+\end{Example}
+
+\begin{Example}\label{example:projections}\textbf{projections as linear transformations}
+
+Trying to gain intuition about linear transformations $A: V\rightarrow V$ from a vector space into itself using the rotations and boosts of the plane is a bit misleading since they only give us intuition about linear transformations which are 1-1 and do not ``lose any points" as they move them around in the vector space on which they act. Such linear transformations are represented by nonsingular matrices when expressed in a basis, i.e., matrices with nonzero determinant $\det\ul{A}\neq 0$, which means that the only solution to 
+$\ul{A}\, \ul{x}=\ul{0}$ is the zero solution. Those matrices with zero determinant also arise naturally.
+
+Suppose we decompose $V=V_1\oplus  V_2$ into a direct sum of two subspaces, which simply means that any vector can be expressed uniquely as the sum of one vector in $V_1$ and another in $V_2$. In multivariable calculus, one of the first things we do with vector algebra is project a general vector in space into a vector component along a given direction and another one orthogonal to it. If $\hat u$ is a unit vector which picks out a direction in $\mathbb{R}^3$, then the projections of another vector $v$ parallel to and perpendicular to $\hat u$ are
+$$
+   P_{u||}(v) = (v \cdot \hat u) \, \hat u\,,\quad
+   P_{u\bot}(v) = v- P_{u||}(v) 
+               = v- (v \cdot \hat u) \, \hat u\,,
+$$
+If $v$ is already along $\hat u$, then the first projection just reproduces it, while the second gives the zero vector.
+If $v$ is orthogonal to $\hat u$, then the second projection just reproduces it, while the first gives the zero vector.
+By definition, the sum of the two projections just reproduces the original vector.
+
+This is an example of a simple pair of projection maps $P$ and $Q$ which 
+satisfy $P^2=P$, $Q^2=Q$,$PQ=QP=0$ for a pair $(P,Q)$ which projects onto a pair of subspaces in a direct sum total space
+$$
+  v \mapsto P(v)+Q(v) \,.
+$$
+Each acts as the identity on its corresponding subspace, and acts as the zero linear transformation on the other. This can be extended to a direct sum of any number of subspaces in an obvious way by iterating these conditions.
+
+The vanishing of the determinant of a matrix $\ul{A}$ is the condition that the homogeneous linear system $\ul{A}\, \ul{x}=\ul{0}$ has nonzero solutions. The space of solutions is called either the null space or kernel of the matrix. Row reduction of the matrix produces a basis of that subspace of $\mathbb{R}^n$. However, there is no natural complementary subspace to complete projection into this subspace to a pair of projections as above without additional structure. The problem is that if $\ul{A}\, \ul{x} \neq\ul{0}$ then one can add any element of the null space to $\ul{x}$ and it will also satisfy the same condition of $\ul{x}$. But in $\mathbb{R}^n$ we have the orthogonal complement using the dot product to pick out a representative subspace we can use to decompose any vector into an element of the null space and another subspace. This is because the condition $A^i{}_j x^j=0$ means that the vector $\ul{x}$ is orthogonal to each of the rows of the coefficient matrix in the dot product interpretation, so that the span of the rows of the matrix (called the row space) is the orthogonal complement of the null space with this natural inner product. Similarly the set of all nonzero vectors $A^i{}_j x^j$ for all possible $x^j$ corresponds to what is called the range of the linear transformation, but by definition of span, this is simply the span of the set of columns of the matrix, called the column space of the matrix. This too has no natural complement without an inner product, but of course the dot product is ready to do the job. The row and column spaces of a matrix were discussed in detail in Section \ref{sec:VVast}.
+
+\end{Example}
+
+
+For every linear transformation $A : V \rightarrow V$, there is an associated linear transformation $A^T : V^* \rightarrow V^*$ called its transpose, defined by
+$$
+   (A^T)(f)(u) = f(A(u)) = f_i A^i{}_j u^j
+  \rightarrow [(A^T)(f)]_j = f_i A^i{}_j\,,
+$$
+which takes the matrix form
+$$
+   \ul{A^T(f)} =\ul{f}^T \ul{A}\,.
+$$
+Thus with the row vector $\ul{f}^T$ we associate the new row vector
+$$
+   \ul{f}^T \mapsto \ul{f}^T \ul{A} \,,
+$$
+or equivalently taking the matrix transpose of this equation, the corresponding column vector $ \ul{f}$ is associated with the new column vector
+$$
+    \ul{f} \mapsto \ul{A}^T \ul{f}\,. 
+$$
+In words left multiplication of a row matrix $\ul{f}^T$ by the matrix $\ul{A}$ of the linear transformation $A$ is equivalent to right multiplication by the transpose matrix $\ul{A}^T$ of the corresponding transposed column matrix $\ul{f}$. The abstract transpose linear transformation therefore corresponds directly to the transposed matrix acting in the transposed direction by matrix multiplication. In other words, when we want to think of $V*$ as itself a vector space undergoing a linear transformation, we then want to think of its elements as column matrices multiplied on the left by a matrix, and this leads to the transpose matrix of the original transformation acting on $V$.
+
+This transpose linear transformation corresponds to partial evaluation of the tensor $\mathbb{A}$ in its covector argument
+$$
+   A^T: f \mapsto \mathbb{A}(f,\ )\,,
+$$
+resulting in a new covector. Thus the $(^1_1)$-tensor $\mathbb{A}$ packages both the linear transformation $A$ and its transpose $A^T$ in the same machine, so we can identify these particular transformations as two particular ways in which this tensor acts on both the vector space and its dual, and in fact we might as well use the same kernel symbol $A$ for the tensor as well, letting its partial evaluation in either argument represent the two respective linear transformations.
+
+\begin{Example}\label{example:dotprod}\textbf{dot product as a tensor on $\mathbb{R}^n$}
+
+The dot product of two vectors 
+$$
+  {\rm dot}(a,b)= a\cdot b = \langle a^1,\ldots,a^n\rangle \cdot   \langle b^1,\ldots,b^n\rangle
+            = a^1 b^1 +\ldots + a^n b^n
+            = \dsum_{i=1}^n a^i b^i
+            = \ul{a}^T \ul{b}
+$$
+is the simplest bilinear scalar function of a pair of vectors in $\mathbb{R}^n$. It is therefore a $(^0_2)$-tensor ``${\rm dot}$."
+ The standard basis vectors are orthonormal so we need an appropriate symbol for their dot products, which will be interpreted as the components of the dot product tensor.  Numerically the matrix of these components is the identity matrix but the index positioning must be covariant, so we introduce a covariant Kronecker delta symbol for these components
+$$
+   {\rm dot}(e_i,e_j) = e_i \cdot e_j = \delta_{ij} 
+\equiv
+\begin{cases}
+    1 & \text{if $i=j$\,,} \\
+    0 & \text{if  $i\not=j$\,.}
+\end{cases}
+\,.
+$$
+Then by bilinearity
+\begin{align*}
+{\rm dot}(a,b)   
+    &= a\cdot b %  \langle a^1,\ldots,a^n\rangle \cdot   \langle b^1,\ldots,b^n\rangle
+     =  (a^i e_i)\cdot (b^j e_j) = a^i b^j e_i \cdot e_j = \delta_{ij}\, a^i b^j
+   & = \delta_{ij} \,\omega^i(a) \omega^j(b)
+     = \delta_{ij},\omega^i\otimes\omega^j(a,b)
+ \,,
+\end{align*}
+so this tensor is
+$$
+  {\rm dot} = \delta_{ij}\omega^i\otimes\omega^j \,.
+$$
+
+The dot product on ${\mathbb R}^n$ is an example of an inner product on a vector space, named for its symbolic representation as a raised dot between the vector arguments.
+An inner product on any vector space is a ``symmetric" ($^0_2$)-tensor which accepts two vector arguments in either order and produces a real number (and such that the determinant of its symmetric matrix of components is nonzero, the condition of nondegeneracy). The dot product on ${\mathbb R}^n$ is such an inner product whose matrix of components is the identity matrix with respect to the standard basis of ${\mathbb R}^n$. The index positioning $\delta_{ij}$ for a ($^0_2$) tensor shows that it is fundamentally different from the identity ($^1_1$)-tensor with components $\delta^i{}_j$, even though both matrices of components are the unit matrix. Section \ref{sec:LTV2Vast} will explore inner products on both $V$ and its dual space $V*$ and their interpretation as linear transformations.
+
+\end{Example}
+
+
+
+\subsection{More than 2 indices: general tensors}
+
+If $T$ is a $(^p_q)$-tensor over $V$, then      $T(f,g,\cdots,v,u,\cdots) \in \mathbb{R}$ is a scalar.
+Define its components with respect to $\{e_i\}$ by 
+$$
+T^{ij\cdots}_{\ \ mn\cdots} = T(\omega^i,\omega^j,\cdots,e_m,e_n,\cdots)
+ \qquad  \text{(scalars)} \,.
+$$ 
+$p$ is the number of upper indices on these components, equal to the number of covector arguments, while $q$ is the number of lower indices, equal to the number of vector arguments, and it is convenient but not necessary to order all the covector arguments first and the vector arguments last.
+Next introduce the $n^{p+q}$ basis ``vectors," i.e., ($^p_q$)-tensors 
+$$
+\{
+\underbrace{e_i\otimes e_j\otimes \cdots}_{p\rm\ factors} 
+\otimes 
+\underbrace{\omega^m\otimes\omega^n\otimes \cdots}_{q\rm\ factors} 
+\} \,.
+$$
+We can then expand any tensor in terms 
+this basis
+$$
+T=T^{ij\cdots}_{\ mn\cdots} 
+  e_i\otimes e_j\otimes \cdots \otimes \omega^m\otimes\omega^n\otimes \cdots  \,.
+$$
+
+This expansion follows from the multilinearity and the various definitions just as in the previous case of  $(^1_1)$-tensors over $V$. Namely
+$$
+\meqalign{
+T& (f,g,\ldots,u,v,\ldots) &&\\
+  &= T(f_i\omega^i,g_j\omega^j,\ldots,u^me_m, v^ne_n,\ldots) 
+&&\text{(argument component expansion)}
+\\
+  &= f_ig_j\ldots u^m v^n\ldots T(\omega^i, \omega^j, \ldots, e_m, e_n\ldots) 
+&&\text{(multilinearity)},
+\\
+  &= T^{ij\ldots}_{\ mn\ldots}  f_ig_j\ldots u^m v^n\ldots  
+&&\text{(definition tensor components)}
+\\
+  &= T^{ij\ldots}_{\ mn\ldots} e_i(f) e_j(g)\ldots \omega^m(u) \omega^n(v) \ldots 
+&&\text{(definition argument components)}
+\\
+  &= (T^{ij\ldots}_{\ mn\ldots} e_i \otimes e_j \otimes\ldots \omega^m \otimes \omega^n\otimes \ldots) (f,g,\ldots,u,v,\ldots)
+&&\,.\qquad \text{(definition tensor product)}
+}
+$$
+Thus $T$ and its expansion in parentheses in the last line have the same value on any set of arguments, so they must be the same multilinear function.
+
+\begin{Example}\label{example:tensorprods}\textbf{tensor products by multiplication}
+
+The simplest tensor products are just multilinear functions of a set of vectors that result from multiplying
+together in a certain order linear functions of a single vector. 
+For example, the product of the values of three linear functions of single vectors defines a multilinear function of three vectors by
+$$
+ (f \otimes g\otimes h) (u,v,w) 
+  = f(u) g(v) h(w) \,.
+$$
+Expressing this tensor in components leads to
+$$
+   (f \otimes g\otimes h) 
+ = (f \otimes g\otimes h)_{ijk} (\omega^i\otimes \omega^j\otimes \omega^k)
+$$
+where
+$$
+ (f \otimes g\otimes h)_{ijk}= f_i g_j h_k\,. 
+$$
+In other words we have constructed a $(^0_3)$-tensor $f \otimes g\otimes h$ from the tensor product of 3 covectors $f$, $g$, and $h$ and in terms of components in index notation, we have just multiplied their components together.
+
+We can do the same thing with vectors instead of covectors
+$$
+ u\otimes v\otimes w 
+  = (u^i e_i)\otimes (v^j e_j)\otimes  (w^k e_k) 
+  = u^i v^j w^k e_i\otimes e_j\otimes e_k
+\,,\quad
+  (u\otimes v\otimes w)^{ijk} 
+   = u^i v^j w^k \,.
+$$
+Notice that
+$$
+    (u\otimes v\otimes w)(f,g,h)=f(u) g(v) h(w) = (f \otimes g\otimes h) (u,v,w) \,.
+$$
+This is the same duality which allows us to think of a linear function of a single covector as a vector and vice versa, together sharing a natural pairing to produce the linear combination which is the value of the linear function.
+\end{Example}
+
+\begin{Example}\label{ex:determinant1}\textbf{determinant as a tensor}
+
+On ${\mathbb R}^3$ with the usual dot and cross products, introduce the ($_3^0$)-tensor $D$ by 
+\begin{eqnarray}
+D(u,v,w) = u \cdot (v \times w) 
+&=& \det 
+\left(
+    \begin{array}{ccc}
+    u^1 & u^2 & u^3 \\
+    v^1 & v^2 & v^3\\
+    w^1 & w^2 & w^3 \\
+    \end{array}
+\right)
+\nonumber\\
+&=& \det 
+\left(
+    \begin{array}{ccc}
+    u^1 & v^1 & w^1 \\
+    u^2 & v^2 & w^2\\
+    u^3 & v^3 & w^3 \\
+    \end{array}
+\right)
+   \qquad \text{(``triple scalar product")} 
+\nonumber\\
+ &=& \det \langle \ul{u} | \ul{v} | \ul{w} \rangle
+\,,
+\nonumber
+\end{eqnarray}
+where we use the property that the determinant is invariant under the transpose operation in order to keep our vectors associated with column matrices (while students usually see vectors as rows in the matrix in this context in calculus courses).
+This is linear in each vector argument (the determinant is a linear function of each row or column, which should be obvious from its representation in terms of the linear dot and cross product operations). It therefore has the expansion
+$$
+D = D_{ijk}\omega^i\otimes\omega^j\otimes\omega^k \,,
+$$
+where 
+$$
+D_{ijk} = D(e_i,e_j,e_k)
+= e_i\cdot(e_j\times e_k)
+=
+\begin{cases}
+    1 & \mbox{if $(i,j,k)$ even perm.\  of (1,2,3)} \\
+   -1 & \mbox{if $(i,j,k)$ odd perm.\  of (1,2,3)} \\
+    0 & \mbox{otherwise} \\
+\end{cases}
+$$
+so that
+\begin{eqnarray}
+D&=& \omega^1\otimes\omega^2\otimes\omega^3
+    +\omega^2\otimes\omega^3\otimes\omega^1
+    +\omega^3\otimes\omega^1\otimes\omega^2
+\nonumber\\&&
+    -\omega^1\otimes\omega^3\otimes\omega^2
+    -\omega^2\otimes\omega^1\otimes\omega^3
+    -\omega^3\otimes\omega^2\otimes\omega^1 \,.
+\nonumber
+\end{eqnarray}
+This corresponds directly to the usual explicit formula
+$$
+  \det 
+\left(
+    \begin{array}{ccc}
+    u^1 & u^2 & u^3 \\
+    v^1 & v^2 & v^3\\
+    w^1 & w^2 & w^3 \\
+    \end{array}
+\right)
+ =  u^1 v^2 w^3 + u^2 v^3 w^1 + u^3 v^1 w^2 -  u^1 v^3 w^2 - u^2 v^1 w^3 - u^3 v^2 w^1 \,.
+$$
+
+We will soon give this determinant component symbol $d_{ijk}$ a new name $\epsilon_{ijk}$ called the Levi-Civita symbol or Levi-Civita epsilon, since it is exactly what we need to handle the cross product in $\mathbb{R}^3$ and the easily prove vector identities involving the dot and cross-products, while generalizing to $\mathbb{R}^n$ to provide a terribly useful tool. In this new notation we then have 
+$$
+  \det \langle u | v | w \rangle = \epsilon_{ijk} \omega^i\otimes\omega^j\otimes\omega^k (u,v,w) = \epsilon_{ijk} u^i v^j w^k\,.
+$$
+
+\end{Example}
+
+\begin{pro}\label{exercise:3x3det-cross-prod}\textbf{determinant as a tensor}
+
+a)
+Continuing the example, convince yourself that the nonzero components of the determinant function $\epsilon_{ijk}= e_i\cdot(e_j\times e_k)$ (which correspond directly to the 3 positive and 3 negative terms in the expansion of the determinant, respectively the 3 positive cyclic permutations of 123 and the 3 negative cyclic permutations of 123) are
+$$
+ 1=\epsilon_{123} = \epsilon_{231} = \epsilon_{312} =  -\epsilon_{132} = -\epsilon_{213} = -\epsilon_{321} \,.
+$$
+
+b)
+Notice that if we consider the determinant function $D(c,a,b)=\epsilon_{ijk} c^i a^j b^k$ unevaluated in its first (or last) vector input slot $D(\ ,a,b)=D(a,b,\ )$, we get one free index in the component representation of the resulting covector $f=D(\ ,a,b) = \epsilon_{ijk}a^jb^k \omega^i$. Show that this covector has components
+$$
+ \langle f_1,f_2,f_3 \rangle = \langle a^2b^3-a^3b^2, a^3b^1-a^1b^3, a^1b^2-a^2b^1 \rangle = \langle (a\times b)^1, (a\times b)^2, (a\times b)^3 \rangle \,,
+$$
+which you recognize as the same components as the cross product vector $a\times b$. To make index position work out we must introduce a Kronecker delta with both indices up to write this in index form with our index conventions
+$$
+  (a\times b)^i = \delta^{il}\epsilon_{ljk} a^j b^k\,.
+$$
+Thus we must introduce additional structure to understand this last shift in index position to take a covector to the corresponding vector with the same components. Let's wait till after the next exercise to start tackling that.
+
+\end{pro}
+
+\begin{pro}\label{exercise:quadprod}\textbf{quadruple scalar product}
+
+On ${\mathbb R}^3$ with the usual dot and cross products, introduce the ($^0_4$)-tensor
+$$
+Q(u,v,w,z)=(u \times v)\cdot(w\times z) 
+$$
+called the ``scalar quadruple product."
+It satisfies an identity that we will prove easily in Chapter 4 \typeout{cross reference to chapter 4}%
+$$
+   (a\times b) \cdot (c\times d) = (a\cdot c)(b\cdot d) -(a\cdot d)(b\cdot c)
+ = \left| \begin{matrix} a\cdot c & a\cdot d\\ b\cdot c & b\cdot d\end{matrix}\right| \,. 
+$$
+Its components in the standard basis are
+$Q_{ijmn}= (e_i\times e_j)\cdot (e_m\times e_n)$, from which one can immediately evaluate some of its nonzero components:
+$Q_{2323}=Q_{3131}=Q_{1212}=1$. Check these values.
+
+Notice that interchanging either $(i,j)$ or $(m,n)$ results in a sign change, but exchanging these pairs of indices does not
+$$
+  Q_{ijkl} = -Q_{jikl}=-Q_{ijlk} = Q_{klij} \,.
+$$
+These ``symmetries" are important and will be explored below.
+Show that this tensor satisfies one further cyclic identity (first index fixed, last 3 undergo a sum of all cyclic permutations)
+$$
+  Q_{ijkl}+Q_{iklj}+Q_{iljk} = 0 \,.
+$$
+
+\end{pro} 
+
+
+
+
+
+The simplest example of a tensor created with the dot product is a covector:
+$f_u(v)=u \cdot v$.
+For each fixed $u$, this defines a linear function of $v$, i.e., a covector $f_u$. It is exactly this correspondence that allows one to avoid covectors in elementary linear algebra.
+For a general inner product on any vector space, the degeneracy condition guarantees that this map from vectors to covectors is a vector space isomorphism and hence can be used to establish an identification between the vector space and its dual space. This will prove very useful. \typeout{Correction.}
+
+
+
+
+
+\section{Tensor product and matrix multiplication}
+
+By linearity, the components of the tensor product of a vector and a covector are
+\begin{align*}
+v\otimes f &=(v^i e_i) \otimes (f_j \omega^j) 
+  &&\text{(expand in bases)}
+\\
+&= v^i f_j e_i \otimes \omega^j 
+  && \text{(factor out scalar coefficients)}
+\\
+&\equiv (v\otimes f)^i{}_j\,  e_i \otimes \omega^j
+  &&\text{(definition of components of tensor)}
+\\
+&\rightarrow
+(v\otimes f)^i{}_j=v^if_j &&
+\end{align*}
+or equivalently 
+$$
+(v\otimes f)^i{}_j 
+=(v\otimes f)(\omega^i,e_j)
+=\omega^i(v)f(e_i)
+=v^i f_j \,.
+$$
+With the representation in component form of a vector and a covector as column and row matrices respectively, this tensor product is exactly equivalent to matrix multiplication
+$$
+\underline v \, \underline f^T 
+=\underbrace{\left(
+    \begin{array}{cc}
+    v^1  \\
+    \vdots \\	
+    v^n  \\
+    \end{array}
+\right)}_{n\times 1} \underbrace{(f_1 \cdots f_n)}_{1\times n}
+= 
+ \underbrace{\left(
+    \begin{array}{cc}
+    v^1f_1 \ldots v^1f_n \\
+      \vdots  \\
+    v^nf_1 \ldots v^nf_n  \\
+    \end{array}
+\right)}_{n\times n}  
+  = (v^i f_j)\,,
+$$ 
+(the vector $\underline v$ is a column matrix, the covector $\underline f^T$ is a row matrix),
+but in the opposite order from the evaluation of a covector on a vector, leading to a matrix rather than a scalar (number).
+
+Thus matrix multiplication of a row matrix by a column matrix on the right represents the abstract evaluation operation of a covector on a vector or vice versa, while the matrix multiplication on the left represents the tensor product operation. In this sense the name ``scalar product"
+for evaluation is more analogous to ``tensor product" (the first produces a ``scalar" or real number, the second a tensor).
+
+\begin{Example}\label{example:dualbasisprojection}\textbf{dual basis vector projections}
+
+When such a tensor product matrix product acts by matrix multiplication on a component vector on the right, it corresponds to evaluating the corresponding $({}^1_1)$-tensor on its second argument
+$$
+ \ul{v}\, \ul{f}^T \, \ul{X} \leftrightarrow  (v\otimes f) (\ ,X) = e_i v^i f_j X^j = f(X)\, v \,.
+$$
+This is exactly how the dual basis 1-forms project out the scalar components along their corresponding basis vectors
+$  \omega^j(X) = X^j $. Multiplying the original basis vector by this scalar component yields the vector component along that basis vector $X^j e_j$ (no sum on $j$). The sum then recovers the original vector by adding all these separate vector components together.
+For a new basis $e_{i'} = e^j{}_{i'} e_i =B^j{}_i e_j$, with corresponding dual basis
+$\omega^{i'} = \omega^{i'}{}_j \omega^j = B^{-1 i}{}_j \omega^j$, the summed tensor product 
+$$
+   e_{i'}\otimes \omega^{i'} = B^j{}_i B^{-1i}{}_k e_j\otimes \omega^k
+                             = \delta^j{}_k e_j\otimes \omega^k
+                             = e_j\otimes \omega^j
+$$
+has the matrix representation
+$$
+  \ul{e}_{i'} \, \ul{\omega}^{i'T}   
+  = \ul{B} \, \ul{B}^{-1} = \ul{I}
+$$
+Each term in the matrix product sum over $i'$ is the projection matrix which picks out the {i'} vector component 
+$e_{i'}\otimes\omega^{i'}(\ ,X) = e_{i'}\omega^{i'}(X)=X^{i'} e_{i'}$ (no sum on $i'$)
+of the component vector to which it is applied by matrix multiplication, i.e., by evaluation of the corresponding tensor product on its second argument.
+
+\end{Example}
+
+\begin{pro}\label{exercise:R2tensortransformation}\textbf{transforming a tensor on $\mathbb{R}^2$}
+
+In Exercise \ref{exercise:R2changebasis} 
+the dual basis $W^1=\omega^1-\omega^2$, $W^2=-\omega^1+2\omega^2$ was found for the new basis
+$\{E_1,E_2\}=\{\langle 2,1\rangle,\langle 1,1\rangle\} =\{ 2e_1+1e_2, 1e_1+1e_2\}$ on $\mathbb R^2$.
+Find the components of the ($^1_1$)-tensor $T$  in terms of the standard basis $\{e_i\}$ and $\{\omega^i\}$  
+if $T$ has the following components in terms of the basis $\{E_i\}$:
+$$
+\begin{array}{ll}
+T(W^1,E_1)=1\,,\ &  T(W^1,E_2)=2\,,\\ 
+T(W^2,E_1)=-1\,, &  T(W^2,E_2)=0\,,
+\end{array}
+$$
+i.e.
+$$
+T = 1 E_1\otimes W^1 + 2 E_1\otimes W^2
+   -1 E_2\otimes W^1 + 0 E_2\otimes W^2
+  = T^i{}_j\, e_i\otimes \omega^j
+\,.
+$$ 
+Do this in two ways.
+\\
+a) Just substitute into $T$ the new basis vectors and dual basis covectors expressed in terms of the old ones and expand out the result to identify the 4 old components as the resulting coefficients of $e_i\otimes \omega^j$.
+\\
+b) Use the matrix transformation law that will be justified in the next section. With a prime introduced to distinguish components $T^{i'}{}_{j'}$ in the new basis $E_i=e_{i'}$ and dual basis $W^i = \omega^{i'}$ from those $T^i{}_j$ in the old basis, then the following matrix product will reproduce our previous result 
+$$
+  (T^{i'}{}_{j'}) 
+= 
+\begin{pmatrix}
+1 & 2\\
+-1 & 0
+\end{pmatrix} \,,\quad
+\underline{T}' = \underline{A}\, \underline{T}\, \underline{A}^{-1} 
+ \rightarrow 
+\underline{T}
+ =\underline{A}^{-1} \underline{T}'\, \underline{A}
+ =   \underline{B}\, \underline{T}'\, \underline{B}^{-1} 
+\,,
+$$
+where the basis changing matrix and its inverse are
+$$
+\underline{B}^{-1} = \underline{A}      =\begin{pmatrix} 1 & -1\\ -1 & 2\end{pmatrix} 
+= (W^i{}_j)
+\,,\quad
+\underline{B}      = \underline{A}^{-1} =\begin{pmatrix} 2& 1\\ 1 & 1\end{pmatrix}
+=(E^i{}_j)
+\,.
+$$
+
+\end{pro}
+
+% 2007-08-21 bob edit; remark1.txt file now included here
+
+\begin{Remark}
+
+Our notation is so compact that certain facts may escape us.
+For example 
+$$
+v\otimes f
+= (v^i e_i)\otimes f
+= v^i (e_i\otimes f)
+= v^i e_i\otimes f
+$$ 
+is actually a distributive law for the tensor product. A simpler example shows this
+$$
+(u+v)\otimes f = u\otimes f+v\otimes f\,.
+$$
+How do we know this? Well, the only thing we know about the tensor product is how it is defined in terms of evaluation on its arguments
+$$
+\meqalign{
+[(u+v)\otimes f](g,w) 
+&= g(u+v)f(w)
+ = [g(u)+g(v)]f(w)
+\qquad &\text{(linearity)}
+\nonumber\\
+&= 
+g(u)f(w)+g(v)f(w)
+\qquad &\text{(distributive law)}
+\nonumber\\
+&= 
+(u\otimes f)(g,w)+ (v\otimes f)(g,w)
+\qquad &\text{({definition of $\otimes$})}
+\nonumber\\
+&=
+[u\otimes f+ v\otimes f](g,w)
+\qquad &\text{(linearity)}
+}
+$$ 
+which is ``how one adds functions" to produce the sum function, namely by adding their values on arguments.
+But if these functions inside the square brackets on each side of the equation have the same values on all pairs of arguments, they are the same function (i.e., ($^1_1$)-tensor), namely
+$(u+v)\otimes f = u\otimes f + v\otimes f$.
+
+In fact it is easy to show (exercise) that $(cv) \otimes f=c(v\otimes f)$ for any constant $c$, so in fact the tensor product behaves like a product should with linear combinations.
+
+\end{Remark}
+
+
+%\FigureHere
+% figure 29
+
+\begin{figure}[t] 
+\typeout{*** EPS figure 14}
+\begin{center}
+%\includegraphics[scale=0.2]{scan0014.ps} 
+\includegraphics[scale=0.4]{./figs/figactivetrans} 
+\end{center}
+\caption{Active linear transformation of points: the point $v$ moves to the point $u=A(v)$.}
+\label{fig:activetrans}
+\end{figure}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%% dg2:
+
+% 1.5
+    \section{Linear transformations of $V$ into itself and a change of basis}
+    \label{sec:LTV2Vbasis}
+    %\input{LineartransformationsofVintoitselfandachangeofbasis.txt} %7
+
+% 2007-09-26 bob edit
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+We have developed the description of a vector space $V$ and the tensor spaces that are defined ``over it" (first the dual space and then all of the $({}^p_q)$-tensor spaces as we add more and more upper and lower indices to the component symbols) starting from some fixed basis of $V$ which induces a basis of each of these other tensor spaces in terms of which we can express all tensors in terms of their components. However, the most interesting thing about this description is what happens to those components when we change the basis of $V$. This is accomplished via the space of $({}^1_1)$-tensors, which we have identified with the space of linear transformations of the vector space $V$ into itself. Partial evaluation of such a tensor on the vector argument leaves a vector value as the result---this is how one accomplishes a linear transformation: $u=u^i e_i\to A(\ ,u) = A^i{}_j e_i \,\omega^j(u)= A^i{}_j u^j e_i$.
+
+
+Suppose $A : V\rightarrow V$ is a linear transformation of $V$ into itself.
+If $\{e_i\}$ is a basis of $V$, then the matrix of $A$ with respect to $\{e_i\}$ is defined by 
+$$
+\underline A = (A^i_{\mbox{ }j}) \,,\qquad 
+A^i{}_{j} = \omega^i(A(e_j)) = \text{$i$-th component of\ } A(e_j) \,.
+$$
+where
+$i$ (left) is the row index and $j$ (right) the column index (first and second indices respectively, although the first is a superscript instead of the usual subscript like the second in the usual notation of elementary linear algebra). The $j$-th column of $\ul{A}$  is the column matrix $\underline{A(e_j)}$ of components of the vector $A(e_j)=A^i{}_j e_i$ with respect to the basis, denoted by underlining
+$$
+\underline{A} 
+=(\underline{A(e_1)}\ 
+  \underline{A(e_2)}\ 
+  \ldots\ 
+  \underline{A(e_n)}) \,.
+$$
+If we expand the equation
+$$
+u = A(v) \rightarrow
+u^i e_i 
+= A(v^j e_j)
+= v^j A(e_j) 
+= v^j A^i{}_j e_i 
+= (A^i{}_j v^j)e_i \,,
+$$
+we get the component relation $u^i = A^i{}_j v^j$
+or its matrix form $\underline{u}=\underline{A}\, \underline{v}$,
+where 
+$$
+\underline{u}=
+ \left(
+    \begin{array}{c}
+    u^1 \\
+    \vdots \\
+    u^n \\
+    \end{array}
+\right)
+\,,\quad
+\underline{v}=
+\left(
+    \begin{array}{c}
+    v^1 \\
+   \vdots \\	
+    v^n \\
+    \end{array}
+\right) 
+$$
+are the column matrices of components of $u$ and $v$ with respect to the basis.
+
+\begin{figure}[h] 
+\typeout{*** EPS figure ??}
+\begin{center}
+%\includegraphics[scale=0.2]{scan0014.ps} 
+\includegraphics[scale=0.4]{./figs/figrotationgrids} 
+\end{center}
+\caption{Active rotation of the plane showing the old and new bases and the old and new coordinate grids. Notice that the starting vector $X$ has the same relationship to the new axes as the vector $R^{-1}(X)$ rotated by the inverse rotation has to the original axes. In other words matrix multiplication by the inverse matrix gives the new components of a fixed vector with respect to the new rotated basis.}
+\label{fig:rotationgrids}
+\end{figure}
+
+We can interpret this as an ``active" linear transformation of the points (vectors) of $V$ to new points of $V$. We start with a vector $v$ and end up at the new vector $u$ as shown in Fig.~\ref{fig:activetrans}. The rotation of the plane illustrated in Example 1.3.1 is a good example to keep in mind. Fig.~\ref{fig:rotationgrids} shows an active rotation of the standard basis and its grid by a $30^\circ$ rotation.
+
+We can also use a linear transformation to change the basis of $V$, provided that it is nonsingular (its matrix has nonzero determinant), just the condition that the $n$ image vectors of the original basis $\{e_i\}$ are linearly independent so they can be used as a new basis. The point of view here is that general vectors do not move, but they change their components since they are expressed in terms of a new basis which is obtained by moving the old basis by the original active linear transformation. This mere change of coordinates is sometimes called a passive linear transformation since vectors remain fixed and are simply re-expressed in terms of a new basis which is obtained from the old basis by an active linear transformation.
+
+If $B : V \rightarrow V$ is such a linear transformation, with matrix 
+$\underline {B} = (B^i{}_j) = (\omega^i(B(e_j))$ such that $\det \underline {B} \not =0$, then define $e_{i'} = B(e_i) = B^j{}_i e_j$.
+As discussed above, the columns of 
+$\underline {B} = (\underline {B(e_1)} \cdots \underline {B(e_n)})$ 
+are the components of a new basis vectors with respect to the old ones: 
+$B^i{}_j = \omega^i(B(e_j)) \equiv \omega^i(e_{j'})$ are the old components ($i$) of the $j$th new basis vector.
+Primed indices will be associated with component expressions in the new basis.
+
+Since $B$ is invertible, we have
+$$
+e_i 
+= B^{-1}(e_{i'})
+= B^{-1j}{}_i e_{j'}\,,
+$$
+which states that the new components ($j$) of the old basis vectors ($i$) are the columns ($i$ fixed, $j$ variable) of the inverse matrix $\underline{B}^{-1}$.
+The new basis $\{e_{i'}\}$ has its own dual basis $\{\omega^{i'}\}$ satisfying
+$\omega^{i'}(e_{j'})=\delta^i{}_j$.
+If we define 
+$$
+\omega^{i'}=B^{-1i}{}_j \omega^{j}\,,
+$$ 
+which says that the rows of the inverse matrix ($i$ fixed, $j$ variable) are the old components of the new dual basis covectors,
+then
+\begin{eqnarray}
+\omega^{i'}(e_{j'}) 
+&=& 
+  B^{-1i}{}_k \omega^k(B^{\ell}{}_j e_l)
+= B^{-1i}{}_k B^{\ell}{}_j\delta^k{}_{\ell}
+\nonumber\\
+&=&
+  B^{-1i}{}_k B^k{}_j
+= \delta^i{}_j \qquad  (\mbox{since\ }  
+\underline{B}^{-1} \underline{B} = \underline{I})
+\nonumber
+\end{eqnarray} 
+confirms that this is the correct expression for the new dual basis.
+
+Given any vector $v$, we can express it either in terms of the old basis or the new one
+\begin{eqnarray}
+&& v = v^i e_i \,,\ 
+    v^i = \omega^i(v)
+\,,\nonumber\\
+&& v = v^i{'} e_{i'}\,,\ 
+   v^{i'} = \omega^{i'}(v)
+   = B^{-1i}{}_j \omega^j(v)
+   = B^{-1i}{}_j v^j \,.
+\nonumber
+\end{eqnarray}
+In other words, if we actively transform the old basis to a new basis using the linear transformation $B$, the new components of any vector are related to the old components of the \emph{same} vector by matrix multiplication by the inverse matrix $\underline B^{-1}$ as is clear from the rotation example in Fig.~\ref{fig:rotationgrids}
+$$
+\underline v'=\underline B^{-1}\underline{v}
+$$  
+or equivalently 
+$$
+\underline{v} = \underline{B}\, \underline{v'} \,.
+$$
+
+Similarly we can express any covector in terms of the old or new dual basis
+\begin{eqnarray}
+&& f = f_i \omega^i\,,\ 
+   f_i = f(e_i) \,,
+\nonumber\\
+&& f = f_{i'} \omega^{i'}\,,\ 
+ f_{i'} = f(e_{i'})
+ = f(B^j_{\ i} e_j)
+ = B^j_{\ i} f(e_j) 
+ = f_j B^j{}_i \,,
+\nonumber
+\end{eqnarray}
+i.e., the covector components transform by the matrix $\underline{B}$ but multiplying from the right if we represent covectors as row matrices
+$$
+(f_{1'}\cdot \cdot \cdot f_{n'})
+= (f_{1}\cdot \cdot \cdot f_{n}) \underline {B}
+\leftrightarrow
+\underline {f}'{}^T = \underline {f}^T \underline {B}
+$$ 
+or  equivalently 
+$$
+\underline {f}^T = \underline {f'}^T \underline {B}^{-1} \,,
+$$ 
+where the explicit transpose makes it clear that $\underline {f}^T$ and $\underline {f}'{}^T$ are row vectors, necessary to multiply the square matrix on its left.
+This describes a ``passive" transformation of $V$ into itself or of $V^*$ into itself, since the points of these spaces do not change but their components do change due to the change of basis.
+
+Changing the basis actively by a linear transformation $B$ makes the components of vectors change by the inverse matrix $\underline {B}^{-1}$ of $B$, while an active transformation of $V$ into itself gives the components with respect to the unchanged basis of the new vectors as the matrix product by $\underline {B}$ with the old components. The active and passive transformations go in opposite directions so to speak.
+
+
+%\FigureHere
+% figure 15a
+
+\begin{figure}[t] 
+\typeout{*** EPS figure 15a}
+\begin{center}
+%\includegraphics[scale=0.4]{./figs/figrotationbasis} \quad
+%\includegraphics[scale=0.4]{./figs/figrotation} 
+\includegraphics[scale=0.4]{./figs/figrotationbasis} \quad
+\includegraphics[scale=0.4]{./figs/figrotation} 
+\end{center}
+\caption{
+Left: the trigonometry of new basis vectors rotated by an angle $\theta$. 
+Right: a point $u$ can be rotated actively by the rotation to a new position 
+${B}\,{u}$ in terms of components with respect to the old basis, or it can simply be re-expressed passively in terms of the new rotated basis vectors, with new components 
+${u'}={B}^{-1}{u}$, which can be visualized by rotating $u$ in the opposite direction by the angle $\theta$ and expressing it with respect to the original basis vectors.
+}
+\label{fig:15a}
+\end{figure}
+
+\begin{Example}\label{example:rotcoordtransf}\textbf{rotation as a coordinate transformation}
+
+Consider a rotation of the plane by an angle $\theta$, imagined as a small positive acute angle for purposes of illustration, see Fig.~\ref{fig:15a}. The basis vector $e_1=\langle 1,0\rangle$ is moved to the new basis vector $e_{1'}=\langle \cos\theta,\sin\theta\rangle$, while the basis vector $e_2=\langle 0,1\rangle$ is moved to the new basis vector $e_{2'}=\langle -\sin\theta,\cos\theta\rangle$ by the basic trigonometry shown in that figure, so the matrix whose columns are the new basis vectors is
+$$
+   \underline{B}=\langle \underline{e}_{1'}|\underline{e}_{2'}\rangle
+   =\begin{pmatrix} \cos\theta & -\sin\theta\\ \sin\theta & \cos\theta \end{pmatrix}\,.
+$$
+Any point $\underline{u}=\langle u^1,u^2\rangle$ in the plane is rotated to its new position $\underline{B}\,\underline{u}$ as shown in the figure, but we can also re-express the same original vector $\ul{u}$ with respect to the new basis. Its new coordinates are related to its old coordinates by the inverse rotation
+$$
+   \underline{u}' =\langle u^{1'}, u^{2'}\rangle
+     = \underline{B}^{-1} \underline{u} \,.
+$$
+
+\end{Example}
+
+%\FigureHere
+% figure 15
+
+\begin{figure}[h] 
+\typeout{*** EPS figure 15}
+\begin{center}
+\includegraphics[scale=0.6]{./figs/scan0015} 
+\end{center}
+\caption{
+Left: active transformation, points move, basis fixed.
+Right: passive transformation, points fixed, basis changes.
+}
+\label{fig:15}
+\end{figure}
+
+If we are more interested in merely changing bases than in active linear transformations, we can let 
+$A=B^{-1}$ so that the old components of vectors are multiplied by the matrix rather than the inverse matrix. Then we have
+\begin{eqnarray}
+\omega^{i'} &=& A^i{}_j\omega^j \longrightarrow v^{i'} = A^i{}_j v^j \,,
+\nonumber\\
+e_{i'} &=& A^{-1j}{}_{i} e_j \longrightarrow f_{i'} = f_j A^{-1j}{}_{i}\,,
+\nonumber
+\end{eqnarray}
+Thus upper indices associated with vector component labels transform by the matrix $\underline {A}$ (whose rows are the old components of the new dual basis covectors), while lower indices associated with covector component labels transform by the matrix $\underline  A^{-1}$ (whose columns are the old components of the new basis vectors).
+
+In the jargon of this subject, these upper indices on components are called ``contravariant" while the lower indices on components called ``covariant". Vectors and covectors themselves are sometimes called ``contravariant vectors" and ``covariant vectors" respectively.
+The above relations between old and new components of the same object are called ``transformation laws" for contravariant and covariant vector components.
+
+By the linearity of the tensor product, these ``transformation laws" can extended to the components of any tensor. 
+For example, suppose $L=L^i{}_j \, e_i\otimes\omega^j$ is the $(^1_1)$-tensor associated with a linear transformation $L: V\longrightarrow V$, now using the same symbol for the linear transformation and the tensor.
+Then 
+$$
+\meqalign{
+{L} &= L^i{}_j e_i\otimes\omega^j \,,\quad
+ L^i{}_j &= {L}(\omega^i,e_j) \,, 
+\\
+{L} &= L^{i'}{}_{j'} e_{i'}\otimes\omega^{j'}\,,\
+L^{i'}{}_{j'} &= {L}(\omega^{i'},e_{j'})
+= {L}(A^i{}_k\omega^k\,,\
+A^{-1\ell}{}_j e_{\ell})
+= A^i{}_k A^{-1\ell}{}_j {L} (\omega^k,e_{\ell})
+\\
+& &= A^i{}_k A^{-1\ell}{}_j L^k{}_{\ell} \,.
+}
+$$
+In other words the contravariant and covariant indices each transform by the appropriate factor of $A^i{}_j$ or $A^{-1i}{}_j$
+$$
+L^{i'}{}_{j'} = A^i{}_k A^{-1\ell}{}_{j} L^k{}_{\ell}
+\quad \text{or inversely} \quad 
+L^{i}{}_{j} = A^{-1i}{}_k A^{\ell}{}_j L^{k'}{}_{\ell'} \,.
+$$
+
+
+This generalizes in an obvious way to any $(^p_q)$-tensor
+$$
+\meqalign{
+T&=
+T^{i\cdots}_{\ j\ldots} e_i\otimes \cdots\otimes\omega^j\otimes\cdots \,,\quad
+   T^{i\ldots}_{\ j\ldots}
+&= T(\omega^i,\cdots,e_j,\cdots) \,,
+\nonumber\\
+T &=
+T^{i'\ldots}_{\ j'\ldots} e_{i'}\otimes \cdots\otimes\omega^{j'}\otimes\cdots \,,\quad
+ T^{i'\ldots}_{\ j'\ldots}
+&= T(\omega^{i'},\ldots,e_{j'},\ldots)
+\nonumber\\
+& &=
+A^i{}_k \cdots A^{-1\ell}{}_{\ j}\cdots T^{k\cdots}_{\ \ell\cdots} \,.
+}
+$$
+It is just a simple consequence of multilinearity.
+
+\begin{Example}\label{example:transfidentity}\textbf{transforming the identity tensor}
+
+We first defined the Knonecker delta just as a convenient shorthand symbol $\delta^i{}_j$, but then saw it coincided with the components of the evaluation or identity tensor
+$$
+I\!d
+= \delta^i{}_j\mbox { }e_i\otimes\omega^j
+= e_i\otimes\omega^i
+= e_1\otimes\omega^1 + \cdots + e_n\otimes\omega^n\,.
+$$
+Since this must be true in any basis, if we ``transform" the Knonecker delta as the components of a $(^1_1)$-tensor, it should be left unchanged
+$$
+\delta^{i'}{}_{j'}
+= A^i{}_k A^{-1\ell}{}_{\ j}\delta^k{}_{\ell}
+= A^i{}_k A^{-1k}{}_{\ j}
+= (\underline{A} \, \underline{A}^{-1})^i{}_j
+= (\underline{I})^i{}_j
+= \delta^i{}_j\,.
+$$
+The new components do equal the old!
+
+\end{Example}
+
+\subsection{Matrix form of the ``transformation law" for $(^1_1)$-tensors}
+
+The ``transformation law" for the $(^1_1)$-tensor $ L$ associated with a linear transformation $L: V \longrightarrow V$ is
+$$
+L^{i'}{}_{j'} = A^{i}{}_k A^{-1\ell}{}_{j} L^k{}_{\ell}
+= A^{i}{}_k L^k{}_{\ell} A^{-1\ell}{}_{j}
+= [\underline{A}\, \underline{L}\, \underline{A}^{-1}]^i{}_j \,.
+$$
+In other words we recover the matrix transformation for a linear transformation under a change of basis discussed in the eigenvector problem
+$$
+\underline{L}' = \underline{A}\, \underline{L}\, \underline{A}^{-1} 
+$$
+which leads to the conjugation operation (just a term for sandwiching a matrix between another matrix and its inverse), except that in the eigenvector change of basis discussion, this relation was written in terms of the inverse matrix $\underline{A}^{-1} = \underline{B}$ 
+$$
+\underline{L}' 
+= \underline{B}^{-1}\, \underline{L}\, \underline{B}
+\longleftarrow 
+\text{columns of $B$ = old components of new basis vectors}
+$$ 
+which corresponds to the transformation of vector components 
+$$
+\underline{v} = \underline{B}\, \underline{v}' \,,\qquad
+\underline{v}' = \underline{B}^{-1} \underline{v}\,.
+$$
+Note that when one succeeds in finding a square matrix $\underline{B}=\langle \ul{b}_1| \ldots | \ul{b}_n\rangle$ of linearly independent eigenvectors of a matrix $\underline{L}$ 
+(namely $\ul{L}\,\ul{b}_i = \lambda_i\, \ul{b}_i$ 
+so that $\ul{L}\,\ul{B} =  \langle \ul{L}\,\ul{b}_1| \ldots | \ul{L}\,\ul{b}_n\rangle 
+=\langle \lambda_1\,\ul{b}_1| \ldots | \lambda_n\,\ul{b}_n\rangle $), then the new components of the matrix with respect to a basis consisting of those eigenvectors is diagonal
+$$
+   \underline{L}'
+= \underline{B}^{-1}\, \underline{L}\, \underline{B} 
+= \begin{pmatrix}
+ \lambda_1 & 0& \ldots & 0\\
+   0 & \lambda_2 & \ldots &0\\
+  \vdots & &\ddots & \vdots\\
+ 0 & 0 &\ldots &\lambda_n
+\end{pmatrix} \,,
+$$
+with the corresponding eigenvalues $\lambda_i$ along the main diagonal. This process is called the diagonalization of the matrix.
+
+\subsection{Matrices of symmetric ($^0_2$)-tensors}
+
+In elementary linear algebra, no distinction is made between matrices associated with linear transformations (namely $(^1_1)$-tensors) and matrices which are associated with bilinear functions of a pair of vectors (namely $(^0_2)$-tensors). Under general changes of basis, they transform very differently, although under orthogonal transformations normally considered in that context, the distinction disappears, as we will see later. So let's confront this difference up front by considering bilinear tensors.
+
+A ($^0_2$)-tensor $G=G_{ij}\omega^i\otimes \omega^j$ takes 2 vector arguments  $G(u,v) \in \mathbb R$.
+The transformation law is
+$$
+G_{i'j'} 
+= A^{-1m}{}_i A^{-1n}{}_j G_{mn} 
+= A^{-1m}{}_i G_{mn} A^{-1n}{}_j
+=[(\underline {A}^{-1})^T\, \underline {G}\, \underline {A}^{-1}]_{ij}
+=[\underline {B}^T\, \underline {G}\, \underline {B}]_{ij} \,.
+$$
+Note that the indices $n$ are adjacent in the second equation product, but the indices $m$ are not, which requires the transpose to get them into the proper position for the matrix product between two matrices (the right index of the left factor summed against the left index of the right factor).
+Although $G$ also has a matrix representation $\underline {G} =(G_{ij})$
+in component form, its matrix transformation law involves the transpose, rather than the inverse as for the $(^1_1)$-tensor.
+The transpose is necessary to represent to summation of the (left upper) row index of 
+$\underline{A}^{-1}$ against the (lower left) row index of $\underline{G}$  in terms of matrix multiplication.
+
+A well known fact from linear algebra is that a symmetric matrix can be diagonalized by an orthogonal transformation of the basis. The symmetry $\ul{A}^T = \ul{A}$ for a matrix $\ul{A}$ makes sense index-wise only for interchange of two indices at the same level: $A_{ji}=A_{ij}$ and not for the matrix of a linear transformation where $A^j{}_i$ and $A^i{}_j$ cannot really be compared in any meaningful way. However,
+if only orthogonal matrixes $\underline{B}$ are used (the restriction to orthonormal coordinates), for which the transpose is the inverse: $\underline{B}^{-1} =B^T$, then the matrix form of this transformation law for a ($^0_2$)-tensor is equivalent to the usual one for a ($^1_1$)-tensor of the eigenvector discussion:
+$$
+  \ul{A} \rightarrow \ul{B}^{-1} \ul{A}\, \ul{B}\,. 
+$$
+Thus if only orthonormal bases are considered, there is no difference between the transformation laws for a $(^1_1)$ or $(^0_2)$ tensor or even a $(^2_0)$-tensor (apart from the switch to the inverse matrix everywhere), allowing this distinction enforced by upper/lower index positions to remain hidden in those elementary discussions.
+But hiding this structure requires the additional operation of the dot product to identify the vector space and its dual space, a concept which is just avoided for simplicity at an elementary level.
+
+\subsection{A 3-index example}
+
+We can consider the change in components under a change of basis for any $({}^p_q)$-tensor, but let's wait on that. The determinant is a useful example, however, since it is another major ingredient of our elementary linear algebra landscape.
+
+\begin{Example}\label{example:tensordensities}\textbf{determinants and Levi-Civita: tensor densities} 
+
+As already discussed in Exercise \ref{ex:determinant1}, the triple scalar product on $\mathbb R^3$ is a multilinear function on triplets of vectors, namely the determinant function, which is a ($^0_3$)-tensor when thought of as a function on its columns
+$$
+D(u,v,w) = u\cdot(v \times w) 
+= \det 
+ \left(
+    \begin{array}{ccc}
+    u^1 & v^1 & w^1 \\
+    u^2 & v^2 & w^2 \\
+    u^3 & v^3 & w^3 \\ 	
+    \end{array}
+\right)
+= \epsilon_{ijk} u^i v^j w^k
+\,.
+$$
+The components $D_{ijk}=\epsilon_{ijk}$ with respect to the standard basis of $\mathbb R^3$ define the Levi-Civita symbol. 
+
+Suppose we evaluate the new components of the determinant tensor under a change of basis away from the standard basis.
+$$
+D
+= D_{ijk}\omega^i\otimes \omega^j \otimes \omega^k
+= D_{i'j'k'}\omega^{i'}\otimes \omega^{j'} \otimes \omega^{k'} \,.
+$$
+Then from the rules for determinants
+\begin{eqnarray}
+D_{i'j'k'} &=&
+  A^{-1m}{}_i A^{-1n}{}_j A^{-1p}{}_k D_{mnp}
+  =\epsilon_{mnp} A^{-1m}{}_i A^{-1n}{}_j A^{-1p}{}_k
+\nonumber\\
+&=& 
+\dsum_{\sigma} (-1)^{{\rm sgn}\, \sigma}
+A^{-1\sigma(1)}{}_i A^{-1\sigma(2)}{}_j A^{-1\sigma(3)}{}_k
+\nonumber\\
+&=& \begin{cases}
+    \det\underline {A}^{-1} \,,& \mbox{if $(i,j,k) = (1,2,3)$ by  definition}\,, \\
+    \det\underline {A}^{-1} \,,& \mbox{if $(i,j,k)$ = positive permutation of (1,2,3)}\,, \\
+    -\det \underline {A} ^{-1} \,,&\mbox {if $(i,j,k)$ = negative permutation of (1,2,3)}\,,\\ 
+	0  &\mbox{ otherwise (repeated rows)}\,.
+    \end{cases}
+\nonumber\\
+&=&
+(\det \underline {A} ^{-1}) \epsilon_{ijk} \,.
+\nonumber
+\end{eqnarray}
+In other words the new components of the determinant function differ from the old by the factor $\det \underline {A} ^{-1}$. So the symbol $\epsilon_{ijk}$ \emph{does not} define a tensor in the sense that its components in any basis have these same values, as does the Kronecker delta symbol $\delta^i{}_j$ which represents the components of the identity tensor. Instead it is similar to the Kronecker delta $\delta_{ij}$ or $\delta^{ij}$ which do not retain their same numerical component values under a change of basis.
+
+Another way of starting this is that this  Levi-Civita symbol $\epsilon_{ijk}$ (also sometimes called the  ``alternating symbol" because of its alternating signed value) defines a different tensor for each choice of basis
+$$
+D_{(e)} = \epsilon_{ijk} \omega^i\otimes\omega^j\otimes\omega^k
+\not = D_{(e')} =\epsilon_{ijk} \omega^{i'}\otimes\omega^{j'}\otimes\omega^{k'}\,.
+$$
+So the important lesson from this example is,  if we define an object with indices not by taking components of some tensor, then it is not necessarily a tensor---but may define a different tensor in each choice of basis.
+
+Another way of handling this particular problem with the alternating symbol is to generalize the idea of a tensor (independent of the choice of basis) to a ``tensor density" which is a family of tensors, one in each choice of basis, related by a more general transformation law which not only changes the components of the tensor but also changes the tensor itself by an overall factor of some power of the determinant of the transformation.
+
+Dividing through the above equation by the determinant factor gives
+$$
+\epsilon_{ijk} = (\det A^{-1})\kern-8pt\overbrace{{}^{-1}}^{\hbox{} weight}\kern-8pt 
+                          A^{-1m}{}_i A^{-1n}{}_j A^{-1p}{}_k \,\epsilon_{mnp} \,,
+$$
+where
+$\epsilon_{mnl}$ are the old components of an old tensor,
+$A^{-1m}{}_i A^{-1n}{}_j A^{-1p}{}_k \epsilon_{mnp}$ are the new components of the old tensor,  
+$\epsilon_{ijk}$ are the new components of new tensor which is scaled from the old one by the factor $(\det A^{-1})^{-1}$ whose  power $W=-1$ of the determinant of the inverse matrix is called the weight of the tensor density. This then becomes the transformation law for a tensor density of weight $-1$, whose old components are $\epsilon_{mnl}$ and whose new components are $\epsilon_{ijk}$, which are numerically the same.
+
+Summarizing, the alternating symbol $\epsilon_{ijk}$ may be interpreted (by definition) as the components of an antisymmetric $(^0_3)$-tensor density of weight ${-1}$. This tensor density has the form
+$\epsilon_{ijk}\omega^i \otimes \omega^j \otimes \omega^k$ in any basis, with numerically constant components, like the Kronecker delta identity tensor. This generalizes to an alternating symbol $\epsilon_{i_1\ldots i_n}$ on any $n$-dimensional vector space $V$. We will return to this below.
+
+\end{Example}
+
+Suppose that instead of making the matrix of the linear transformation explicit with its own kernel symbol $A$, we introduce the following component notation for the new basis vectors and covectors
+$$
+   e_{i'} = A^{-1j}{}_i\, e_j
+          = e^j{}_{i'}\, e_j\,,\qquad
+   \omega^{i'} = A^{i}{}_j \, \omega^j
+               = \omega^{i'}{}_j \, \omega^j\,.
+$$
+Note that the rows of $\underline{A}=\langle (\underline{\omega}^{1'})^T ,\ldots,(\underline{\omega}^{n'})^T \rangle$ are the old components of the new dual basis covectors (recall that $(\underline{\omega}^i)^T $ is a row matrix), while the columns of $\underline{A}^{-1}=\langle \underline{e}_{1'} | \ldots | \underline{e}_{n'} \rangle$ are the old components of the new basis vectors.
+
+Duality then just requires that the coefficient matrices be inverse matrices
+$$
+  \omega^{i'}(e_{j'})
+= \omega^{i'}{}_k \, e^k{}_{j'} 
+= \delta^i{}_j \leftrightarrow
+   \underline{A}\,\underline{A}^{-1}=\underline{I}\,.
+$$
+But the matrix product in the other order is also valid and implies something different
+$$
+   \underline{A}^{-1}\underline{A} = \underline{I}\,,\qquad
+   e^i{}_{k'} \, \omega^{k'}{}_j =\delta^i{}_j \,,
+$$
+namely, that the identity tensor can be expressed in terms of them in this way, which then further implies
+$$
+e_i\otimes \omega^i
+=  \delta^i{}_j\, e_i\otimes \omega^j
+=  e^i{}_{k'} \, \omega^{k'}{}_j \, e_i\otimes \omega^j
+=  e_{k'} \otimes \omega^{k'} \,.
+$$
+In other words the identity tensor has the same form in either basis.
+
+%\FigureHere
+% figure 13
+
+\begin{figure}
+\typeout{*** EPS figure 15b}
+\begin{center}
+%\vglue-2.5cm
+\includegraphics[scale=0.6]{./figs/figeigen2} 
+\end{center}
+\vglue-2.5cm
+\caption{
+The new coordinate grid associated with a new basis of the plane is obtained as the image of the old coordinate grid under the active linear transformation $e_i\to B^j{}_i e_j$ under which a point with old coordinates $(u^1,u^2)$ goes to a point with new coordinates which are the same:
+$
+B(u) 
+= B(u^i e_i)
+= u^i B(e_i) 
+= u^i e_{i'} 
+= u^1 b_1 + u^2 b_2
+$.
+Thus to find the new coordinates of a point on the new grid, one has to apply the inverse linear transformation to its old coordinates to find the original point from which it came.
+Under this active deformation of the plane the basic grid square 
+$0\le x^1\le 1, 0\le x^2\le 1$ is actively deformed into the parallelogram formed by the new basis vectors $b_1$ and $b_2$. 
+}
+\label{fig:eigenvectorsinplane}
+\end{figure}
+
+\begin{Example}\label{example:planeeigenvectors}\textbf{eigenvectors in the plane}
+
+Consider the matrix $\underline{A}$ and its matrix of eigenvectors  $\underline{B}=\left< \underline{b_1}|\underline{b_2}\right>$ corresponding to the eigenvalues $(\lambda_1,\lambda_2)=(5,-1)$
+$$
+\underline{A}
+=
+\begin{pmatrix}
+1 & 4\\
+2 & 3 
+\end{pmatrix}
+\,,\quad
+\underline{B}
+=
+\begin{pmatrix}
+1 & -2\\
+1 & 1
+\end{pmatrix}
+\,,\quad
+\underline{B}^{-1}
+=
+\frac13
+\begin{pmatrix}
+1 & 2\\
+-1 & 1 
+\end{pmatrix} \,.
+$$
+Introducing new coordinates $\{y^1,y^2\}\equiv \{x^{1'},x^{2'}\}$ with respect to the new basis vectors 
+$\{\vec b_1,\vec b_2\}
+\equiv \{e_{1'},e_{2'}\}
+=\{\langle 1,1\rangle,\langle-2,1\rangle\}$,
+the unit grid associated with these new coordinates for the ranges $y^1=-2..2,y^2=-2..2$ is illustrated in Fig.~\ref{fig:eigenvectorsinplane}. When the two grids intersect at a grid point, one has vectors with integer coordinates in both systems that are easily read off the grid.
+Notice that the point $(x^1,x^2)=(4,1)$ has coordinates $(y^1,y^2)=(2,-1)$, for example.  What are the new components of the point $(0,3)$? What are the old components of the point with $(y^1,y^2)=(2,2)$?
+
+If we make the coordinate transformation and its inverse explicit, one finds
+\begin{align*}
+\underline{x}&=\underline{B}\,\underline{y}\,: &\quad 
+\underline{y}&=\underline{B}^{-1}\,\underline{x}\,:\\
+x^1 &= y^1-2y^2\,, &\quad y^1 &= \frac13 x^1 +\frac23 x^2\,, \\
+x^2 &= y^1+y^2\,,  &\quad y^2 &=-\frac13 x^1 +\frac13 x^2\,.
+\end{align*}
+The pair of lines $y^1=0,y^1=1$ represents the 1-form $\omega^{1'}$, while the pair of lines $y^2=0,y^2=1$ represents $\omega^{2'}$. These 2 pairs enclose the basic unit parallelogram of the new coordinate grid $y^1=0..1,y^2=0..1$. Note that there is a basic symmetry between  old and new coordinates.
+
+\end{Example}
+
+\begin{Remark}
+
+Sometimes it is more useful to introduce new ``kernel letters" (the letter symbols to which indices are added) instead of using primed indices as we have done here for the new coordinates. In Fig.~\ref{fig:eigenvectorsinplane} we also used boldface letters to distinguish the basis vectors rather than arrow notation, as well as the more common subscripted variables that are natural in Maple. The important thing is to be flexible with notation so that more than one common choice can be made depending on the circumstances.
+
+\end{Remark}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\FigureHere
+% figure 13
+
+\begin{figure}
+\typeout{*** EPS figure 15c}
+\begin{center}
+\includegraphics[scale=0.6]{./figs/figgridsquashed} 
+\end{center}
+\caption{The new grid associated with the new basis vectors $\langle 2,1\rangle,\langle 1,1\rangle$
+is obtained by a deformation of the old coordinate grid. For example the vector $\langle 2,-1\rangle$ is sent to the vector $2b_1 -b_2=\langle 3,1 \rangle$ under this deformation.
+Shown also in gray are the two vectors with the same components as the new dual basis covectors $\langle 1|-1\rangle,\langle -1|2\rangle$, which are each perpendicular to the coordinate lines of the other coordinate. These two vectors also form a basis of the plane, called the ``reciprocal basis," and are often used to avoid mention of a distinction between vectors and covectors. 
+}
+\label{fig:15c}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{pro}\label{exercise:R2eigenvectors}\textbf{eigenvectors of a matrix of eigenvectors}
+
+In Example \ref{example:planeeigenvectors}, analyze the active deformation of the plane by the linear transformation $B$ with matrix $\ul{B}$ by finding its eigenvalues and eigenvectors (as opposed to those of the matrix $\ul{A}$ for which $\ul{B}$ is a matrix of eigenvectors). Namely, solve the characteristic equation for the eigenvalues of $\ul{B}$, then back substitute each such eigenvalue into the linear system which produces the corresponding eigenvector. Look it up if you have forgotten this process or simply get the result directly from a computer algebra system. Plot them on the grid shown in Fig.~\ref{fig:15c}. Do these directions for the stretch and compression make sense?
+\end{pro}
+
+\begin{pro}\label{exercise:R2newgrid}\textbf{changing coordinates in the plane}
+
+On some unit square grid paper  in a field of view $x^1=-6..6,x^2=-8..8$ (print a blank plot with grid lines in a computer algebra system), draw in the unit grid for $y^1=-2..2,y^2=-2..2$ for the new coordinates associated with following matrix and its matrix of eigenvectors
+$$
+\underline{A}
+=
+\begin{pmatrix}
+7 & -4\\
+6 & -7 
+\end{pmatrix}
+\,,\quad
+\underline{B}
+=
+\begin{pmatrix}
+2 & 1\\
+1 & 3
+\end{pmatrix}
+\,,\quad
+\underline{B}^{-1}
+=
+\frac15
+\begin{pmatrix}
+3 & -1\\
+-1 & 2 
+\end{pmatrix}\,.
+$$
+From the grid read off the new components of the point $(5,5)$. What point has new coordinates $(1,-1)$? Use the matrix transformation $\underline{x}=\underline{B}\,\underline{y}$ with inverse $\underline{y}=\underline{B}^{-1}\,\underline{x}$ to confirm your graphical results.
+
+\end{pro}
+
+
+
+\typeout{FLOATING FIGURE PROBLEM}
+%\FigureHere
+% figure 15c
+
+\begin{figure}[t] 
+\typeout{*** EPS figure 15d}
+\begin{center}
+\includegraphics[scale=0.3]{./figs/figeigen3basis}
+\includegraphics[scale=0.5]{./figs/figeigen3grid11}
+\end{center}
+\vglue-1cm
+\caption{
+The new coordinate grid unit parallelopiped (right) associated with a new basis of space (left), shown together with the original standard basis.
+}
+\label{fig:15d}
+\end{figure}
+
+
+\begin{Example}\label{example:R3eigenvectors}\textbf{eigenvectors in $\mathbb{R}^3$}
+
+Consider the upper triangular matrix $\underline{A}$ and its upper triangular matrix of eigenvectors $\underline{B}=\left< \underline{b_1} |\underline{b_2}|\underline{b_3}\right>$ corresponding to the eigenvalues $(\lambda_1,\lambda_2,\lambda_3)=(3,1,1)$
+$$
+\underline{A}
+=
+\begin{pmatrix}
+3 & 6 & -2\\
+0 & 1 & 0\\
+0 & 0 & 1 
+\end{pmatrix}
+\,,\quad
+\underline{B}
+=
+\begin{pmatrix}
+1 & -3 & 1\\
+0 & 1 & 0\\
+0 & 0 & 1 
+\end{pmatrix}
+\,,\quad
+\underline{B}^{-1}
+=
+\begin{pmatrix}
+1 &  3&-1\\
+0 & 1 & 0\\
+0 & 0 & 1 
+\end{pmatrix}
+$$
+Let $\{b_i\}$ be a new basis of $R^3$, with dual basis $\{\beta^i\}$.
+Then the old and new bases contain one element $b_1=e_1$ in common. Since the $e_1$-$e_2$ plane coincides with the $b_1$-$b_2$ plane, the third dual basis covectors must be proportional $\beta^3\propto \omega^3$ in order that the new one also have this plane as its zero value surface; in fact they agree $\beta^3= \omega^3$ since $b_3$ has the same height as $e_3$. Figure~\ref{fig:15c} shows the unit parallelopiped formed by the new basis vectors as edges bounded by the sides composed of the three pairs of representative planes of values 0 and 1 of the new dual basis covectors, i.e., corresponding to the new coordinate ranges $y^i=0..1$. This is best viewed in a computer algebra system where the object can be rotated and viewed with some transparency.
+
+The eigenvectors of the matrix $\underline{A}$ enable us to interpret the linear transformation $x^i\to A^i{}_j x^i$. All points along the first eigenvector are scaled up by a factor of 3 (the eigenvalue), while all points in the 2-plane spanned by the remaining eigenvectors (namely the eigenspace associated with the eigenvalue 1) remain fixed. Thus any region of space will be stretched along the first eigenvector direction, but its cross-sections parallel to the second eigenspace will remain fixed in shape as they move apart from each other along the first eigenvector direction.
+
+\end{Example}
+
+\begin{pro}\label{exercise:R3coordchange}\textbf{changing coordinates in $\mathbb{R}^3$}
+
+For the matrices of the previous example and the associated new coordinate system, what are the new coordinates of the point 
+$\langle x^1,x^2,x^3\rangle = \langle 1,1,1\rangle$? What point has new coordinates 
+$\langle y^1,y^2,y^3\rangle = \langle 1,1,1\rangle$?
+
+\end{pro}
+
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 1.6
+    \section{Linear transformations between $V$ and $V^*$}
+    \label{sec:LTV2Vast}
+    %\input{LineartransformationsbetweenVandV.txt} %8
+
+% 2008-03-25 bob edit
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+So far we've generalized vectors, covectors, and $(^1_1)$-tensors
+    from column matrices, row matrices, and the square matrices of linear
+    transformations from a vector space into itself (and contrasted the latter briefly with the symmetric matrices of bilinear forms), 
+but have not considered the relationship of the square matrices of components of ($^0_2$)-tensors and
+    ($^2_0$)-tensors to linear transformations.
+These tensors may in fact be interpreted as defining linear transformations between the vector space and its dual space going in opposite directions.
+
+For example, suppose $\ell: V\longrightarrow V^*$ is a linear map (``$\ell$" for ``l"ower), defining a covector $\ell(v)$ for each vector $v$. In component form we can represent this covector by
+$$
+[\ell(v)]_i = \ell_{ij} v^j 
+\leftrightarrow
+(\underline {\ell(v)})^T 
+=(\underline \ell\, \underline v)^T \,,
+$$ 
+which can then be evaluated on a vector $u$ to obtain a scalar $\ell(v)(u)$.
+Using the same symbol, define the associated ($^0_2$)-tensor $\ell = \ell_{ij}\,\omega^i\otimes\omega^j$ by
+$$
+\ell(u,v)
+\equiv \ell(v)(u)
+=(\ell_{ij} v^j) u^i 
+=\ell_{ij} u^i v^j
+ \,,
+$$
+where the components of the tensor are defined as usual by
+$$
+\ell_{ij}
+=\ell(e_i,e_j) 
+=\ell(e_j)(e_i) \,.
+$$
+The linear map $\ell$ is realized by evaluating the second argument of the corresponding tensor $\ell$ on a vector, so that a covector remains waiting for the first argument of the tensor, using the same symbol for the linear transformation and the corresponding tensor: $\ell(\ ,v)=\ell(v)$.
+
+In component form the transformation is again matrix multiplication but 
+because both matrix indices are down, one is left with a covector, requiring an additional transpose in matrix form to yield a row matrix as agreed for representing covectors.
+These linear transformations \emph{LOWER} the index position.
+
+In exactly same way a linear map $r:V^*\longrightarrow V$ (``$r$" for ``r"aise), defining a vector $u=r(g)$ for each covector $g$, in component form
+$$
+  r^{ij} g_j =u^i\,,
+$$
+has an associated $(^2_0)$-tensor $r=r^{ij}e_i\otimes e_j$
+$$
+r(f,g)
+\equiv f(r(g))
+=f_i(r^{ij} g_j)
+=r^{ij} f_i g_i
+\,,
+$$
+where
+$$
+r^{ij} = r(\omega^i,\omega^j) = \omega^i(r(\omega^j)) \,.
+$$
+In matrix form a transpose is needed to make the covector $\underline{g}^T$ (row matrix) into a column matrix $\underline{g}$ for matrix multiplication to produce again a column vector
+$$
+\underline {r(g)}= \underline r \,\underline g \,.
+$$
+This linear map is realized by evaluating the second argument of the corresponding tensor, leaving the first argument of the tensor waiting for a vector to be evaluated on.
+These linear transformations \emph{RAISE} the index position.
+
+\subsection{Invertible maps between $V$ and $V^*$}
+
+The images of the basis or dual basis vectors under such maps are
+$$
+\ell(e_i) = \ell_{ij} \omega^j\,,\qquad
+r(\omega^i) = r^{ij}e_j \,.
+$$
+The condition that these maps be invertible is just that their corresponding matrices be invertible, i.e., have nonzero determinants so that their inverses exist: 
+$\det(\ell_{ij}) \not =0$, $\det(r^{ij}) \not=0$ implies that
+$\underline {\ell}^{-1} \equiv (\ell^{ij})$ and $\underline {r}^{-1} \equiv (r_{ij})$   exist such that the corresponding matrix products are the identity matrix
+$$
+\ell^{ij} \ell_{jk} = \delta^i{}_k =\ell_{kj} \ell^{ji} 
+\,,\qquad  
+r^{ij}r_{jk} = \delta^i{}_k = r_{kj} r^{ji}
+\,.
+$$ 
+These are the matrices of linear maps $\ell^{-1}:V^* \longrightarrow V$ and  $r^{-1}:V \longrightarrow V^*$. Either pair, consisting of a tensor and its ``inverse" tensor (characterized by having component matrices which are inverses), whether we start with $\ell$ or $r$ (set $r=\ell^{-1}$ or $\ell=r^{-1}$ for example) establishes an isomorphism between the vector space and its dual. 
+
+Although one can use an arbitrary nonsingular matrix $(\ell_{ij})$ and its inverse $(\ell^{ij})$ to play this game, in practice only two special kinds of such matrices are used, either symmetric or antisymmetric matrices
+\begin{itemize}
+  \item 
+symmetric:
+$\ell_{ij}=\ell_{ji}$ or $\ell(v,u)=\ell(u,v)$\,,
+  \item
+antisymmetric: $\ell_{ij}=-\ell_{ji}$ or $\ell(v,u)=-\ell(u,v)$\,.
+\end{itemize}
+The corresponding tensors are also called symmetric or antisymmetric. A symmetric tensor is said to define an inner product, while an antisymmetric tensor defines a symplectic form over an even dimensional vector space and is also important in spinor algebra (also involving even-dimensional spaces), both more sophisticated notions that are important in physics. Inner products are also referred to as metrics in the context of differential geometry.
+
+\begin{Remark}
+The antisymmetric case of a symplectic form describes the geometry of Hamiltonian mechanics which is a crucial part of the foundation of classical and quantum mechanics in physics. Unfortunately to appreciate this, one must have an advanced knowledge of mechanics which includes the variational approach to the equations of motion through Lagrangians and Hamiltonians. We will pass on that here.
+\end{Remark}
+
+\subsection{Inner products}
+
+An inner product on a vector space $V$ is just a symmetric bilinear function of its elements, i.e., it is a symmetric $(^0_2)$-tensor over $V$, and hence is represented by its symmetric matrix of components with respect to any basis $\{e_i\}$ of $V$
+$$
+   G(u,v)=G_{ij} u^i v^j\,,\quad 
+   G=G_{ij}\, \omega^i\otimes \omega^j\,,\quad
+   G_{ij}=G(e_i,e_j) =G_{ji}\,.
+$$
+In the older language, an inner product is referred to as a quadratic form since the repeated evaluation on a single vector $G(u,u)$ is a quadratic function of the vector components. Any symmetric $n\times n$ matrix $\ul{G}$ with nonzero determinant defines such a ``nondegenerate" inner product on $\mathbb{R}^n$, or on a general vector space $V$ in a given basis.
+
+For a nondegenerate inner product, the determinant of its matrix of components should be nonzero: $\det\underline{G}\neq0$, which if true with respect to one basis, will be true in any other as we will see below. A nondegenerate inner product establishes a 1-1 map from the vector space $V$ to its dual space which is therefore a ``vector space isomorphism" (any two $n$-dimensional vector spaces are isomorphic since the component vector of vectors with respect to any basis acts like a vector in $\mathbb{R}^n$ under linear operations). Since any symmetric matrix can be diagonalized, one can consider the number of positive and negative signs of the $n$ nonzero eigenvalues of a nondegenerate inner product component matrix: this turns out to be is an invariant, i.e., independent of the basis used to express that matrix. If they are all positive (negative), the inner product is called positive-definite (negative-definite), otherwise indefinite. The number of positive signs minus the number of negative signs is called the signature of the inner product.
+
+
+
+
+Given any inner product $G$ on a vector space $V$ we can always use the dot product notation by defining 
+$$
+G(u,v) \equiv u \cdot v \,.
+$$
+The self-dot-product $G(v,v) = v\cdot v$ contains two independent pieces of information:
+its sign (the ``type": $+,-,0$) and its absolute value. 
+Define the magnitude or length of a vector and its sign (or ``type") by
+\begin{eqnarray*}
+&& ||v|| = |v\cdot v|^{1/2} = |G(u,v)|^{1/2} \,,
+\\
+&&\sgn v= \sgn (v\cdot v)= \sgn (G(v,v)) \in \{+1,0,-1\} \,.
+\end{eqnarray*}
+A vector $v$ with $||v||=1$ is called a unit vector, while a nonzero vector with $||v||=0$ is called a null vector.
+Dividing a vector with nonzero length by that length products a unit vector, namely a vector for which the self-inner-product is  just the sign $\pm1$ of the vector
+$$
+  \hat v \equiv v/||v|| = v/|G(v,v)|^{1/2} \rightarrow
+  G(\hat v,\hat v) =\pm1\,.
+$$
+This process is called normalizing the vector.
+If a nondegenerate inner product is positive-definite or negative-definite, then any nonzero vector must have nonzero length, but in the indefinite case nonzero vectors may have zero length. Such null vectors cannot be normalized.
+
+When the inner product of two vectors is zero $G(u,v)=0$, the two vectors are called orthogonal.
+A basis $\{e_i\}$ consisting of  mutually orthogonal vectors is called an orthogonal basis.
+A basis consisting of  mutually orthogonal unit vectors is called orthonormal
+$$
+G_{ij} =\pm \delta_{ij} \,.
+$$ 
+The component matrix is diagonal and each diagonal entry is $\pm1$. 
+The difference $s=P-M$ (Plus/Minus) in the number of positive and negative signs is called the signature and is fixed for a given inner product (accept as a fact for now; these are just the signs of the eigenvalues of the symmetric matrix---these signs turn out to be invariant under a change of basis). 
+A ``positive-definite" inner product has all positive signs, i.e.,  signature $s=n$, while a ``negative-definite" inner product has all negative signs, i.e., signature $s=-n$. An ``indefinite" inner product has a signature $s$ in between these two extreme values. A ``Lorentz" inner product has only one negative sign or only one positive sign (the choice depends on prejudice, motivated by convenience of competing demands) and so the absolute value of the signature is $|s|=(n-1)-1=n-2$.
+Since $n=P+M$, one gets the relation $M=(n-s)/2$. For a Lorentz inner product with only 1 negative sign, the determinant of the component matrix is always negative.
+For example, the standard basis of $\mathbb{R}^n$ with its usual Euclidean inner product is orthonormal. 
+The standard basis of $\mathbb R^4$ with the Minkowski inner product is also orthonormal (sometimes called pseudo-orthonormal). Note that in this case the product of the signs associated with the basis vectors is  negative:
+$(-1)(+1)(+1)(+1)=-1=\sgn\det \underline{G}$.
+
+
+\begin{Example}\label{example:dotrpodRn}\textbf{dot product on $\mathbb{R}^n$}
+
+On $\mathbb R^n$ with the standard basis, the dot product defines a particular positive-definite inner product
+$$
+G(u,v)
+=u \cdot v
+=\delta_{ij} u^i v^j  = u^1 v^1 +\ldots + u^nv^n
+\,,
+$$
+where
+$$
+G_{ij}
+=G(e_i,e_j)
+=e_i\cdot e_j
+=\delta_{ij} \,.
+$$
+Then 
+$$
+   G(x,x) = \delta_{ij} x^i x^j = (x^1)^2 +\ldots +(x^n)^2
+$$
+is interpreted as the square of the distance of the point $(x^1,\ldots,x^n)$ from the origin $(0,\ldots,0)$ or the square of the length of the vector
+$\vec x=\langle x^1,\ldots,x^n\rangle\ge0$, which is always positive unless $\vec x =0$.
+Sometimes $n$-dimensional Euclidean space ($\mathbb{R}^n$ with the usual dot product) is designated by $E^n$ or $\mathbb{E}^n$ to emphasize its geometry.
+
+Note that if you change from the standard basis to an arbitrary basis of $\mathbb{R}^n$,  the components of $G$ will change
+$$
+G_{i'j'} 
+=e_{i'} \cdot e_{j'}
+=A^{-1m}{}_i \,\delta_{mn} \,A^{-1n}{}_j
+ \,,
+\qquad \underline{G}' = \underline{A}^{-1T} \underline{I}\, \underline{A}^{-1}
+ = \underline{A}^{-1T} \, \underline{A}^{-1}
+\,.
+$$
+Only if the new basis is also orthonormal so that $(A^i{}_j)$ is an orthogonal matrix satisfying 
+$\underline{A}^T \underline{A}=\underline{I}=\underline{A}\,\underline{A}^T $
+(just the condition that the columns of the matrix are mutually orthogonal unit vectors), therefore equivalent to the condition
+ $A^T=A^{-1}$ 
+which in turn implies $\underline{A}^{-1T} \, \underline{A}^{-1}=\underline{I}$,
+will the new matrix of components again equal $(\delta_{ij})$. In other words the symbol $\delta_{ij}$ defines a different tensor in each basis unless one restricts the change of basis to only orthonormal bases corresponding to basis-changing matrices which are orthogonal.
+In a nonorthonormal basis, the values $G_{i'i'} \not =1$ break the normality (unit vector) condition, while the values $G_{i'j'} \not =0\ (i \not =j)$ break the orthogonality condition.
+
+\end{Example}
+
+\begin{Remark}
+How does one write the matrix equation $A^T=A^{-1}$ 
+with our index conventions? Identifying the row indices on both sides, which gets switched to the right by the transpose we might write 
+$ A^j{}_i = A^{-1 i}{}_j$ but that breaks our convention. The only way we can respect index position (an index must be at the same level on each side of the equation) is by introducing the identity matrix with both indices down to bring the upper indices down to the same level
+$$
+   (\ul{I} A)^T = \ul{I} \, \ul{A}^{-1} \leftrightarrow \delta_{jk} A^k{}_i = \delta_{ik} A^{-1 k}{}_j \,.
+$$
+\end{Remark}
+
+
+
+\begin{figure}[t] 
+\typeout{*** EPS rhr}
+\begin{center}
+\includegraphics[scale=0.2]{./figs/figrhr}
+\end{center}
+%\vglue-1cm
+\caption{
+The right hand rule correlates a choice of normal direction with the sense of the rotation in the orthogonal plane in a simple way, thus characterizing a rotation in Eudlidean 3-space by its unique axis of fixed points (with direction $\hat n$) and the angle $\theta$ of rotation about that axis. The corresponding matrix $R(\hat n,\theta)$ depends only on these independent parameters (two for the direction, one for the angle). 
+}
+\label{fig:rhr}
+\end{figure}
+
+Orthogonal matrices represent familiar physical operations in ordinary Euclidean 3-space: rotations and reflections. The group of real orthogonal $3\times3$ matrices is called $O(3,R)$. Note that the product determinant formula $\det\ul{A}\,\ul{B}= \det\ul{A}\,\det\ul{B}$ applied to $\ul{A}\, \ul{A}^T=\ul{I}$ together with the identity $\det\ul{A}^T=\det\ul{A}$
+shows that $\det\ul{A}^2=1$, so the determinant of an orthogonal matrix can only have the values $\pm1$. Those with positive unit determinant form a subgroup called the special orthogonal group $SO(3,R)$ and represent rotations of space, while the remaining negative determinant orthogonal matrices also involve either space reflections or odd permutations of the axes. The latter do not form a subgroup since their products have unit positive determinants by the same product formula.
+
+While rotations occur in a family of parallel 2-planes in general in any dimension, three dimensions are special in that there is a unique orthogonal direction to that family which we can associate with an axis of rotation, namely the line of fixed points perpendicular to the family of rotation planes. This gives us a nice physical representation of any rotation, which can be specified by the angle of rotation about this axis, together with a unit vector giving the direction of the axis. The right hand rule illustrated in Fig.~\ref{fig:rhr} allows us to correlate the direction of the rotation within the planes with the direction of the axis in a simple way: with the thumb pointing along the chosen axis direction, the fingers curl in the direction of the rotation in the orthogonal planes in the direction of the fingertips.
+
+
+
+
+\begin{Example}\label{example:R3euclideanmetric}{\bf the usual dot product on $\mathbb{R}^3$}
+
+Sometimes it is helpful to be more concrete.
+If on $\mathbb{R}^3$ we let $G_{ij}=\delta_{ij}$ be the entries of the identity matrix
+$$
+ \ul{G} =  (\delta_{ij}) = \begin{pmatrix}  1 & 0 & 0\\ 0 & 1 & 0 \\ 0 & 0 & 1 \end{pmatrix} \,,
+$$
+then
+$G=\delta_{ij}\omega^i\otimes\omega^j$ in standard Cartesian coordinates labeled $(x^1,x^2,x^3)$  defines the usual dot product inner product which determines the flat geometry of Euclidean space
+\begin{eqnarray*}
+a \cdot b &=&
+  G(  \langle a^1,a^2,a^3 \rangle,  \langle b^1,b^2,b^3 \rangle)
+  =  G_{ij} a^i b^j \\
+  &=& \langle a^1,a^2,a^3 \rangle \cdot   \langle b^1,b^2,b^3 \rangle\\
+  &=& a^1 b^1 + a^2 b^2 + a^3 b^3
+  = \ul{a}^T  \ul{b}
+\,.
+\end{eqnarray*}
+Rotations about the origin (linear transformations of the vector space) leave the dot product invariant.
+
+\end{Example}
+
+\begin{Example}\label{example:newdotprod}\textbf{new dot product}
+
+We can introduce an example of a more general inner product ``$\bullet$" on ${\mathbb R}^n$ starting from any symmetric matrix 
+$\underline{M}=(M_{ij}) =(M_{ji}) =\ul{M}^T$ and extending the inner products by multilinearity from the standard basis vectors $\{e_i\}$ to any other vectors, namely defining $M(u,v)=M(u^i e_i,v^je_j)=u^i v^j M(e_i,e_j)=M_{ij}u^i v^j $, with $M_{ij}=M(e_i,e_j)\equiv e_i \bullet e_j$. Transforming to another basis, this matrix of components will change.
+However, we don't need to consider different inner products on ${\mathbb R}^n$ in order to have component matrices which are not the identity matrix. As soon as we choose a general basis of this space, its matrix of inner products with the usual dot product can be any symmetric matrix with nonzero determinant.
+
+Using Cartesian coordinates $x^1,x^2$ on $\mathbb{R}^2$, we can introduce the following new inner product of two vectors $u,v$:
+\begin{align*}
+\underline{M} &= \begin{pmatrix} 8 & -2\\ -2 & 5\end{pmatrix} \,,
+\\
+u \bullet v &=
+M(u,v) = \ul{u}^T \ul{M}\, \ul{v}
+= \begin{pmatrix} u^1&u^2\end{pmatrix} \begin{pmatrix} 8 & -2\\ -2 & 5\end{pmatrix} \begin{pmatrix} v^1\\ v^2\end{pmatrix}
+\\
+      &= M_{ij}u^i v^j = 8 u^1 v^1 -2(u^1 v^2+u^2 v^1)+5 u^2 v^2 \,.
+\end{align*}
+The ``unit circle" for this inner product would be described by the curve in the plane: $1=x\bullet x = M(x,x) = 8 (x^1)^2 -4x^1x^2+5 (x^2)^2$. We will see below that this is a rotated ellipse as viewed in the original Euclidean geometry of the plane.
+
+\end{Example}
+
+\begin{Example}\label{example:R4minkowskimetric}{\bf the Minkowski inner product on $\mathbb{R}^4$}
+
+On $\mathbb R^4$ let $-\eta_{00} =\eta_{11}=\eta_{22}=\eta_{33}=1$ and $\eta_{ij}=0$ $(i\not =j)$, so that the component matrix is
+$$
+ \ul{\eta} =  (\eta_{ij}) = \begin{pmatrix} -1 & 0 & 0 & 0\\ 0 & 1 & 0 & 0\\ 0 & 0 & 1 & 0\\ 0 & 0 & 0 & 1\end{pmatrix} \,.
+$$
+If we let $G_{ij}=\eta_{ij}$ then
+$G=\eta_{ij}\omega^i\otimes\omega^j$ in standard Cartesian coordinates labeled $(x^0,x^1,x^2,x^3)$  defines an inner product, called the Minkowski metric. We can simply reinterpret the dot product in this context to be
+\begin{eqnarray*}
+a \cdot b &=&
+  G(  \langle a^0,a^1,a^2,a^3 \rangle,  \langle b^0,b^1,b^2,b^3 \rangle)
+  =  G_{ij} a^i b^j\\
+  &=& \langle a^0,a^1,a^2,a^3 \rangle \cdot   \langle b^0,b^1,b^2,b^3 \rangle\\
+  &=& -a^0 b^0 + a^1 b^1 + a^2 b^2 + a^3 b^3
+  = \ul{a}^T \ul{\eta}\, \ul{b}
+\,.
+\end{eqnarray*}
+This inner product determines the flat geometry of spacetime in special relativity, referred to as Lorentzian as opposed to Euclidean because of the single minus sign which distinguishes time directions from spatial directions.
+This is associated with the clearly different nature of time compared to spatial dimensions. To emphasize this we put the time coordinate first before the space coordinates and distinguish it by using the subscript 0: 
+$(x^0,x^1,x^2,x^3)=(t,x,y,z)$, letting $i,j,\ldots=0,1,2,3$.
+Then
+$$
+  \eta_{ij} x^i x^j = -t^2 +x^2+y^2+z^2 
+  =\begin{cases}\equiv \ell^2 >0& \mbox{spacelike} \\ =0 & \mbox{lightlike or null}\\ \equiv -\tau^2<0 & \mbox{timelike} \end{cases}
+$$
+is interpreted as the signed squared spacetime distance from the origin or the signed squared length of the spacetime position vector
+$\langle t,x,y,z\rangle$, often called a 4-vector since we are also interested in the usual 3 component vectors in space alone when discussing relativity. However, in contrast with the Euclidean case of the familiar dot product, here this self-inner product of a vector can be both positive and negative as well as zero even when this vector itself is nonzero. The square root of the absolute value of the self-inner product is still interpreted as the length of the vector, but the sign of the self-inner product gives additional information about the vector.
+
+The hypersurface
+$$
+x^2+y^2+z^2=t^2 \quad\mbox{or}\quad s^2= -t^2+x^2+y^2+z^2 =0
+$$
+is actually a cone with vertex at the origin in this 4-dimensional space, called the light cone, consisting of points whose signed squared distance from the origin is 0.
+The interpretation of this vanishing value is that in units where the speed of light $c=1$ is unity, then after a time interval $t>0$ a light ray starting at the spatial origin at time 0 travels a distance $t$ to reach a spatial point $(x,y,z)$ which is at the distance $(x^2+y^2+z^2)^{1/2} =t$. In other words this metric captures the behavior of light rays by assigning zero spacetime interval to all spacetime points which are connected to the origin by a light ray. When the spatial distance $(x^2+y^2+z^2)^{1/2} =$ of a spatial point is greater than $t$, then there has not been enough time for any light ray to reach the point, or if it is less than $t$,any light ray emitted at time 0 has already passed by that point. Thus the sign of the signed squared distance is associated with the causality of events in the spacetime. The point $(t,x,y,z)$ is said to be spacelike separated from the origin $(0,0,0,0)$ in the positive case $\eta_{ij}x^ix^j>0$, lightlike separated  when it is zero  $\eta_{ij}x^ix^j=0$ and timelike separated when it is negative $\eta_{ij}x^ix^j<0$.
+
+In some contexts the opposite overall sign is used for the Lorentz inner product: $s^2=t^2 - x^2 - y^2 -z^2$ so that the ordinary spatial dimensions are associated with the minus signs instead of the time dimension. Since length is defined by the square root of the absolute value of the self inner product, the interpretation of the signs is a matter of choice. Extending the usual inner product on $\mathbb{R}^3$ by one extra dimension with a minus sign seems the most reasonable, but there are mathematical reasons for adopting the other sign convention in some quantum mechanical contexts.
+
+$\mathbb{R}^4$ with this inner product is called Minkowski spacetime, sometimes designated by $\mathbb{M}^4$. One can consider various dimensions for Minkowski spacetime just like Euclidean space. $\mathbb{M}^n$ is just $\mathbb{R}^n$ with the sign reversed on the self-inner product of the first standard basis vector. The 2-dimensional  Minkowski plane $\mathbb{M}^2$ is useful for studying 1-dimensional motion along a single spatial dimension, while 3-dimensional Minkowsi spacetime  $\mathbb{M}^3$ is useful for studying motion in a  spatial plane, like a planet orbiting a central sun, or ``classical" electrons orbiting a nucleus. Minkowski and Lorentz were the two most important pioneers in advancing the mathematics underlying special relativity but it was the genius of Einstein who understood the central concept of spacetime itself. Appendix \ref{sec:appendixA1} explores Minkowski spacetime in a bit  more depth.
+\end{Example}
+
+\begin{pro}\label{exercise:H2innerprod}\textbf{Euclidean inner product on $h(2)$}
+
+In Exercise \ref{exercise:h2} we introduced a set of four $2\times2$ matrices which are the basis of a 4-dimensional real subspace of the space of complex $2\times2$ matrices 
+$$
+\ul{E}_0 =  \begin{pmatrix} 1 & 0\\ 0 & 1\end{pmatrix}\,,\
+\ul{E}_1 =  \begin{pmatrix} 0 & 1\\ 1 & 0\end{pmatrix}\,,\
+\ul{E}_2 =  \begin{pmatrix} 0 & -i\\ i & 0\end{pmatrix}\,,\
+\ul{E}_3 =  \begin{pmatrix} 1 & 0\\ 0 & -1\end{pmatrix}\,.
+$$
+The elements of this real vector space $h(2)$ are of the form
+$$
+   \ul{X} = x^i \ul{E}_i = \begin{pmatrix} x^0+x^3 & x^1-ix^2\\ x^1+ix^2 & x^0-x^3 \end{pmatrix}\,,
+$$
+where the coefficients $(x^i)=(x^0,x^1,x^2,x^3)$ are real.
+
+If $\ul{X} = x^i \ul{E}_i $ and $\ul{Y} = y^i \ul{E}_i $, show that the following inner product is just the Euclidean inner product on this vector space in this basis
+$$
+ G(\ul{X},\ul{Y})\equiv \frac12 \Tr \ul{X}\, \ul{Y} = x^0y^0 + x^1 y^1 +x^2 y^2 +x^3 y^3 \,.
+$$
+\end{pro}
+
+\begin{pro}\label{exercise:gl2rinnerprod}\textbf{two inner products on $gl(2,\mathbb{R})$}  %pig
+
+In Exercise \ref{exercise:gl2R} we introduced a new basis of the set $gl(2,\mathbb{R})$ of all real $2\times2$ matrices adapted to its tracefree subspace $sl(2,R)$ as well as to its decomposition into a 3-dimensional subspace of symmetric matrices and a 1-dimensional space of antisymmetric matrices
+$$
+\ul{E}_0 =  \begin{pmatrix} 1 & 0\\ 0 & 1\end{pmatrix}\,,\
+\ul{E}_1 =  \begin{pmatrix} 1 & 0\\ 0 & -1\end{pmatrix}\,,\
+\ul{E}_2 =  \begin{pmatrix} 0 & 1\\ 1 & 0\end{pmatrix}\,,\
+\ul{E}_3 =  \begin{pmatrix} 0 & -1\\ 1 & 0\end{pmatrix}\,.
+$$
+so that any $2\times2$ matrix has the representation
+$$
+   \ul{X} = x^i \ul{E}_i = \begin{pmatrix} x^0+x^1 & x^1-x^2\\ x^1+x^2 & x^0-x^1 \end{pmatrix}\,.
+$$
+
+a)
+If $\ul{X} = x^i \ul{E}_i $ and $\ul{Y} = y^i \ul{E}_i $, show that the following inner product is just the Lorentzian inner product on this vector space in this basis
+$$
+ G(\ul{X},\ul{Y})\equiv \frac12 \Tr \ul{X}\, \ul{Y} = x^0y^0 + x^1 y^1 +x^2 y^2 -x^3 y^3 \,.
+$$
+The negative sign is associated with the antisymmetric subspace.
+
+b)
+Show that this basis is orthogonal with respect to the Euclidean inner product
+$$
+ \Tr \ul{X}^T\, \ul{Y} =2(x^0y^0 + x^1 y^1 +x^2 y^2 +x^3 y^3) \,.
+$$
+This inner product is the usual Euclidean one on $\mathbb(R)^4$ interpreting $gl(2,R)$ as $\mathbb{R}^4$ by listing its entries row by row
+$$
+   \Tr \begin{pmatrix} a^1 & a^2\\ a^3& a^4\end{pmatrix}^T\, \begin{pmatrix} b^1 & b^2\\ b^3& b^4\end{pmatrix}
+  = a^1 b^1 + a^2 b^2 + a^3 b^3 + a^4 b^4 \,.
+$$
+\end{pro}
+
+
+Given a general inner product or metric $G$ on a vector space $V$, invariance of this metric under a change of basis requires
+$$
+ \underline{G} = \underline{A}^{-1T} \underline{G}\, \underline{A}^{-1} \,,
+$$
+or right multiplying by $\underline{A}$ and using properties of the transpose and inverse together with $\underline{G}^T=\underline{G}$ one transforms this into
+$$
+  \underline{G}\,\underline{A}
+ =\underline{A}^{-1T}\underline{G}^T
+ =(\underline{G}\,\underline{A}^{-1})^T 
+$$
+from which it follows that
+$$
+  (\underline{G}\,\underline{A})^T
+ = \underline{G}\,\underline{A}^{-1} \,, \qquad \text{(generalized orthogonality condition)}
+$$
+which generalizes the orthogonality condition $\underline{A}^{T}=\underline{A}^{-1}$ which holds when $\underline{G}=\underline{I}$,
+and has the index form
+$$
+   G_{kj} A^j{}_i = G_{ij} A^{-1 j}{}_k \,.
+$$
+In components, using the index  lowering convention $A_{ij}=G_{ik} A^k{}_j$ to be discussed shortly, this just says that $A_{ji}= [A^{-1}]_{ij}$, or that the transpose of the index-lowered component matrix is the index-lowered form of the inverse matrix.
+
+If the starting basis is an orthonormal basis, then this condition describes a change from one orthonormal basis to another and the matrices which accomplish this are called generalized orthogonal matrices. The corresponding generalized orthogonal matrix groups are classified by the signature of the inner product. For an inner product with $P$ positive signs and $M$ minus signs, this group is designated by $O(P,M)$, with $SO(P,M)$ for its special orthogonal group of unit determinant matrices. Over the complex numbers, one can always find bases which are orthonormal in the usual sense (if $G(u,u)=-1$, then $G(i u, i u )=1$), so one does not need to include $\mathbb{R}$ explicitly in the symbol as in $GL(n,\mathbb{R})$. For $\mathbb{M}^4$, this group $O(3,1)$ is sometimes called the pseudo-orthogonal group or Lorentz group.
+
+Repeating the same argument made for the ordinary orthogonal matrices shows that generalized orthogonal matrices must have a determinant of value $\pm1$.
+Using the fact that the determinant of a matrix product is the product of the determinants, and that the transpose does not change the determinant, by taking the determinant of the transformation invariance relation ($\det\ul{G}\neq0$ by the nondegeneracy condition)
+$$
+  \ul{G} = \ul{A}^{-1T}\ul{G} \, \ul{A}^{-1} \rightarrow
+  \det\ul{G} = \det(\ul{A}^{-1})^2 \det\ul{G} 
+  = \det(\ul{A})^{-2} \det\ul{G} 
+\,,
+$$
+it follows that $\det\ul{A} = \pm1$, so all of the generalized orthogonal groups differ from their special orthogonal subgroups only by reflections under which one or more of the coordinates change sign, or by odd permutations of the coordinates. Thus $O(3,\mathbb{R})$ is enlarged from the group of rotations of ordinary space $SO(3,\mathbb{R})$ by the discrete subgroup of reflections and odd permutations. 
+
+
+
+\begin{pro}\label{exercise:M2}\textbf{pseudo-orthogonality in the Lorentz plane}
+
+Many problems of special relativity only require one space and one time dimension, where the Minkowski metric with components $G_{11}=-\eta_{00}=1$ and $G_{01}=0=G_{10}$
+on $\mathbb{R}^2$ with standard coordinates $x^0,x^1$ is relevant. This metric leads to the hyperbolic geometry discussed in Appendix \ref{sec:appendixA1}. In 2-dimensional ``spacetime diagrams" involving this mathematical description, the time axis is usually plotted vertically and the spatial axis horizontally.
+
+a) Show by direct computation that the matrices
+$$
+\underline{G}
+=\begin{pmatrix}-1 & 0\\ 
+               0 & 1 \end{pmatrix}\,,\quad
+\underline{A}
+=\begin{pmatrix} \cosh\alpha & \sinh\alpha\\ 
+                 \sinh\alpha & \cosh\alpha\end{pmatrix} \,,\quad
+\underline{A}^{-1}
+=\begin{pmatrix} \cosh\alpha & -\sinh\alpha\\ 
+                 -\sinh\alpha & \cosh\alpha\end{pmatrix} 
+$$
+satisfy the pseudo-orthogonality condition for a change of basis.
+
+b) Show that the vectors $\langle 1,1 \rangle$ and $\langle 1, -1\rangle$ are both vectors with zero length. How do these vectors change under matrix multiplication by the matrix $\underline{A}$?
+
+\end{pro}
+
+
+
+\begin{pro}\label{exercise:newdotprod}\textbf{Euclidean and Lorentzian dot products}
+
+
+a) In $\mathbb R^n$ (with usual dot product), what is the value of $\sgn v$ for any $v \not =0$?
+(This property makes $\mathbb R^n$ Euclidean.)
+
+b) In $\mathbb R^n$ (with usual dot product), if $||v||=0$, then what must $v$ be?
+
+c) In $\mathbb R^4$ with the Minkowski inner product, what is the sign of the vectors $\langle 0,1,-1,1\rangle$, $\langle 2, 1,0,0\rangle$, $\langle 1,0,0,1\rangle$?
+What are their magnitudes? Which of these vectors can be ``normalized" to unit vectors by dividing by their lengths?
+
+d) In $\mathbb R^4$ with the Minkowski inner product, if $||v||=0$, then what must $v$ satisfy?
+\end{pro}
+
+
+\subsection{Index shifting with an inner product}
+
+For fixed $X$ the usual dot product $X\cdot Y=\delta_{ij}X^iY^j=f_X(Y)$ is a linear function of the vector $Y$ in $\mathbb{R}^n$ with coefficients $(f_X)_j=\delta_{ij}X^i$ numerically equal to the components $X^j$ of the vector $X$ in the standard basis, so it defines a linear function associated with $X$ which we could denote suggestively by ``$X\cdot\,$". This covector needs a better name. Since effectively the upper vector index is changed to a lower covector index through this dot product relationship, the index of $X$ is ``lowered" by this process. In music when you lower a note like $B$ slightly, it is referred to as a flat: $B^\flat$, so we can denote the index lowered covector by $X^\flat$. Similarly raising a note slightly is called a sharp: $B^\sharp$, so the inverse process of raising an index from a lower covector index to an upper vector index can be indicated by a sharp: $(X^\flat)^\sharp = X$. Since by definition $X^\flat(Y)=X\cdot Y$, if this is zero, $Y$ must be orthogonal to $X$, so the level surface $X^\flat(Y)=0$ consists of the (hyper)plane through the origin perpendicular to the vector $X$. On the other  hand, the parallel (hyper)plane through the tip of $X$ corresponds to the value $X^\flat(X)=X\cdot X=|X|^2$, so one must divide $X$ by $|X|^2$ to locate at its tip the parallel (hyper)plane corresponding to the value 1 to represent the covector geometrically. Fig.~\ref{fig:16b} illustrates this in the Euclidean plane.
+
+Since the vector and covector have the same components in the standard basis, they  have the same length, and their orientations are locked together by orthogonality, so it makes sense to think of the pair as just two different realizations of the same physical vector, which is why we retain the same kernel letter $X$ to represent them, and only distinguish their components by the index position, which can be raised or lowered using this dot product relationship which is symbolized by the Kronecker delta of dot products of the standard basis or its dual basis: $X_i=\delta_{ij}X^j$, $X^i=\delta^{ij}X_j$. In any other basis, one must use the corresponding matrices of dot products to do this index lowering and raising, or ``shifting."
+
+It is natural to extend this discussion to any
+ vector space $V$ with a nondegenerate inner product $G$, with inverse $G^{-1}$, thus satisfying
+\begin{align*}
+  \underline{G}^{-1}\underline{G} &=\underline{I}\,,\quad G^{ik}G_{kj} = \delta^i{}_j =G^{ik}G_{jk} \,,\\
+  \underline{G}\,\underline{G}^{-1} &=\underline{I}\,,\quad G_{jk}G^{ki} = \delta^i{}_j =G_{jk}G^{ik}\,.
+\end{align*}
+Then we can introduce a streamlined notation for the related pair of maps between $V$ and $V^*$, calling them $\flat$ from $V$ to $V^*$ and $\sharp$ from $V^*$ to $V$
+\begin{align*}
+&&
+v^{\flat}(u)
+\equiv G(u,v)
+=G_{ij} u^i v^j
+=(G_{ij}v^j)u^i 
+%\equiv  v_i u^i
+&&\ \rightarrow\ && [v^{\flat}]_i = G_{ij}v^j %\equiv v_i
+\,,
+\\
+&&
+f(g^{\sharp})
+\equiv G^{-1}(f,g)
+=G^{ij} f_i g_j
+=f_i(G^{ij} g_j)
+%\equiv f_i g^i
+&&\ \rightarrow\ && [g^{\sharp}]^i = G^{ij}g_j%\equiv g^i
+\,,
+\end{align*} 
+where the flat symbol $\flat$ stands for ``down", lowering the index, and the sharp symbol $\sharp$ stands for ``up", raising the index.
+
+
+In this way using the metric and its inverse we associate a covector $v^{\flat}$ with each vector $v$ and a vector $g^{\sharp}$ with each covector $g$. These two maps are inverses of each other
+\begin{eqnarray*}
+&&[(v^{\flat})^{\sharp}]^i =G^{ij}(v^{\flat})_j  =G^{ij}G_{jk}v^k =\delta^i{}_kv^k =v^i \,,
+\\
+&&[(g^{\sharp})^{\flat}]_i =G_{ij}(g^{\sharp})^j =G_{ij}G^{jk}g_k =\delta^k{}_ig_k =g_i \,.
+\end{eqnarray*}
+The inner product provides an ``identification map" between a vector space and its dual. This turns out to be so useful that more shorthand notation is introduced
+\begin{eqnarray*}
+&&
+v_i \equiv v^{\flat}(e_i) = G_{ij}v^j \quad  \mbox{(``lowering the index")}, 
+\\
+&&
+g^i \equiv \omega^i(g^{\sharp}) = G^{ij}g_j \quad  \mbox{(`` raising the index")}.
+\end{eqnarray*}
+In component notation we use the same letter for the corresponding covector or vector (called the kernel symbol, kernel in the sense that we add sub/superscripts to it) and just put the index in the right location, while the sharp or flat helps distinguish the two objects in index free form. One then refers to the ``contravariant" ($u\sim u^i$) or ``covariant" form of a vector ($u^\flat\sim u_i$), to distinguish the two, for example.
+
+Furthermore, the inner product of a pair of vectors has the same value as the inner product of the pair of corresponding covectors
+$$
+G^{-1}(u^\flat, v^\flat) 
+= G^{mn} u_m v_n
+= G^{mn} G_{mi} u^i G_{nj} v^j
+=  \delta^n{}_i u^i G_{nj} v^j
+= G_{ij} u^i v^j
+= G(u,v) \,.
+$$
+Thus a vector and its corresponding covector have the same self-inner product and the same length.
+
+\begin{Example}\label{example:}\textbf{linearity becomes geometry}
+
+Consider $\mathbb R^n$ with the standard basis $\{e_i\}$ and the standard (dot) inner product $G_{ij}=\delta_{ij}$, $G^{ij}=\delta^{ij}$. The index shifting maps identify vectors and covectors with the same standard components
+\begin{eqnarray*}
+&&
+(V^{\flat})_i\equiv v_i = \delta_{ij} v^j 
+\quad \mbox{(i.e., $v_i=v^i$ for each $i$),}   
+\\
+&&
+(f^{\sharp})^i\equiv f^i=\delta^{ij}f_j 
+\quad \mbox{(i.e., $f^i=f_i$ for each $i$).}   
+\end{eqnarray*}
+Thus evaluation of a covector on a vector
+$$
+f(v)= f_iv^i=\delta_{ij}f^jv^i= f^{\sharp} \cdot v
+$$
+is represented as the standard dot product of the vector with  another vector whose components are the same as the covector.
+
+
+In this way \emph{linearity} is converted into \emph{geometry} and one can ignore the distinction between the vector space and its dual and thus only use subscript indices. However, there is a catch. For everything to work, one has to use only orthonormal bases---otherwise things fall apart. (If the basis is not orthonormal, one no longer has the same components for a vector and its corresponding covector.) This turns out to be no problem for elementary linear algebra with its  limited goals, but it is a problem if you want to go beyond that. 
+
+\end{Example}
+
+\begin{Example}\label{example:}\textbf{$\mathbb{R}^n$ and $\mathbb{M}^n$}
+
+Suppose we introduce one minus sign for the self-inner product of the first basis vector in the previous problem on $n$-dimensional Euclidean space $\mathbb{R}^n$ to get Minkowski spacetime $\mathbb{M}^n$, with metric matrix $\ul{\eta}$ and standard coordinates $(x^0,x^1,\ldots,x^{n-1})$
+ and now interpret the dot as the new inner product. The standard basis is still orthonormal with respect to this new ``Lorentzian" inner product, namely an inner product that only has one direction that has negative self-inner products (almost, clarification later). These vector spaces are the same but we use different coordinate labels adapted to the two different standard inner products.
+
+The dual basis is automatically orthonormal and has the same matrix of inner products as the basis vectors but we need to raise the indices as we did before with the Kronecker delta: $\omega^i\cdot \omega^j=\eta^{ij}$. If we raise an index on the covariant eta, or lower an index on the contravariant eta using the eta matrix itself, in both cases we get the mixed Kronecker delta which is the matrix of the identity tensor, or if we raise both indices on the covariant eta we get the contravariant eta, etc.\
+$$
+  \eta_{ik} \eta^{kj}=\delta^j{}_i\,,\quad
+  \eta_{mn} \eta^{mi} \eta^{nj} = \eta^{ij} \,.
+$$
+Thus in the Lorentzian geometry we can think of $\eta_{ij}$, $\eta^{ij}$ and $\delta^i{}_j$ as the components of the three possible forms of the same physical tensor, the identity tensor, as long as we are working in an orthonormal basis (where we agree to put the negative-signed basis vector first). For a general inner product we can similarly think of $G_{ij}$, $G^{ij}$ and $\delta^i{}_j$ as the components of the various index-shifted forms of the identity tensor.
+
+\end{Example}
+
+
+\subsection{Index shifting conventions}
+
+In a situation where an inner product G is available and relevant to the kind of problem being described mathematically, we can extend the ``index shifting" maps to any type of tensor.
+A $(^p_q)$-tensor is said to have ``rank" $(p+q)$ and have $p$ contravariant indices (i.e., $p$ covector arguments) and $q$ covariant indices (i.e., $q$ vector arguments). For all tensors of a given total rank, we can establish a correspondence between tensors with different ``index" positions. For example, if $p+q=2$, the we are dealing with $(^0_2)$, $(^1_1)$, or $(^2_0)$-tensors.
+
+Suppose $T=T^i{}_j\ e_i\otimes\omega^j$. Then we can introduce three other tensors by
+$$
+T^{ij}\equiv G^{ij}T^i{}_k \,, \quad 
+T_{ij}\equiv G_{ij}T^k{}_j \,, \quad
+T_i{}^j \equiv G_{ik}T^k{}_\ell G^{\ell j}
+\,.
+$$
+These are related to each other in turn by
+$$
+T^{ij}= G^{im}G^{jn}T_{mn} \,, \quad 
+T_{ij}= G_{im}G_{in}T^{mn}\,,\quad \text{etc.}
+\,.
+$$
+For a given starting tensor $T$, we can interpret all four such related tensors as different ``representations" of the same physical object, but with different index arguments. Of course this is a convenient fiction since a vector $v$ and covector $v^{\flat}$ have completely different geometric interpretations, but those interpretations are related to each other in an interesting way. We use the same kernel letter and let the index position distinguish between the different tensors of this family of related tensors. The last of these four tensors has the representation $T_i{}^j e_j \otimes\omega^i$ if we agree always to list the covector inputs of a tensor first and the vector inputs second, effectively identifying $V\otimes V^*$ and $V^*\otimes V$, but we have to suspend our convention to list contravariant indices first and covariant indices second in order to distinguish
+between different index positions of different arguments of the tensor. This is not a problem since index shifting turns out to be extremely useful.
+
+For rank 3 tensors there are $2^3=8$ different index positions
+$$
+\underbrace {T_{ijk}}_{(^0_3)}\ ; \
+\underbrace {T^i{}_{jk}\,,\ T_i{}^j{}_k\,,\ T_{ij}{}^k}_{(^1_2)}\ ; \
+\underbrace {T_i{}^{jk}\,,\ T^i{}_j{}^k\,,\ T^{ij}{}_k}_{(^2_1)}\ ; \
+\underbrace {T^{ijk}}_{(^3_0)}\,,
+$$
+while for rank 4 tensors there are $2^4=16$ different index positions. However, when tensors have symmetries, this number is then reduced. For example, for symmetric second rank tensors, the symmetry condition $T_{ij}=T_{ji}$ implies $T^i{}_j = T_j{}^i$.
+
+
+Given any $(^p_q)$-tensor there are two special members of the family of tensors related to it by index shifting, namely the ``totally covariant" form of the tensor (all indices down) and the ``total contravariant" form of the tensor (all indices up)
+$$
+T \sim T^{i\cdots}_{\ j\cdots} \rightarrow
+\left\{
+\begin {array}{cc}
+T^{i\cdots j\cdots} \sim T^{\sharp} \\[3pt]
+T_{i\cdots j\cdots} \sim T^{\flat}
+\end{array}
+\right .\,,
+$$
+where we slide the lower covariant indices over to the right of the upper contravariant indices before raising them or lowering the upper indices.
+This extends the $\sharp$ and $\flat$ maps to arbitrary tensors, meaning respectively ``raise all indices" and ``lower all indices."
+
+For the usual dot product on $\mathbb R^n$, using the standard basis, all of these tensors have the same numerical values for corresponding components, so one can always use the totally covariant form of a tensor accepting only vector arguments to discuss elementary linear algebra. For a general inner product we can  introduce the magnitude and sign of a tensor just like that of a vector in terms of the totally covariant or contravariant form. Define $||T|| \geq 0$ and $\sgn T\in \{+,0,-\}$ by
+\begin{eqnarray*}
+(\sgn T) ||T||^2 
+&=& G^{im}G^{jn}\cdots T_{ij\cdots}T_{mn\cdots}
+  = G_{im}G_{jn}\cdots T^{ij\cdots}T^{mn\cdots}
+\\
+&=& T_{ij\cdots}T^{ij\cdots} \qquad
+\mbox{(with $||T|| \equiv \sgn T\equiv$ 0 if this vanishes).}
+\end{eqnarray*}
+Since the space of $(^p_q)$-tensors for fixed $p$ and $q$ is itself a vector space, it can have an inner product. This defines such an inner product induced by the inner product on the underlying vector space, namely
+$$
+  T \cdot S = G_{im}G_{jn}\cdots T^{ij\cdots}S^{mn\cdots} = T^{ij\cdots}S_{ij\cdots} \,.
+$$
+
+For tensors over $\mathbb R^n$ with the usual dot product, this inner product for tensors is very simple to describe. The sign is always positive, except for the zero tensor of a given valence (specific values of $p$ and $q$), and the magnitude is always positive (except for the zero tensor) and equal to the square root of the sum of the squares of all its components (just like for vectors!). For example
+\begin{eqnarray*}
+||T||^2
+&=&\delta^{im}\delta^{jn}T_{ij}T_{mn}
+=T_{ij}T^{ij}
+=\dsum^n_{i=1}\dsum^n_{j=1} T^{ij}T^{ij}
+=\dsum^n_{i=1}\dsum^n_{j=1} (T^{ij})^2 
+\\
+&=& \Tr \ul{T}^T \ul{T}
+\,,
+\end{eqnarray*} 
+since $T_{ij}=T^{ij}$ for each pair of index values $(i,j)$. The last line shows that this is equivalent to the transpose trace inner product of square matrices when expressed in terms of the corresponding matrix of components, already touched upon in Exercise \ref{exercise:gl4R}, which is just the usual dot product on the space of $n\times n$ matrices when thought of as $\mathbb{R}^{n^2}$ by listing entries row by row.
+
+Note that the inverse tensor $G^{-1}=G^{ij}e_i\otimes e_j$ defines an inner product on the dual space $V^*$ thought of as a vector space in its own right, and this definition of the magnitude and sign of a covector is exactly the definition we introduced above for a vector space $V$, except now applied to the dual space.
+
+
+\begin{pro}\label{exercise:traceantisym3x3}\textbf{trace inner products of antisymmetric $3\times3$ matrices}
+
+On Euclidean $\mathbb{R}^3$ with the  usual dot product, consider the mixed tensor who matrix of components is
+$$
+\ul{\omega} = (\omega^i{}_j)
+= 
+\begin{pmatrix}
+0&\omega_3&-\omega_2\\
+-\omega_3&0&\omega_1\\
+\omega_2&-\omega_1&0
+\end{pmatrix}
+\,.
+$$
+Evaluate 
+$$
+  \Tr\ul{\omega}^2 = \omega^i{}_j \omega^j{}_i = - \omega_{ij} \omega^{ij}  
+$$
+in terms of the corresponding vector $\langle \omega_1,\omega_2,\omega_3\rangle$. Note that this is a negative-definite inner product on this subspace of $gl(3,\mathbb{R})$. 
+
+By multiplying by the factor $-1/2$, we are back to the usual dot product of the corresponding vector in $\mathbb{R}^3$. By inserting a transpose, we remove the minus sign and get the self-dot product as a 2 index tensor
+$$
+  \Tr \ul{\omega}^T\ul{\omega} = \omega_{ij}\omega^{ij}\,,
+$$
+and the remaining factor of two corresponds to the overcounting by the two permutations of the indices that contribute for each unordered distinct index pair $(i,j)$. 
+
+\end{pro}
+
+\begin{pro}\label{exercise:EMfieldmatrices}\textbf{electromagnetic field matrices}
+
+On 4-dimensional Minkowski spacetime in coordinates $(x^\alpha)=(x^0,x^1,x^2,x^3)=(x^0,x^a)$ with inner product $\eta={\rm diag}(-1,1,1,1)$, 
+index-shifting is easy. Changing the level of the 0 index changes the sign of the component, but the  remaining components do not change under index shifting.
+Consider the matrix
+$$
+\ul{F}=
+  (F^\alpha{}_\beta) 
+=
+\begin{pmatrix}
+0&E_1&E_2&E_3\\
+E_1&0&B_3&-B_2\\
+E_2&-B^3&0&B_1\\
+E_3&B_2&-B_1&0
+\end{pmatrix}
+\equiv [[E,B]]
+$$
+which defines a mixed second rank tensor $F = F^\alpha{}_\beta \omega^\alpha \otimes e_\alpha$ and the dual matrix  that we will explain in Chapter 4
+$$
+\ul{\dual F} = 
+(\dual F^\alpha{}_\beta) 
+= 
+\begin{pmatrix}
+0&-B_1&-B_2&-B_3\\
+-B_1&0&E_3&-E_2\\
+-B_2&-E^3&0&E_1\\
+-B_3&E_2&-E_1&0
+\end{pmatrix}
+= [[-B,E]] \,.
+$$
+This combines the electric and magnetic vector fields into a single unified electromagnetic tensor field on spacetime.
+[The double square bracket notation just allows us to have a way to refer to a $4\times4$ matrix formed out of two 3-vectors in this way.]
+\\
+a)
+Show that the component matrices
+$$
+  (F_{ij}) = (\eta_{ik} F^k{}_j) = \ul{\eta} \, \ul{F} \,,\quad
+  (\dual F_{ij}) = (\eta_{ik}\dual F^k{}_j) =\ul{\eta} \,\ul{\dual F} 
+$$
+of the tensors $F^\flat$ and $F^\sharp$
+are antisymmetric matrices, which is the condition discussed in Chapter 2 (see Exercise \ref{exercise:EMfieldmatrices2}) that the original matrices are tangents to curves of matrices which are orthogonal with respect to the Lorentzian inner product. This is not an accident. The mixed electromagnetic field tensor generates a pseudorotation in spacetime, called a Lorentz transformation. 
+%(see Exercise \ref{exercise:R4minkowskimetric}.)
+
+b)
+Use a computer algebra system to evaluate the scalars
+\begin{eqnarray*}
+  \Tr \ul{F} &=& F^\alpha{}_\alpha\,,\quad   \Tr \ul{\dual F} = \dual F^\alpha{}_\alpha\,,
+\\
+   \Tr \ul{F}^2 &=&
+ F^\alpha{}_\beta F^\beta{}{}_\alpha = - F_{\alpha\beta} F^{\alpha\beta} 
+\,,\\
+   \Tr \ul{\dual F}\,\ul{\dual F} &=&
+ \dual F^\alpha{}_\beta \,\dual F^\beta{}{}_\alpha = - \dual F_{\alpha\beta} \,\dual F^{\alpha\beta} 
+\,,\\
+   \Tr \ul{F}\,\ul{\dual F} &=& 
+ F^\alpha{}_\beta \,\dual F^\beta{}{}_\alpha = - F_{\alpha\beta} \,\dual F^{\alpha\beta} 
+=    \Tr \ul{\dual F}\,\ul{F} 
+\,.
+\end{eqnarray*}
+
+c)
+Use a computer algebra system to evaluate the so called energy-momentum tensor associated with the electromagnetic field tensor
+$$
+  4\pi (T^\alpha{}_\beta) 
+= \left( -F^\alpha{}_\gamma F^\gamma{}_\beta - \frac14 \delta^\alpha{}_\beta\, F_{\gamma\delta} F^{\gamma\delta} \right)
+=
+-\ul{F}^2 + \frac14 \ul{I} \Tr\ul{F}^2 \,, 
+$$
+and its trace
+$$
+  4\pi \Tr \ul{T} = 4\pi T^\alpha{}_\alpha \,.
+$$
+Then evaluate the matrix of totally contravariant components of this tensor $(T^{\alpha\beta})$. Recognize the cross product in the components $T^{0a}=T^{a0}$ and the magnitudes of the electric and magnetic fields in $T^{00}$.
+
+d) Use a computer algebra system or hand calculation to evaluate the matrix product $\gamma^{-1} q \ul{F}\, \ul{u}$ if 
+$$
+  u =\gamma \langle 1,v^1,v^2,v^3\rangle =\gamma \langle 1,\vec v\rangle \,.
+$$
+Show that the result can be written in terms of 3-vectors as
+$$
+\langle q\vec E \cdot \vec v,q(\vec E +\vec v \times \vec B)\rangle \,,
+$$
+which is the right hand side of the Lorentz force law
+$$
+  m\od{u}{t} = \gamma^{-1} m\od{u}{\tau} = \gamma^{-1} q \ul{F}\, \ul{u}\,.
+$$
+
+\end{pro}
+
+\subsection{Partial evaluation of a tensor and index shifting}
+
+If we evaluate the inner product $G$ only on its second argument ``$G(\  ,v)$", then it still needs a vector in its first argument to produce a real number. This is a linear function of that argument,  i.e., defines a covector, which is exactly $v^\flat$. We can write suggestively $v^\flat=G(\  ,v)$, for the partial evaluation of $G$ on one argument. Similarly $f^{\sharp}=G^{-1}(\ ,f)$.
+
+We can partially evaluate any tensor on any number of arguments. For example, if 
+$$
+T=T_{ijk}\,\omega^i\otimes \omega^j\otimes\omega^k
+= ``\ T(\ ,\ ,\ ) \ "
+$$
+then
+$$
+T(\ ,v,\ )\equiv T_{ijk}\omega^i\otimes\omega^k\omega^j(v)=T_{ijk}v^j\omega^i\otimes\omega^k
+$$ 
+makes sense as a way to represent partial evaluation on a single argument. Iteration of this extends it to any number of arguments.
+
+\subsection{Contraction of tensors}
+
+For a $(^p_q)$-tensor with at least one index each type $(p\ge 1,q\ge 1)$, one can select one upper index and one lower index and sum over them, reducing the number of free indices by 2 leading to a ($^{p-1}_{q-1}$)-tensor. This is called contraction of the tensor on that pair of indices of opposite valence (one up, one down!). For example, with a ($^1_2$)-tensor  $T=T^i{}_{jk}e_i\otimes\omega^j\otimes\omega^k$,
+we get two covectors 
+$$
+T^k{}_{ki}\omega^i \,,
+\quad T^k{}_{ik}\omega^i
+$$ 
+from the two possible contractions of the single contravariant index with the two covariant indices.
+
+The previous partial evaluation $T_{ijk} v^j$ is then a special case of two consecutive operations, easiest to depict in terms of index (component) language. First the tensor product tensor $T_{ijk}v^\ell $ is formed, and then it is contracted on the index pair $(j,\ell)$ to yield $T_{ijk}v^j $. We also say that we are ``contracting the index $j$ of the tensor $T_{ijk}$ with the vector $v^j$ in index language. 
+
+This can be generalized to any subset of corresponding indices on a pair of tensors, representing the tensor product of the two tensor factors followed by contractions on all index pairs associated with this subset. For example, the component relations
+$$
+  C^i{}_{jk} D^{jk}_{\ m}\,,\
+  C^i{}_{jk} C^k{}_{mi}\,,
+  R^i{}_{jmn} A^{mn}\,,\
+  R^{ij}{}_{mn} R^{mn}{}_{pq}\,,\
+  C^i{}_{jmn}\eta^{jmnk}
+$$
+are all examples of contractions of a pair of tensors on two or three indices, leading to tensors of the type indicated by the remaining free indices. This in turn may be extended to any number of tensor factors.
+
+Most tensors arise with natural index positions, so only certain contractions are possible, but if we have an inner product tensor with components $G_{ij}$ and inverse $G^{ij}$, we can use it to shift index positions and thus contract any pair of indices on any tensors or simultaneously contract as many pairs as we wish. For example, if we have a 3 index object like $C^i{}_{jk}$ we can do natural contractions with the single upper index and the two lower indices, or a metric contraction on the last two indices, which can be written in two equivalent ways
+$$
+  C^i{}_{ik}\,,\ C^i{}_{ji}\,,\ C^i{}_{jk} G^{jk}=C^{ik}{}_k=C^i{}_j{}^j\,.
+$$
+
+
+
+\subsection{Geometric interpretation of index shifting}
+
+%\FigureHere
+% figure 16
+
+\begin{figure}[h] 
+\typeout{*** EPS figure 16}
+\begin{center}
+\includegraphics[scale=0.6]{./figs/scan0016}
+\end{center}
+\caption{
+A vector $v$ is orthogonal to the level surfaces of its corresponding covector $v^\flat$.
+} 
+\label{fig:16}
+\end{figure}
+
+The relation $v^{\flat}(X)=v\cdot X=0$ shows that the vector $v$ is orthogonal to the level surfaces of the covector $v^{\flat}$. The  relation
+$$
+v^{\flat}(v)=v\cdot v = ||v||^2
+$$ 
+may be interpreted as stating that the vector $v$ pierces $||v||^2$ ``layers" (integer valued level surfaces) of the covector $v^{\flat}$, and hence the unit vector $\hat v =v/||v||$ pierces $||v||$ layers, so each layer must have a separation of $1/||v||$. Thus while $v$ has length $||v||$, the ``layer thickness" of the pair of planes representing  the covector $v^\flat$ (namely the distance between the planes)
+is the reciprocal of the length of the vector. For vector $v$ which is already a unit vector $||v||=1$, this separation is also 1 so the vector pierces exactly one layer of its associated covector.
+
+In $\mathbb R^3$ we first learn to write an equation for a plane in the form
+$$
+a(x-x_0)+b(y-y_0)+c(z-z_0)=0
+$$
+or using the position vector notation $\vec r =\langle x,y,z\rangle$
+and introducing the normal vector $\vec N=\langle a,b,c \rangle$ one has
+$$
+\vec N \cdot (\vec r-\vec r_0) =0 \,.
+$$
+In fact $(a,b,c)$ are the components of the associated covector $(\vec N)^\flat$, one of whose level surfaces is being described. This condition is then converted into a geometric statement about points whose difference vector from a reference point is perpendicular to the vector whose components are the same as the coefficients of the linear function (components of the covector).
+
+%\FigureHere
+% figure 16b
+
+\begin{figure}[h] 
+\typeout{*** EPS figure ??}
+\begin{center}
+\includegraphics[scale=0.5]{./figs/figvector2covectorplane}
+\end{center}
+\caption{
+Visualizing the covector obtained from a vector by index-lowering from a vector in the plane using the usual dot product.
+} 
+\label{fig:vector2covectorplane}
+\end{figure}
+
+
+\begin{pro}\label{exercise:R2covector}\textbf{visualizing a covector in the plane}
+
+Consider the vector $v=\langle 3,4\rangle$ of length $5=\sqrt{3^2+4^2}$ in the plane. Find the coordinates of the intersection of the line through $v$ with the unit value line associated with the covector with the same components shown in Fig.~\ref{fig:vector2covectorplane}. (Note that the axis intercepts of this latter line are the reciprocals of those components.)
+Since the latter line has the negative reciprocal slope, it is perpendicular to the line through $v$, and hence the point of intersection is the closest point to the origin. Show that this distance is in fact $1/5$, the reciprocal of the length of $v$. The number of times this separation vector fits into $v$ is the ratio of the length of $v$ divided by the length of this separation vector, namely $5/(1/5) = 25$, which must be $v^\flat(v)=v\cdot v = ||v||^2=25$ which is correct. Thus the one geometric length associated with the covector is the reciprocal of the one geometric length associated with the vector, even though formally the vector and covector have the same length 5, which is the square root of the sum of their components.
+
+\end{pro}
+
+
+
+
+%\FigureHere
+% figure 16b
+
+\begin{figure}[h] 
+\typeout{*** EPS figure 16c}
+\begin{center}
+\includegraphics[scale=0.5]{./figs/figcovectorvector}
+\end{center}
+\caption{
+In the plane a vector $X=\langle -1,2\rangle$ and its corresponding covector $X^\flat=-\omega^1+2\omega^2=-x^1+2x^2$. The level lines of the covector $X^\flat$ are orthogonal to the vector $X$, while the tip of $X$ lies in the level line $X^\flat=|X|^2$. For a unit vector the tip of the vector would lie in the level line corresponding to the value 1.
+} 
+\label{fig:levellinescovector}
+\end{figure}
+
+\begin{Example}\label{example:nonONbasisindexshifting}\textbf{non-orthonormal basis and index shifting} 
+
+Consider the change of basis from Example \ref{example:planeeigenvectors}, where the new basis is $e_{1'}=b_1=\langle1,1\rangle$, $e_{2'}=b_2=\langle -2,1\rangle$, whose coordinate grid is shown in Fig.~\ref{fig:eigenvectorsinplane}. The matrix of inner products of these basis vectors is
+$$
+  \ul{G}' = \begin{pmatrix} b_1\cdot b_1& b_1\cdot b_2\\ b_2\cdot b_1& b_2\cdot b_2\end{pmatrix} = \ul{B}^T\ul{I}\,\ul{B}
+    =  \begin{pmatrix} 1& 1\\ -2& 1\end{pmatrix}  \begin{pmatrix} 1& -2\\ 1& 1\end{pmatrix}
+    = \begin{pmatrix} 2& -1\\ -1& 5\end{pmatrix}
+$$
+As explained in Example \ref{example:R2dualbasis}, the old components of the new dual basis vectors are the rows of 
+$\ul{B}^{-1}=\langle\langle \tfrac13 | \tfrac23\rangle,\langle -\tfrac12 | \tfrac13\rangle\rangle$.
+The vector $X=\langle -3,0\rangle =-3e_1+0e_2= -b_1+b_2$ (i.e., has new components $(X^{1'},X^{2'})=(-1,1)$)
+has corresponding covector $X^\flat =-3\omega^1+0\omega^2$ but we get the new components of this covector by matrix multiplication by $\ul{G}'$
+$$
+  (X_{i'})^T = (G_{i'j'}X^{j'})
+   = \begin{pmatrix} 5& -1\\ -1& 2\end{pmatrix} \begin{pmatrix} -1\\ 1 \end{pmatrix} = \begin{pmatrix} -3\\ 6\end{pmatrix} 
+  \rightarrow 
+  X^\flat = -6 \omega^{1'}+3 \omega^{2'} = -3 y^1+6 y^2
+\,,
+$$ 
+To raise the indices back up we need the inverse matrix of our inner product matrix
+\begin{align*}
+   \ul{G}'{}^{-1} &= (\ul{B}^T\ul{B})^{-1} =\ul{B}^{-1} (\ul{B}^T)^{-1} = \ul{B}^{-1} (\ul{B}^{-1})^T 
+\\
+    &= \frac13\left(\frac13\right)\, \begin{pmatrix} 1& 2\\ -1& 1\end{pmatrix}  \begin{pmatrix} 1& -1\\ 2& 1\end{pmatrix}
+     =   \frac19 \begin{pmatrix} 5& 1\\ 1& 2\end{pmatrix} 
+     = \begin{pmatrix} \omega^{'1}\cdot \omega^{'1}& \omega^{'1}\cdot \omega^{'2}\\ \omega^{'2}\cdot \omega^{'1}& \omega^{'2}\cdot\omega^{'2}\end{pmatrix}
+\,,
+\end{align*}
+which are just the usual dot products of the rows of $\ul{A}=\ul{B}^{-1}$. Thus raising the indices back up we do
+$$
+   (X^{i'})^T
+      = (X_{j'}G^{j'i'})
+      =\begin{pmatrix} -3& 6\end{pmatrix}  \frac19\, \begin{pmatrix} 5& 1\\ 1& 2\end{pmatrix} 
+      =\begin{pmatrix} -1&1\end{pmatrix} \,.
+$$
+
+\end{Example}
+
+%\FigureHere
+% figure 17
+
+%\begin{figure}[h] 
+%\typeout{*** EPS figure 12}
+%\begin{center}
+%\includegraphics[scale=0.3]{./figs/scan0012.ps}
+%\end{center}
+%\caption{
+%A change of basis in the plane.
+%} 
+%\label{fig:12again}
+%\end{figure}
+
+\clearpage\typeout{CLEAR ALL??}
+
+\begin{Remark}
+
+Raising and lowering indices are linear maps so we can apply them to the basis vectors and covectors directly
+\begin{align*}
+   u^\flat &=(u^i e_i)^\flat = (G_{ji}u^i) \omega^j
+  &&\text{(component definition)}\\
+ &= u^i (e_i)^\flat \,,
+ &&\text{(linearity of map)} \,,
+\end{align*}
+from which it follows that $(e_i)^\flat = G_{ij}\omega^j$. A similar calculation shows that
+$(\omega^i)^\flat=G^{ij}e_j$. Conversely $\omega^i = G^{ij} (e_j)^\flat$.
+\end{Remark}
+
+\begin{pro}\label{exercise:R2dotprodstuff}\textbf{transformation of dot products}
+
+We consider the change of basis considered in Exercise \ref{exercise:R2changebasis} and illustrated in 
+Fig.~\ref{fig:16b},
+with the associated grid shown as well in Fig.~\ref{fig:15c}.
+ The inverse matrix changing the basis has as its columns the old components of the new basis vectors
+$$
+\underline A^{-1}
+=(\underline E_1|\underline E_2)
+=\begin{pmatrix} 2&1\\1&1\end{pmatrix}
+\leftrightarrow
+\begin{pmatrix} x^{1}\\ x^{2}\end{pmatrix} = \underline A^{-1} \begin{pmatrix} x^{1'}\\ x^{2'}\end{pmatrix}
+\leftrightarrow
+\begin{pmatrix} x^{1'}\\ x^{2'}\end{pmatrix} = \underline A \begin{pmatrix} x^{1}\\ x^{2}\end{pmatrix}
+\,.
+$$
+Let $e_{i'}\equiv E_i$ for the problem originally discussed above, to follow the change of basis notation. 
+Let $G=\delta_{ij}\omega^i\otimes\omega^j$ be the standard dot product tensor.
+
+(i) Compute $G_{i'j'} = e_{i'}\cdot e_{j'}$ directly by evaluating these dot products individually and then use the matrix transformation law to get the same result.
+
+(ii) Compute $\underline G^{-1}{'}=(G^{i'j'})$ from its index transformation law re-expressed in matrix form.
+
+(iii) The vector $Y=(0,2)=-2E_1+4E_2=-2e_{1'}+4e_{2'}$ has $Y^{\flat}=2\omega^1$. Use $\underline G '$ to ``lower" its indices in the new basis. Verify that the expression for $Y^{\flat}$ in terms of $\omega^{1'}$ and $\omega^{2'}$ is $2\omega^1$.
+\end{pro}
+
+
+
+
+
+\begin{Remark} % for $\mathbb{R}^n$ with a ``positive-definite" inner product}
+
+For a positive-definite inner product where $\sgn u =\sgn G(u,u)$ is always positive for every nonzero vector $u$, the determinant of the component matrix is positive
+$\det(G_{ij})>0$ since it equals the product of its eigenvalues, which in turn represent the signs of the orthonormal basis vectors in an orthonormal basis, which are all positive by definition.
+
+Using the symmetry property of our inner product $G(X,Y)=G(Y,X)$ it follows that
+$$
+G(X+Y,X+Y) = G(X,X)+G(Y,Y)+2G(X,Y)
+$$
+from which it follows that
+$$
+G(X,Y)=\frac12 (G(X+Y,X+Y)-G(X,X)-G(Y,Y))\,,
+$$
+so we can determine all inner product values from self-inner-product values, which explains how the unit sphere $G(X,X)=1$ can contain all the information about the inner product, even angle information.
+
+
+%\FigureHere
+% figure 23
+
+\begin{figure}[h] 
+\typeout{*** EPS figure 23}
+\begin{center}
+\includegraphics[scale=0.6]{./figs/scan0023}
+\end{center}
+\caption{
+The decomposition of a vector into length (magnitude) and direction (unit vector).
+} 
+\label{fig:23}
+\end{figure}
+
+A given vector $u$ whose magnitude can be represented in terms of its length or magnitude, and a unit vector $\hat u\equiv u/||u||$ can be defined by projecting the vector to the unit sphere by dividing the vector by its length, provided it is nonzero: $u =||u|| \hat u$, a process called normalization of the vector. Similarly we can evaluate the inner product of two vectors by representing each in this way, thus projecting the inner product to the  unit sphere by this process of normalization by factoring out the magnitudes.
+Thus
+$$
+G(X,Y) = ||X||\,||Y|| \, G(\hat X,\hat Y)
+$$
+or
+$$
+X\cdot Y = ||X||\,||Y|| \, \hat X\cdot\hat Y
+$$ 
+using the dot product notation.
+
+For unit vectors the above relation becomes
+$$
+G(\hat X,\hat Y)=\frac 1 2[G(\hat X+\hat Y,\hat X+\hat Y)-1-1]
+=\frac 1 2 ||\hat X+\hat Y||^2-1 \in [-1,1]
+$$
+since 
+$||\hat X+\hat Y|| \in [0,2]$ by Euclidean geometry: the extreme values are 0 when $X=-Y$ and 2 when $X=Y$. Thus we can define the result to be the cosine of an angle between two directions
+$$
+ \cos\theta \equiv \hat X \cdot \hat Y\,.
+$$
+For inner products with nonpositive sign values for some vectors, this argument must be revised. More on this later.
+\end{Remark}
+
+\begin{pro}\label{exercise:matrixgeometry}\textbf{inner products on spaces of square matrices and symmetry}
+
+In Exercise \ref{exercise:gl2R}, we explored two trace inner products which agreed on the subspace of symmetric matrices but had opposite signs on the subspace of antisymmetric matrices, one positive-definite and the other indefinite. This generalizes to the $n^2$-dimensional vector space  $gl(n,\mathbb{R})$ of $n \times n$ real matrices, which it is said to be the Lie algebra of the general linear group, but that is another story we will get to in due time. 
+
+Example \ref{example:glnRbasis} defined the standard basis of $gl(n,\mathbb{R})$ by
+$\underline A=A^i{}_j\underline e^j{}_i$ where $\underline e^j{}_i$ is the  $n\times n$ matrix with a single nonzero entry 1 in the $i$-th row, $j$-th column, and zeros elsewhere.
+Then listing entries by consecutive rows
+$$
+\meqalign{
+\underline A
+&=
+\phantom{+}A^1{}_1 \underline e^1{}_1 + A^1{}_2 \underline e^2{}_1 + \cdots + A^1{}_n \underline e^n{}_1 
+      \quad&= \phantom{+} u^1 \underline E_1 + u^2 \underline E_2 + \cdots + u^n \underline E_n\\
+&\phantom{=} 
++A^2{}_1 \underline e^1{}_2 + A^2{}_2 \underline e^2{}_2 + \cdots + A^2{}_n \ul e^n{}_2 
+      \quad&\phantom{=}  +u^{n+1} \ul E_{n+1} + u^{n+2} \ul E_{n+2} + \cdots + u^{2n} \ul E_{2n}\\
+&\phantom{=+}  \vdots &\phantom{=+}  \vdots\\
+&\phantom{=} 
++A^n{}_1 \ul e^1{}_n + \cdots + A^n{}_n \ul e^n{}_n 
+      \quad&\phantom{=}  +u^{(n-1)n+1}\ul E_{(n-1)n+1} + \cdots + u^{n^2}\ul E_{n^2}
+}
+$$
+defines an isomorphism 
+$$
+\ul A \in V \longmapsto (u^1,\cdots,u^{n^2}) \in \mathbb R^{n^2}
+$$
+from the space of $n\times n$ matrices to $ \mathbb R^{n^2}$, mapping this basis onto the standard basis of that space. However, the original matrix notation is more useful because of matrix multiplication.
+
+(i) 
+If the dual basis is defined by $\omega^i{}_j(\ul e^m{}_n)=\delta^i{}_n \delta^m{}_j$, how are the components $A^i{}_j$ related to them? 
+
+(ii) 
+Show that the matrix product law $\ul e^i{}_j \ul e^m{}_n = \delta^i{}_n \ul e^m{}_j$ for the basis matrices extends by linearity to the usual index formulas for matrix multiplication 
+$[\ul A\, \ul B]^i{}_j = A^i{}_k B^k{}_j$.
+
+(iii) 
+Using the notation for trace $\Tr(\ul A)=A^i{}_i$ and transpose $[\ul A^T]{}^i{}_j = A^j{}_i$,
+and recalling the properties (rederive them by expressing in component form!)
+$$
+\Tr \ul A = \Tr \ul A^T\,,\quad  
+(\ul A \,  \ul B)^T = \ul B^T   \ul A^T \,,\quad
+\Tr \ul A \, \ul B = \Tr \ul B \, \ul A \,,
+$$
+define two inner products on $V$ by
+\begin{eqnarray*}
+G(\ul A , \ul B) 
+&=& \Tr \ul A^T \ul B
+ = \Tr \ul A\, \ul B^T =\dsum_{i,j=1}^n A^i{}_j B^i{}_j\,,
+\\
+\mathcal{G}(\ul A , \ul B)
+&=& \Tr \ul A\, \ul B
+ = A^i{}_j B^j{}_i \ .
+\end{eqnarray*}
+
+If we write $[\ul  A^T]^i{}_j = \delta_{jn}A^n{}_m\delta^{mi}$ in order to respect our index conventions, then 
+$$
+G(\ul A,\ul B)=[\ul A^T]^i{}_j B^j{}_i 
+=\delta_{jn}\delta^{mi}A^n{}_m B^j{}_i\,,
+$$
+and 
+$$
+G(\ul A,\ul B) 
+=\delta_{jn}\delta^{mi}A^n{}_m A^j{}_i
+=\dsum^n_{i,j=1}(A^j{}_i)^2
+=\mbox{sum of squares of all entries of matrix.}
+$$ 
+Thus $G$ corresponds to the usual dot product on $\mathbb R^{n^2}$ under the above correspondence. Make sure you understand this. Note that $\mathcal{G}(\ul A,\ul B)=G(\ul A^T,\ul B)$.
+
+(iv) 
+Suppose $\ul A =\ul A^T$ is symmetric and $\ul B =-\ul B^T$ is antisymmetric. Using the Euclidean property of positive-definiteness $G(A,A) \ge 0$, with $G(\ul A,\ul A)=0$  iff $\ul A=\ul 0$, then
+$$
+\mathcal{G}(\ul A,\ul A)=G(\ul A^T,\ul A)=G(\ul A,\ul A) \ge 0
+$$ 
+$$
+\mathcal{G}(\ul B,\ul B)=G(\ul B^T,\ul B)=-G(\ul B,\ul B) \le 0
+$$
+shows that $\sgn \ul A=1$, $\sgn \ul B=-1$ for all nonzero symmetric and antisymmetric matrices respectively. Use a similar argument to show that $\ul A$ and $\ul B$ are orthogonal with respect to both inner products.
+
+(v)
+Is the basis $\{e^j{}_i\}$ of $V$ orthogonal with respect to both inner products? Why?
+
+(vi) 
+The subspaces $\SYM(V)$ and $\ALT(V)$ of symmetric and antisymmetric matrices of $V$ are each vector subspaces (why?), and every matrix can be written uniquely in terms of its symmetric and antisymmetric parts
+$$
+\ul A =\underbrace{\SYM (\ul A)}_{\ds\equiv \frac 1 2(\ul A+\ul A^T)} 
++
+\underbrace{\ALT (\ul A)}_{\ds\equiv \frac 1 2(\ul A-\ul A^T)} \,.
+$$
+$V$ is said to be a ``direct sum" of these two vector subspaces. Their dimensions are 
+$$
+\dim(\SYM(V)) =\dsum^n_{i=1}i =n(n+1)/2 
+\,,\qquad
+\dim(\ALT(V)) = \left(\dsum^n_{i=1} i \right)-n =n(n-1)/2 \,.
+$$
+Why?
+
+%\FigureHere
+% figure 24
+
+\begin{center}
+\includegraphics[scale=0.3]{./figs/scan0024}
+\end{center}
+%\captionof{
+%The decomposition of a matrix into its symmetric and antisymmetric parts is orthogonal with respect to either inner product.
+%} 
+
+The maps $A\mapsto \SYM(A)$, $A\mapsto \ALT(A)$ are projection maps associated with this direct sum. They are orthogonal with respect to both inner products, in the sense that they project onto orthogonal subspaces. [Projection maps satisfy $P^2=P$, $Q^2=Q$,$PQ=QP=0$ for a pair $(P,Q)$ which projects onto a pair of subspaces in a direct sum total space.]
+
+(vii) 
+Make the following definitions using an inverted caret to indicate the antisymmetric unit vectors and a rounded one for the symmetric unit vectors
+$$
+\meqalign{
+\underline{\breve E}^i{}_j &= \Cases{\ul e^i{}_j\,, & $i=j$\,,\\
+                   2^{-1/2}(\ul e^i{}_j+\ul e^j{}_i)\,,& $i\ne j$\,,
+                   }
+\quad & 
+\breve A^i{}_j = \Cases{ A^i{}_j \,,& $i=j$\,,\\
+                  2^{-1/2}(A^i{}_j+A^j{}_i)\,,& $i\ne j$ \,,
+                   }  
+\\
+\underline{\check E}^i{}_j &= 2^{-1/2}(\ul e^i{}_j-\ul e^j{}_i)\,, \quad\ i\ne j\,, \quad 
+&\check A^i{}_j = 2^{-1/2}(A^i{}_j-A^j{}_i)\,,  \quad\ i\ne j\,.
+}                           
+$$
+Then 
+$$
+\ul A=A^i{}_j\ul e^j{}_i
+=\dsum_{i\le j}\underline{\breve A}{}^i{}_j  \underline{\breve E}{}^j{}_i
++ \dsum_{i<j}\underline{\check A}{}^i{}_j  \underline{\check E}{}^j{}_i
+$$
+shows that 
+$$
+\{\underline{\breve E}{}^j{}_i\}_{i\le j}\ \cup
+\{\underline{\check E}{}^j{}_i\}_{i < j}
+$$ 
+is a basis of $V$ adapted to the ``orthogonal" direct sum into symmetric and antisymmetric matrices. 
+
+Evaluate both inner products of the pairs 
+$(\underline{\check E}{}^j{}_i,\underline{\check E}{}^m{}_n)$,
+$(\underline{\breve E}{}^j{}_i,\underline{\breve E}{}^m{}_n)$,
+$(\underline{\check E}{}^j{}_i,\underline{\breve E}{}^m{}_n)$.
+
+What are the lengths of these basis vectors?
+
+What are their signs with respect to each inner product?
+
+What kind of basis is this with respect to either inner product?
+
+(viii) 
+If we introduce the vector index positioning by
+$$
+f = f^i{}_j\, \omega^j{}_i\,,\ f^i{}_j = f(\ul e^i{}_j)\,,
+\quad \omega^i{}_j(e^m{}_n)=\delta^i{}_n\delta^m{}_j \ \text{(duality)},
+$$
+then we can associate a vector $\ul F=f^i{}_j\ \ul e^j{}_i$ with each such covector. Show that
+$$
+f(\ul A) 
+= \Tr \ul F\, \ul A
+= \mathcal{G}(\ul F, \ul A),
+$$
+ i.e., $\ul F=f^{\sharp}$ with respect to $\mathcal{G}$.
+ 
+\bigskip
+\noindent
+\textbf{[Remark.} If we had instead used the notation
+$$
+f=f_i{}^j\omega^i{}_j\,,\quad 
+\omega^i{}_j(e^m{}_n)=\delta^i{}_n\delta^m{}_j\,,
+\ f_i{}^j=f(\ul e^j{}_i)
+$$
+we would have found instead 
+$$
+f(\ul A)= \Tr(\ul F^T \ul A)
+=G(\ul F, \ul A)
+$$ 
+if we let $\ul F=f_i{}^j\ul e^i{}_j$.
+We would have also used the alternate notation $\ul A=A^i{}_j\, e_i{}^j$ from the beginning, which would have resulted in further changes. It is important to realize that a choice of notation implies certain implicit choice not obvious at first. Even other choices $A=A_{ij}e^{ij}$ or $A=A^{ij}e_{ij}$ are possible.\textbf{]}
+
+(ix) 
+Suppose we define 
+$$
+H=H^i{}_j{}^m{}_n\,\omega^i{}_i\otimes \omega^n{}_m\,,
+\ H^i{}_j{}^m{}_n=H(e^i{}_j,e^m{}_n)
+$$ 
+for any $(^0_2)$-tensor over $V$. What are the components of $G$ and $\mathcal{G}$ using this notation?
+
+(x)
+$\mathcal{G}(\ul A,\ul B) =\Tr\ul A\, \ul B$ defines a $(^0_2)$-tensor. Why?
+ 
+For the same reason, for each positive integer $p$, the following defines a $(^0_p)$-tensor over $V$
+$$
+T^{(p)}(\kern-18pt
+\underbrace{\ul A,\ul B,\cdots,\ul C}_{\hbox{$p$ vector arguments}}
+\kern-18pt)
+=\Tr(\underbrace{\ul A\ \ul B\cdots\ \ul C}_{\hbox{$p$  factors}}) \,.
+$$ 
+$T^{(1)}$ is a covector. Express it in terms of the dual basis. Note that the cyclic property of the trace $\Tr \ul A \,\ul B\cdots \ul C\,\ul D=\Tr \ul B\cdots \ul C\,\ul D\,\ul A=\cdots$ implies certain symmetries of these tensors. This makes $T^{(2)}=\mathcal{G}$ symmetric.
+
+(xi) 
+If we define 
+$$
+D^{(p)}(\ul A,\ul B,\cdots,\ul C)
+= \det (\ul A\ \ul B\cdots\ \ul C)\,,
+$$ 
+is this a tensor? Why or why not?
+
+(xii) 
+Sketchy remark for your mathematical interest (just read for pleasure).
+
+The ``deWitt" inner product (Google it, or ``deWitt metric")
+$$
+\mathcal G_{\rm dW}(\ul A,\ul B)
+=\Tr\ul A\, \ul B - \Tr\ul A\, \Tr\ul B
+$$ 
+only differs from $\mathcal{G}=\Tr\ul A\, \ul B$ on the symmetric matrices since antisymmetric matrices have zero trace. (Why?) The symmetric matrices themselves may be decomposed into an offdiagonal subspace (again zero trace) and a diagonal subspace, while the diagonal subspace itself can be decomposed into the tracefree subspace and the 1-dimensional ``pure trace" subspace of multiples of the identity matrix
+$$
+\meqalign{
+\ul A&= \underbrace{\left(\frac 1n \Tr \ul A\right)\ul I} 
++
+\underbrace{\left[\ul A - \left(\frac 1 n \Tr \ul A\right)\ul I\right]}
+&=
+\underbrace{\dsum_{i=j}A^i{}_j\ul e^j{}_i}
+&+
+\underbrace{\dsum_{i\not = j}A^i{}_j\ul e^j{}_i} \\
+&\overset{(1)} = \ul A^{\rm trace}
+ \hskip30pt + \hskip20pt
+   \ul A^{\rm tracefree,\,sym} 
+&\overset{(2)} = \ul A^{\rm diagonal}
+&+
+\ul A^{\rm offdiagonal,\,sym} \\
+&\overset{(3)} = \underbrace{
+\ul A^{\rm trace}+\ul A^{\rm tracefree,\,diagonal}
+}
+&&+\ul A^{\rm offdiagonal,\,sym} \,.\\
+& \phantom{=} 
+\hskip 27pt {\scriptstyle(4)}\hskip 10pt
+\ul A^{\rm diagonal} &&
+}
+$$
+
+Each of these three decompositions (1), (2), (3) and the restriction (4) of the tracefree decomposition (1) to the diagonal matrices are orthogonal decompositions of the subspace of symmetric matrices with respect to $\mathcal{G}$ (which coincides with $G$ for symmetric matrices, but differs only in sign for the antisymmetric matrices), while the symmetric and antisymmetric matrices are orthogonal with respect to both $\mathcal{G}$ and $G$ so it extends to an orthogonal decomposition of $V$ itself. Anyway the new inner product $\mathcal G_{\rm dW}$ only differs from $G$ and $\mathcal{G}$ on the 1-dimensional subspace of pure trace matrices, which has a negative sign with respect to $\mathcal G$. ($G$ and $\mathcal{G}$ have all positive signs for symmetric matrices.)
+The basis
+$$
+\{\ul I\} \cup \{\ul e^i{}_i-{\textstyle\frac 1 n}\ul I\}_{i=1,\cdots ,n-1}
+$$ 
+is an orthogonal basis of 
+the diagonal subspace adapted to this pure trace/tracefree decomposition, which has only one basis vector with a negative sign. Such inner products where the orthonormal bases have only one negative sign are called \emph{Lorentzian} (like 4-dimensional flat Minkowski spacetime).
+
+Without pursuing the details, you can see that just pushing on some simple familiar properties of matrices leads to an extremely rich structure complete with geometry. In fact the space of symmetric matrices with a nonzero determinant is an open subspace of the set of all symmetric matrices and may be interpreted as a ``curved space" of all possible (symmetric) inner products on $\mathbb R^n$. This turns out to play a key role in the structure of the complicated nonlinear couple partial differential equations of general relativity called Einstein's equations, since the metric (inner product on the tangent space at each spacetime point) is the field variable that must be determined by those equations.
+\end{pro}
+
+If you really like mathematics, you can see that by properly recognizing mathematical structure and adapting notation to it, one can create out of nothing a beautiful area of geometry---which in fact is not just idle games playing but often has important applications in physical science. On the other hand, sweeping the structure under the rug in order to arrive immediately at calculational algorithms (as unfortunately we must in a one semester linear algebra course) completely hides this structure and the ``beauty."  Our goal is simply to begin to appreciate how this can be uncovered and see how it applies to the geometry of ``curved spaces," which itself has enormous importance in the physical sciences.
+
+
+
+\begin{pro}\label{exercise:projectionsinR3}\textbf{projections in $\mathbb{R}^3$ and $\mathbb{M}^4$}
+
+a)
+Let $\ul{n}=(n^a)$ be a fixed unit vector in $\mathbb{R}^3$: $\delta_{ab} n^a n^b=(n^1)^2+(n^2)^2+(n^3)^2=1$,
+with $\ul{n}^T = (n_a)$ and $n_a=\delta_{ab}n^b = n^a$.
+ Define the projection matrix $\ul{P}^{||}=(n^a n_b)$ along this direction, and the orthogonal projection $\ul{P}^{\bot}=\ul{I}-\ul{P}^{||} =(\delta^a{}_b -n^a n_b)$.
+Show that $\ul{P}^{||}$ and $\ul{P}^\bot$ separately satisfy the projection property and that their product in either order is the zero matrix.
+Then 
+$$
+\ul{v} =   \underbrace{\ul{P}^{||} \, \ul{v}}_{\displaystyle \ul{v}^{||}} 
+         + \underbrace{\ul{P}^\bot\, \ul{v}}_{\displaystyle \ul{v}^{\bot}}
+   = (\ul{v}\cdot \ul{n}) \ul{n} + (\ul{v}-  (\ul{v}\cdot \ul{n}) \ul{n})
+$$
+represents the orthogonal decomposition of any vector parallel to and perpendicular to the given direction specified by the unit vector $\ul{n}$.
+
+b)
+Clearly these formulas apply to any $\mathbb{R}^n$ with the usual dot product. They can be generalized to any signature inner product by including the sign of the self-dot product $n^kn_k=\pm1$ of the unit vector specifying the direction.
+Show that 
+$$
+(\ul{P}^{||})^i{}_j =  \frac{n^i n_j}{n^kn_k} \,\
+(\ul{P}^{\bot})^i{}_j = \delta^i{}_j -\frac{n^i n_j}{n^kn_k}
+$$
+are the components of mutually orthogonal projection operators.
+
+c)
+For a Lorentzian spacetime timelike directions have a negative sign in these formulas. Given a unit timelike vector $u\cdot u =-1$, its parallel projection picks out the timelike part of a vector with respect to an observer whose world line is aligned with $u$, while its orthogonal complement projection projects out the spacelike part belonging to what is called the ``local rest space" associated with this observer. The projection matrices then become
+$$
+(\ul{P}^{||})^i{}_j =  -{u^i u_j} \,\
+(\ul{P}^{\bot})^i{}_j = \delta^i{}_j +{u^i u_j} \,.
+$$
+For a unit vector in $\mathbb{M}^4$ of the form $u = \langle \cosh\alpha,\sinh\alpha\, n^a\rangle, a=1,2,3$, where $n\cdot n = \delta_{ab}n^an^b=1$ is a spacelike unit vector, evaluate the two projections of a general vector $X = \langle X^0,X^a\rangle$.
+
+\end{pro}
+
+
+\begin{pro}\label{exercise:GramSchmidt}\textbf{Gram Schmidt diagonalization}
+
+The orthogonal projection process with respect to a single direction can be iterated to achieve an orthogonal direct sum of 1-dimensional subspaces and an associated orthonormal basis.
+For any nondegenerate inner product on a vector space $V$, given a basis consisting of vectors with nonzero length, one can always construct an orthogonal basis with respect to that inner product by a simple algorithmic procedure called the Gram-Schmidt procedure of orthogonalization, which can then be normalized to make an orthonormal basis. This procedure depends on the order of the vectors. 
+
+One keeps the first vector in the set, and then projects the second vector orthogonally to the first vector to get an orthogonal vector to replace the second vector, but the span of the two vectors is still the same. Next one takes the third vector and projects it orthogonally to the plane of the first two vectors by removing its vector projections along each of the first two vectors already obtained to obtain a third vector orthogonal to the plane of the first two as the third vector in the new set. One continues until the last vector has been replaced in this manner. The result is a set of linearly independent orthogonal vectors since at each step we took linearly independent combinations of the previous vectors to obtain the next vector. Provided all these vectors have nonzero lengths, we can normalize them by dividing each by its length. In the indefinite-case we have some complications, but then we also get something new when we encounter null vectors in this process.
+
+To illustrate this procedure consider the three columns of the upper triangular matrix
+$$
+    \underline{M} 
+= \begin{pmatrix} 1 & 1 & 1\\ 0 & 1 & 1\\ 0 & 0 & 1
+\end{pmatrix} =\langle \underline{m}_1,\underline{m}_2, \underline{m}_3\rangle \,,
+$$
+considered as (obviously linearly independent) vectors in $\mathbb{R}^3$, 
+first ordered left to right, then ordered right to left. 
+Their inner products are
+$$
+ ( m_i \cdot m_j) = \ul{M}^T \ul{M} = \begin{pmatrix} 1 & 1 & 1\\ 1 & 2 & 2\\ 1 & 2 & 3
+\end{pmatrix}\,.
+$$
+
+Using the notation 
+$$
+{\rm proj}_u v = (v\cdot \hat u) \hat u = \frac{(v\cdot u)}{(u\cdot u)}u
+$$ 
+for the projection of $v$ along $u$, then $v - {\rm proj}_{u} v$ is the projection orthogonal to $u$. We start by keeping $e_{1'}=m_1 = \langle 1,0,0\rangle$, which is already a unit vector. Then we calculate 
+$$
+e_{2'} = m_2 - {\rm proj}_{e_{1'}} m_2 
+ = \langle 1,1,0\rangle -(\langle 1,1,0\rangle \cdot \langle 1,0,0\rangle ) \langle 1,0,0\rangle
+ = \langle 0,1,0\rangle \,.
+$$ 
+Finally we calculate
+\begin{align*}
+e_{3'} &= m_3 - {\rm proj}_{e_{1'}} m_3   - {\rm proj}_{e_{2'}} m_3 
+\\
+&= \langle 1,1,1\rangle 
+  -(\langle 1,1,1\rangle \cdot \langle 1,0,0\rangle ) \langle 1,0,0\rangle 
+  -(\langle 1,1,1\rangle \cdot \langle 0,1,0\rangle ) \langle 0,1,0\rangle
+= \langle 0,0,1\rangle \,.
+\end{align*}
+Well, this was too simple: the vectors ended up already unit vectors, and in fact we returned to the standard orthonormal basis of $\mathbb{R}^3$.
+
+a) Now try it in the reverse order: $\langle 1,1,1\rangle$, $\langle 1,1,0\rangle$, $\langle 1,0,0\rangle$.
+ Then let $e_{i'} = B^j{}_i e_j$ be the resulting orthogonal vectors, and let $e_{i''} = P^j{}_i e_j$ be the resulting orthonormal vectors, expressed in terms of the standard basis. Since both $\{e_i\}$ and $\{e_{i''}\}$ are orthonormal bases, the matrix $\underline{P}$ must be an orthogonal matrix. We already know that its columns are mutually orthogonal unit vectors. Check that its rows are also mutually orthogonal unit vectors by evaluating $\underline{P}\,
+\underline{P}^T =\underline{I}$.
+
+b) Evaluate the relatively simple looking matrix $\underline{G}=\underline{M}^T \underline{I}\,\underline{M}$ of inner products of the basis $m_i$. What happens when you try to find the exact eigenvectors of $\underline{G}$ with technology in order to diagonalize this matrix? You quickly see that you must numerically approximate them, and you can show that the numerical approximations to the eigenvectors are orthogonal to a high degree of approximation, the error due to the numerics in the approximation process of finite digit math (and hence these eigenvectors can be normalized to make the choice of eigenvectors orthonormal). If $\underline{G}$ were the matrix of some other interesting quantity like a moment of inertia tensor, then we would be limited to using orthogonal transformations to diagonalize it (in order to apply laws of physics which are simple in orthonormal Cartesian coordinates) and these would be the unique principal axes associated with that tensor. However, if we are only trying to find an orthonormal basis of the space starting from the original non-orthonormal basis, then the Gram-Schmidt process applied to all six orderings of the original three vectors easily leads to orthonormal bases which not only diagonalize the matrix $\underline{G}$ of inner products but make it equal to the identity matrix. The big difference is that the eigenvalue problem treats the matrix $\ul{M}$ as the components of a $({}^1_1)$-tensor, while the orthonormalization of the original vectors treats it as a $({}^0_2)$-tensor. This tells us that in the eigenvalue problem with a symmetric matrix, there is more going on, since it requires the usual dot product to rethink it as the components of a mixed tensor and therefore of a linear transformation. In fact the symmetric moment of inertial tensor in the rigid body problem we will encounter later, is actually the matrix of a linear transformation from the angular velocity vector to the angular momentum vector. In other words a symmetric linear transformation requires both a linear transformation and an inner product to describe. 
+
+\end{pro}
+
+\paragraph{Fact}
+
+Any real symmetric matrix can (in principle) be diagonalized by the eigenvector approach with all real eigenvalues and orthogonal eigenvectors, which can be chosen to be normalized and therefore orthonormal. When the eigenvalues are distinct, the diagonalizing transformation is unique up to reflections and permutations of the orthogonal axes.
+
+\paragraph{Explanation}
+
+A simple derivation shows that the eigenvalues have to be real. Letting $\ul{\ol{x}}$ be the complex conjugate of an eigenvector $\ul{x}$, and using the symmetry $\ul{A}^T=\ul{A}$ and reality $\ul{\ol{A}}=\ul{A}$ properties, one sees from the eigenvalue condition and its complex conjugate
+\begin{align*}
+&\ul{\ol{x}}^T \left[ \ul{A}\,\ul{x}=\lambda \ul{x} \right] 
+\rightarrow
+  \lambda\, \ul{\ol{x}}^T \ul{x} = \ul{\ol{x}}^T \ul{A}\, \ul{x} \,,
+\\ 
+&\left[ \ul{A}\,\ul{\ol{x}} = \ol{\lambda} \ul{\ol{x}} \right]^T \ul{x}
+\rightarrow
+  \ol{\lambda}\, \ul{\ol{x}}^T \ul{x} 
+   = (\ul{A}\, \ul{\ol{x}})^T \ul{x} 
+   = \ul{\ol{x}}^T \ul{A}^T  \ul{x} 
+   = \ul{\ol{x}}^T \ul{A}\, \ul{x} 
+\,,
+\end{align*}
+and by subtraction
+$$
+ 0 = (\ol{\lambda}-\lambda) \ul{\ol{x}}^T \ul{x} 
+   = (\ol{\lambda}-\lambda)\delta_{ij} \ol{x}{}^i x^j 
+   = (\ol{\lambda}-\lambda) \dsum_{i=1}^n |x^i|^2 \,,
+$$
+which forces $\ol{\lambda}=\lambda$ since $\ul{x}$ must be a nonzero vector. Orthogonality of eigenvectors $\ul{x}_1,\ul{x}_2$ associated with distinct eigenvalues $\lambda_1\neq \lambda_2$ is a similar short computation
+\begin{align*}
+&\ul{x}_2^T \left[ \ul{A}\,\ul{x}_1 =\lambda_1 \ul{x}_1 \right] 
+\rightarrow
+  \lambda_1\, \ul{x}_2^T \ul{x}_1 = \ul{x}_2^T \ul{A}\, \ul{x}_1 \,,
+\\ 
+&\left[ \ul{A}\,\ul{x}_2 = \lambda_2 \ul{x}_2 \right]^T \ul{x}_1
+\rightarrow
+  \lambda_2\, \ul{x}_2^T \ul{x}_1 
+   = (\ul{A}\, \ul{x}_2)^T \ul{x}_1 
+   = \ul{x}_2^T \ul{A}^T  \ul{x}_1 
+   = \ul{x}_2^T \ul{A}\, \ul{x}_1 
+\,,
+\end{align*}
+and again by subtraction
+$$
+0=(\lambda_1-\lambda_2)\, \ul{x}_2^T \ul{x}_1 
+ =(\lambda_1-\lambda_2)\, \ul{x}_2 \cdot \ul{x}_1 
+$$
+but since the eigenvalues are distinct it follows that the dot product of the eigenvectors must be zero, i.e., the eigenvectors must be orthogonal. Here we introduced the standard dot product on $\mathbb{R}^n$, which defines the orthogonality properties.
+
+For degenerate eigenvalues, one can choose an orthogonal basis of the eigenspace, so that one can get an orthogonal basis of eigenvectors, which can then be normalized to an orthonormal basis, and hence can be obtained from the standard basis by an orthogonal matrix.
+
+If the eigenvalues of the original matrix are unique, then the orthonormal frame of eigenvectors is fixed up to reflections of each eigenvector. When an eigenvalue is repeated, its eigenspace allows any choice of orthonormal frame in that subspace.
+
+
+%\FigureHere
+% figure 16a
+
+\begin{figure}[h] 
+\typeout{*** EPS figure 16a}
+\begin{center}
+\includegraphics[scale=0.4]{./figs/figellipticalparaboloid2d}\quad
+\includegraphics[scale=0.4]{./figs/figellipticalparaboloid3d}
+\end{center}
+\caption{
+Left: the gradient of a quadratic form function is a linear vector field whose directionfield is perpendicular to the level curves of the function in the plane. Right: a plot of the graph rotated so that its principal axes (the eigenvectors of the quadratic form coefficient matrix, rotated from the Cartesian axes) are aligned with the Cartesian coordinate axes. The elliptical and parabolic cross-sections are shown through its representation as a parametrized surface.
+} 
+\label{fig:16a}
+\end{figure}
+
+\begin{pro}\label{exercise:R2-2nddertest}\textbf{second derivative test}
+
+Consider the function
+$$
+f(x^1,x^2)
+   =\frac12 \left(8 (x^1)^2-4 x^1 x^2 +5 (x^2)^2\right) 
+   =\frac12 M_{ij}x^i x^j \,, \qquad
+\underline{M} = \begin{pmatrix} 8 & -2\\ -2 & 5\end{pmatrix} \,,
+$$
+which is a quadratic form in the two variables $x^1,x^2$ with an obvious critical point at the origin. Figure~1.18 \typeout{hard ref}%
+shows the contour plot of this function, together with its gradient vector field, and the plot of the function with respect to rotated axes aligned with the semiaxes of its elliptical level curves.
+
+a) Confirm that $\underline{M}$ is the constant symmetric second derivative matrix for this function.
+
+b) Find the eigenvalues $\lambda_1,\lambda_2$ and eigenvectors of this matrix, normalize the eigenvectors to obtain an orthonormal basis $\{b_1,b_2\}$ (order them so the second is obtained from the first by a 90 degree rotation in the counterclockwise direction) with associated orthogonal matrix $\underline{B}=\langle \underline{b}_1|\underline{b}_2\rangle$, and use this new basis to change to new orthonormal coordinates in which the second derivative matrix is diagonal. 
+What is the angle of rotation of the axes?
+Re-express the function in terms of the new coordinates confirming that it takes the form
+$$
+f(x^1,x^2) = g(x^{1'},x^{2'})=\frac12 [\lambda_1 (x^{1'})^2 + \lambda_2(x^{2'})^2]
+$$
+and re-evaluate the new second derivative matrix directly and also by the transformation law 
+$\underline{M}'=\underline{B}^T \underline{M}\,\underline{B}$, which implies 
+$\det\underline{M}'=(\det\underline{B})^2 \det\underline{M}=\det\underline{M}$ (since for an orthogonal matrix, 
+$(\det\underline{B})^2=\det(\underline{B}\underline{B}^T)=\det\underline{I}=1$). Expressed in terms of partial derivatives in multivariable calculus notation using $(x,y,z)$, this says that $f_{xx} f_{yy}-f_{xy}^2 = g_{x'x'}g_{y'y'}$. In the new axes both these second partial derivatives (the eigenvalues) are positive indicating a local minimum at the origin in each new coordinate direction,  so since $g_{x'y'}=0$, it is easy to see that this must be a local minimum in all directions.
+
+c) Now let's simplify the problem by working in the new coordinates, dropping primes, and reverting to the multivariable calculus notation
+$$
+  g(x,y)=\frac12\left( 9 x^2 + 4 y^2 \right) \,.
+$$
+The right hand side of Figure~1.18 shows the graph of this function with respect to the rotated axes.
+Each vertical cross-section of the graph of $g$ by a vertical plane through the $z$ axis is a parabola, while each horizontal plane cross-section is an ellipse, so this is an elliptic paraboloid. We can make a clever parametrization of both the parabolas and ellipses at once by introducing deformed polar coordinates in the new axes by substituting 
+$(x,y)=(2\rho\cos\phi,3\rho\sin\phi)$ into $g$ to get the graph $z=g(2\rho\cos\phi,3\rho\sin\phi)=36 \rho^2$, so the position vector of a point on the graph of $g$ can be represented in the form
+$$
+ \vec r(\rho,\phi) = \langle 2\rho \cos\phi,3\rho \sin\phi, 18 \rho ^2\rangle \,.
+$$
+Notice that if we compare the horizontal part of this position vector with polar coordinates in the plane
+$$
+  (r\cos\theta,r\sin\theta)=(2\rho\cos\phi,3\rho\sin\phi)
+$$
+one finds 
+$$
+  \frac{y}{x} = \tan\theta =\frac32 \tan\phi \,,
+$$
+so $\phi$ does not agree with the polar coordinate angle $\theta$ of the projection to the $x$-$y$ plane (or the cylindrical coordinate angle $\phi$) except where the tangent is zero or plus or minus infinity, which occurs along the $x$ and $y$ axes where either angle is some integer multiple of $\pi/2$.
+
+This is an example of a parametrized surface. Varying independently the two parameters $\rho$ and $\phi$ sweeps out the surface. Varying one at a time traces out the elliptical and parabolic cross-sectional curves.
+In particular, letting $\rho =\rho _0, \phi=t$ parametrizes the elliptical cross-sectional curves at constant $z_0=18 \rho_0^2$, while $\rho =t, \phi=\phi_0$ parametrizes the parabolic cross-sections in the direction making an angle $\theta$ with the $x$ axis satisfying $\tan\theta =3/2 \tan\phi_0$.
+
+We can use the following formula from multivariable calculus to calculate the curvature of a parametrized space curve applied to each of these parametrized curves (here the prime denotes differentiation)
+$$
+ \kappa(t) =\frac{|| \vec r\,'(t)\times \vec r\,''(t)||}{||\vec r\,'(t)||^{3}} \,.
+$$
+Use this for the ellipses first and the parabolas second.
+For the ellipses, plot the curvature as a function $t$, $0\le t\le 2\pi$ for $\rho_0=1/3$, noting extrema at the minor and major axes of the ellipse. For the parabolas, plot the curvature as a function $\phi_0$, $0\le \phi_0\le 2\pi$ for $t=0,1/3$, again noting extrema at the minor and major axes of the ellipse.
+
+d)
+The two tangent vectors $r'(t)$ for each such parametrized ellipse and parabola 
+are just the partial derivatives of the position vector:
+$$
+  \vec r_1(\rho,\phi) =\pd{\vec r}{\rho}(\rho,\phi)\,,\quad
+  \vec r_2(\rho,\phi) =\pd{\vec r}{\phi}(\rho,\phi)\,.
+$$
+Evaluate the matrix of their inner products and
+show that these two tangent vectors are orthogonal only along the minor and major axes of the ellipses.
+
+e) 
+Evaluate the normal vector 
+$\vec N(\rho,\phi) =  \vec r_1(\rho,\phi) \times   \vec r_2(\rho,\phi)=|\vec N(\rho,\phi)| \hat n(\rho,\phi) $
+and its length $|\vec N(\rho,\phi)|  $ and direction $\hat n(\rho,\phi)$. Evaluate numerically the double integral of the length for the parameter range $0\le \rho\le 1/3$, $0\le \phi\le 2\pi$. Later we will see that this is the surface area of this surface below the plane $z=2$.
+
+\end{pro}
+
+\subsection{Cute fact (an aside for your reading pleasure): geometric interpretation of index lowering on vectors}
+
+The relationship between a vector and covector determined by the Euclidean metric has a cute geometric interpretation. Consider the case of  $\mathbb R^2$. The unit circle (all vectors of length 1) tells us everything we need to know about the Euclidean geometry of the metric tensor. The following identity tells us self-inner products are enough to recover all inner products
+\begin{eqnarray}
+&&  G(X+Y,X+Y) = G(X,X) + G(Y,Y) + 2 G(X,Y) 
+\nonumber\\
+&& \qquad \rightarrow 
+G(X,Y) =\frac12 [G(X+Y,X+Y) - G(X,X) - G(Y,Y)] \,.
+\nonumber
+\end{eqnarray}
+The self-inner product is a ``quadratic form" in the same language that calls a linear function (covector) a ``linear form."
+Thus if we know the set of all vectors with unit length, we can determine the length of all multiples of these unit vectors. The unit circle (or the unit sphere in higher dimensions) is therefore the nonlinear analogue  of the line (or plane or hyperplane plane in  higher dimensions) of vectors $X$ satisfying $f(X)=1$ for a covector $f$, which can be taken as a representative set in the vector space to visualize the quadratic form. This geometry can be extended to visualize geometrically the relationship between a covector and a vector.
+
+%\FigureHere
+% figure 17
+
+%\begin{figure}[h] 
+%\typeout{*** EPS figure 17}
+%\begin{center}
+%\includegraphics[scale=0.3]{./figs/scan0017.ps}
+%\end{center}
+%\caption{
+%A unit circle in a plane.
+%} 
+%\label{fig:17}
+%\end{figure}
+
+%\FigureHere
+% figure 18
+
+\begin{figure}[t] 
+\typeout{*** EPS figure 18}
+\begin{center}
+%\includegraphics[scale=0.3]{./figs/scan0018.ps}
+\includegraphics[scale=0.5]{./figs/figvector2covectorcircle}
+\end{center}
+\caption{
+The geometric construction in the plane $\mathbb{R}^2$ showing how the pair of lines representing the covector $v^\flat$  associated with a vector $v$ are determined geometrically by the unit circle of the dot product. Revolving this diagram around the vector $v$ (while leaving the vector $u$ fixed) leads to a tangent cone about the unit sphere, with their intersection now a circle contained in a plane which is the plane $v^\flat(x)=1$ corresponding to the line segment $BC$ revolved around $v$. The parallel plane through the origin completes the pair of planes to represent the covector $v^\flat$ geometrically.
+} 
+\label{fig:18}
+\end{figure}
+
+Suppose $v=\overrightarrow{OA}$ is a vector with length bigger than 1 as in Fig.~\ref{fig:18}. Draw in the tangents $AB$ and $AC$ to the unit circle and connect the points of tangency $B$ and $C$, letting $D$ be the intersection of ${BC}$ with $OA$. By symmetry the line segment $OA$ is the angle bisector of angle $BAC$ and the bisector of the opposite side of the isoceles triangle $\triangle ABC$, to which it is perpendicular.
+Note that the  right triangles $\triangle ABO$ and $\triangle BDO$ are similar.
+Then from the right triangle $\triangle ABO$, since the hypotenuse has length $||v||$, one has $\sin\theta=1/||v||$, 
+and from the right triangle  $\triangle BDO$, since the side has unit length, one has $\sin\theta=|OD|/1$. Equating this shows that 
+the $|OD|=1/||v||$, namely the line $BC$ is the level curve $v^\flat(x)=1$ associated with the index-lowered covector $v^\flat$ with the same components as the original vector according to our general discussion above.
+Draw a  line parallel to ${BC}$ through the origin. Then these two parallel lines represent the covector $v^{\flat}=G(\ ,v)$, since their separation is the reciprocal of the length of $v$, and they are orthogonal to $v$. If we have another vector $u$, then the value of the metric on the pair
+$$
+G(u,v)=v^{\flat}(u) = v \cdot u
+$$
+is the number of ``layers" of $v^{\flat}$ pierced by $u$, which is about 2.5 in the diagram. This picture can be extended to the case $||v|| < 1$ by inversion.
+Thus we get a nice geometrical way to associate $v^\flat$ with $v$ and with its evaluation on another vector  $u$ using the geometry associated with the usual dot product.
+
+
+%\FigureHere
+% figure 19
+
+\begin{figure}[t] 
+\typeout{*** EPS figure 19}
+\begin{center}
+%\includegraphics[scale=0.3]{./figs/scan0019.ps}
+\includegraphics[scale=0.5]{./figs/figvector2covectorellipse}
+\end{center}
+\caption{
+The same construction with an ellipse determines the pair of lines representing the index-lowered covector $v^\flat =G(\ ,v)$ associated with a vector $v$ in a general positive-definite inner product.
+} 
+\label{fig:19}
+\end{figure}
+
+\begin{Remark}
+Does the same scheme work for any ``positive definite" inner product on $\mathbb R^2$? Such an inner product has the following form
+$$
+G = \underbrace A_{\displaystyle G_{11}} \omega^1\otimes \omega^1
+   + \kern-10pt \underbrace B_{\displaystyle G_{12}=G_{21}} \kern-10pt 
+    (\omega^1\otimes \omega^2+\omega^2\otimes \omega^1)
+   +\underbrace C_{\displaystyle G_{22}} \omega^2\otimes \omega^2 
+\,, 
+$$
+where positive-definiteness requires that
+$$
+ A > 0,\ C > 0,\ AC-B^2=\det\ul{G}>0 \,.
+$$
+ Letting $X=\langle x,y\rangle$, the ``unit circle" for this metric of all vectors with length 1 
+$$
+1=G(X,X)=Ax^2+2Bxy+Cy^2
+$$
+is now an ellipse centered at the origin. The condition $AC-B^2>0$ guarantees that this is indeed an ellipse.
+However, exactly the same tangent construction shown in Fig.~\ref{fig:19} continues to determine the 2 lines which represent the index lowered vector $v^\flat$ in terms of the original vector $v$. Thus the ``unit circle" in the new geometry continues to contain all the geometrical information contained in the corresponding inner product. For higher dimensions the corresponding ``unit sphere" or ``unit hypersphere" construction of the usual dot product becomes an ellipsoidal surface for a more general positive-definite inner product, which again contains all the geometrical information necessary to determine the inner product with which it is associated.
+\end{Remark}
+
+%\FigureHere
+% figure 20
+
+\begin{figure}[h] 
+\typeout{*** EPS figure 20}
+\begin{center}
+\includegraphics[scale=0.3]{./figs/scan0020}
+\end{center}
+\caption{
+The same construction with an sphere in $\mathbb{R}^3$ (revolve the circle construction around the axis from the tip of the vector to the center of the circle to justify it).
+} 
+\label{fig:20}
+\end{figure}
+
+This also works with the unit ``hypersphere" in $\mathbb R^n$ with the usual dot product except one has a tangent ``hypercone" with an $(n-2)$-sphere of tangency through which passes a hyperplane orthogonal to $v$. Together with the parallel hyperplane through the center of the hypersphere (the origin $O$), we get the representation of the covector $v^{\flat}$ and its value on another vector $u$ in terms of the number of layers pierced.
+Thus the unit hypersphere can ``represent" an inner product, which is a symmetric positive-definite $(^0_2)$-tensor. For an indefinite inner product, spheres become ``pseudo-spheres" (some kind of higher dimensional hyperbolic hypersurfaces). The ``degenerate'' (zero determinant component matrix) symmetric $(^0_2)$-tensors have hypercylinder representations, etc. We don't need these geometric interpretations, but sometimes they can be useful, and it is important to realize that the abstraction of tensors and their mathematics is very closely connected to concrete visualizable geometry.
+
+
+\begin{pro}\label{exercise:R2tensortransform}\textbf{visualizing positive-definite inner products for the plane}
+
+%\FigureHere
+% figure 21
+
+\begin{figure}[h] 
+\typeout{*** EPS figure 21}
+\begin{center}
+\includegraphics[scale=0.3]{./figs/figrotatebasis45}%scan0021.ps}
+\qquad
+\includegraphics[scale=0.6]{./figs/fig0022}
+\end{center}
+\caption{
+Left: a rotation of the natural basis of $\mathbb{R}^2$ counterclockwise by 45 degrees.
+Right: the principal axes of the ellipse associated with $H$ are rotated by 45 degrees with respect to the Cartesian axes associated with the natural basis.
+} 
+\label{fig:21}
+\end{figure}
+
+The orthogonal matrix
+$\underline B = \ds\frac 1{\sqrt 2}
+\begin {pmatrix}
+1 & -1 \\
+1 &  1
+\end {pmatrix}
+$  represents an active counterclockwise rotation of the plane by $45^{\circ}$. Its inverse
+$\underline A = \ul{B}^{-1} = \ul{B}^T
+=
+\ds\frac 1{\sqrt 2}
+\begin {pmatrix}
+1  &   1 \\
+-1 &  1
+\end {pmatrix}
+$
+is the matrix of the associated coordinate transformation for the components of vectors with respect to the new basis vectors $\langle e_{1'},e_{2'}\rangle= \langle \ul{b}_1,\ul{b}_2\rangle=\ul{B}$ which result from the active rotation of the standard basis vectors.
+
+The Cartesian coordinates are the standard dual basis $x=\omega^1$, $y=\omega^2$, so  the change of basis
+\begin{align*}
+\omega^{i'}
+=A^{i}{}_j\ \omega^j\ 
+    \longleftrightarrow
+\begin {pmatrix}
+\omega^{1'} \\
+\omega^{2'}
+\end{pmatrix} 
+&=\underline A
+\begin {pmatrix}
+\omega^1 \\
+\omega^2
+\end{pmatrix}
+=\frac 1{\sqrt 2}
+\begin {pmatrix}
+1  &   1 \\
+-1 &  1
+\end {pmatrix}
+\begin {pmatrix}
+\omega^1 \\
+\omega^2
+\end{pmatrix} 
+=
+\begin {pmatrix}
+(\omega^1+\omega^2)/{\sqrt 2} \\
+(-\omega^1+\omega^2)/{\sqrt 2}
+\end{pmatrix}
+\\
+e_{i'}=  e_j A^{-1\,j}{}_i\ 
+   \longleftrightarrow
+\begin {pmatrix}
+e_{1'} &
+e_{2'}
+\end{pmatrix} 
+&=
+\begin {pmatrix}
+e_1 &
+e_2
+\end{pmatrix}
+\underline A^{-1}
+=\begin {pmatrix}
+e_1 &
+e_2
+\end{pmatrix}
+\frac 1{\sqrt 2}
+\begin {pmatrix}
+1  &  -1 \\
+1 &  1
+\end {pmatrix}\\
+&=
+\begin {pmatrix}
+\ds\frac{(e_1+e_2)}{\sqrt 2} &
+\ds\frac{(e_1-e_2)}{\sqrt 2}
+\end{pmatrix}
+\end{align*}
+corresponds to the Cartesian coordinate change
+$$
+\begin {pmatrix}
+x{'} \\
+y{'}
+\end {pmatrix}
+=\underline A
+\begin {pmatrix}
+x \\
+y
+\end {pmatrix}
+=
+\begin {pmatrix}
+(x+y)/{\sqrt 2} \\
+(-x+y)/{\sqrt 2} 
+\end{pmatrix} \,.
+$$
+
+Consider the symmetric tensor $H=H_{ij}\,\omega^i\otimes \omega^j$ and the mixed tensor 
+$L = L^i{}_j e_i\otimes \omega^j $ with the same matrix of components 
+$\underline H
+= 
+\begin {pmatrix}
+ 3/2   &   1/2 \\
+ 1/2   &   3/2 
+\end{pmatrix} 
+=\ul{L}
+\,.
+$
+
+(i) 
+Verify that the change of basis leads to 
+$$
+\underline H '=
+\underline A^{-1T} \underline H\, \underline A^{-1}
+=
+\begin {pmatrix}
+ 2   &   0 \\
+ 0   &   1 
+\end{pmatrix}
+\,,\qquad
+\underline L '=
+\underline A \underline H\, \underline A^{-1}
+=
+\begin {pmatrix}
+ 2   &   0 \\
+ 0   &   1 
+\end{pmatrix}
+\,,
+$$ 
+i.e., diagonalizes $\underline H =\ul{L}$, while not changing the Euclidean inner product $G$ :
+$$
+\underline G '=\underline A^{-1T} \underline I\, \underline A^{-1}
+=\ul{A}\, \ul{A}^{-1}
+=\underline I \,,
+$$
+which are consequences of the orthogonality condition $\ul{A}^{-1}=\ul{A}^T$ or equivalently  $\ul{A}^{-1T}=\ul{A}$.
+
+(ii) 
+Compute the magnitude of $H$ in each basis (computing the magnitude with $\underline G$).
+
+(iii) 
+$H$ may itself define an inner product. Its ``unit circle" is an ellipse defined by the equation
+$$
+1=H(\langle x,y\rangle,\langle x,y\rangle)=\frac12 (3x^2+3y^2+2xy)
+=2(x')^2+(y')^2 \,,
+$$
+whose semiaxes are 1 and $1/\sqrt 2$.
+Note that we can introduce orthonormal coordinates with respect to this new inner product by scaling the new basis by the diagonal scaling matrix
+$$
+\begin{pmatrix} x''\\ y''\end{pmatrix} 
+=\begin{pmatrix}\sqrt{2}&0\\0&1\end{pmatrix}
+  \begin{pmatrix} x'\\ y' \end{pmatrix}
+\,,\qquad 
+\ul{H}'' = \begin{pmatrix}\ds\frac{1}{\sqrt{2}}&0\\0&1\end{pmatrix} 
+              \ul{H}'\, \begin{pmatrix}\ds\frac{1}{\sqrt{2}}&0\\0&1\end{pmatrix}
+         = \ul{I}\,,
+$$ 
+which then leads to the standard equation of a unit circle in the new coordinates.
+This can be used to check the geometric construction that interprets the covector related to the original vector by index lowering, but with respect to the new inner product. If you had more time, maybe you would do this.
+
+iv)
+Note that the final change of basis has no effect on the matrix $\ul{L}'$ since diagonal matrices commute
+$$
+  \ul{L}'' =  \begin{pmatrix}\ds\frac{1}{\sqrt{2}}&0\\0&1\end{pmatrix}^{-1} 
+              \ul{L}'\, \begin{pmatrix}\ds\frac{1}{\sqrt{2}}&0\\0&1\end{pmatrix}
+         = \ul{L}'\,.
+$$
+Thus different geometrical interpretations of the same symmetric matrix to which we apply the eigenvector algorithm leads to different final outcomes because the matrix transforms differently because of those different geometrical interpretations, once we go beyond the orthogonal transformations which are sufficient to diagonalize it.
+
+\end{pro}
+
+%\FigureHere
+% figure 22b
+%
+%\begin{figure}[h] 
+%\typeout{*** EPS figure 22b}
+%\begin{center}
+%\includegraphics[scale=0.4]{./figs/figcovectorcircle}\quad
+%\includegraphics[scale=0.4]{./figs/figcovectorellipse}
+%\end{center}
+%\caption{
+%The circle construction in the orthonormal coordinates with respect to the new inner product geometrically interprets the covector index-lowered from a vector with that new inner product. Reducing all horizontal distances by a factor of $\sqrt{2}$ leads to the orthonormal coordinates with respect to the original dot product, but the geometric construction still seems to work. Yeah! Use the geometry of 60 and 30 degree angles to obtain all the key coordinates needed.
+%} 
+%\label{fig:21b}
+%\end{figure}
+\end{comment}

@@ -1,0 +1,283 @@
+%% TEOREMAS E OUTROS AMBIENTES
+%\definecolor{lightgray2}{rgb}{0.901, 0.91,0.9215}
+\definecolor{lightgray2}{rgb}{0.92, 0.95,0.94}
+
+
+
+%{0.776, 0.451,0}
+\definecolor{laranjinhafill}{rgb}{0.252, 0.419,0.584}
+
+%%%%% TEOREMAS
+%\newtheorem{teo2}{Teorema}[chapter]
+%   \newmdtheoremenv[%
+%   backgroundcolor=lightgray2,
+%   linecolor=shadecolorborda,
+%   linewidth=0.4pt,
+%   topline=false,
+%   bottomline=false,
+%   rightline=false,
+%   frametitlefont=Maroon,
+%   innertopmargin=10,
+%    innerbottommargin=10,
+%   skipbelow=10,
+%    skipabove=10,
+%   leftline=false]{dummy}{Teorema}[chapter]
+
+
+\renewenvironment{theorem}{\begin{tBox}\begin{theoremeT}}{\end{theoremeT}\end{tBox}}
+\newenvironment{thm}{\begin{tBox}\begin{theoremeT}}{\end{theoremeT}\end{tBox}}
+
+\newtheorem{corol}[dummy]{Corolário}
+\newtheorem{ddefi}[dummy]{Definição}
+\newtheorem{notacao}[dummy]{Notação}
+
+%   \newmdtheoremenv[%
+%   %backgroundcolor=lightgray2,
+% %   linecolor=gray,
+% %   linewidth=0.4pt,
+% %   topline=true,
+% %   bottomline=true,
+% %   rightline=true,
+%   frametitlefont=Maroon,
+% %   innertopmargin=10,
+% %    innerbottommargin=10,
+% %     skipbelow=20,
+% %    skipabove=20,
+% %   leftline=true
+% ]{notacao}[dummy]{Notação}
+
+\newmdtheoremenv[%
+%backgroundcolor=lightgray2,
+linecolor=gray,
+linewidth=0.4pt,
+topline=true,
+bottomline=true,
+rightline=true,
+frametitlefont=Maroon,
+innertopmargin=10,
+innerbottommargin=10,
+skipbelow=10,
+skipabove=10,
+leftline=true,
+nobreak=true]{obsc}[dummy]{Observação}
+
+
+\mdfdefinestyle{defdefault}{%
+	linecolor=shadecolorborda,
+	% topline=false,
+	%rightline=false,
+	innerleftmargin=10,innerrightmargin=10,
+	%leftline=false,
+	innertopmargin=10,
+	innerbottommargin=10,
+	skipbelow=10,
+	skipabove=10,
+	% frametitlerule=true,frametitlerulecolor=shadecolor2,
+	% frametitlebackgroundcolor=shadecolor,
+	backgroundcolor=shadecolor,
+	%frametitlerulewidth=2pt
+	linewidth=0.4pt,
+	bottomline=false,
+	rightline=false,
+	leftline=false}
+\newenvironment{dica}[1][Dica:]{[\noindent\textbf{#1} \em}{\normalfont{]}}
+
+
+\mdfdefinestyle{exerciciosdef}{%
+	linecolor=exerccolorborda,
+	rightline=false,innerleftmargin=10,innerrightmargin=10,
+	leftline=false,
+	innertopmargin=2,
+	innerbottommargin=2,
+	% frametitlerule=true,frametitlerulecolor=shadecolor2,
+	% frametitlebackgroundcolor=shadecolor,
+	backgroundcolor=exerccolor,
+	%frametitlerulewidth=2pt
+	linewidth=1pt,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	leftline=false}
+
+
+
+\mdfdefinestyle{auladef}{%
+	linecolor=ocre,
+	rightmargin=45pt,
+	rightline=true,innerleftmargin=15pt,innerrightmargin=45pt,
+	leftline=true,
+	innertopmargin=5,
+	innerbottommargin=5,
+	% frametitlerule=true,frametitlerulecolor=shadecolor2,
+	% frametitlebackgroundcolor=shadecolor,
+	backgroundcolor=ocre!5,
+	%frametitlerulewidth=2pt
+	linewidth=1pt,
+	topline=true,
+	bottomline=true,
+	rightline=true,
+	leftline=true}
+
+\newcommand{\aula}[1]{ \marginnote{\begin{mdframed}[style=auladef]\textcolor{ocre}{\bfseries Aula #1}\end{mdframed}}}
+
+% \newenvironment{definicao} % quadrado
+%   {\vspace{0.2cm} \begin{mdframed}[style=defdefault] \begin{ddefi}\rm}{\end{ddefi} \end{mdframed}}
+%
+%
+% \renewenvironment{definition} % quadrado
+%   {\vspace{0.2cm} \begin{mdframed}[style=defdefault] \begin{ddefi}\rm}{\end{ddefi} \end{mdframed}}
+
+\renewenvironment{definition}{\begin{dBox}\begin{definitionT}}{\end{definitionT}\end{dBox}}
+\newenvironment{df}{\begin{dBox}\begin{definitionT}}{\end{definitionT}\end{dBox}}
+
+
+%  \newenvironment{definition}{\begin{dBox}\begin{definitionT}}{\end{definitionT}\end{dBox}}
+
+
+% \newenvironment{definicao} % quadrado
+%   {\begin{shaded} \begin{ddefi}\rm}{\end{ddefi} \end{shaded}}
+\newenvironment{defi} % sem quadrado s
+{\begin{ddefi}\rm}{\end{ddefi}}
+
+
+
+
+\newmdtheoremenv[%
+% backgroundcolor=verde!1,
+linecolor=verde,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=10pt,
+leftmargin=0.1cm,
+rightmargin=0.1cm,
+innerbottommargin=10pt
+,nobreak=true]{prop}[dummy]{Proposition}
+
+
+
+\newmdtheoremenv[%
+% backgroundcolor=verde!1,
+linecolor=verde,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=10pt,
+leftmargin=0.1cm,
+rightmargin=0.1cm,
+innerbottommargin=10pt
+,nobreak=true]{proposition}[dummy]{Proposition}
+
+% \newtheorem{problem}[dummy]{Proposição}
+\newtheorem{propri}[dummy]{Propriedade}
+\newtheorem{lema}[dummy]{Lema}
+\newtheorem{obss}[dummy]{Observação}
+\newtheorem{obss1}[dummy]{Observações}
+\newtheorem{Example}[dummy]{Example}
+\newtheorem{Remark}[dummy]{Remark}
+\newtheorem{pro}[dummy]{Remark}
+
+\newenvironment{solu}[0]{{\noindent \textbf{ Solution:}  \ }$\blacktriangleright$  }{$\blacktriangleleft$}
+
+\newenvironment{rem}[0]{\begin{quote}{ }}{\end{quote}}
+
+\newenvironment{obs}
+{\begin{obss}\rm}{\end{obss}}
+\newenvironment{observacoes}
+{\begin{obss1}\rm}{\end{obss1}}
+\newtheorem{conj}[dummy]{Conjectura}
+%\newcounter{exemplocount}[chapter]
+\newenvironment{exx}
+{\vspace{0.2cm}\noindent\textcolor{Maroon}{\vspace{0.5cm}\refstepcounter{dummy}\textbf{Exemplo \arabic{chapter}.\arabic{dummy}}}}{}
+\newenvironment{ex}
+{\begin{exx}\rm}{\end{exx}}
+%\theorembodyfont{\rm}
+% \newenvironment{exresol}
+%   {\vspace{0.2cm}\noindent\refstepcounter{dummy}\textcolor{Maroon}{\vspace{0.1cm}\noindent\textbf{Exemplo \arabic{chapter}.\arabic{dummy}} \mbox{} }}{ \vspace{0.2cm} }
+\newenvironment{exresol}{\begin{exampleT}}{\end{exampleT}}
+
+\newenvironment{resolucao}[1][Solução]{\noindent\textcolor{Maroon}{\textbf{#1} \hspace{0.5cm}}}{\hfill{\tiny\ensuremath{\textcolor{Maroon}{\blacksquare}}}\newline} % Daniel, acrescentei o \newline
+\newenvironment{resolucaosemnome}[1][]{\noindent\textbf{#1} }{\hfill $\square$\newline}
+
+\newenvironment{figlat}{\begin{figure}[h!]\centering }{\end{figure} }
+
+
+\newenvironment{Exemplos} %com barra lateral
+{\noindent\textcolor{Maroon}{\refstepcounter{dummy}\vspace{0.1cm}\textbf{ Exemplos \arabic{chapter}.\arabic{dummy}}}}{ \vspace{0.2cm} }
+
+
+%  {\vspace{0.4cm} \noindent { \em Exemplos:}}{   }
+\newenvironment{enumeratealpha}{\begin{enumerate}[a] }{\end{enumerate}} %enumerar com letras
+\newenvironment{enumerar}{\begin{list}{\labelitemi}{\leftmargin=2em} }{\end{list}} %enumera com menos indentao
+\newenvironment{enumerarexemplos}{\begin{Exemplos}\begin{enumerar}}{\end{enumerar}\end{Exemplos}} %enumera com menos indentaão
+\newenvironment{exercicios}
+{\vspace{0.4cm} \noindent{\textcolor{cyan}{\Large  Exercícios }}  \begin{ExerciseList}}
+{\end{ExerciseList} \vspace{1cm} }
+
+\newenvironment{exercicio}
+{\vspace{0.4cm} \noindent {\textbf{Exercício.}}  \begin{ExerciseList}}
+{\end{ExerciseList} \vspace{1cm} }
+
+\newenvironment{exerciciossupl}
+{\vspace{0.4cm} \noindent{\textbf{Exercícios Suplementares.}}  \begin{ExerciseList}}
+{\end{ExerciseList} \vspace{1cm} }
+
+%%%%%%%%%%%%%%%%%%%% Ambiente cotia ``quote'' no interior de são paulo
+
+%%% a4 = 5cm a5 = 2cm
+\newenvironment{cotia}{\hspace{4cm} \begin{minipage}{9cm} \footnotesize \itshape \centering }{ \end{minipage} \vspace{0.5cm}}
+%\newenvironment{cotia}{\hspace{5cm} \begin{minipage}{10cm} \footnotesize \itshape \centering }{ \end{minipage} \vspace{0.5cm}}
+
+
+%%%%%%%%%%%%%Exercicio Resolvido%
+
+
+%%%%%%%%%%%%%%%%%%Problema
+
+\newenvironment{problema}
+{\vspace{0.4cm} \noindent{\textbf{Prob.} \refstepcounter{Exercise} \arabic{chapter}.\arabic{Exercise} \textemdash} }
+{\vspace{1cm} }
+
+
+\mdfdefinestyle{caixa2}{%
+	linecolor=ocre,
+	rightmargin=45pt,
+	rightline=true,innerleftmargin=15pt,innerrightmargin=45pt,
+	leftline=true,
+	innertopmargin=5,
+	innerbottommargin=5,
+	% frametitlerule=true,frametitlerulecolor=shadecolor2,
+	% frametitlebackgroundcolor=shadecolor,
+	%backgroundcolor=ocre!1,
+	%frametitlerulewidth=2pt
+	linewidth=1pt,
+	topline=true,
+	bottomline=true,
+	rightline=true,
+	leftline=true,
+	nobreak=true}
+
+\newcommand{\caixa}[2]{\begin{mdframed}[style=caixa2]{\small\bfseries\sffamily\color{ocre} #1}\\ #2\end{mdframed}}
+
+
+
+
+\mdfdefinestyle{introdef}{%
+	linecolor=ocre,
+	rightmargin=45pt,
+	rightline=true,innerleftmargin=25pt,innerrightmargin=25pt,
+	leftline=true,
+	innertopmargin=5,
+	innerbottommargin=5,
+	% frametitlerule=true,frametitlerulecolor=shadecolor2,
+	% frametitlebackgroundcolor=shadecolor,
+	backgroundcolor=myblueiii!30,
+	%frametitlerulewidth=2pt
+	linewidth=1pt,
+	topline=false,
+	bottomline=false,
+	rightline=false,
+	leftline=false}
+
+\newcommand{\intro}[1]{\hspace{0cm}  \begin{minipage}{20cm}
+	\begin{mdframed}[style=introdef]\begin{minipage}{14cm} \small #1 \end{minipage}\end{mdframed}\end{minipage}
+}
+\newtheorem{exa}[dummy]{Example}

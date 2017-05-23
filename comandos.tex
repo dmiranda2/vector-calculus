@@ -1,0 +1,581 @@
+\usepackage{bookman} 
+\usepackage[T1]{fontenc}
+\usepackage{multicol}
+\usepackage{answers}
+\usepackage{makeidx}
+\usepackage{commath}
+% \usepackage{fancyhdr}
+\usepackage{answers}
+\usepackage{makeidx}
+% \usepackage{avant} % Use the Avantgarde font for headings
+% \usepackage{helvet}
+\usepackage{microtype} % Slightly tweak font spacing for aesthetics
+\usepackage[T1]{fontenc} %
+\usepackage{pifont,esint}
+\usepackage{pstricks}
+\usepackage[tiling]{pst-fill}      % PSTricks package for filling/tiling
+%%%%% COMANDOS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\dis}{\displaystyle }
+\newcommand{\nt}{\noindent}
+\definecolor{ocre}{cmyk}{0, 0.87, 0.68, 0.32} %Maroon
+\definecolor{Maroon}{RGB}{30,144,255}
+\definecolor{azul}{RGB}{30,144,255}
+\definecolor{azulescuro}{RGB}{0.252, 0.419,0.584}
+\definecolor{verde}{RGB}{127, 137, 97}
+\definecolor{vermelho}{cmyk}{0, 0.87, 0.68, 0.32}
+\definecolor{laranja}{RGB}{243,102,25}
+\definecolor{blue}{rgb}{0.252, 0.419,0.584}
+\definecolor{red}{cmyk}{0, 0.87, 0.68, 0.32}
+\definecolor{amarelinho}{RGB}{255,249,215}
+\definecolor{azulzinho}{RGB}{238,247,250}
+%% Conjuntos
+\newcommand{\bbR}{\ensuremath{\mathbb{R}}}
+\newcommand{\IR}{I\kern -0.37 em R}
+\newcommand{\bbH}{\mathbb{H}}
+\newcommand{\IH}{I\kern -0.37 em H}
+\newcommand{\bbL}{\mathbb{L}}
+\newcommand{\IL}{I\kern -0.37 em L}
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbZ}{\mathbb{Z}}
+\newcommand{\bbQ}{\mathbb{Q}}
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbS}{\mathbb{S}}
+\newcommand{\bbE}{\mathbb{E}}
+\newcommand{\bbU}{\mathbb{U}}
+\newcommand{\0}{\varnothing}
+%% Funes, operadores, álgebra linear, grupos, cálculo
+\DeclareMathOperator{\Dom}{Dom}
+\DeclareMathOperator{\Img}{Im}
+\DeclareMathOperator{\Grafico}{Graf}
+\renewcommand{\ker}{\mathrm{ker}\,}
+\renewcommand{\dim}{\mathrm{dim}\,}
+\newcommand{\End}{\mathrm{End}\,}
+\newcommand{\Aut}{\mathrm{Aut}\,}
+\newcommand{\Iso}{\mathrm{Iso}\,}
+\providecommand{\Abs}[1]{\bigl\lvert\mspace{1mu}#1\mspace{1mu}\bigr\rvert}
+\newcommand{\norma}[1]{\lVert#1\rVert}
+\newcommand{\presc}[2]{\langle #1, #2 \rangle}
+\newcommand{\vet}[1]{\overrightarrow{#1}}
+\newcommand{\proj}[2]{\mathop{proj}_{\displaystyle #2} \,#1}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Hess}{Hess}
+\DeclareMathOperator{\hess}{hess}
+\newcommand{\negrito}[1]{\textbf{#1}\index{#1}}
+\newcommand{\dx}{\ \dif x}
+\newcommand{\du}{\ \dif u}
+\newcommand{\dt}{\ \dif t}
+\newcommand{\dv}{\ \dif v}
+\newcommand{\dy}{\ \dif y}
+\newcommand{\dz}{\ \dif z}
+\newcommand{\ds}{\ \dif s}
+\newcommand{\dsum}{\displaystyle\sum}
+\newcommand{\barra}{\bigg|}
+\renewcommand{\P}{\mathbb{P}}
+%%%%%%%%%%%%%%restrição
+\newcommand\restr[2]{\ensuremath{\left.#1\right|_{#2}}}
+\newcommand{\qedsymbol}{{\tiny\ensuremath{\blacksquare}}}
+% \newcommand{\comentario}[1]{\text{ \color{azul} \scriptsize #1}}
+\newcommand{\supfi}{\max_{x\in I_i}(f(x))}
+\newcommand{\inffi}{\min_{x\in I_i}(f(x))}
+\newcommand{\Dxi}{\Delta x_i}
+\newcommand{\sumi}{\sum_{i=1}^n}
+%%%%%%%%%%%%%%%%%%%%%Cores
+\newcommand{\vermelho}{\text{vermelho}}
+\newcommand{\azul}{\text{azul}}
+\renewcommand{\fbox}{\fcolorbox{white}{azulzinho}}
+\newcommand{\destaque}[1]{\ensuremath{\fbox{\ensuremath{ #1 }}}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% math symbols
+\def\lcrc#1#2{\left[#1 \ ; #2 \right]}
+\def\dim{\mathop{\mathrm dim}\nolimits}
+\def\EVAL{\mathop{\mathrm EVAL}\nolimits}
+\def\SYM{\mathop{\mathrm SYM}\nolimits}
+\def\ALT{\mathop{\mathrm ALT}\nolimits}
+\def\Id{\mathop{\mathrm Id}\nolimits}
+\def\Tr{\mathop{\mathrm Tr}\nolimits}
+\def\Tan{{\mathrm T}}
+\def\div{\mathop{\mathrm div}\nolimits}
+\def\grad{\mathop{\mathrm grad}\nolimits}
+\def\curl{\mathop{\mathrm curl}\nolimits}
+\def\arcsinh{\mathop{\mathrm arcsinh}\nolimits}
+\def\Lie{\mathop{\pounds}\nolimits}
+\def\csch{\mathop{\mathrm csch}\nolimits}
+\def\sech{\mathop{\mathrm csch}\nolimits}
+\def\arccosh{\mathop{\mathrm arccosh}\nolimits}
+\def\arccot{\mathop{\mathrm arccot}\nolimits}
+\def\ad{\mathop{\mathrm ad}\nolimits}
+\def\AD{\mathop{\mathrm AD}\nolimits}
+\def\Ad{\mathop{\mathrm Ad}\nolimits}
+\def\diag{\mathop{\mathrm diag}\nolimits}
+\newcommand{\Dh}[2]{\frac{\partial #1}{\partial #2}} 
+
+\providecommand{\Norm}[1]{\bigl\lVert\mspace{1mu}#1\mspace{1mu}\bigr\rVert}
+\providecommand{\NORM}[1]{\Biggl\lVert\mspace{1mu}#1\mspace{1mu}\Biggr\rVert}
+\providecommand{\ssub}[2]{#1_{\scriptscriptstyle #2}}
+\providecommand{\Real}[1]{\mathbb{R}^{#1}}
+\providecommand{\Dotprod}[2]{#1 \bp  #2}
+\providecommand{\Crossprod}[2]{#1 \mathbf{\times} #2}
+\providecommand{\Degrees}[0]{\ensuremath{^\circ}}
+\providecommand{\ival}[2]{\lbrack #1,#2 \rbrack}
+\providecommand{\lineintvec}[3]{\displaystyle\int_{#1} \Dotprod{\vector{#2}}{d\vector{#3}}}
+\providecommand{\olineintvec}[3]{\displaystyle\oint_{#1} \Dotprod{\vector{#2}}{d\vector{#3}}}
+
+\newcommand{\statedefn}[2]{
+ \definecolor{shadethmcolor}{cmyk}{0.1,0.05,0,0}
+ \definecolor{shaderulecolor}{cmyk}{0.73,0.19,0,0}
+ \begin{definition}\label{#1}{#2}\end{definition}
+}
+\newcommand{\statethm}[2]{
+ \definecolor{shadethmcolor}{HTML}{E8DCFF}
+ \definecolor{shaderulecolor}{HTML}{9B5900}
+ \begin{thm}\label{#1}{#2}\end{thm}
+}
+\newcommand{\statecor}[2]{
+ \definecolor{shadethmcolor}{HTML}{FFFF8B}
+ \definecolor{shaderulecolor}{HTML}{9B5900}
+ \begin{cor}\label{#1}{#2}\end{cor}
+}
+\newcommand{\statecomment}[2][0.96\textwidth]{
+ \par\noindent\tikzstyle{mybox} = [draw=gray!70!black,fill=gray!2,thick,rectangle,inner ysep=4pt]
+ \begin{tikzpicture}
+  \node [mybox] (box){%
+   \begin{minipage}{#1}{#2}\end{minipage}
+  };
+ \end{tikzpicture}
+}
+\newcommand\myclearpage{\cleartooddpage
+ [\thispagestyle{empty}]}
+
+
+\renewcommand\sfdefault{phv}
+\newcommand{\startexercises}{
+%  \begin{center}\rule{\textwidth}{0.5pt}\end{center}
+\section*{\psframebox{Exercises}}
+}
+\newcommand{\probs}[1]{\par\noindent\textsf{\textbf{\large #1}}}
+
+\renewcommand{\arraystretch}{1.3}
+\renewcommand{\d}{\dif}
+
+ 
+\makeatletter
+\newenvironment{tablehere}
+  {\def\@captype{table}}
+  {}
+
+\newenvironment{figurehere}
+  {\def\@captype{figure}}
+  {}
+\makeatother
+
+\allowdisplaybreaks[1]
+\newcommand{\inv}{^{-1}}
+\DeclareMathOperator{\vol}{vol}
+\DeclareMathOperator{\arclen}{length}
+\newcommand{\defeq}{\stackrel{\scriptscriptstyle\text{def}}{=}}
+\newcommand{\given}[1][\big]{\;#1|\;}
+\newcommand{\st}[1][\big]{\given[#1]}
+\newcommand{\lap}{\Delta}
+\newcommand{\laplacian}{\lap}
+\newcommand{\transpose}{^*}
+\renewcommand{\grad}{\nabla}
+\newcommand{\gradt}{\grad\transpose}
+\newcommand{\gradperp}{\grad^\perp}
+\newcommand{\curlb}{\grad \times}
+\newcommand{\loc}{_\text{loc}}
+\newcommand{\varmin}{\wedge}
+\newcommand{\varmax}{\vee}
+\newcommand{\as}{\text{a.s.}}
+\newcommand{\E}{\mathbf{E}}
+\renewcommand{\P}{\mathbf{P}}
+\newcommand{\mc}{\mathcal}
+\newcommand{\AND}{\;\&\;}
+\newcommand{\shave}{}
+
+%%%%%%%%%%%%%%%%% Maxell
+\def\phie{\ensuremath{\phi_E}}
+\def\phib{\ensuremath{\phi_B}}
+
+\def\dB{\ensuremath{\emph{d}\vec{B}}}
+\def\dphie{\ensuremath{\emph{d}\phie}}
+\def\dphib{\ensuremath{\emph{d}\phib}}
+\def\cint#1{\ensuremath{\displaystyle\underset{\substack{\text{\tiny{closed}}\\\text{\tiny{surface}}}}{\oint} \mspace{-0.1 mu} #1}}
+\def\k{\ensuremath{\displaystyle \frac{1}{4\pi \epsilon _0}}}
+\def\muz{\ensuremath{\mu_0}} %For some reason, \mu0 gave me an error - probably because \mu is a command
+\providecommand{\Dotprod}[2]{#1 \bp #2}
+\usepackage{graphicx,tikz,picins,phaistos}
+\usepackage{subfig,dropping}
+\usepackage{shadethm}
+\usepackage{makeidx}
+\usepackage{paralist}
+\usepackage{mdwlist}
+\usepackage{tkz-euclide}
+\usepackage{tikz-cd}
+\usepackage{tikz-3dplot}
+\usepackage{multicol}
+\usepackage{subfig,psfrag}
+\usepackage{tikz}
+\usetikzlibrary{matrix}
+\usepackage{framed}
+\usepackage{nextpage,listings}
+\usetikzlibrary{matrix}
+\usepackage[font=small,labelfont=bf,labelsep=space,format=plain]{caption}
+\usepackage{longtable}
+\usepackage[amsmath,thmmarks,standard,thref]{ntheorem}
+\DeclareFixedFont{\bigithv}{T1}{phv}{b}{sl}{0.8cm}
+% \usepackage[pdftitle={Vector Calculus}, pdfauthor={dmm}, bookmarksopen]{hyperref}
+\def\msum{\operatornamewithlimits{\dsum^n\!{\ldots}\!\dsum^n}}
+ \def\multsum{\mathop{\dsum^n\!{\ldots}\!\dsum^n}_{\substack{ h_1,\,\ldots,\,h_r\\
+ k_1,\,\ldots,\,k_s}}}
+
+\DeclareSymbolFont{largesymbols}{OMX}{yhex}{m}{n}
+
+\DeclareMathAccent{\wideparen}{\mathord}{largesymbols}{"F3}
+% \definecolor{Maroon}{cmyk}{0, 0.87, 0.68, 0.32}
+\definecolor{RoyalBlue}{cmyk}{0.55,0.28,0.00,  0.42}
+\definecolor{Maroon}{cmyk}{0.55,0.28,0.00,  0.42}
+
+\makeatletter
+\renewcommand\section{\@startsection {section}{1}{\z@}%
+                                   {-3.5ex \@plus -1ex \@minus -.2ex}%
+                                   {2.3ex \@plus.2ex}%
+                                   {\bigithv}}
+\makeatother
+\Newassociation{answer}{Answer}{multicaca}
+\usepackage[margin=2.2cm]{geometry}
+\widowpenalty=1000 \clubpenalty=1000
+%%%%%                   Postscript drawing packages
+\usepackage{pst-math}
+\usepackage{pst-eucl}
+\usepackage{pst-grad}              % PSTricks package for gradient filling
+\usepackage{pst-eps,pst-func,pstricks-add}
+\usepackage{pst-solides3d}
+\usepackage{pst-3dplot}
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\definecolor{mybluei}{RGB}{0,173,239}
+\definecolor{myblueii}{RGB}{63,200,244}
+\definecolor{myblueiii}{RGB}{199,234,253}
+
+%%%%%                    THEOREM-LIKE ENVIRONMENTS
+\newcommand{\proofsymbol}{\Pisymbol{pzd}{113}}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\renewenvironment{proof}{{\vspace{0.5cm}\noindent \bfseries Proof:}}{\qedsymbol \vspace{0.5cm}}
+\theorembodyfont{\small}
+\newtheorem{pro}{Problem}[section]
+\theorempreskipamount .5cm \theorempostskipamount .5cm
+\theoremstyle{changeb} \theoremheaderfont{\color{Maroon}\sffamily\bfseries}
+\theorembodyfont{\normalfont}
+\newtheorem{thm}{Theorem}[chapter]
+\newtheorem{theoremeT}[thm]{Theorem}
+\newtheorem{defn}{Definition}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{df}[thm]{Definition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{axi}[thm]{Axiom}
+\newtheorem{nota}[thm]{Notation}
+\newtheorem{exa}[thm]{Example}
+\renewtheorem{theorem}[thm]{Theorem}
+\renewtheorem{lemma}[thm]{Lemma}
+\renewtheorem{definition}[thm]{Definition}
+\renewtheorem{corollary}[thm]{Corollary}
+\renewtheorem{proposition}[thm]{Proposition}
+\renewtheorem{remark}[thm]{Remark}
+\newenvironment{solu}[0]{{\noindent \textbf{ Solution:}  \ }$\blacktriangleright$  }{$\blacktriangleleft$}
+
+\newenvironment{rem}[0]{\begin{quote}{ }}{\end{quote}}
+
+\makeatletter
+\def\La{%
+  L\kern-.36em{%
+  \setbox0\hbox{T}%
+  \vbox to\ht0{%
+    \hbox{$\m@th$%
+      \csname S@\f@size\endcsname
+      \fontsize\sf@size\z@
+      \math@fontsfalse\selectfont A}%
+      \vss%
+    }%
+  }%
+} \makeatother
+
+
+%%%%%%%
+
+\setcounter{tocdepth}{1}
+
+%%%%%%%%%%%%%%%%%%%%Two Column Table of Contents
+\makeatletter
+\newcommand{\twocoltoc}{%
+  %\begin{multicols}{2}
+    \@starttoc{toc}%
+  %\end{multicols}
+  }
+\makeatother
+%%%%%%%%%%%%
+\makeindex
+%%%%%                Non-standard commands and symbols
+\newcommand{\BBZ}{\mathbb{Z}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\BBN}{\mathbb{N}}
+\newcommand{\BBC}{\mathbb{C}}
+\newcommand{\BBQ}{\mathbb{Q}}
+\def\floor#1{\llfloor #1 \rrfloor}
+\def\ang#1{\angle\left(#1\right)}
+\def\binom#1#2{{#1\choose#2}}
+\def\T#1#2{\mathscr{T}_{#1}{#2}}
+\def\fun#1#2#3#4#5{\everymath{\displaystyle}{{#1} : \vspace*{1cm}
+\begin{array}{lll}{#4} & \rightarrow &
+{#5}\\
+{#2} &  \mapsto & {#3} \\
+\end{array}}}
+\def\im#1{{\mathbf{Im}}\left(#1\right)}
+\def\arc#1{\wideparen{#1}}
+\def\dom#1{{\mathbf{Dom}}\left(#1\right)}
+\def\supp#1{{\mathbf{supp}}\left(#1\right)}
+\def\target#1{{\mathbf{Target}}\left(#1\right)}
+\def\distance#1#2{{\mathbf d}{\langle {#1}, {#2}\rangle}}
+\newcommand{\idefun}{{\mathbf Id\ }}
+\def\tends#1#2{{#1 \rightarrow #2}}
+\def\diff#1#2{\dfrac{\mathrm{d}}{\mathrm{d} #2}\ #1}
+\def\dist{\mathrm d}
+\def\bipoint#1#2{[\point{#1}, \point{#2}]}
+\newcommand{\stackunder}[2]{\underset{\scriptstyle #1}{#2}}
+\def\gl#1#2{{\mathbf GL}_{#1}(#2)}
+\def\mat#1#2{{\mathbf M}_{#1}(#2)}
+\def\norm#1{{\left\|#1\right\|}}
+\def\absval#1{{\left|#1\right|}}
+\newlength{\mylen}
+\setlength{\mylen}{\dimexpr0.5\ht1-0.5\ht2}
+\newcommand{\bp}{\raisebox{0.25ex}{\tiny$\bullet$}}
+\def\dotprod#1#2{\vector{#1} \bp \vector{#2}}
+\newcommand{\cross}{\boldsymbol\times}
+\def\line#1{\overleftrightarrow{\point{#1}}}
+\def\dd#1{\overline{#1}}
+\def\seg#1{\left[ #1\right]}
+\def\crossprod#1#2{\vector{#1}\cross\vector{#2}}
+\def\anglebetween#1#2{\widehat{(\vector{#1}, \vector{#2})}}
+\def\conv#1{{\mathrm conv}(#1)}
+\def\tr#1{{\mathrm tr}\left(#1\right)}
+\DeclareMathOperator{\adj}{adj}
+\def\proj#1#2{{\mathrm proj} _{\point{#2}} ^{\point{#1}} }
+\def\vol#1{{\mathrm volume}(#1)}
+\def\ball#1#2{B_{#2}({\mathbf #1})}
+\def\point#1{{\mathbf #1}}
+\def\vector#1{\mathbf{ #1}}
+\def\funvect#1{\mathbf{ #1}}
+\def\deriv#1#2{{\mathrm{D}}_{\point{#1}}(#2)}
+\def\derivb#1{{\mathrm{D}}(#1)}
+\def\derivc{{\mathrm{D}}}
+\def\D{{\mathrm{D}}}
+\def\partialderiv#1#2{\partial_#1  #2}
+\def\hderiv#1#2#3{\dfrac{\partial ^2 #3}{\partial x_{#1} \partial
+x_{#2}}}
+\def\div#1#2{{\mathrm div} #1{\left(\point{#2}\right)} }
+\def\curl#1#2{{\mathrm curl} #1{\left(\point{#2}\right)} }
+\def\distance#1#2{{\mathrm d}{\left(\vector{#1},\vector{#2}\right)} }
+\def\rn#1#2#3{\langle \reals^#1,#2, #3\rangle}
+\usepackage{xparse}
+\NewDocumentCommand\Span{g}{%
+    \ensuremath{ {\mathrm Span} \IfNoValueTF{#1}{}{\left(#1\right)} }%
+}
+\NewDocumentCommand\rank{g}{%
+    \ensuremath{ {\text{ rank}} \IfNoValueTF{#1}{}{\left(#1\right)} }%
+}
+
+\NewDocumentCommand\sgn{g}{%
+    \ensuremath{ {\mathrm sgn} \IfNoValueTF{#1}{}{\left(#1\right)} }%
+}
+
+\NewDocumentCommand\area{g}{%
+    \ensuremath{ {\text{ area}} \IfNoValueTF{#1}{}{\left(#1\right)} }%
+}
+\newcommand{\TM}{\Pisymbol{psy}{228}\ }
+\newcommand{\Surd}[1]{\left\delimiter"4270370 #1\right.}
+\makeatletter
+\def\clap#1{\hb@xt@\z@{\hss#1\hss}}
+\makeatother
+\def\partialda#1#2{\dfrac{\partial #2}{\partial {#1}}}
+\def\partiald#1#2#3{\dfrac{\partial #2}{\partial x_{#1}}\left({\point{#3}}\right)}
+\def\partialds#1#2#3{\partial_{#1} #2 \left({\point{#3}}\right)}
+\def\partialdd#1#2#3#4{{\mathscr  D}_{#1}{\mathscr  D}_{#2}#3\left({\point{#4}}\right)}
+\def\smallo#1#2{\begin{array}{l}{\mathbf o} \\ #1  \end{array}\left(#2\right)}
+\def\smallosans#1{{\mathbf o}\left(#1\right)}
+\def\jacobi#1#2{{\mathscr  J}_{#1}#2}
+\def\hessian#1#2{{\mathscr  H}_{#1}#2}
+% %%%%%%%%%%%%%%%%%INTERVALS
+% %%%%%%%% lo= left open, rc = right closed, etc.
+% \def\lcrc#1#2{\left[#1 \ ; #2 \right]}
+% \def\loro#1#2{ \left]#1 \ ; #2 \right[}
+% \def\lcro#1#2{\left[#1 \ ; #2 \right. \left[ \right.}
+% \def\lorc#1#2{\left. \right[#1 \ ; #2 \left.\right]}
+
+\def\es#1{\ensuremath{\textcolor{Maroon}{\ulcorner } #1  \textcolor{Maroon}{\lrcorner}}}
+ \defineTColor{tRot}{red}
+ \defineTColor{tCyanl}{cyan!60}
+\defineTColor{tCyan}{cyan}
+\defineTColor{tGelb}{yellow!60}
+
+\newcommand{\grstep}[2][\relax]{%
+   \ensuremath{\mathrel{
+       \mathop{\longrightarrow}\limits^{#2\mathstrut}_{
+                                     \begin{subarray}{l} #1 \end{subarray}}}}}
+\newcommand{\colvec}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+\newcommand{\rowvec}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+\newcommand{\colpoint}[1]{\begin{bmatrix} #1 \end{bmatrix}}
+\newcommand{\rowpoint}[1]{\begin{bmatrix} #1 \end{bmatrix}^\top}
+\newcommand{\coord}[1]{\left( #1 \right)}
+
+\newcommand{\dint}{\displaystyle\int}
+% \renewcommand{\int}{\displaystyle\int\limits}
+\newcommand{\doint}{\displaystyle\oint}
+\newcommand{\doiint}{\displaystyle\oiint}
+
+\newcommand{\diint}{\displaystyle\iint}
+\newcommand{\diiint}{\displaystyle\iiint}
+
+\RequirePackage{array}\RequirePackage{dcolumn}
+\newenvironment{aligncolondecimal}[2][.1111em]{%
+\setlength{\arraycolsep}{#1}
+\newcolumntype{.}{D{.}{.}{#2}}\begin{array}{.}}{%
+\end{array}}
+\title{Vector Calculus}
+
+% \usepackage{sectsty}
+% \chapterfont{\color{Maroon}} 
+% \sectionfont{\color{Maroon}} 
+% \subsectionfont{\color{Maroon}} 
+
+\renewcommand{\arraystretch}{1.3}
+\renewcommand{\d}{\dif}
+\def\bluesum{\operatorname*{\blue{\sum}}}
+
+\tikzset{
+addarrow/.style={postaction={decorate},
+        decoration={markings,mark=at position #1 with {\arrow{>}}}}
+}
+
+\newcommand{\christoffel}[3]{\ensuremath{\Gamma_{#1#2}^{#3}}}
+\newcommand{\dvb}{\grad \bp}
+\usetikzlibrary{calc,intersections}
+ \usetikzlibrary{matrix}
+
+\usetikzlibrary{arrows}
+ \usetikzlibrary{decorations.markings}
+\usetikzlibrary{decorations.pathmorphing}
+ \usetikzlibrary{positioning}
+ \usetikzlibrary{cd}
+\addbibresource{bibliografia.bib}
+\tikzset{circ/.style = {fill, circle, inner sep = 0, minimum size = 3}}
+ \newcommand{\todoin}[2][]{\todo[inline,backgroundcolor=RoyalBlue!20,#1,caption=#2]{\textbf{Todo:\\}#2}}   
+\def\lcm#1{{\mathrm lcm}\left(#1\right)}
+
+  \usepackage[amsmath,thmmarks,standard,thref]{ntheorem}
+\RequirePackage[framemethod=default]{mdframed} % Required for creating the theorem, definition, exercise and corollary boxes
+
+
+\definecolor{azul}{RGB}{30,144,255}
+\definecolor{azulescuro}{RGB}{0.252, 0.419,0.584}
+\definecolor{verde}{RGB}{127, 137, 97}
+\definecolor{vermelho}{cmyk}{0, 0.87, 0.68, 0.32}
+\definecolor{laranja}{RGB}{243,102,25}
+\definecolor{blue}{rgb}{0.252, 0.419,0.584}
+\definecolor{red}{cmyk}{0, 0.87, 0.68, 0.32}
+\definecolor{amarelinho}{RGB}{255,249,215}
+\definecolor{azulzinho}{RGB}{238,247,250}
+\definecolor{mybluei}{RGB}{0,173,239}
+\definecolor{myblueii}{RGB}{63,200,244}
+\definecolor{myblueiii}{RGB}{199,234,253}
+
+% Definition box
+\newmdenv[skipabove=13pt,
+backgroundcolor=mybluei!4,
+skipbelow=20pt,
+rightline=true,
+leftline=true,
+topline=true,
+bottomline=true,
+linecolor=mybluei!20,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=10pt,
+leftmargin=0.1cm,
+rightmargin=0.1cm,
+linewidth=0.5pt,
+innerbottommargin=7pt,nobreak=true]{dBox}
+
+% \newtheoremstyle{azulnumbox} % Theorem style name
+% {0pt}% Space above
+% {0pt}% Space below
+% {\normalfont}% Body font
+% {}% Indent amount
+% {\small\bfseries\sffamily \color{azul} }% Theorem head font
+% {\;}% Punctuation after theorem head
+% {0.25em}% Space after theorem head
+% {\small\sffamily\thmname{#1}\nobreakspace\thmnumber{\@ifnotempty{#1}{}\@upn{#2}}% Theorem text (e.g. Theorem 2.1)
+% \thmnote{\nobreakspace\the\thm@notefont\sffamily\bfseries---\nobreakspace#3.}}% Optional theorem note
+% 
+% 
+% 
+% \theoremstyle{azulnumbox}
+
+\newmdenv[skipabove=14pt,
+skipbelow=20pt,
+backgroundcolor=verde!10,
+linecolor=verde!36,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=10pt,
+leftmargin=0.1cm,
+rightmargin=0.1cm,
+innerbottommargin=10pt,nobreak=true]{tBox}
+\newtheorem{definitionT}[thm]{Definition}
+
+
+\newmdenv[skipabove=14pt,
+skipbelow=20pt,
+backgroundcolor=verde!5,
+linecolor=verde!26,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=10pt,
+leftmargin=0.1cm,
+rightmargin=0.1cm,
+innerbottommargin=10pt,nobreak=true]{pBox}
+\newtheorem{propT}[thm]{Proposition}
+
+
+\mdfsetup{skipabove=10pt,skipbelow=15pt}
+\renewenvironment{df}{\begin{dBox}\begin{definitionT}}{\end{definitionT}\end{dBox}\vspace{0.5cm}}
+\renewenvironment{definition}{\begin{dBox}\begin{definitionT}}{\end{definitionT}\end{dBox}\vspace{0.5cm}}
+
+
+
+
+\renewenvironment{theorem}{\begin{tBox}\begin{theoremeT}}{\end{theoremeT}\end{tBox}\vspace{0.5cm}}
+\renewenvironment{thm}{\begin{tBox}\begin{theoremeT}}{\end{theoremeT}\end{tBox}\vspace{0.5cm}}
+
+\renewenvironment{proposition}{\begin{pBox}\begin{propT}}{\end{propT}\end{pBox}\vspace{0.5cm}}
+\renewenvironment{prop}{\begin{pBox}\begin{propT}}{\end{propT}\end{pBox}\vspace{0.5cm}}
+
+
+\newcommand{\superficie}{S}
+\newcommand{\caminho}{\gamma}
+\renewcommand{\S}{\mathrm{S}}
+
+\newcommand{\dA}{\mathrm{dA}}
+\newcommand{\dV}{\mathrm{dV}}
+
+% \renewcommand{\ell}{\vector{r}}
+
+\def\versor#1{\mathbf{\hat  #1}}
+
+\tikzset{declare function={f(\x)=sin(\x*100)/10;},
+  non-linear cs/.cd,
+    x/.store in=\nlx,y/.store in=\nly,z/.store in=\nlz,
+    x=0,y=0,z=0}
+\tikzdeclarecoordinatesystem{non-linear}{%
+  \tikzset{non-linear cs/.cd,#1}%
+  \pgfpointxyz{(\nlx)-f(\nly)*3+f(\nlz)}%
+    {-f(\nlx)*2+(\nly)-f(\nlz)}{-f(\nlx)-f(\nly)+(\nlz)}}

@@ -1,0 +1,1609 @@
+\chapter{Determinants}
+
+\section{Permutations}
+\begin{df}
+Let $S$ be a finite set with $n \geq 1$ elements. A \negrito{permutation} is a bijective function $\tau : S \rightarrow S$. It
+is easy to see that there are $n!$ permutations from $S$ onto
+itself. \index{permutation}
+\end{df}
+Since we are mostly concerned with the {\em action} that $\tau$
+exerts on $S$ rather than with the particular names of the
+elements of $S$, we will take $S$ to be the set $S = \{1, 2, 3,
+\ldots , n \}$. We indicate a permutation $\tau$ by means of the
+following convenient diagram
+$$\tau = \begin{bmatrix} 1 & 2 & \cdots & n \cr \tau (1) & \tau (2) & \cdots & \tau (n) \end{bmatrix}.$$
+\begin{df}
+The notation $S_n$ will denote the set of all permutations on
+$\{1, 2, 3, \ldots , n \}$. Under this notation, the  composition
+of two permutations $(\tau, \sigma)\in S_n ^2$ is
+$$ \begin{array}{lll}\tau\circ \sigma & = & \begin{bmatrix} 1 & 2 & \cdots & n \cr \tau (1) & \tau (2) & \cdots & \tau (n) \end{bmatrix}
+\circ\begin{bmatrix} 1 & 2 & \cdots & n \cr \sigma (1) & \sigma
+(2) & \cdots & \sigma (n) \end{bmatrix} \\ &  = &
+\begin{bmatrix} 1 & 2 & \cdots & n \cr (\tau \circ \sigma)  (1) & (\tau \circ \sigma)  (2) & \cdots &
+(\tau \circ \sigma) (n) \end{bmatrix}\end{array}.  $$ The $k$-fold
+composition of $\tau$ is
+$$ \underbrace{\tau \circ \cdots \circ \tau}_{k\ {\textrm  compositions}} = \tau^k.       $$
+
+\end{df}
+
+\begin{rem}
+We usually do away with the $\circ$ and write $\tau\circ\sigma$
+simply as $\tau\sigma$. This ``product of permutations'' is thus
+simply function composition.
+\end{rem}
+ Given a permutation
+$\tau: S \rightarrow S$, since $\tau$ is bijective,
+$$\tau ^{-1}: S \rightarrow S$$ exists and
+is also a permutation. In fact if
+$$\tau = \begin{bmatrix} 1 & 2 & \cdots & n \\ \tau (1) & \tau (2) & \cdots & \tau (n) \end{bmatrix},$$
+then
+$$\tau^{-1} = \begin{bmatrix}\tau (1) & \tau (2) & \cdots & \tau (n) \\ 1 & 2 & \cdots & n \\  \end{bmatrix}.$$
+\vspace{2cm}
+\begin{figure}[htb]
+$$\psset{unit=2pc}\psline[linewidth=2pt](-1, 0)(1, 0)(0, 1.4142135623730950488016887242097)(-1,0)
+\psline[linestyle=dotted](0,1.4142135623730950488016887242097)(0,0)
+\uput[u](0, 1.4142135623730950488016887242097){1}
+\psline[linestyle=dotted](-1,0)(.5,
+0.70710678118654752440084436210485) \uput[l](-1, 0){2}
+\psline[linestyle=dotted](1,0)(-.5,
+0.70710678118654752440084436210485) \uput[r](1,0){3}
+$$\vspace{1cm}\caption{$S_3$ are rotations and reflexions.} \label{fig:S_3}
+\end{figure}
+
+\begin{exa}
+The set $S_3$ has  $3! = 6$ elements, which are given below.
+\begin{enumerate}
+\item $\idefun: \{1, 2, 3\} \rightarrow \{1, 2, 3\}$ with
+$$\idefun  = \begin{bmatrix} 1 & 2 & 3 \\  1 & 2 & 3 \end{bmatrix}.$$
+\item $\tau_1: \{1, 2, 3\} \rightarrow \{1, 2, 3\} $ with
+$$\tau_1  = \begin{bmatrix}1 & 2 & 3 \\  1 & 3 & 2 \end{bmatrix}.$$
+
+\item $\tau_2: \{1, 2, 3\}  \rightarrow \{1, 2, 3\} $ with
+$$\tau_2  = \begin{bmatrix} 1 & 2 & 3 \\ 3 & 2 & 1 \end{bmatrix}.$$
+\item $\tau_3: \{1, 2, 3\}  \rightarrow \{1, 2, 3\} $ with
+$$\tau_3  = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 1 & 3 \end{bmatrix}.$$
+
+\item $\sigma_1: \{1, 2, 3\}  \rightarrow \{1, 2, 3\} $ with
+$$\sigma_1  = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 3 & 1 \end{bmatrix}.$$
+
+\item $\sigma_2: \{1, 2, 3\} \rightarrow \{1, 2, 3\} $ with
+$$\sigma_2  = \begin{bmatrix} 1 & 2 & 3 \\ 3 & 1 & 2 \end{bmatrix}.$$
+
+\end{enumerate}
+\label{ex:S_3}\end{exa}
+
+\begin{exa}
+The compositions $\tau_1 \circ \sigma_1$ and $\sigma_1\circ
+\tau_1$ can be found as follows.
+$$ \tau_1 \circ \sigma_1  = \begin{bmatrix} 1 & 2 & 3 \\  1 & 3 & 2 \end{bmatrix}\circ
+\begin{bmatrix} 1 & 2 & 3 \\ 2 & 3 & 1
+\end{bmatrix} = \begin{bmatrix}1 & 2 & 3 \\ 3 & 2 & 1 \end{bmatrix} = \tau_2 .$$
+(We read from right to left $1 \rightarrow 2 \rightarrow 3$ (``1
+goes to 2, 2 goes to 3, so 1 goes to 3''), etc. Similarly
+$$ \sigma_1 \circ \tau_1  = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 3 & 1
+\end{bmatrix}\circ\begin{bmatrix}1 & 2 & 3 \\  1 & 3 & 2 \end{bmatrix}
+ = \begin{bmatrix} 1 & 2 & 3 \\ 2 & 1 & 3 \end{bmatrix} =
+ \tau_3.$$Observe in particular that $\sigma_1 \circ \tau_1  \neq \tau_1 \circ \sigma_1 .$
+ Finding all the other products we deduce the following
+ ``multiplication table'' (where the ``multiplication'' operation
+ is really composition of functions).
+
+$$\begin{array}{|c||c|c|c|c|c|c|}
+\hline \circ & \idefun & \tau_1 & \tau_2 & \tau_3  & \sigma_1 & \sigma_2\\
+\hline \hline  \idefun & \idefun & \tau_1  & \tau_2  & \tau_3 & \sigma_1 & \sigma_2   \\
+\hline  \tau_1 & \tau_1 &   \idefun & \sigma_1 &\sigma_2  & \tau_2 & \tau_3   \\
+\hline \tau_2 & \tau_2 & \sigma_2  & \idefun & \sigma_1 & \tau_3&\tau_1 \\
+\hline \tau_3 & \tau_3 & \sigma_1& \sigma_2 & \idefun &\tau_1 & \tau_2 \\
+\hline \sigma_2 & \sigma_2 & \tau_2& \tau_3& \tau_1& \idefun & \sigma_1 \\
+\hline \sigma_1 & \sigma_1 &  \tau_3 & \tau_1 & \tau_2& \sigma_2 &\idefun \\
+\hline
+\end{array}$$
+\label{ex:tau}\end{exa}
+
+The permutations in example \ref{ex:S_3} can be conveniently
+interpreted as follows. Consider an equilateral triangle with
+vertices labelled $1$, $2$ and $3$, as in figure \ref{fig:S_3}.
+Each $\tau_a$ is a reflexion (``flipping'') about the line joining
+the vertex $a$ with the midpoint of the side opposite $a$. For
+example $\tau_1$ fixes $1$ and flips $2$ and $3$. Observe that two
+successive flips return the vertices to their original position
+and so $(\forall a\in\{1, 2, 3\})(\tau_a ^2 = \idefun)$.
+Similarly, $\sigma_1$ is a rotation of the vertices by an angle of
+$120^\circ$. Three successive rotations restore the vertices to
+their original position and so $\sigma_1 ^3 = \idefun$.
+
+
+\begin{exa}
+To find $\tau_1^{-1}$ take the representation of $\tau_1$ and
+exchange the rows:
+$$ \tau_1^{-1}  = \begin{bmatrix}1 & 3 & 2 \\  1 & 2 & 3 \\  \end{bmatrix}.$$
+This is more naturally written as
+$$ \tau_1^{-1}  = \begin{bmatrix}1 & 2 & 3 \\  1 & 3 & 2 \\  \end{bmatrix}.$$
+Observe that $\tau_1^{-1} = \tau _1$.
+\end{exa}
+\begin{exa}
+To find $\sigma_1^{-1}$ take the representation of $\sigma_1$ and
+exchange the rows:
+$$ \sigma_1^{-1}  = \begin{bmatrix}2 & 3 & 1 \\  1 & 2 & 3 \\  \end{bmatrix}.$$
+This is more naturally written as
+$$ \sigma_1^{-1}  = \begin{bmatrix}1 & 2 & 3 \\  3 & 1 & 2 \\  \end{bmatrix}.$$
+Observe that $\sigma_1^{-1} = \sigma_2$.
+\end{exa}
+
+
+
+
+\section{Cycle Notation} We now present a
+shorthand notation for permutations by introducing the idea of a
+{\em cycle}. Consider in $S_9$ the permutation
+$$\tau = \begin{bmatrix} 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+2 & 1 & 3 & 6 & 9 & 7 & 8 & 4 & 5 \end{bmatrix}.$$ We start with
+1. Since 1 goes to 2 and 2 goes back to 1, we write $(12)$. Now we
+continue with 3. Since 3 goes to 3, we write $(3)$. We continue
+with 4. As 4 goes 6, 6 goes to 7, 7 goes 8, and 8 goes back to 4,
+we write $(4678)$. We consider now $5$ which goes to 9 and 9 goes
+back to 5, so we write $(59)$. We have written $\tau$ as a product
+of disjoint cycles
+$$\tau = (12)(3)(4678)(59).$$This prompts the following
+definition.
+\begin{df}
+Let $l\geq 1$ and let $i_1,\ldots,i_l\in\{1,2,\ldots n\}$ be
+distinct. We write  $(i_1\ i_2\ \ldots\ i_l)$ for the element
+$\sigma\in S_n$ such that $\sigma(i_r)=i_{r+1}, \ \ 1\leq r<l$,
+$\sigma(i_l)=i_1$ and  $\sigma(i)=i$ for
+$i\not\in\{i_1,\ldots,i_l\}$. We say that  $(i_1\ i_2\ \ldots\
+i_l)$ is a \negrito{cycle of length $l$}. The \negrito{order} of a cycle
+is its length. Observe that if $\tau$ has order $l$ then $\tau^l =
+\idefun$.\end{df}
+\begin{rem}
+Observe that $(i_2\ \ldots\ i_l\ i_1)=(i_1\ \ldots\ i_l)$ etc.,
+and that $(1)=(2)=\cdots=(n)= \idefun$. In fact, we have
+$$(i_1\ \ldots\ i_l)=(j_1\ \ldots\ j_m)$$ if and only if (1) $l=m$
+and if  (2) $l>1$: $\exists a$ such that $\forall k$: $i_k =
+j_{k+a \mod l}$. Two cycles $(i_1,\ldots,i_l)$ and
+$(j_1,\ldots,j_m)$ are disjoint if $\{i_1, \ldots ,
+i_l\}\cap\{j_1,  \ldots , j_m\}=\varnothing$. Disjoint cycles
+commute and if $\tau = \sigma_1\sigma_2 \cdots \sigma_t$ is the
+product of disjoint cycles of length $l_1, l_2, \ldots , l_t$
+respectively, then $\tau$ has order
+$$ \lcm{l_1, l_2, \ldots , l_t}.$$
+\end{rem}
+\begin{exa}
+A cycle decomposition for $\alpha\in S_9,$
+$$\alpha = \begin{bmatrix} 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+1 & 8 & 7 & 6 & 2 & 3 & 4 & 5 & 9 \end{bmatrix}$$ is
+$$(285)(3746).$$ The order of $\alpha$ is $\lcm{3, 4} = 12$.
+\label{ex:alpha}\end{exa}
+\begin{exa}
+The cycle decomposition $\beta = (123)(567)$ in $S_9$ arises from
+the permutation
+$$\beta = \begin{bmatrix}1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \\
+2 & 3 & 1 & 4 & 6 & 7 & 5 & 8 & 9 \\ \end{bmatrix}.$$ Its order is
+$\lcm{3,3} = 3$. \label{ex:beta}\end{exa}
+\begin{exa}
+
+Find a shuffle of a deck of $13$ cards that requires $42$ repeats
+to return the cards to their original order.
+\end{exa}
+\begin{solu}Here is one (of many possible ones). Observe that $7 + 6
+= 13$ and $7\times 6 = 42$. We take the permutation
+$$(1\ 2\ 3\ 4\ 5\ 6\ 7)(8\ 9\ 10\ 11\ 12\ 13)$$which has order 42.
+This corresponds to the following shuffle: For $$i\in \{1, 2, 3,
+4, 5, 6, 8, 9, 10, 11, 12\},$$ take the $i$th card to the ($i +
+1$)th place, take the $7$th card to the first position and the
+13th card to the $8$th position. Query: Of all possible shuffles
+of 13 cards, which one takes the longest to restitute the cards to
+their original position?
+\end{solu}
+\begin{exa}
+Let a shuffle of a deck of 10 cards be made as follows: The top
+card is put at the bottom, the deck is cut in half, the bottom
+half is placed on top of the top half, and then the resulting
+bottom card is put on top. How many times must this shuffle be
+repeated to get the cards in the initial order? Explain.
+\end{exa}
+\begin{solu}Putting the top card at the bottom corresponds to
+$$\begin{bmatrix} 1 & 2 & 3 & 4 & 5 & 6 & 7  & 8 & 9 & 10\cr
+2 & 3 & 4 & 5 & 6 & 7  & 8 & 9 & 10 & 1 \cr
+\end{bmatrix}.
+$$ Cutting this new arrangement in half and putting the lower half on top corresponds to
+$$\begin{bmatrix} 1 & 2 & 3 & 4 & 5 & 6 & 7  & 8 & 9 & 10\cr
+ 7  & 8 & 9 & 10 & 1 & 2 & 3 & 4 & 5 & 6 \cr
+\end{bmatrix}.
+$$
+Putting the bottom card of this new arrangement on top corresponds
+to
+$$\begin{bmatrix} 1 & 2 & 3 & 4 & 5 & 6 & 7  & 8 & 9 & 10\cr
+  6 & 7  & 8 & 9 & 10 & 1 & 2 & 3 & 4 & 5  \cr
+\end{bmatrix} = (1\ 6)(2\ 7)(3\ 8)(4\ 9)(5\ 10).
+$$The order of this permutation is ${\textrm  lcm} (2, 2, 2, 2, 2) = 2$, so
+in 2 shuffles the cards are restored to their original position.
+\end{solu}
+The above examples illustrate the general case, given in the
+following theorem.
+\begin{thm}
+Every permutation in $S_n$ can be written as a product of disjoint
+cycles.\label{thm:permu_is_prod_cycles}
+\end{thm}
+\begin{proof}
+Let $\tau \in S_n, a_1\in\{1, 2, \ldots, n\}$. Put $\tau ^k (a_1)
+= a_{k + 1}, k \geq 0$. Let $a_1, a_2, \ldots , a_s$ be the
+longest chain with no repeats. Then we have $\tau (a_s) = a_1$. If
+the  $\{a_1, a_2, \ldots , a_s\}$ exhaust $\{1, 2, \ldots, n\}$
+then we have $\tau = (a_1\ a_2\ \ldots\ a_s)$. If not, there exist
+$b_1\in \{1, 2, \ldots, n\} \setminus\{a_1, a_2, \ldots , a_s\}$.
+Again, we find the longest chain of distinct $b_1, b_2, \ldots,
+b_t$ such that $\tau (b_k) = b_{k + 1}, k = 1, \ldots, t -1$ and
+$\tau (b_t) = b_1.$ If  the $\{a_1, a_2, \ldots , a_s, b_1, b_2,
+\ldots, b_t\}$ exhaust all the $\{1, 2, \ldots, n\}$ we have $\tau
+= (a_1\ a_2\ \ldots\ a_s)( b_1\ b_2\ \ldots\ b_t)$. If not we
+continue the process and find $$\tau = (a_1\ a_2\ \ldots\ a_s)(
+b_1\ b_2\ \ldots\ b_t)(c_1\ldots )\ldots . $$This process stops
+because we have only $n$ elements.
+\end{proof}
+\begin{df}
+A \negrito{transposition} is a cycle of length $2$.\footnote{A cycle
+of length $2$ should more appropriately be called a \negrito{bicycle}.}
+\end{df}
+
+
+\begin{exa}
+The cycle $(23468)$ can be written as a product of transpositions
+as follows
+$$(23468) = (28)(26)(24)(23).$$ Notice that this decomposition as
+the product of transpositions is not unique. Another decomposition
+is $$(23468) = (23)(34)(46)(68).$$
+\end{exa}
+\begin{lemma}
+Every permutation is the product of transpositions.
+\label{lem:permu_is_prod_bicycles}\end{lemma}
+\begin{proof}
+It is enough to observe that
+$$ (a_1\ a_2\ \ldots\ a_s) = (a_1\ a_s)(a_1\ a_{s - 1}) \cdots (a_1\ a_2)
+$$and appeal to Theorem \ref{thm:permu_is_prod_cycles}.
+\end{proof}
+Let  $\sigma\in S_n$ and let $(i, j)\in \{1, 2, \ldots, n\}^2, \ \
+i\neq j$. Since $\sigma$ is a permutation, $\exists (a, b)\in \{1,
+2, \ldots, n\}^2, \ \  a\neq b$, such that $\sigma (j) - \sigma
+(i) = b - a$. This means that $$ \left|\prod_{1\leq i<j\leq n}
+\frac{\sigma(i)-\sigma(j)}{i-j}\right| = 1 . $$
+\begin{df} Let  $\sigma\in S_n$. We define the \negrito{sign} $\sgn\sigma$ of $\sigma$ as
+$$\sgn{\sigma} = \prod_{1\leq i<j\leq n}
+\frac{\sigma(i)-\sigma(j)}{i-j} = (-1)^{\sigma}.$$ If
+$\sgn{\sigma} = 1$, then we say that $\sigma$ is an \negrito{even permutation}, and if $\sgn{\sigma} = -1$ we say that $\sigma$ is
+an \negrito{odd permutation}.
+\end{df}
+\begin{rem}
+Notice that in fact $$\sgn{\sigma} =(-1)^{{\textbf  I}(\sigma)},$$where
+${\textbf  I}(\sigma)=\#\{(i,j)\,|\,1\leq i<j\leq n\;{\textrm  and
+}\;\sigma(i)>\sigma(j)\}$, i.e., ${\textbf  I}(\sigma)$ is the number
+of inversions that $\sigma$ effects to the identity permutation
+$\idefun$.\end{rem}
+\begin{exa}
+The transposition $(1\ 2)$ has one inversion.
+\end{exa}
+\begin{lemma}
+ For any transposition $(k\ l)$ we have $\sgn{(k\ l)} = -1$.
+\end{lemma}
+\begin{proof}
+Let $\tau$ be transposition that exchanges $k$ and $l$, and assume
+that $k<l$:
+$$
+ \tau=
+\begin{bmatrix}
+1 & \dots & k-1 & k &  \dots & l-1 & l & l+1 & \dots & n \\
+1 & \dots & k-1 & l &  \dots & l-1 & k & l+1 & \dots & n
+\end{bmatrix}
+$$
+Let us count the number of inversions of $\tau$:
+\begin{itemize}
+ \item The pairs $(i,j)$ with $i\in\{1, 2, \ldots, k - 1\}\cup\{l, l + 1, \ldots, n\}$ and $i<j$
+ do not suffer an inversion;
+ \item The pair $(k,j)$ with $k<j$ suffers an inversion if and only if
+ $j\in \{k+1, k + 2, \ldots , l\}$, making  $l-k$
+inversions;
+ \item If $i\in\{k+1, k + 2, \ldots , l-1\}$ and $i<j$, $(i,j)$
+ suffers an
+inversion if and only if $j=l$, giving $l-1-k$ inversions.
+\end{itemize}
+This gives a total of ${\textbf  I}(\tau)=(l-k)+(l-1-k)=2(l-k-1)+1$
+inversions when $k < l$. Since this number is odd, we have
+$\sgn{\tau}=(-1)^{{\textbf  I}(\tau)}=-1$. In general we see that the
+transposition $(k\ l)$ has $2|k - l| - 1$ inversions.
+\end{proof}
+\begin{thm} \label{thm:signum_is_a_homomorphism} Let $(\sigma, \tau)\in S_n
+^2$. Then
+$$ \sgn{\tau\sigma} = \sgn{\tau}\sgn{\sigma}. $$
+\end{thm}
+\begin{proof}
+We have
+$$\begin{array}{lll}
+\sgn{\sigma\tau} & = &  \prod_{1\leq i<j\leq n}
+\frac{(\sigma\tau)(i)-(\sigma\tau)(j)}{i-j} \\ & = &
+\left(\prod_{1\leq i<j\leq n}
+\frac{\sigma(\tau(i))-\sigma(\tau(j))}
+{\tau(i)-\tau(j)}\right)\cdot \left(\prod_{1\leq i<j\leq n}
+\frac{\tau(i)-\tau(j)}{i-j}\right). \end{array}
+$$
+The second factor on this last equality is clearly  $\sgn{\tau}$,
+we must shew that the first factor is $\sgn{\sigma}$. Observe now
+that for  $1\leq a<b\leq n$ we have
+$$
+\frac{\sigma(a)-\sigma(b)}{a-b}=\frac{\sigma(b)-\sigma(a)}{b-a}.
+$$Since
+$\sigma$ and $\tau$ are permutations, $\exists b \neq a, \ \tau
+(i) = a, \tau (j) = b$ and so $\sigma\tau (i) = \sigma (a),
+\sigma\tau (j) = b$. Thus
+$$ \frac{\sigma(\tau(i))-\sigma(\tau(j))}
+{\tau(i)-\tau(j)} = \frac{\sigma (a) - \sigma (b)}{a - b} $$ and
+so
+$$\prod_{1\leq
+i<j\leq n} \frac{\sigma(\tau(i))-\sigma(\tau(j))}
+{\tau(i)-\tau(j)} = \prod_{1\leq a<b\leq n}
+\frac{\sigma(a)-\sigma(b)} {a - b} = \sgn{\sigma}.$$
+\end{proof}
+\begin{cor}
+The identity permutation is even. If $\tau\in S_n$, then
+$\sgn{\tau} = \sgn{\tau^{-1}}$.
+\label{cor:idefun_is_even}\end{cor}
+\begin{proof}
+Since there are no inversions in $\idefun$, we have $\sgn{\idefun}
+= (-1)^0 = 1$. Since $\tau\tau^{-1} = \idefun$, we must have $1 =
+\sgn{\idefun} = \sgn{\tau\tau^{-1}} = \sgn{\tau}\sgn{\tau^{-1}} =
+(-1)^\tau (-1)^{\tau^{-1}}$ by Theorem
+\ref{thm:signum_is_a_homomorphism}. Since the values on the
+righthand of this last equality are $\pm 1$, we must have
+$\sgn{\tau}=\sgn{\tau^{-1}}$.
+\end{proof}
+\begin{lemma}
+We have $\sgn{1\ 2\ \ldots\ l)}=(-1)^{l-1}$.
+\label{lem:inv_in_1_through_l}\end{lemma}
+\begin{proof}
+Simply observe that the number of inversions of $(1\ 2\ \ldots\
+l)$ is $l- 1$.
+\end{proof}
+\begin{lemma} \label{lem:signum_through_cycles}
+Let $(\tau, (i_1\ \ldots\ i_l)\in S_n ^2$. Then
+$$
+\tau(i_1\ \ldots\ i_l)\tau^{-1} = (\tau(i_1)\ \ldots\
+\tau(i_l)),$$ and if $\sigma\in S_n$ is a  cycle of length $l$
+then
+$$\sgn{\sigma}=(-1)^{l-1}$$.\\
+\end{lemma}
+\begin{proof}
+For $1\leq k<l$ we have $(\tau(i_1\ \ldots\
+i_l)\tau^{-1})(\tau(i_k)) = \tau((i_1\ \ldots\ i_l)(i_k)) =
+\tau(i_{k+1})$. On a $(\tau(i_1\ \ldots\ i_l)\tau^{-1})(\tau(i_l))
+= \tau((i_1\ \ldots\ i_l)(i_l)) = \tau(i_1)$. For
+$i\not\in\{\tau(i_1)\ \ldots\ \tau(i_l)\}$ we have
+$\tau^{-1}(i)\not\in\{i_1\ \ldots\ i_l\}$ whence $(i_1\ \ldots\
+i_l)(\tau^{-1}(i))=\tau^{-1}(i)$ etc.
+
+\bigskip
+
+Furthermore, write $\sigma=(i_1\ \ldots\ i_l)$. Let $\tau\in S_n$
+be such that  $\tau(k)=i_k$ for $1\leq k\leq l$. Then
+$\sigma=\tau(1\ 2\ \ldots\ l)\tau^{-1}$ and so we must have
+$\sgn{\sigma} = \sgn{\tau}\sgn{(1\ 2\ \ldots\ l)}\sgn{\tau^{-1}}$,
+which equals  $\sgn{(1\ 2\ \ldots\ l)}$ by virtue of Theorem
+\ref{thm:signum_is_a_homomorphism} and Corollary
+\ref{cor:idefun_is_even}. The result now follows by appealing to
+Lemma \ref{lem:inv_in_1_through_l}
+\end{proof}
+\begin{cor}\label{cor:signum_through_bikes}
+Let $\sigma=\sigma_1\sigma_2\cdots\sigma_r$ be a product of
+disjoint cycles, each of length  $l_1,\ldots,l_r$, respectively.
+Then
+$$
+\sgn{\sigma} = (-1)^{\sum_{i=1}^r (l_i-1)}.
+$$Hence, the product of two even permutations is even, the product
+of two odd permutations is even, and the product of an even
+permutation and an odd permutation is odd.
+\end{cor}
+\begin{proof}
+This follows at once from Theorem
+\ref{thm:signum_is_a_homomorphism} and Lemma
+\ref{lem:signum_through_cycles}.
+\end{proof}
+\begin{exa}
+The cycle $(4678)$ is an odd cycle; the cycle $(1)$ is an even
+cycle; the cycle $(12345)$ is an even cycle.
+\end{exa}
+\begin{cor}\label{cor:permu_is_prod_of_bikes}
+Every permutation can be decomposed as a product of
+transpositions. This decomposition is not necessarily unique, but
+its parity is unique.
+\end{cor}
+\begin{proof}
+This follows from Theorem \ref{thm:permu_is_prod_cycles}, Lemma
+\ref{lem:permu_is_prod_bicycles}, and Corollary
+\ref{cor:signum_through_bikes}.
+\end{proof}
+\begin{exa}[The $15$ puzzle] Consider a grid with $16$ squares, as shewn in (\ref{eq:15_puzzle_1}), where $15$ squares are numbered $1$ through $15$ and the 16th slot is
+empty.
+\begin{equation}\label{eq:15_puzzle_1}
+\begin{array}{|c|c|c|c|}
+\hline 1 & 2 & 3 & 4 \\ \hline 5 & 6 & 7 & 8 \\ \hline 9 & 10 & 11
+& 12 \\ \hline 13 & 14 & 15 & \\ \hline
+\end{array}\end{equation}
+In this grid we may successively exchange the empty slot with any
+of its neighbours, as for example
+\begin{equation}\label{eq:15_puzzle_2}
+\begin{array}{|c|c|c|c|}
+\hline 1 & 2 & 3 & 4 \\ \hline 5 & 6 & 7 & 8 \\ \hline 9 & 10 & 11
+& 12 \\ \hline 13 & 14 &  & 15 \\ \hline
+\end{array}.
+\end{equation}We ask whether through a series of valid moves we may arrive at the following position.
+\begin{equation}\label{eq:15_puzzle_3}
+\begin{array}{|c|c|c|c|}
+\hline 1 & 2 & 3 & 4 \\ \hline 5 & 6 & 7 & 8 \\ \hline 9 & 10 & 11
+& 12 \\ \hline 13 & 15 & 14 &  \\ \hline
+\end{array}
+\end{equation}
+\end{exa}
+\begin{solu}Let us shew that this is impossible. Each time we move a
+square to the empty position, we make transpositions on the set
+$\{1,2,\ldots,16\}$. Thus at each move, the permutation is
+multiplied by a transposition and hence it changes sign. Observe
+that the permutation corresponding to the square in
+(\ref{eq:15_puzzle_3}) is  $(14\ 15)$ (the positions 14th and 15th
+are transposed) and hence it is an odd permutation. But we claim
+that the empty slot can only return to its original position after
+an even permutation. To see this paint the grid as a checkerboard:
+\begin{equation}\label{eq:15_puzzle_4}
+\begin{array}{|c|c|c|c|} \hline
+B & R & B & R\\ \hline R & B & R & B \\ \hline B & R & B & R\\
+\hline R & B & R & B \\ \hline
+\end{array}
+\end{equation}
+We see that after each move, the empty square changes from black
+to red, and thus after an odd number of moves the empty slot is on
+a red square. Thus the empty slot cannot return to its original
+position in an odd number of moves. This completes the proof.
+\end{solu}
+\section*{\psframebox{Homework}}
+
+\begin{pro}
+Decompose the permutation
+$$\begin{bmatrix} 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8 & 9 \cr
+2 & 3 & 4 & 1 & 5 & 8 & 6 & 7 & 9 \end{bmatrix}$$as a product of
+disjoint cycles and find its order. \begin{answer} This is clearly
+$(1\ 2\ 3 \ 4)(6\ 8\ 7) $ of order ${\textrm  lcm} (4, 3) = 12$.
+\end{answer}
+\end{pro}
+
+\section{Determinants} There are many ways of
+developing the theory of determinants. We will choose a way that
+will allow us to deduce the properties of determinants with ease,
+but has the drawback of being computationally cumbersome. In the
+next section we will shew that our way of defining determinants is
+equivalent to a more computationally friendly one.
+\bigskip
+
+It may be pertinent here to quickly review some properties of
+permutations. Recall that if $\sigma \in S_n$ is a cycle of length
+$l$, then its signum $\sgn{\sigma} = \pm 1$ depending on  the
+parity of $l - 1$. For example, in $S_7$, $$\sigma = (1 \ 3 \ 4 \
+7 \ 6)
+$$has length $5$, and the parity of $5 - 1 = 4$ is even, and so we
+write $\sgn{\sigma} = +1$. On the other hand, $$\tau = (1 \ 3 \ 4
+\ 7 \ 6 \ 5)   $$has length $6$, and the parity of $6 - 1 = 5$ is
+odd, and so we write $\sgn{\tau} = -1$.
+
+\bigskip
+
+Recall also that if $(\sigma, \tau)\in S_n ^2$, then
+$$ \sgn{\tau\sigma} = \sgn{\tau}\sgn{\sigma}. $$ Thus from the
+above two examples
+$$\sigma\tau = (1 \ 3 \ 4 \
+7 \ 6)(1 \ 3 \ 4 \ 7 \ 6\ 5)
+$$has signum $\sgn{\sigma} \sgn{\tau} = (+1)(-1) = -1$. Observe in
+particular that for the identity permutation $\idefun\in S_n$ we
+have $\sgn{\idefun} = +1$.
+
+\begin{df}
+Let $A\in\mat{n\times n}{ \bbR}, A = [a_{ij}]$ be a square matrix.
+The \negrito{determinant of $A$} is defined and denoted by the  sum $$
+\det A = \sum _{\sigma \in S_n} \sgn{\sigma} a_{1\sigma
+(1)}a_{2\sigma (2)} \cdots a_{n\sigma (n)}.$$ \index{determinant}
+\end{df}
+\begin{rem}
+The determinantal sum has $n!$ summands.
+\end{rem}
+\begin{exa}
+If $n = 1$, then $S_1$ has only one member, $\idefun$, where
+$\idefun (1) = 1$. Since $\idefun$ is an even permutation, $\sgn{
+\idefun} = (+1)$ Thus if $A = (a_{11})$, then
+$$\det A
+ = a_{11}$$.
+\end{exa}
+\begin{exa}
+If $n = 2$, then  $S_2$ has $2! = 2$   members,  $\idefun$ and
+$\sigma =
+ (1 \ 2)$. Observe that $\sgn{\sigma} = -1$. Thus if $$A = \begin{bmatrix}a_{11} & a_{12} \cr a_{21} & a_{22}\cr
+ \end{bmatrix}$$ then
+ $$\det A  = \sgn{\idefun}a_{1\idefun (1)}a_{2\idefun (2)} + \sgn{\sigma}a_{1\sigma (1)}a_{2\sigma (2)} = a_{11}a_{22} - a_{12}a_{21}.    $$
+\end{exa}
+\begin{exa}
+From the above formula for $2\times 2$ matrices it follows that
+$$\begin{array}{lll}\det A & = & \det \begin{bmatrix} 1 & 2 \cr 3 & 4 \cr   \end{bmatrix} \\ & = &  (1)(4) - (3)(2) = -2,\end{array} $$
+$$\begin{array}{lll}\det B & = & \det \begin{bmatrix} -1 & 2 \cr 3 & 4 \cr
+\end{bmatrix}(-1)(4) - (3)(2)\\ &  = &  -10, \end{array}$$ and $$ \det (A + B) = \det \begin{bmatrix} 0 & 4 \cr 6 & 8 \cr   \end{bmatrix}
+ = (0)(8) - (6)(4) = -24.$$Observe in particular that $\det (A + B) \neq \det A + \det B$.
+\end{exa}
+\begin{exa}
+If $n = 3$, then  $S_2$ has $3! = 6$   members:
+
+$$\idefun, \tau_1 = (2 \ 3), \tau_2 = (1 \ 3), \tau_3 = (1 \ 2), \sigma_1 =  (1 \ 2 \ 3), \sigma_2 =  (1 \ 3 \ 2). $$.
+Observe that $\idefun, \sigma_1, \sigma_2$ are even, and $\tau_1,
+\tau_2, \tau_3$ are odd. Thus if $$A = \begin{bmatrix}a_{11} &
+a_{12} & a_{13} \cr a_{21} & a_{22} & a_{23}\cr a_{31} & a_{32} &
+a_{33}\cr
+\end{bmatrix}$$then
+ $$\begin{array}{lll}\det A  &  =  & \sgn{\idefun}a_{1\idefun (1)}a_{2\idefun (2)}a_{3\idefun (3)} + \sgn{\tau_1}a_{1\tau_1 (1)}a_{2\tau_1 (2)}a_{3\tau_1
+ (3)}\\
+& & \quad + \sgn{\tau_2}a_{1\tau_2 (1)}a_{2\tau_2 (2)}a_{3\tau_2
+(3)} + \sgn{\tau_3}a_{1\tau_3 (1)}a_{2\tau_3 (2)}a_{3\tau_3 (3)}
+\\
+& & \quad + \sgn{\sigma_1}a_{1\sigma_1 (1)}a_{2\sigma_1
+(2)}a_{3\sigma_1 (3)} + \sgn{\sigma_2}a_{1\sigma_2
+(1)}a_{2\sigma_2 (2)}a_{3\sigma_2 (3)}
+\\
+&  = &  a_{11}a_{22}a_{33} - a_{11}a_{23}a_{32}  - a_{13}a_{22}a_{31}\\
+& & \qquad - a_{13}a_{21}a_{33}  + a_{12}a_{23}a_{31} + a_{13}a_{21}a_{32}. \\
+\end{array}
+$$
+\end{exa}
+\begin{thm}[Row-Alternancy of Determinants]\label{thm:alternating_determinants}
+Let $A \in \mat{n\times n}{ \bbR}, A = [a_{ij}]$. If $B \in
+\mat{n\times n}{ \bbR}, B = [b_{ij}]$ is the matrix obtained by
+interchanging  the $s$-th row of $A$ with its $t$-th row, then $\det
+B = -\det A$.
+\end{thm}
+\begin{proof}
+Let $\tau$ be the transposition
+$$\tau =
+\begin{bmatrix} s & t \cr \tau (t) & \tau (s) \cr
+\end{bmatrix}.
+$$Then $\sigma\tau (a) = \sigma (a)$ for $a\in\{1, 2, \ldots , n\}\setminus
+\{s,t\}$. Also, $\sgn{\sigma\tau} = \sgn{\sigma}\sgn{\tau} =
+-\sgn{\sigma}$.  As $\sigma$ ranges through all permutations of
+$S_n$, so does
+ $\sigma\tau$, hence
+$$\begin{array}{lll}\det B & = & \sum _{\sigma\in S_n}\sgn{\sigma} b_{1\sigma (1)}b_{2\sigma (2)}\cdots
+b_{s\sigma (s)}\cdots b_{t\sigma (t)} \cdots b_{n\sigma (n)} \\ &
+= &  \sum _{\sigma\in S_n}\sgn{\sigma} a_{1\sigma (1)}a_{2\sigma
+(2)}\cdots a_{st}\cdots a_{ts} \cdots a_{n\sigma (n)} \\
+& = & -\sum _{\sigma\in S_n}\sgn{\sigma\tau }a_{1\sigma\tau
+(1)}a_{2\sigma\tau (2)}\cdots a_{s\sigma\tau
+(s)}\cdots a_{t\sigma\tau  (t)} \cdots a_{n\sigma\tau (n)} \\
+& = & -\sum _{\lambda \in S_n} \sgn{\lambda } a_{1\lambda
+(1)}a_{2\lambda  (2)} \cdots a_{n\lambda  (n)} \\
+& = & -\det A.
+ \end{array} $$
+\end{proof}
+\begin{cor}If $A_{(r:k)}, 1 \leq k \leq n$ denote the rows of $A$
+and $\sigma \in S_n$, then $$\det \begin{bmatrix} A_{(r:\sigma
+(1))} \cr A_{(r:\sigma (2))} \cr \vdots \cr A_{(r:\sigma (n))}\cr
+\end{bmatrix} = (\sgn{\sigma})\det A. $$An analogous result holds
+for columns. \label{cor:alternating_determinants}\end{cor}
+\begin{proof}
+Apply the result of Theorem \ref{thm:alternating_determinants}
+multiple times.
+\end{proof}
+\begin{thm} \label{thm:determinant_of_transpose}
+Let $A \in \mat{n\times n}{ \bbR}, A = [a_{ij}]$. Then $$\det A^T =
+\det A.$$
+\end{thm}
+\begin{proof}
+Let $C = A^T$. By definition $$\begin{array}{lll}\det A^T & = &
+\det C \\ & = &  \sum _{\sigma \in S_n} \sgn{\sigma} c_{1\sigma
+(1)}c_{2\sigma (2)} \cdots c_{n\sigma (n)} \\ &   = &  \sum
+_{\sigma \in S_n} \sgn{\sigma} a_{\sigma (1)1}a_{\sigma (2)2}
+\cdots a_{\sigma (n)n}. \end{array}$$But the product $a_{\sigma
+(1)1}a_{\sigma (2)2} \cdots a_{\sigma (n)n}$ also appears in $\det
+A$ with the same signum $\sgn{\sigma}$, since the permutation
+$$  \begin{bmatrix}\sigma (1) & \sigma (2) & \cdots & \sigma (n)\cr 1 & 2 & \cdots & n \cr
+\end{bmatrix}$$is the inverse of the permutation
+$$  \begin{bmatrix}1 & 2 & \cdots & n \cr \sigma (1) & \sigma (2) & \cdots & \sigma (n)\cr
+\end{bmatrix}.$$
+\end{proof}
+\begin{cor}[Column-Alternancy of Determinants]\label{cor:alternating_determinants_1}
+Let $A \in \mat{n\times n}{ \bbR}, A = [a_{ij}]$. If $C \in
+\mat{n\times n}{ \bbR}, C = [c_{ij}]$ is the matrix obtained by
+interchanging the $s$-th column of $A$ with its $t$-th column, then
+$\det C = -\det A$.
+\end{cor}
+\begin{proof}
+This follows upon combining Theorem
+\ref{thm:alternating_determinants} and Theorem
+\ref{thm:determinant_of_transpose}.
+\end{proof}
+\begin{thm}[Row Homogeneity of Determinants]\label{thm:row_homogeneity_of_determinants}
+Let $A \in \mat{n\times n}{ \bbR}, A = [a_{ij}]$ and $\alpha\in
+\bbR$. If $B \in \mat{n\times n}{ \bbR}, B = [b_{ij}]$ is the
+matrix obtained by multiplying the $s$-th row of $A$ by $\alpha$,
+then
+$$\det B = \alpha \det A.
+$$
+\end{thm}
+\begin{proof}
+Simply observe that $$\sgn{\sigma} a_{1\sigma (1)}a_{2\sigma
+(2)}\cdots \alpha a_{s\sigma (s)} \cdots a_{n\sigma (n)} = \alpha
+\sgn{\sigma} a_{1\sigma (1)}a_{2\sigma (2)}\cdots  a_{s\sigma (s)}
+\cdots a_{n\sigma (n)}.
+$$
+
+\end{proof}
+\begin{cor}[Column Homogeneity of Determinants]\label{cor:column_homogeneity_of_determinants}
+If $C \in \mat{n\times n}{ \bbR}, C = (C_{ij})$ is the matrix
+obtained by multiplying the $s$-th column of $A$ by $\alpha$, then
+$$\det C = \alpha \det A.
+$$
+\end{cor}
+\begin{proof}
+This follows upon using Theorem \ref{thm:determinant_of_transpose}
+and Theorem \ref{thm:row_homogeneity_of_determinants}.
+\end{proof}
+\begin{rem}
+It follows from Theorem \ref{thm:row_homogeneity_of_determinants}
+and Corollary \ref{cor:column_homogeneity_of_determinants} that if a
+row (or column) of a matrix consists of $0_{\bbR}$s only, then the
+determinant of this matrix is $0_{\bbR}$.
+\end{rem}
+\begin{exa}
+$$\det
+\begin{bmatrix} x & 1 & a \cr x^2 & 1 & b \cr x^3 & 1 & c
+\cr\end{bmatrix} = x\det\begin{bmatrix} 1 & 1 & a \cr x & 1 & b
+\cr x^2 & 1 & c \cr\end{bmatrix}. $$
+\end{exa}
+
+\begin{cor}
+$$\det (\alpha A) = \alpha ^n\det A.$$
+\end{cor}
+\begin{proof}
+Since there are $n$ columns, we are able to pull out one factor of
+$\alpha$ from each one.
+\end{proof}
+\begin{exa}
+Recall that a matrix $A$ is \negrito{skew-symmetric} if $A =
+ -A^T$. Let $A \in\mat{2001}{\bbR}$ be
+ skew-symmetric. Prove that $\det A = 0.$
+ \end{exa}\begin{solu}We have $$\det A = \det (-A^T) = (-1)^{2001}\det A^T = -\det A,$$
+ and so $2\det A = 0,$ from where $\det A = 0$.
+ \end{solu}
+ \begin{lemma}[Row-Linearity and Column-Linearity of Determinants]
+Let $A \in \mat{n\times n}{ \bbR}, A = [a_{ij}]$. For a fixed row
+$s$, suppose that $a_{sj} = b_{sj} + c_{sj}$ for each $j \in [1;n]$.
+Then
+$$\begin{array}{l}\tiny{\det \begin{bmatrix} a_{11}&  a_{12}&  \cdots &
+a_{1n} \cr a_{21}&  a_{22}&  \cdots &  a_{2n} \cr \vdots & \vdots
+& \cdots & \vdots & \vdots \cr a_{(s - 1)1}& a_{(s - 1)2}& \cdots
+& a_{(s -1)n} \cr b_{s1} + c_{s1}& b_{s2} +c_{s2}& \cdots & b_{sn}
++c_{sn} \cr a_{(s+1)1}& a_{(s+1)2}& \cdots & a_{(s+1)n} \cr
+\vdots & \vdots & \cdots & \vdots & \vdots \cr a_{n1}& a_{n2}&
+\cdots & a_{nn} \cr
+\end{bmatrix} } \vspace{2mm}\\   \tiny{=  \det   \begin{bmatrix} a_{11}&  a_{12}&  \cdots &  a_{1n} \cr
+a_{21}&  a_{22}&  \cdots &  a_{2n} \cr \vdots & \vdots & \cdots &
+\vdots & \vdots \cr a_{(s - 1)1}& a_{(s - 1)2}& \cdots & a_{(s
+-1)n} \cr b_{s1}& b_{s2}& \cdots & b_{sn} \cr a_{(s+1)1}&
+a_{(s+1)2}& \cdots & a_{(s+1)n} \cr  \vdots & \vdots & \cdots &
+\vdots & \vdots \cr a_{n1}& a_{n2}& \cdots &  a_{nn} \cr
+\end{bmatrix}}\vspace{2mm}\\ \qquad  \tiny{+ \det \begin{bmatrix} a_{11}&  a_{12}&  \cdots & a_{1n}
+\cr a_{21}&  a_{22}&  \cdots &  a_{2n} \cr \vdots & \vdots &
+\cdots & \vdots & \vdots \cr a_{(s - 1)1}& a_{(s - 1)2}& \cdots &
+a_{(s -1)n} \cr c_{s1}& c_{s2}& \cdots & c_{sn} \cr a_{(s + 1)1}&
+a_{(s+1)2}& \cdots & a_{(s+1)n} \cr  \vdots & \vdots & \cdots &
+\vdots & \vdots \cr a_{n1}& a_{n2}& \cdots &  a_{nn} \cr
+\end{bmatrix}}.
+ \end{array} $$
+ \label{lem:row_linearity_of_determinants}
+An analogous result holds for columns.
+
+
+
+ \end{lemma}
+\begin{proof}
+Put $$\tiny{S =  \begin{bmatrix} a_{11}&  a_{12}&  \cdots & a_{1n}
+\cr a_{21}&  a_{22}&  \cdots &  a_{2n} \cr \vdots & \vdots &
+\cdots & \vdots & \vdots \cr a_{(s - 1)1}& a_{(s - 1)2}& \cdots &
+a_{(s -1)n} \cr b_{s1} + c_{s1}& b_{s2} +c_{s2}& \cdots & b_{sn}
++c_{sn} \cr a_{(s+1)1}& a_{(s+1)2}& \cdots & a_{(s+1)n} \cr \vdots
+& \vdots & \cdots & \vdots & \vdots \cr a_{n1}& a_{n2}& \cdots &
+a_{nn} \cr
+\end{bmatrix},} $$
+$$\tiny{T =  \begin{bmatrix} a_{11}&  a_{12}&  \cdots &  a_{1n} \cr
+a_{21}&  a_{22}&  \cdots &  a_{2n} \cr \vdots & \vdots & \cdots &
+\vdots & \vdots \cr a_{(s - 1)1}& a_{(s - 1)2}& \cdots & a_{(s
+-1)n} \cr b_{s1}& b_{s2}& \cdots & b_{sn} \cr a_{(s+1)1}&
+a_{(s+1)2}& \cdots & a_{(s+1)n} \cr  \vdots & \vdots & \cdots &
+\vdots & \vdots \cr a_{n1}& a_{n2}& \cdots &  a_{nn} \cr
+\end{bmatrix}} $$ and $$\tiny{U = \begin{bmatrix} a_{11}&  a_{12}&  \cdots & a_{1n}
+\cr a_{21}&  a_{22}&  \cdots &  a_{2n} \cr \vdots & \vdots &
+\cdots & \vdots & \vdots \cr a_{(s - 1)1}& a_{(s - 1)2}& \cdots &
+a_{(s -1)n} \cr c_{s1}& c_{s2}& \cdots & c_{sn} \cr a_{(s + 1)1}&
+a_{(s+1)2}& \cdots & a_{(s+1)n} \cr  \vdots & \vdots & \cdots &
+\vdots & \vdots \cr a_{n1}& a_{n2}& \cdots &  a_{nn} \cr
+\end{bmatrix}.}  $$Then
+$${\footnotesize \begin{array}{lll}\det S &  = & \sum _{\sigma\in S_n}\sgn{\sigma} a_{1\sigma (1)}a_{2\sigma (2)}\cdots a_{(s-1)\sigma (s - 1)}(b_{s\sigma
+(s)}\\ & & \qquad +  c_{s\sigma (s)})a_{(s+1)\sigma (s + 1)}
+\cdots a_{n\sigma (n)} \\ & = &
+ \sum _{\sigma\in S_n}\sgn{\sigma} a_{1\sigma (1)}a_{2\sigma (2)}\cdots a_{(s-1)\sigma (s - 1)}b_{s\sigma
+(s)}a_{(s+1)\sigma (s + 1)}   \cdots a_{n\sigma (n)} \\ & &  +
+\sum _{\sigma\in S_n}\sgn{\sigma} a_{1\sigma (1)}a_{2\sigma
+(2)}\cdots a_{(s-1)\sigma (s - 1)}c_{s\sigma
+(s)}a_{(s+1)\sigma (s + 1)}   \cdots a_{n\sigma (n)}  \\
+& = & \det T + \det U.
+\end{array} } $$
+By applying the above argument to $A^T$, we obtain the result for
+columns.
+
+\end{proof}
+
+\begin{lemma}
+If two rows or two columns of $A \in \mat{n\times n}{ \bbR}, A =
+[a_{ij}]$ are identical, then $\det A = 0_{\bbR}$.
+\label{lem:determinant_with_two_identical_rows}\end{lemma}
+\begin{proof}
+Suppose $a_{sj} = a_{tj}$ for $s\neq t$ and for all $j\in [1;n]$.
+In particular, this means that for any $\sigma\in S_n$ we have
+$a_{s\sigma (t)} = a_{t\sigma (t)}$ and $a_{t\sigma (s)} =
+a_{s\sigma (s)}$.  Let $\tau$ be the transposition
+$$\tau =
+\begin{bmatrix} s & t \cr \tau (t) & \tau (s) \cr
+\end{bmatrix}.
+$$Then $\sigma\tau (a) = \sigma (a)$ for $a\in\{1, 2, \ldots , n\}\setminus
+\{s,t\}$. Also, $\sgn{\sigma\tau} = \sgn{\sigma}\sgn{\tau} =
+-\sgn{\sigma}$. As $\sigma$ runs through all even permutations,
+$\sigma\tau$ runs through all odd permutations, and viceversa.
+Therefore
+$$\begin{array}{lll}det A & = & \sum _{\sigma \in S_n}\sgn{\sigma} a_{1\sigma (1)}a_{2\sigma (2)}\cdots a_{s\sigma
+(s)}\cdots a_{t\sigma (t)} \cdots a_{n\sigma (n)} \\
+& = &  \sum _{\stackrel{\sigma \in S_n}{\sgn{\sigma} =
+1}}\left(\sgn{\sigma} a_{1\sigma (1)}a_{2\sigma (2)}\cdots
+a_{s\sigma (s)}\cdots a_{t\sigma (t)} \cdots a_{n\sigma (n)}\right.\\
+& & \left. \quad + \sgn{\sigma\tau} a_{1\sigma\tau
+(1)}a_{2\sigma\tau (2)}\cdots a_{s\sigma\tau (s)}\cdots
+a_{t\sigma\tau (t)} \cdots
+a_{n\sigma\tau (n)}\right) \\
+& = &  \sum _{\stackrel{\sigma \in S_n}{\sgn{\sigma} =
+1}}\sgn{\sigma}\left( a_{1\sigma (1)}a_{2\sigma (2)}\cdots
+a_{s\sigma (s)}\cdots a_{t\sigma (t)} \cdots a_{n\sigma (n)}\right.\\
+& & \left. \quad -  a_{1\sigma (1)}a_{2\sigma (2)}\cdots
+a_{s\sigma (t)}\cdots a_{t\sigma (s)} \cdots
+a_{n\sigma (n)}\right) \\
+& = &  \sum _{\stackrel{\sigma \in S_n}{\sgn{\sigma} =
+1}}\sgn{\sigma}\left( a_{1\sigma (1)}a_{2\sigma (2)}\cdots
+a_{s\sigma (s)}\cdots a_{t\sigma (t)} \cdots a_{n\sigma (n)}\right.\\
+& & \left. \quad -  a_{1\sigma (1)}a_{2\sigma (2)}\cdots
+a_{t\sigma (t)}\cdots a_{s\sigma (s)} \cdots
+a_{n\sigma (n)}\right) \\
+& = & 0_{\bbR}.
+\end{array}$$
+Arguing on $A^T$ will yield the analogous result for the columns.
+\end{proof}
+\begin{cor}
+If two rows or two columns of $A \in \mat{n\times n}{ \bbR}, A =
+[a_{ij}]$ are proportional, then $\det A = 0_{\bbR}$.
+\label{cor:determinant_with_two_proportional_rows}\end{cor}
+\begin{proof}
+Suppose $a_{sj} = \alpha a_{tj}$ for $s\neq t$ and for all $j\in
+[1;n]$. If $B$ is the matrix obtained by pulling out the factor
+$\alpha$ from the $s$-th row then $\det A = \alpha \det B$. But now
+the $s$-th and the $t$-th rows in $B$ are identical, and so $\det B
+= 0_{\bbR}$. Arguing on $A^T$ will yield the analogous result for
+the columns.
+
+\end{proof}
+\begin{exa}
+$$\det \begin{bmatrix} 1 & a & b \cr 1 & a & c \cr 1 & a & d \cr   \end{bmatrix} =
+a\det \begin{bmatrix} 1 & 1 & b \cr 1 & 1 & c \cr 1 & 1 & d \cr
+\end{bmatrix} = 0,  $$since on the last determinant the first two columns are
+identical.
+
+\end{exa}
+
+ \begin{thm}[Multilinearity of Determinants]\label{thm:multilinearity_of_determinants}
+Let $A \in \mat{n\times n}{ \bbR}, A = [a_{ij}]$ and $\alpha\in
+\bbR$. If $X \in \mat{n\times n}{ \bbR}, X = (x_{ij})$ is the
+matrix obtained by the row transvection  $R_s + \alpha R_t
+\rightarrow R_s$ then $\det X = \det A$. Similarly, if $Y \in
+\mat{n\times n}{ \bbR}, Y = (y_{ij})$ is the matrix obtained by the
+column transvection  $C_s + \alpha C_t \rightarrow C_s$ then $\det Y
+= \det A$.
+ \end{thm}
+ \begin{proof}
+For the row transvection it suffices to take $b_{sj} = a_{sj}$,
+$c_{sj} = \alpha a_{tj}$ for $j\in [1;n]$ in Lemma
+\ref{lem:row_linearity_of_determinants}. With the same notation as
+in the lemma, $T = A$, and so, $$\det X = \det T + \det U = \det A
++ \det U.
+$$But $U$ has its $s$-th and $t$-th rows proportional ($s\neq t$),
+and so by Corollary \ref{cor:determinant_with_two_proportional_rows}
+$\det U = 0_{\bbR}.$ Hence $\det X = \det A.$ To obtain the result
+for column transvections it suffices now to also apply Theorem
+\ref{thm:determinant_of_transpose}.
+ \end{proof}
+
+
+\begin{exa}
+Demonstrate, {\em without actually calculating the determinant}
+that $$\det\begin{bmatrix}2 & 9 & 9 \cr 4 & 6 & 8 \cr 7 & 4 & 1
+\cr
+\end{bmatrix}$$is divisible by $13$.
+\end{exa}
+\begin{solu}Observe that $299, 468$ and $741$ are all divisible by
+13. Thus $$\det\begin{bmatrix}2 & 9 & 9 \cr 4 & 6 & 8 \cr 7 & 4 &
+1 \cr \end{bmatrix} \stackrel{C_3 + 10C_2 + 100C_1 \rightarrow
+C_3}{ = }\det\begin{bmatrix}2 & 9 & 299 \cr 4 & 6 & 468 \cr 7 & 4
+& 741 \cr \end{bmatrix} = 13\det\begin{bmatrix}2 & 9 & 23 \cr 4 &
+6 & 36 \cr 7 & 4 & 57 \cr \end{bmatrix},$$which shews that the
+determinant is divisible by $13$.
+\end{solu}
+
+ \begin{thm}
+The determinant of a triangular matrix (upper or lower) is the
+product of its diagonal elements.
+ \end{thm}
+ \begin{proof}
+Let $A\in\mat{n\times n}{ \bbR}, A = [a_{ij}]$ be a triangular
+matrix. Observe that if $\sigma \neq \idefun$ then $a_{i\sigma
+(i)}a_{\sigma(i)\sigma^2(i)} = 0_{\bbR}$ occurs in the product
+$$a_{1\sigma (1)}a_{2\sigma (2)}
+\cdots a_{n\sigma (n)}.  $$Thus $$\begin{array}{lll}\det A & = &
+\sum _{\sigma \in S_n}\sgn{\sigma}a_{1\sigma (1)}a_{2\sigma
+(2)}\cdots a_{n\sigma (n)}\\ &  = &  \sgn{\idefun}a_{1\idefun
+(1)}a_{2\idefun (2)}\cdots a_{n\idefun (n)} = a_{11}a_{22} \cdots
+a_{nn}. \end{array}
+$$
+ \end{proof}
+ \begin{exa}
+The determinant of the $n\times n$ identity matrix ${\textbf  I}_n$ over
+a field $\bbR$ is $$\det  {\textbf  I}_n = 1_{\bbR}. $$
+ \end{exa}
+
+\begin{exa}
+Find $$\det\begin{bmatrix} 1 & 2 & 3 \cr 4 & 5 & 6 \cr  7 & 8 & 9
+\cr
+\end{bmatrix}.$$
+\end{exa}
+\begin{solu}We have $$\begin{array}{lll}\det\begin{bmatrix} 1 & 2 &
+3 \cr 4 & 5 & 6 \cr  7 & 8 & 9 \cr
+\end{bmatrix} & \grstep{\stackrel{C_2 - 2C_1 \rightarrow C_2}{C_3 - 3C_1 \rightarrow C_3}}
+& \det\begin{bmatrix} 1 & 0 & 0 \cr 4 & -3 & -6 \cr  7 & -6 &
+-12\cr
+\end{bmatrix} \\
+& = & (-3)(-6)\det\begin{bmatrix} 1 & 0 & 0 \cr 4 & 1 & 1 \cr  7 &
+2 & 2\cr
+\end{bmatrix} \\
+& = & 0,
+\end{array}$$
+since in this last matrix the second and third columns are
+identical and so Lemma
+\ref{lem:determinant_with_two_identical_rows} applies.
+\end{solu}
+\begin{thm}
+Let $(A, B)\in (\mat{n\times n}{ \bbR})^2$. Then $$\det (AB) =
+(\det A)(\det B).
+$$
+\label{thm:product_of_determinants}\end{thm}
+\begin{proof}
+Put $D = AB, D = (d_{ij}), d_{ij} = \sum _{k = 1} ^n
+a_{ik}b_{kj}$. If $A_{(c:k)}, D_{(c:k)}, 1 \leq k \leq n$ denote
+the columns of $A$ and $D$, respectively, observe that $$
+D_{(c:k)} = \sum _{l = 1} ^n b_{lk}A_{(c:l)}, \    \  1 \leq k
+\leq n.
+$$
+Applying Corollary \ref{cor:column_homogeneity_of_determinants}
+and Lemma \ref{lem:row_linearity_of_determinants} multiple times,
+we obtain
+$$\begin{array}{lll}\det D  & =  & \det (D_{(c:1)},  D_{(c:2)}, \ldots , D_{(c:n)}) \\ &
+=&  \sum _{j_1 = 1} ^n\sum _{j_2 = 1} ^n \cdots \sum _{j_n = 1} ^n
+b_{1j_1}b_{2j_2}\cdots b_{nj_n}\\ & & \quad \cdot\det
+(A_{(c:j_1)}, A_{(c:j_2)}, \ldots , A_{(c:j_n)}). \end{array}
+$$
+By Lemma \ref{lem:determinant_with_two_identical_rows}, if any two
+of the $A_{(c:j_l)}$ are identical, the determinant on the right
+vanishes. So each one of the $j_l$ is different in the
+non-vanishing terms and so the map
+$$\fun{\sigma}{l}{j_l}{\{1, 2, \ldots , n\}}{\{1, 2, \ldots , n\}}
+$$is a permutation. Here $j_l = \sigma (l)$. Therefore, for the non-vanishing $$\det (A_{(c:j_1)},  A_{(c:j_2)},
+\ldots , A_{(c:j_n)})$$ we have in view of Corollary
+\ref{cor:alternating_determinants},  $$\begin{array}{lll}\det
+(A_{(c:j_1)}, A_{(c:j_2)}, \ldots , A_{(c:j_n)}) & = &
+(\sgn{\sigma})\det (A_{(c:1)}, A_{(c:2)}, \ldots , A_{(c:n)}) \\ &
+= &(\sgn{\sigma})\det A.\end{array}$$We deduce that
+$$\begin{array}{lll}\det (AB) & = & \det D \\ & = & \sum _{j_n = 1} ^n
+b_{1j_1}b_{2j_2}\cdots b_{nj_n}\det (A_{(c:j_1)},  A_{(c:j_2)},
+\ldots , A_{(c:j_n)})\\
+&  = & (\det A) \sum _{\sigma\in S_n} (\sgn{\sigma}) b_{1\sigma
+(1)}b_{2\sigma (2)}\cdots b_{n\sigma (n)}\\
+& = & (\det A)(\det B),
+\end{array}$$as we wanted to shew.
+\end{proof}
+By applying the preceding theorem multiple times we obtain
+\begin{cor}
+If $A\in\mat{n\times n}{ \bbR}$ and if $k$ is a positive integer
+then $$ \det A^k = (\det A)^k.
+$$
+\end{cor}
+\begin{cor}
+If $A\in\gl{n}{ \bbR}$ and if $k$ is a positive integer then $\det
+A \neq 0_{\bbR}$ and
+$$ \det A^{-k} = (\det A)^{-k}.
+$$
+\end{cor}
+\begin{proof}
+We have $AA^{-1} = {\textbf  I}_n$ and so by Theorem
+\ref{thm:product_of_determinants} $(\det A)(\det A^{-1}) = 1_{\bbR
+}$, from where the result follows.
+\end{proof}
+
+\section*{\psframebox{Homework}}
+\begin{pro}
+ Let $$\Omega =
+\det
+\begin{bmatrix} bc & ca & ab \cr a & b & c \cr a^2 & b^2 & c^2 \cr\end{bmatrix}
+.
+$$Without expanding either determinant, prove that
+$$\Omega = \det
+\begin{bmatrix} 1 & 1 & 1 \cr a^2 & b^2 & c^2 \cr a^3 & b^3 & c^3
+\cr\end{bmatrix}.
+$$
+\begin{answer} Multiplying the first column of the given matrix  by $a$,
+its second column by $b$, and its third column by $c$, we obtain
+$$abc\Omega =  \begin{bmatrix} abc & abc & abc \cr a^2 & b^2 & c^2 \cr a^3 & b^3 & c^3 \cr\end{bmatrix}. $$ We may factor out
+$abc$ from the first row of this last matrix thereby obtaining
+$$abc\Omega = abc\det
+\begin{bmatrix} 1 & 1 & 1 \cr a^2 & b^2 & c^2 \cr a^3 & b^3 & c^3
+\cr\end{bmatrix}. $$Upon dividing by $abc$,
+$$\Omega = \det
+\begin{bmatrix} 1 & 1 & 1 \cr a^2 & b^2 & c^2 \cr a^3 & b^3 & c^3
+\cr\end{bmatrix}.
+$$
+\end{answer}
+\end{pro}
+\begin{pro}
+Demonstrate that $$\Omega = \det\begin{bmatrix} a - b - c & 2a &
+2a \cr 2b & b - c - a & 2b \cr 2c & 2c & c - a - b \cr
+\end{bmatrix} = (a + b + c)^3.
+$$
+\begin{answer} Performing $R_1 + R_2 + R_3 \rightarrow R_1$ we have
+$$\begin{array}{l}
+\Omega = \det\begin{bmatrix} a - b - c & 2a & 2a \cr 2b & b - c -
+a & 2b \cr 2c & 2c & c - a - b \cr
+\end{bmatrix}\vspace{2mm}\\ \qquad = \det\begin{bmatrix} a + b + c & a + b + c & a + b + c \cr 2b
+& b - c - a & 2b \cr 2c & 2c & c - a - b \cr
+\end{bmatrix}.\end{array}$$ Factorising $(a + b + c)$ from the first row of
+this last determinant, we have
+$$\Omega =   (a + b + c)\det\begin{bmatrix} 1 & 1 & 1 \cr 2b
+& b - c - a & 2b \cr 2c & 2c & c - a - b \cr
+\end{bmatrix}. $$Performing $C_2 - C_1 \rightarrow C_2$ and $C_3 - C_1 \rightarrow
+C_3$,
+$$\Omega =   (a + b + c)\det\begin{bmatrix} 1 & 0 & 0 \cr 2b
+& -b - c - a & 0 \cr 2c & 0 & -c - a - b \cr
+\end{bmatrix}. $$This last matrix is triangular, hence $$\Omega = (a + b + c)(-b - c - a)(-c -a - b) = (a + b + c)^3,  $$
+as wanted.
+\end{answer}
+\end{pro}
+
+\begin{pro} After the indicated column operations on a $3\times 3$
+ matrix $A$ with $\det A = -540$, matrices $A_1, A_2, \ldots , A_5$
+ are successively obtained:
+ $$A \stackrel{C_1 + 3C_2 \rightarrow C_1}{\rightarrow} A_1
+ \stackrel{C_2 \leftrightarrow C_3}{\rightarrow} A_2 \stackrel{3C_2
+ - C_1 \rightarrow C_2}{\rightarrow} A_3 \stackrel{C_1 - 3C_2
+ \rightarrow C_1}{\rightarrow} A_4 \stackrel{2C_1  \rightarrow
+ C_1}{\rightarrow} A_5$$ Determine  the numerical values
+ of $\det A_1, \det A_2, \det A_3, \det A_4$ and $\det A_5.$
+ \begin{answer} $\det A_1 = \det A = -540$ by multilinearity. $\det A_2 = -\det
+ A_1 = 540$ by alternancy. $\det A_3 = 3\det A_2 = 1620$  by both
+ multilinearity and homogeneity from one column. $\det A_4 = \det A_3
+ = 1620$ by multilinearity, and $\det A_5 = 2\det A_4 = 3240$ by
+ homogeneity from one column.
+ \end{answer}
+\end{pro}
+
+\begin{pro}
+Prove, without actually expanding the determinant, that
+$$\det \begin{bmatrix}1 & 2 & 3 & 7 & 0 \cr 6 & 1 & 5 & 14 & 1 \cr 8 & 6 & 1 & 21 & 3 \cr 7 & 3 & 8 & 7 & 1 \cr 2 & 4 & 6 & 0 & 4 \cr  \end{bmatrix}$$
+is divisible by $1722$.
+\end{pro}
+
+
+\begin{pro} Let $A, B, C$ be $3\times 3$ matrices with $\det A = 3, \det
+B^3 = -8,
+ \det C = 2$. Compute (i) $\det ABC$, (ii) $\det 5AC$, (iii) $\det
+ A^3B^{-3}C^{-1}$. Express your answers as fractions. \begin{answer} From the given data, $\det B = -2.$ Hence
+ $$\det ABC = (\det A)(\det B)(\det C) = -12,$$
+ $$\det 5AC = 5^3\det AC = (125)(\det A)(\det C) = 750,$$
+ $$(\det A^3B^{-3}C^{-1}) = \frac{(\det A)^3}{(\det B)^3(\det C)} = -\frac{27}{16}.$$
+\end{answer}
+\end{pro}
+\begin{pro}
+Shew that $\forall A\in\mat{n\times n}{\bbR},$ $$\exists (X, Y)\in
+(\mat{n\times n}{\bbR})^2, (\det X)(\det Y)\neq 0$$ such that
+$$A = X + Y.$$ That is, any square matrix over $\bbR$ can be written as a sum of two matrices whose determinant is not zero.\begin{answer} Pick $\lambda \in \bbR \setminus \{0,
+a_{11}, a_{22}, \ldots , a_{nn}\}$. Put
+$$X = \begin{bmatrix} a_{11} - \lambda & 0 & 0 & \cdots &  0 \cr a_{21}  & a_{22} - \lambda & 0 & \cdots & 0 \cr
+a_{31}  & a_{32}  & a_{33} - \lambda & \cdots &  0 \cr \vdots &
+\vdots & \vdots & \vdots & \vdots \cr a_{n1} & a_{n2} & a_{n3} &
+\cdots & a_{nn} - \lambda
+\end{bmatrix}$$and
+$$Y = \begin{bmatrix}
+\lambda & a_{12} & a_{13} & \vdots & a_{1n} \cr   0 & \lambda &
+a_{23} & \vdots & a_{2n} \cr
+ 0 & 0 &
+\lambda & \vdots & a_{3n} \cr \vdots & \vdots & \vdots & \vdots &
+\vdots \cr
+ 0 & 0 &
+0 & \vdots & \lambda \cr
+
+
+\end{bmatrix}$$ Clearly  $A = X + Y$, $\det X = (a_{11} - \lambda)(a_{22} -
+\lambda)\cdots (a_{nn} - \lambda) \neq 0$, and $\det Y = \lambda^n
+\neq 0$. This completes the proof.
+\end{answer}
+\end{pro}
+\begin{pro}
+Prove or disprove! The set $X = \{A\in\mat{n\times n}{ \bbR}: \det
+A = 0_{\bbR}\}$ is a vector subspace of $\mat{n\times n}{ \bbR}$.
+\begin{answer}
+No.
+\end{answer}
+\end{pro}
+\section{Laplace Expansion} We now develop a more
+computationally convenient approach to determinants.
+
+\bigskip
+Put $$C_{ij} = \sum _{\stackrel{\sigma \in S_n}{\sigma (i) = j}}
+(\sgn{\sigma})a_{1\sigma (1)}a_{2\sigma (2)}\cdots a_{n\sigma
+(n)}. $$Then
+\begin{equation}\label{eq:cofactor}\begin{array}{lll}\det A & = &
+\sum _{\sigma \in S_n} (\sgn{\sigma})a_{1\sigma (1)}a_{2\sigma
+(2)}\cdots a_{n\sigma (n)}
+\\ &  = &   \sum _{i = 1} ^n a_{ij}\sum _{\stackrel{\sigma \in
+S_n}{\sigma (i) = j}} (\sgn{\sigma})a_{1\sigma (1)}a_{2\sigma
+(2)}\\ & &  \qquad \cdots a_{(i - 1)\sigma (i - 1)}a_{(i +
+1)\sigma (i + 1)}\cdots a_{n\sigma (n)} \\& = &  \sum _{i = 1} ^n
+a_{ij}C_{ij},
+\end{array}\end{equation}is the expansion of $\det A$ along the $j$-th column.
+Similarly,
+$$\begin{array}{lll}\det A & = &  \sum _{\sigma \in S_n}
+(\sgn{\sigma})a_{1\sigma (1)}a_{2\sigma (2)}\cdots a_{n\sigma (n)}
+\\ & = &   \sum _{j = 1} ^n a_{ij}\sum _{\stackrel{\sigma \in
+S_n}{\sigma (i) = j}} (\sgn{\sigma})a_{1\sigma (1)}a_{2\sigma
+(2)}\\ & & \qquad \cdots a_{(i - 1)\sigma (i - 1)}a_{(i + 1)\sigma
+(i + 1)}\cdots a_{n\sigma (n)}\\ & = & \sum _{j = 1} ^n
+a_{ij}C_{ij},
+\end{array}$$is the expansion of $\det A$ along the $i$-th row.
+\begin{df}
+Let $A\in\mat{n\times n}{ \bbR}, A = [a_{ij}]$. The $ij$-th minor
+$A_{ij} \in\mat{n - 1}{\bbR}$ is the $(n - 1)\times (n - 1)$  matrix
+obtained by deleting the $i$-th row and the $j$-th column from $A$.
+\end{df}
+\begin{exa}
+If $$ A = \begin{bmatrix} 1 & 2 & 3 \cr 4 & 5 & 6 \cr  7 & 8 & 9
+\cr
+\end{bmatrix}$$then, for example,  $$A_{11} =\begin{bmatrix} 5 & 6 \cr 8 & 9 \cr \end{bmatrix}, \
+\ \ A_{12} = \begin{bmatrix} 4 & 6 \cr 7 & 9 \cr  \end{bmatrix}, \
+\ \ A_{21} = \begin{bmatrix} 2 & 3 \cr 8 & 9 \cr  \end{bmatrix}, \
+\ \ A_{22} = \begin{bmatrix} 1 & 3 \cr 7 & 9 \cr  \end{bmatrix}, \
+\ \ A_{33} = \begin{bmatrix} 1 & 2 \cr 4 & 5 \cr  \end{bmatrix}.
+$$
+\end{exa}
+\begin{thm}\label{thm:laplace_expansion}
+Let $A\in\mat{n\times n}{ \bbR}$. Then $$\det A = \sum _{i = 1} ^n
+a_{ij}(-1)^{i + j}\det A_{ij} = \sum _{j = 1} ^n a_{ij}(-1)^{i +
+j}\det A_{ij}.
+$$
+\end{thm}
+\begin{proof}
+It is enough to shew, in view of  \ref{eq:cofactor} that
+$$ (-1)^{i + j}\det A_{ij} =  C_{ij}. $$Now,
+$$\begin{array}{lll}C_{nn} & = & \sum _{\stackrel{\sigma\in S_n}{\sigma (n) = n}} \sgn{\sigma} a_{1\sigma (1)}a_{2\sigma (2)}\cdots a_{(n-1)\sigma (n-1)}
+ \\ & = & \sum _{\tau\in S_{n-1}} \sgn{\tau} a_{1\tau (1)}a_{2\tau (2)}\cdots a_{(n - 1)\tau (n -1)} \\ & = & \det
+A_{nn},\end{array}$$since the second sum shewn is the determinant
+of the submatrix obtained by deleting the last row and last column
+from $A$.
+
+\bigskip
+
+
+To find $C_{ij}$ for general $ij$ we perform some row and column
+interchanges to $A$ in order to bring $a_{ij}$ to the $nn$-th
+position. We thus bring the $i$-th row to the $n$-th row by a
+series of transpositions, first swapping the $i$-th and the $(i +
+1)$-th row, then swapping the new $(i + 1)$-th row and the $(i +
+2)$-th row, and so forth until the original $i$-th row makes it to
+the $n$-th row. We have made thereby $n - i$ interchanges. To this
+new matrix we perform analogous interchanges to the $j$-th column,
+thereby making $n - j$ interchanges. We have made a total of $2n -
+i - j$ interchanges. Observe that $(-1)^{2n - i - j} = (-1)^{i +
+j}$. Call the analogous quantities in the resulting matrix $A',
+C'_{nn}, A'_{nn} $. Then
+$$C_{ij} = C'_{nn} = \det A'_{nn} = (-1)^{i + j}\det A_{ij},
+$$by virtue of Corollary \ref{cor:alternating_determinants}.
+
+\end{proof}
+\begin{rem}
+It is irrelevant which row or column we choose to expand a
+determinant of a square matrix. We always obtain the same result.
+The sign pattern is given by $$\begin{bmatrix} + & - & + & - &
+\cdots \cr - & + & - & + & \vdots \cr + & - & + & - & \vdots \cr
+ \vdots  & \vdots  & \vdots  &  \vdots  & \vdots \cr
+\end{bmatrix}
+$$
+\end{rem}
+\begin{exa}
+Find $$\det\begin{bmatrix} 1 & 2 & 3 \cr 4 & 5 & 6 \cr  7 & 8 & 9
+\cr
+\end{bmatrix}$$by expanding along the first row.
+\end{exa}
+\begin{solu}We have \begin{eqnarray*}\det A  & = & 1(-1)^{1 + 1}\det
+\begin{bmatrix} 5 & 6 \cr 8 & 9 \end{bmatrix} + 2(-1)^{1 + 2}\det
+\begin{bmatrix} 4 & 6 \cr 7 & 9 \end{bmatrix} + 3(-1)^{1 + 3}\det
+\begin{bmatrix} 4 & 5 \cr 7 & 8 \end{bmatrix} \\ &  =  & 1(45 - 48) - 2(36
+- 42) + 3(32 - 35 ) = 0. \end{eqnarray*}
+\end{solu}
+
+\begin{exa}
+ Evaluate the {\em Vandermonde} determinant
+ $$\det\begin{bmatrix}1 & 1 & 1 \cr a & b & c \cr a^2 & b^2 & c^2 \cr
+ \end{bmatrix}.$$\end{exa}
+ \begin{solu}$$\begin{array}{lll}\det\begin{bmatrix}1 & 1 & 1 \cr a & b & c \cr a^2 & b^2 & c^2 \cr \end{bmatrix}
+ & = & \det\begin{bmatrix}1 & 0
+ & 0 \cr a & b - a & c - a \cr a^2 & b^2 - a^2 & c^2 - a^2\cr \end{bmatrix} \\
+ & = & \det \begin{bmatrix}b - a & c - a \cr b^2 - c^2 & c^2 - a^2 \end{bmatrix} \\ &
+ = & (b - a)(c - a) \det\begin{bmatrix}1 & 1 \cr b + a & c + a \end{bmatrix} \\ &  = &
+ (b - a)(c - a)(c - b).
+ \end{array}$$
+\end{solu}
+ \begin{exa}
+Evaluate the determinant
+ $$\det A = \det\begin{bmatrix}1 & 2 & 3 & 4 & \cdots & 2000 \cr
+ 2 & 1 & 2 & 3 & \cdots & 1999 \cr 3 & 2 & 1 & 2 & \cdots & 1998
+ \cr 4 & 3 & 2 & 1 & \cdots & 1997 \cr \cdots & \cdots & \cdots &
+ \cdots & \cdots & \cdots \cr  2000 & 1999 & 1998 & 1997 & \cdots &
+ 1 \cr \end{bmatrix}.$$
+ \end{exa}\begin{solu}Applying $R_n - R_{n + 1}\rightarrow R_n$ for $1
+ \leq n \leq 1999,$ the determinant becomes
+ $$\det\begin{bmatrix}-1 & 1 & 1 & 1 & \cdots  & 1 & 1 \cr
+ -1 & -1 & 1 & 1 & \cdots & 1 & 1 \cr -1 & -1 & -1 & 1 & \cdots & 1
+ & 1 \cr -1 & -1 & -1 & -1 & \cdots & 1 & 1 \cr \cdots & \cdots &
+ \cdots & \cdots & \cdots & \cdots & \cdots \cr -1 & -1 & -1 & -1 &
+ \cdots & -1 & 1 \cr 2000 & 1999 & 1998 & 1997 & \cdots  & 2 & 1
+ \cr \end{bmatrix}.$$
+
+ Applying now $C_n + C_{2000}\rightarrow C_n$ for $1 \leq n \leq
+ 1999,$ we obtain
+ $$\det\begin{bmatrix}0 & 2 & 2 & 2 & \cdots  & 2 & 1 \cr
+ 0 & 0 & 2 & 2 & \cdots & 2 & 1 \cr 0 & 0 & 0 & 2 & \cdots  & 2 & 1
+ \cr 0 & 0 & 0 & 0 & \cdots & 2 & 1 \cr \cdots & \cdots & \cdots &
+ \cdots & \cdots & \cdots & \cdots \cr 0 & 0 & 0 & 0 & \cdots & 0 &
+ 1 \cr 2001 & 2000 & 1999 & 1998 & \cdots  & 3 & 1 \cr \end{bmatrix}.$$ This
+ last determinant we expand along the first column. We have
+ $$2001\det\begin{bmatrix}2 & 2 & 2 & \cdots  & 2 & 1 \cr
+ 0 & 2 & 2 & \cdots & 2 & 1 \cr 0 & 0 & 2 & \cdots  & 2 & 1 \cr  0
+ & 0 & 0 & \cdots & 2 & 1 \cr  \cdots & \cdots & \cdots & \cdots &
+ \cdots & \cdots \cr  0 & 0 & 0 & \cdots & 0 & 1 \cr \end{bmatrix} =
+ 2001(2^{1998}).$$
+\end{solu}
+\begin{df}Let $A\in\mat{n\times n}{ \bbR}$. The \negrito{classical adjoint} or
+\negrito{adjugate} of $A$ is the $n\times n$ matrix $\adj{A}$ whose
+entries are given by \index{matrix!adjoint}
+$$[\adj{A}]_{ij} = (-1)^{i + j} \det A_{ji},
+$$where $A_{ji}$ is the $ji$-th minor of $A$.
+\end{df}
+\begin{thm}Let $A\in\mat{n\times n}{ \bbR}$.
+Then $$(\adj{A})A = A(\adj{A}) = (\det A){\textbf  I}_n.    $$
+\end{thm}
+\begin{proof}
+We have $$ \begin{array}{lll} [A(\adj{A})]_{ij} & = & \sum_{k=1}
+^n a_{ik}[\adj{A}]_{kj} \\
+& = & \sum _{k=1} ^n a_{ik}(-1)^{i + k}\det A_{jk}.
+\end{array}$$Now, this last sum is $\det A$ if $i = j$ by virtue of Theorem \ref{thm:laplace_expansion}. If $i\neq
+j$ it is $0$, since then the $j$-th row is identical to the $i$-th
+row and this determinant is $0_{\bbR}$ by virtue of Lemma
+\ref{lem:determinant_with_two_identical_rows}. Thus on the diagonal
+entries we get $\det A$ and the off-diagonal entries are $0_{\bbR
+}$. This proves the theorem.
+\end{proof}
+The next corollary follows immediately.
+\begin{cor}\label{cor:inverse_via_adjoint}Let $A\in\mat{n\times n}{ \bbR}$.
+Then $A$ is invertible if and only $\det A \neq 0_{\bbR}$ and
+$$A^{-1} = \dfrac{\adj{A}}{\det A}.
+$$
+\end{cor}
+
+\section*{\psframebox{Homework}}
+
+\begin{pro}
+Find $$\det\begin{bmatrix} 1 & 2 & 3 \cr 4 & 5 & 6 \cr  7 & 8 & 9
+\cr
+\end{bmatrix}$$by expanding along the second column.
+\begin{answer} We have
+\begin{eqnarray*}\det A  & = & 2(-1)^{1 + 2}\det
+\begin{bmatrix} 4 & 6 \cr 7 & 9 \end{bmatrix} + 5(-1)^{2 + 2}\det
+\begin{bmatrix} 1 & 3 \cr 7 & 9 \end{bmatrix} + 8(-1)^{2 + 3}\det
+\begin{bmatrix} 1 & 3 \cr 4 & 6 \end{bmatrix} \\ &  =  & -2(36 - 42) +
+5(9 - 21) - 8(6 - 12) = 0. \end{eqnarray*}
+\end{answer}
+\end{pro}
+\begin{pro}
+Prove that $\det \begin{bmatrix} a & b & c \cr c &a& b \cr b &c & a
+\cr
+\end{bmatrix} = a^3+b^3+c^3-3abc. $ This type of matrix is called a
+{ circulant matrix}.
+\begin{answer} Simply expand along the first row$$a\det\begin{bmatrix} a & b
+\cr c & a
+\end{bmatrix} - b\det\begin{bmatrix}
+c & b \cr b & a
+\end{bmatrix} + c\det\begin{bmatrix}
+c & a \cr b & c\end{bmatrix} = a(a^2 -bc ) - b(ca - b^2) + c(c^2 -
+ab) = a^3+b^3+c^3-3abc .
+$$
+\end{answer}
+
+\end{pro}
+\begin{pro}Compute the determinant
+$$\det \begin{bmatrix}
+     1 & 0 & -1 & 1 \cr
+     2 & 0 & 0 & 1 \cr
+     666 & -3  & -1 & 1000000 \cr
+     1 & 0 & 0 &1 \cr
+\end{bmatrix}.$$
+\begin{answer} Since the second column has three $0$'s, it is advantageous
+to expand along it, and thus we are reduced to calculate
+$$-3(-1)^{3 + 2} \det \begin{bmatrix}
+                1 & -1 & 1 \cr
+                2 & 0 & 1 \cr
+                1 & 0 & 1 \cr
+\end{bmatrix}$$
+Expanding this last determinant along the second column, the
+original determinant is thus
+$$-3(-1)^{3 + 2}(-1)(-1)^{1 + 2}\det \begin{bmatrix}
+            2 & 1 \cr
+            1 & 1 \cr
+\end{bmatrix} = -3(-1)(-1)(-1)(1) = 3.$$
+\end{answer}
+\end{pro}
+\begin{pro}
+Prove that
+$$\det \begin{bmatrix} x+a & b & c  \cr a & x+b & c \cr a & b & x+c
+\cr
+\end{bmatrix} = x^2(x+a+b+c). $$
+\end{pro}
+\begin{pro}
+If
+$$ \det\begin{bmatrix} 1 & 1 & 1 & 1 \cr x & a & 0 & 0 \cr
+x & 0 & b & 0 \cr x & 0 & 0 & c\cr \end{bmatrix}  = 0, $$ and
+$xabc\neq 0,$ prove that $$ \frac{1}{x} = \frac{1}{a} + \frac{1}{b}
++ \frac{1}{c}.  $$ \begin{answer} Expanding along the first column,
+$$\begin{array}{lll} 0 & = &  \det\begin{bmatrix} 1 & 1 & 1 & 1 \cr x & a & 0 & 0 \cr
+x & 0 & b & 0 \cr x & 0 & 0 & c\cr \end{bmatrix} \\
+& = & \det\begin{bmatrix}a & 0 & 0 \cr 0 & b & 0 \cr 0 & 0 & c \cr
+\end{bmatrix} - x\det\begin{bmatrix} 1 & 1 & 1 \cr 0 & b & 0 \cr 0
+& 0 & c \cr \end{bmatrix} \\ & & \qquad  + x\det\begin{bmatrix}1 &
+1 & 1 \cr a & 0 & 0 \cr 0 & 0 & c \cr  \end{bmatrix}
+- x\det\begin{bmatrix} 1 & 1 & 1 \cr a & 0 & 0 \cr  0 & b & 0 \cr \end{bmatrix} \\
+& = & xabc - xbc + x\det\begin{bmatrix}1 & 1 & 1 \cr a & 0 & 0 \cr
+0 & 0 & c \cr  \end{bmatrix} - x\det\begin{bmatrix} 1 & 1 & 1 \cr
+a & 0 & 0 \cr  0 & b & 0 \cr \end{bmatrix}.\\ \end{array}$$
+Expanding these  last  two determinants along the third row,
+$$\begin{array}{lll} 0 & = & abc - xbc
++ x\det\begin{bmatrix}1 & 1 & 1 \cr a & 0 & 0 \cr 0 & 0 & c \cr
+\end{bmatrix}
+- x\det\begin{bmatrix} 1 & 1 & 1 \cr a & a & 0 \cr  0 & b & 0 \cr \end{bmatrix}\\
+& = &   abc - xbc + xc\det \begin{bmatrix} 1 & 1 \cr  a & 0 \cr\end{bmatrix}  + xb\det \begin{bmatrix} 1 & 1 \cr  a & 0 \cr\end{bmatrix} \\
+& = & abc - xbc - xca -xab.
+     \end{array}$$It follows that $$abc = x(bc + ab + ca), $$whence$$\frac{1}{x} = \frac{bc + ab + ca}{abc} = \frac{1}{a} +\frac{1}{b} + \frac{1}{c},  $$as wanted.
+
+\end{answer}
+\end{pro}
+\begin{pro}
+Consider the matrix $$A = \begin{bmatrix}a & -b & -c & -d \cr b  & a
+& d & -c \cr c & -d & a & b \cr d & c & -b & a \cr  \end{bmatrix}.$$
+\begin{dingautolist}{202}
+\item  Compute $A^TA$. \item   Use the above to prove that $$
+\det A = (a^2+b^2+c^2+d^2)^2.$$
+
+\end{dingautolist}
+\end{pro}
+\begin{pro}
+Prove that $$\det \begin{bmatrix}0 & a& b & 0 \cr a & 0 & b & 0
+\cr 0 & a & 0 & b \cr 1 & 1 & 1& 1\cr
+\end{bmatrix} = 2ab(a-b).
+$$
+\begin{answer} Expanding along the first row the determinant equals
+$$\begin{array}{lll}-a\det\begin{bmatrix} a & b & 0 \cr
+0 & 0 & b \cr 1 & 1 & 1 \cr \end{bmatrix} + b\det\begin{bmatrix} a
+& 0 & 0 \cr 0 & a & b \cr 1 & 1 & 1 \cr\end{bmatrix}  & = &  ab
+\det\begin{bmatrix} a & b \cr 1 & 1  \cr
+\end{bmatrix} + ab\det\begin{bmatrix} a & b \cr 1 & 1  \cr
+\end{bmatrix}  \\ & =  & 2ab (a - b), \end{array}$$as wanted.
+\end{answer}
+\end{pro}
+\begin{pro}
+Demonstrate that  $$\det \begin{bmatrix} a & 0 & b & 0 \cr 0 & a &
+0 & b \cr c & 0 & d & 0 \cr 0 & c & 0 & d\cr
+\end{bmatrix} = (ad - bc)^2.
+$$
+\begin{answer} Expanding along the first row, the determinant equals
+$$ a\det\begin{bmatrix} a & 0 & b \cr 0 & d & 0 \cr c & 0 & d \cr  \end{bmatrix}
++ b \det\begin{bmatrix} 0 & a & b \cr c & 0 & 0 \cr 0 & c & d \cr
+\end{bmatrix}.
+$$Expanding the resulting two determinants along the second row,
+we obtain $$ad\det\begin{bmatrix}a & b \cr c & d\cr \end{bmatrix}
++ b(-c)\det\begin{bmatrix}a & b \cr c & d\cr  \end{bmatrix} =
+ad(ad - bc) - bc(ad - bc) = (ad - bc)^2,
+$$as wanted.
+\end{answer}
+\end{pro}
+\begin{pro}
+Use induction to shew that
+$$ \det\begin{bmatrix} 1 & 1 & 1 & \cdots & 1 &
+1 \cr  1& 0 & 0 & \vdots & 0  & 0 \cr  0 & 1 & 0 & \cdots & 0  & 0
+\cr 0 & 0 & 1& \cdots & 0  & 0 \cr \vdots & \vdots & \cdots &
+\vdots & \vdots \cr 0 & 0 & 0 & \cdots& 1 & 0 \cr
+\end{bmatrix} = (-1)^{n + 1}.$$
+\label{exa:determinant_bunch_of_ones}\begin{answer} For $n = 1$ we
+have $\det (1) = 1 = (-1)^{1 + 1}$. For $n = 2$ we have
+$$\det \begin{bmatrix} 1 & 1 \cr 1 & 0 \cr
+\end{bmatrix} = -1 = (-1)^{2 + 1}.
+$$Assume that the result is true for $n -1$. Expanding the
+determinant along the first column
+$$ \begin{array}{lll}\det\begin{bmatrix} 1 & 1 & 1 & \cdots & 1 &
+1 \cr  1& 0 & 0 & \vdots & 0  & 0 \cr  0 & 1 & 0 & \cdots & 0  & 0
+\cr 0 & 0 & 1& \cdots & 0  & 0 \cr \vdots & \vdots & \cdots &
+\vdots & \vdots \cr 0 & 0 & 0 & \cdots & 1 & 0 \cr
+\end{bmatrix} &  = & 1\det\begin{bmatrix}  0 & 0 & \vdots & 0  & 0 \cr   1 & 0 & \cdots & 0  & 0
+\cr  0 & 1& \cdots & 0  & 0 \cr  \vdots & \cdots & \vdots & \vdots
+\cr  0 & 0 & \cdots & 1 & 0 \cr
+\end{bmatrix} \\ & & \qquad - 1 \det\begin{bmatrix}  1 & 1 & \cdots & 1 &
+1 \cr  1& 0 & \cdots & \vdots & 0   \cr  0 & 1 & \cdots & \cdots &
+0 \cr 0 & 0 & \cdots & \cdots & 0   \cr \vdots & \vdots & \cdots &
+\vdots \cr 0 & 0 & \cdots & 1 & 0 \cr
+\end{bmatrix}\\
+& = & 1(0) - (1)(-1)^{n}\\
+& = &  (-1)^{n + 1},\\ \end{array}$$giving the result.
+\end{answer}
+\end{pro}
+\begin{pro}
+Let $$A = \begin{bmatrix} 1 & n & n & n & \cdots & n \cr n & 2 & n
+& n & \vdots & n \cr n & n & 3 & n & \cdots & n \cr n & n & n & 4
+& \cdots & n \cr \vdots & \vdots & \vdots & \cdots & \vdots \cr n
+& n & n & n & n & n \cr
+\end{bmatrix},
+$$that is, $A\in\mat{n\times n}{\bbR}, A = [a_{ij}]$ is a matrix such that $a_{kk} = k$
+and $a_{ij} = n$ when $i \neq j$. Find $\det A$. \begin{answer}
+Perform $C_k - C_1 \rightarrow C_k$ for $k \in [2; n]$. Observe that
+these operations do not affect the value of the determinant. Then
+$$\det A = \det\begin{bmatrix} 1 & n - 1 & n - 1 & n - 1 & \cdots & n - 1 \cr n & 2 - n &
+0 & 0 & \vdots & 0 \cr n & 0 & 3 - n & 0 & \cdots & 0 \cr n & 0 &
+0 & 4-n & \cdots & 0 \cr \vdots & \vdots & \vdots & \cdots &
+\vdots \cr n & 0 & 0 & 0 & 0 & 0 \cr
+\end{bmatrix}.
+$$Expand this last determinant along the $n$-th row, obtaining,
+$$\begin{array}{lll}\det A & = &  (-1)^{1 + n}n\det\begin{bmatrix}  n - 1 & n - 1 & n - 1 & \cdots & n - 1 & n - 1 \cr  2 - n &
+0 & 0 & \vdots & 0  & 0 \cr  0 & 3 - n & 0 & \cdots & 0  & 0 \cr 0
+& 0 & 4-n & \cdots & 0  & 0 \cr  \vdots & \vdots & \cdots & \vdots
+& \vdots \cr 0 & 0 & 0 & \cdots & -1 & 0  \cr
+\end{bmatrix} \\
+& = & (-1)^{1 + n}n(n - 1)(2 - n)(3 - n)\\ & & \qquad \cdots
+(-2)(-1) \det\begin{bmatrix}  1 & 1 & 1 & \cdots & 1 & 1 \cr  1& 0
+& 0 & \vdots & 0  & 0 \cr  0 & 1 & 0 & \cdots & 0  & 0 \cr 0 & 0 &
+1& \cdots & 0  & 0 \cr  \vdots & \vdots & \cdots & \vdots & \vdots
+\cr 0 & 0 & 0 & \cdots & 1 & 0  \cr
+\end{bmatrix} \\
+& = & -(n!)\det\begin{bmatrix}  1 & 1 & 1 & \cdots & 1 & 1 \cr  1&
+0 & 0 & \vdots & 0  & 0 \cr  0 & 1 & 0 & \cdots & 0  & 0 \cr 0 & 0
+& 1& \cdots & 0  & 0 \cr  \vdots & \vdots & \cdots & \vdots &
+\vdots \cr 0 & 0 & 0 & \cdots & 1 & 0  \cr
+\end{bmatrix} \\
+& = & -(n!)(-1)^{n} \\
+& = & (-1)^{n + 1}n!,
+\end{array}$$
+upon using the result of problem
+\ref{exa:determinant_bunch_of_ones}.
+\end{answer}
+\end{pro}
+\begin{pro}
+Let $n\in\BBN , n > 1$ be an odd integer. Recall that the binomial
+coefficients $\binom{n}{k}$ satisfy $\binom{n}{n} = \binom{n}{0} =
+1$ and that for $1 \leq k \leq n$,
+$$\binom{n}{k} = \binom{n - 1}{k - 1} + \binom{n - 1}{k}.  $$Prove that
+$$ \det\begin{bmatrix} 1 & \binom{n}{1} & \binom{n}{2} & \cdots & \binom{n}{n - 1} & 1 \cr
+1 & 1 & \binom{n}{1} & \cdots & \binom{n}{n - 2} & \binom{n}{n -
+1} \cr \binom{n}{n - 1} & 1 & 1 & \cdots & \binom{n}{n - 3} &
+\binom{n}{n - 2} \cr
+ \cdots  &  \cdots  &  \cdots  & \cdots &  \cdots  &  \cdots  \cr
+ \binom{n}{1} & \binom{n}{2} & \binom{n}{3} & \cdots & 1 & 1 \cr
+ \end{bmatrix}  = (1 + (-1)^n)^n.$$
+\begin{answer} Recall
+that $\binom{n}{k} = \binom{n}{n - k}$, $$ \sum _{k = 0} ^n
+\binom{n}{k} = 2^n  $$ and$$ \sum _{k = 0} ^n (-1)^{k}\binom{n}{k}
+= 0, \ \ \ \ {\textrm  if}\ \ n > 0. $$ Assume that $n$ is odd. Observe
+that then there are $n + 1$  (an even number) of columns and that
+on the same row, $\binom{n}{k}$ is on a column of opposite parity
+to that of $\binom{n}{n - k}$. By performing  $C_1 - C_2 + C_3 -
+C_4 + \cdots + C_n - C_{n + 1} \rightarrow C_1$, the first column
+becomes all $0$'s, whence the determinant if $0$ if $n$ is odd.
+\end{answer}
+\end{pro}
+\begin{pro}
+Let $A\in\gl{n}{ \bbR}$, $n>1$. Prove that $\det (\adj{A}) = (\det
+A)^{n-1}$.
+\end{pro}
+\begin{pro} Let $(A, B, S)\in(\gl{n}{ \bbR})^3$. Prove that\begin{dingautolist}{202} \item $
+\adj{\adj{A}} = (\det A)^{n-2}A$.
+
+\item $\adj{AB} = \adj{A}\adj{B}$. \item $\adj{SAS^{-1}} = S(\adj{
+A})S^{-1}$.
+\end{dingautolist}\end{pro}
+\begin{pro} If $A\in\gl{2}{\bbR}$, ,  and let  $k$ be
+a positive integer. Prove that $\det (\underbrace{\mathrm{adj}
+\cdots \mathrm{adj}}_{k}(A)) = \det A$.
+\end{pro}
+\begin{pro}
+Find the determinant
+$$\det \begin{bmatrix}  (b+c)^2 &  ab & ac \cr
+ab & (a+c)^2 & bc\cr ac & bc & (a+b)^2 \cr
+\end{bmatrix}  $$
+{\em by hand, making explicit all your calculations.}
+\begin{answer}
+I will prove that
+$$\det \begin{bmatrix}  (b+c)^2 &  ab & ac \cr
+ab & (a+c)^2 & bc\cr ac & bc & (a+b)^2 \cr
+\end{bmatrix} = 2abc(a+b+c)^3. $$
+Using permissible row and column operations,
+$$\begin{array}{lll}
+\det \begin{bmatrix}  (b+c)^2 &  ab & ac \cr ab & (a+c)^2 & bc\cr ac
+& bc & (a+b)^2 \cr
+\end{bmatrix} & = & \det \begin{bmatrix}  b^2+2bc+c^2 &  ab & ac \cr ab & a^2+2ca+c^2 & bc\cr ac
+& bc & a^2+2ab+b^2 \cr
+\end{bmatrix}\\
+& = \grstep{C_1+C_2+C_3\to C_1} & \det
+\begin{bmatrix} b^2+2bc+c^2+ab+ac & ab & ac \cr ab+a^2+2ca+c^2+bc & a^2+2ca+c^2 & bc\cr
+ac+bc+a^2+2ab+b^2 & bc & a^2+2ab+b^2 \cr
+\end{bmatrix}\\
+& =  & \det
+\begin{bmatrix} (b+c)(a+b+c) & ab & ac \cr (a+c)(a+b+c) & a^2+2ca+c^2 & bc\cr
+(a+b)(a+b+c) & bc & a^2+2ab+b^2 \cr
+\end{bmatrix}\\
+\end{array}$$
+Pulling out a factor, the above equals
+$$
+ (a+b+c)\det
+\begin{bmatrix} b+c & ab & ac \cr a+c & a^2+2ca+c^2 & bc\cr
+a+b & bc & a^2+2ab+b^2 \cr
+\end{bmatrix}
+$$ and performing $R_1+R_2+R_3\to R_1$, this is  $$ (a+b+c)\det
+\begin{bmatrix} 2a+2b+2c & ab+a^2+2ca+c^2+bc & ac+bc+ a^2+2ab+b^2 \cr a+c & a^2+2ca+c^2 & bc\cr
+a+b & bc & a^2+2ab+b^2 \cr
+\end{bmatrix}$$
+Factoring this is
+$$ (a+b+c)\det
+\begin{bmatrix} 2(a+b+c) & (a+c)(a+b+c) & (a+b)(a+b+c) \cr a+c & a^2+2ca+c^2 & bc\cr
+a+b & bc & a^2+2ab+b^2 \cr
+\end{bmatrix},$$which in turn is  $$(a+b+c)^2\det
+\begin{bmatrix} 2 & a+c & a+b \cr a+c & a^2+2ca+c^2 & bc\cr
+a+b & bc & a^2+2ab+b^2 \cr
+\end{bmatrix}$$
+Performing $C_2-(a+c)C_1\to C_2$ and $C_3-(a+b)C_1\to C_3$ we obtain
+ $$(a+b+c)^2\det
+\begin{bmatrix} 2 & -a-c & -a-b \cr a+c & 0 & -a^2-ab-ac\cr
+a+b &-a^2- ab-ac & 0 \cr
+\end{bmatrix}$$
+This last matrix we will expand by the second column, obtaining that
+the original determinant is thus
+$$ (a+b+c)^2\left((a+c)\det\begin{bmatrix}a+c & -a^2-ab-ac \cr  a+b & 0  \end{bmatrix} +(a^2+ab+ac)\det\begin{bmatrix} 2 & -a-b \cr a+c & -a^2-ab-ac \end{bmatrix}\right)  $$
+This simplifies to
+$$\begin{array}{lll}
+(a+b+c)^2\left((a+c)(a+b)(a^2+ab+ac\right.)\\
+\qquad \left.+(a^2+ab+ac)(-a^2-ab-ac+bc)\right) & = &
+a(a+b+c)^3((a+c)(a+b)-a^2-ab-ac+bc)\\ & = &
+2abc(a+b+c)^3,\end{array}
+$$ as claimed.
+
+
+
+
+\end{answer}
+
+
+\end{pro}
+
+\begin{pro}
+The matrix  $$  \begin{bmatrix} a & b & c & d \cr d & a & b & c \cr c & d & a & b \cr b & c & d & a\cr         \end{bmatrix}
+$$ is known as a \negrito{circulant matrix}. Prove that its determinant is $(a+b+c+d)(a-b+c-d)((a-c)^2+(b-d)^2)$.
+\begin{answer}
+ We have
+
+ \begin{eqnarray*}\det \begin{bmatrix} a & b & c & d \cr d & a & b
+& c \cr c & d & a & b \cr b & c & d & a\cr         \end{bmatrix} &
+\grstep[=]{R_1+R_2+R_3+R_4\to R_1} & \det \begin{bmatrix} a+b+c+d &
+a+b+c+d & a+b+c+d & a+b+c+d \cr d & a & b & c \cr c & d & a & b \cr
+b & c & d & a\cr
+\end{bmatrix}\\
+& = & (a+b+c+d)\det \begin{bmatrix} 1 & 1 & 1 & 1 \cr d & a & b & c
+\cr c & d & a & b \cr b & c & d & a\cr         \end{bmatrix}\\
+& \grstep[=]{C_4-C_3+C_2-C_1\to C_4} & (a+b+c+d)\begin{bmatrix} 1 &
+1 & 1 & 0\cr d & a & b & c-b+a-d \cr c & d & a & b-a+d-c \cr b & c &
+d & a-d+c-b\cr
+\end{bmatrix}\\
+& = &  (a+b+c+d)(a-b+c-d)\begin{bmatrix} 1 & 1 & 1 & 0\cr d & a & b
+& 1\cr c & d & a & -1 \cr b & c & d & 1\cr
+\end{bmatrix}\\
+& \grstep[=]{R_2+R_3\to R_2,\ R_4+R_3\to R_4} &
+(a+b+c+d)(a-b+c-d)\begin{bmatrix} 1 & 1 & 1 & 0\cr d+c & a+d & b+a &
+0\cr c & d & a & -1 \cr b+c & c+d & a+d & 0\cr
+\end{bmatrix}\\
+&= & (a+b+c+d)(a-b+c-d)\begin{bmatrix} 1 & 1 & 1 \cr d+c & a+d & b+a
+\cr  b+c & c+d & a+d \cr
+\end{bmatrix}\\
+& \grstep[=]{C_1-C_3\to C_1, \ C_2-C_3\to C_2} &
+(a+b+c+d)(a-b+c-d)\begin{bmatrix} 0 & 0 & 1 \cr d+c-b-a & d-b & b+a
+\cr b+c-a-d & c-a
+ & a+d \cr
+\end{bmatrix}\\
+& = & (a+b+c+d)(a-b+c-d)\begin{bmatrix}  d+c-b-a & d-b \cr b+c-a-d &
+c-a
+ \cr
+\end{bmatrix}\\
+& = & (a+b+c+d)(a-b+c-d) (d+c-b-a)(c-a)-(d-b)(b+c-a-d)
+\\
+& = & (a+b+c+d)(a-b+c-d)\\
+& & \qquad
+((c-a)(c-a)+(c-a)(d-b)-(d-b)(c-a)-(d-b)(b-d))
+\\
+& = & (a+b+c+d)(a-b+c-d)((a-c)^2+(b-d)^2).
+\end{eqnarray*}
+\begin{rem}
+Since $$ (a-c)^2+(b-d)^2=(a-c+i(b-d))(a-c-i(b-d)), $$ the
+above determinant is then
+$$ (a+b+c+d)(a-b+c-d)(a+ib-c-id)(a-ib-c+id). $$
+Generalisations of this determinant are possible using roots of
+unity.
+\end{rem}
+\end{answer}
+\end{pro}
+
+
+\section{Determinants and Linear Systems}
+\begin{thm}\label{thm:systems_determinants_invertibility}Let
+$A\in\mat{n\times n}{ \bbR}$. The following are all equivalent
+\begin{dingautolist}{202}
+\item \label{thm:sys_det_1} $\det A \neq 0_{\bbR}$. \item
+\label{thm:sys_det_2}$A$ is invertible. \item\label{thm:sys_det_3}
+There exists a unique solution $X\in\mat{n\times 1}{ \bbR}$ to the
+equation $AX = Y$. \item  \label{thm:sys_det_4}If $AX = {\textbf 
+0}_{n\times 1}$ then $X = {\textbf  0}_{n\times 1}$.
+\end{dingautolist}\end{thm}
+\begin{proof} We prove the implications in sequence: \\
+$\ref{thm:sys_det_1} \implies \ref{thm:sys_det_2}$: follows from
+Corollary \ref{cor:inverse_via_adjoint}\\ $\ref{thm:sys_det_2}
+\implies \ref{thm:sys_det_3}$: If $A$ is invertible and $AX = Y$ then $X = A^{-1}Y$ is the unique solution of this equation.\\
+$\ref{thm:sys_det_3} \implies \ref{thm:sys_det_4}$: follows by putting $Y = {\textbf  0}_{n\times 1}$\\
+$\ref{thm:sys_det_4} \implies \ref{thm:sys_det_1}$: Let $R$ be the
+row echelon form of $A$. Since $RX = {\textbf  0}_{n\times 1}$ has only
+$X={\textbf  0}_{n\times 1}$ as a solution, every entry on the diagonal
+of $R$ must be non-zero, $R$ must be triangular, and hence $\det R
+\neq 0_{\bbR}$. Since $A = PR$ where $P$ is an invertible $n\times
+n$ matrix,
+we deduce that $\det A = \det P\det R  \neq 0_{\bbR}$.\\
+\end{proof}
+The contrapositive form of the implications \ref{thm:sys_det_1}
+and \ref{thm:sys_det_4}  will be used later. Here it is for future
+reference.
+\begin{cor}\label{cor:0determinant_non_null_kernel}
+Let $A\in\mat{n\times n}{ \bbR}$. If there is $X\neq {\textbf 
+0}_{n\times 1}$ such that $AX = {\textbf  0}_{n\times 1}$ then $\det A =
+0_{\bbR}$.
+\end{cor}
+
+\section*{\psframebox{Homework}}
+\begin{pro}
+For which $a$ is the matrix $\begin{bmatrix}-1 & 1 & 1 \cr 1 & a & 1
+\cr 1 & 1 & a \cr \end{bmatrix}$ singular (non-invertible)?
+\end{pro}

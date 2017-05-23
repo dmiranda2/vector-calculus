@@ -1,0 +1,689 @@
+%\usepackage[fleqn]{amsmath}
+% \setlength{\mathindent}{3.5em}
+\usepackage{marginnote}
+\reversemarginpar
+\usepackage{url}
+\usepackage{xcolor}
+\usepackage{colortbl}
+ \usepackage[disable]{todonotes}
+\usepackage{overpic}
+\usepackage{rotating}
+\usepackage[explicit]{titlesec}
+\usepackage{type1cm}
+\usepackage{eso-pic}
+\usepackage{chngpage,calc}
+\usepackage{asymptote}
+\usepackage{pstricks}
+\usepackage{tabularx}
+\usepackage{pstricks,pstricks-add,pst-math,pst-xkey,pst-func}
+\usepackage{caption}
+\usepackage{pgf,tikz}
+\usepackage{pgfplots}
+\usetikzlibrary[patterns]
+\pgfplotsset{compat=newest}
+\usepackage{mathrsfs}
+\usepackage{framed}
+\usepackage{xspace}
+% \usepackage{enumerate}
+\usepackage{verbatim} %ambiente comment dentre outros
+\usepackage{scalefnt}
+\usepackage{commath}
+\usepackage{vwcol}   %%%%Colunas de larguras diferentes
+\usetikzlibrary{arrows}
+% \usepackage[includeheadfoot,includemp,marginpar=5cm,marginparsep=0.8cm,top=3cm,bottom=3cm,left=0.5cm,right=1.3cm,headsep=10pt,letterpaper]{geometry} % Page margins
+%%%%%%%%%%%%O padrão é3cm e a4paper
+ % Specifies the directory where pictures are stored
+
+\usepackage{tikz,pgfplots} % Required for drawing custom shapes
+\usepackage{fix-cm}
+% \usepackage{enumitem} % Customize lists
+\usepackage{polynom}
+% \setlist{nolistsep} % Reduce spacing between bullet points and numbered lists
+\usepackage{booktabs} % Required for nicer horizontal rules in tables
+\usepackage{xcolor,nicefrac}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Cores
+\definecolor{ocre}{cmyk}{0, 0.87, 0.68, 0.32} %Maroon
+\definecolor{Maroon}{RGB}{30,144,255}
+\definecolor{azul}{RGB}{30,144,255}
+\definecolor{azulescuro}{RGB}{0.252, 0.419,0.584}
+\definecolor{verde}{RGB}{127, 137, 97}
+\definecolor{vermelho}{cmyk}{0, 0.87, 0.68, 0.32}
+\definecolor{laranja}{RGB}{243,102,25}
+\definecolor{blue}{rgb}{0.252, 0.419,0.584}
+\definecolor{red}{cmyk}{0, 0.87, 0.68, 0.32}
+\definecolor{amarelinho}{RGB}{255,249,215}
+\definecolor{azulzinho}{RGB}{238,247,250}
+
+
+%----------------------------------------------------------------------------------------
+%	FONTS
+%----------------------------------------------------------------------------------------
+
+\usepackage{avant} % Use the Avantgarde font for headings
+\usepackage{helvet}
+\usepackage{mathptmx} % Use the Adobe Times Roman as the default text font together with math symbols from the Sym­bol, Chancery and Com­puter Modern fonts
+\usepackage{eulervm}
+%\usepackage[bitstream-charter]{mathdesign}
+\usepackage{microtype} % Slightly tweak font spacing for aesthetics
+\usepackage[T1]{fontenc} %----------------------------------------------------------------------------------------
+%	BIBLIOGRAPHY AND INDEX
+%----------------------------------------------------------------------------------------
+
+%\addbibresource{bibliography.bib} % BibTeX bibliography file
+\usepackage{calc} % For simpler calculation - used for spacing the index letter headings correctly
+\usepackage{makeidx} % Required to make an index
+\makeindex % Tells LaTeX to create the files required for indexing
+
+%----------------------------------------------------------------------------------------
+%	MAIN TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+\usepackage{titletoc} % Required for manipulating the table of contents
+\contentsmargin{0cm} % Removes the default margin
+% Part text styling
+\titlecontents{part}[0cm]
+{\addvspace{20pt}\centering\large\bfseries}
+{}
+{}
+{}
+
+%Chapter text styling
+\titlecontents{chapter}[1.25cm] % Indentation
+{\addvspace{12pt}\Large\sffamily\bfseries} % Spacing and font options for chapters
+{\color{Maroon!60}\contentslabel[\Large\thecontentslabel]{1.25cm}\color{Maroon}} % Chapter number
+{\color{Maroon}}
+{\color{Maroon!60}\normalsize\;\titlerule*[.5pc]{.}\;\thecontentspage} % Page number
+
+
+\titlecontents{chapter}[1.25cm] % Indentation
+{\addvspace{12pt}\Large\sffamily\bfseries} % Spacing and font options for chapters
+{\color{Maroon!60}\contentslabel[\Large\thecontentslabel]{1.25cm}\color{Maroon}} % Chapter number
+{\color{Maroon}}
+{\color{Maroon!60}\normalsize\;\titlerule*[.5pc]{.}\;\thecontentspage} % Page number
+
+
+
+
+
+% Section text styling
+\titlecontents{section}[1.25cm] % Indentation
+{\addvspace{3pt}\large\sffamily\bfseries} % Spacing and font options for sections
+{\contentslabel[\thecontentslabel]{1.25cm}} % Section number
+{}
+{\hfill\color{black}\thecontentspage} % Page number
+[]
+
+% Subsection text styling
+\titlecontents{subsection}[1.25cm] % Indentation
+{\addvspace{1pt}\sffamily\small} % Spacing and font options for subsections
+{\contentslabel[\thecontentslabel]{1.25cm}} % Subsection number
+{}
+{\ \titlerule*[.5pc]{.}\;\thecontentspage} % Page number
+[]
+
+% List of figures
+\titlecontents{figure}[0em]
+{\addvspace{-5pt}\sffamily}
+{\thecontentslabel\hspace*{1em}}
+{}
+{\ \titlerule*[.5pc]{.}\;\thecontentspage}
+[]
+
+% List of tables
+\titlecontents{table}[0em]
+{\addvspace{-5pt}\sffamily}
+{\thecontentslabel\hspace*{1em}}
+{}
+{\ \titlerule*[.5pc]{.}\;\thecontentspage}
+[]
+
+%----------------------------------------------------------------------------------------
+%	MINI TABLE OF CONTENTS IN PART HEADS
+%----------------------------------------------------------------------------------------
+
+% Chapter text styling
+\titlecontents{lchapter}[0em] % Indenting
+{\addvspace{15pt}\large\sffamily\bfseries} % Spacing and font options for chapters 15
+{\color{Maroon}\contentslabel[\Large\thecontentslabel]{1.25cm}\color{Maroon}} % Chapter number
+{}
+{\color{Maroon}\normalsize\sffamily\bfseries\;\titlerule*[.5pc]{.}\;\thecontentspage} % Page number
+
+% Section text styling
+\titlecontents{lsection}[0em] % Indenting
+{\sffamily\small} % Spacing and font options for sections
+{\contentslabel[\thecontentslabel]{1.25cm}} % Section number
+{}
+{}
+
+% Subsection text styling
+\titlecontents{lsubsection}[.5em] % Indentation
+{\normalfont\footnotesize\sffamily} % Font settings
+{}
+{}
+{}
+
+%----------------------------------------------------------------------------------------
+%	PAGE HEADERS
+%----------------------------------------------------------------------------------------
+
+\usepackage{fancyhdr,calc} % Required for header and footer configuration
+
+\newlength{\myoddoffset}
+\setlength{\myoddoffset}{\marginparwidth + \marginparsep}
+\pagestyle{fancy}
+\fancyheadoffset[leh,roh]{\marginparsep}
+\fancyheadoffset[loh,reh]{\myoddoffset}
+\renewcommand{\chaptermark}[1]{\markboth{\sffamily\normalsize\bfseries\chaptername\ \thechapter.\ #1}{}} % Chapter text font settings
+\renewcommand{\sectionmark}[1]{\markright{\sffamily\normalsize\thesection\hspace{5pt}#1}{}} % Section text font settings
+\fancyhf{} \fancyhead[LE,RO]{\sffamily\normalsize\thepage} % Font setting for the page number in the header
+\fancyhead[LO]{\rightmark} % Print the nearest section name on the left side of odd pages
+\fancyhead[RE]{\leftmark} % Print the current chapter name on the right side of even pages
+\renewcommand{\headrulewidth}{0.5pt} % Width of the rule under the header
+\addtolength{\headheight}{2.5pt} % Increase the spacing around the header slightly
+\renewcommand{\footrulewidth}{0pt} % Removes the rule in the footer
+\fancypagestyle{plain}{\fancyhead{}\renewcommand{\headrulewidth}{0pt}} % Style for when a plain pagestyle is specified
+
+% Removes the header from odd empty pages at the end of chapters
+\makeatletter
+\renewcommand{\cleardoublepage}{
+\clearpage\ifodd\c@page\else
+\hbox{}
+\vspace*{\fill}
+\thispagestyle{empty}
+\newpage
+\fi}
+
+%----------------------------------------------------------------------------------------
+%	THEOREM STYLES
+%----------------------------------------------------------------------------------------
+%\newcommand{\intoo}[2]{\mathopen{]}#1\,;#2\mathclose{[}}
+\newcommand{\ud}{\mathop{\mathrm{{}d}}\mathopen{}}
+\newcommand{\intff}[2]{\mathopen{[}#1\,;#2\mathclose{]}}
+\newtheorem{notation}{Notation}[chapter]
+
+% Boxed/framed environments
+\newtheoremstyle{ocrenumbox}% % Theorem style name
+{0pt}% Space above
+{0pt}% Space below
+{\normalfont}% % Body font
+{}% Indent amount
+{\small\bf\sffamily\color{ocre}}% % Theorem head font
+{\;}% Punctuation after theorem head
+{0.25em}% Space after theorem head
+{\small\sffamily\color{ocre}\thmname{#1}\nobreakspace\thmnumber{\@ifnotempty{#1}{}\@upn{#2}}% Theorem text (e.g. Theorem 2.1)
+\thmnote{\nobreakspace\the\thm@notefont\sffamily\bfseries\color{black}---\nobreakspace#3.}} % Optional theorem note
+\renewcommand{\qedsymbol}{\tiny$\blacksquare$}% Optional qed square
+
+\newtheoremstyle{blacknumex}% Theorem style name
+{5pt}% Space above
+{5pt}% Space below
+{\normalfont}% Body font
+{} % Indent amount
+{\small\bfseries\sffamily\scshape \color{Maroon}}% Theorem head font
+{\;}% Punctuation after theorem head
+{0.25em}% Space after theorem head
+{\small\sffamily{\tiny\ensuremath{\blacksquare}}\nobreakspace\thmname{#1}\nobreakspace\thmnumber{\@ifnotempty{#1}{}\@upn{#2}}% Theorem text (e.g. Theorem 2.1)
+\thmnote{\nobreakspace\the\thm@notefont\sffamily\bfseries---\nobreakspace#3.}}% Optional theorem note
+
+
+\newtheoremstyle{azulnumbox} % Theorem style name
+{0pt}% Space above
+{0pt}% Space below
+{\normalfont}% Body font
+{}% Indent amount
+{\small\bfseries\sffamily \color{azul} }% Theorem head font
+{\;}% Punctuation after theorem head
+{0.25em}% Space after theorem head
+{\small\sffamily\thmname{#1}\nobreakspace\thmnumber{\@ifnotempty{#1}{}\@upn{#2}}% Theorem text (e.g. Theorem 2.1)
+\thmnote{\nobreakspace\the\thm@notefont\sffamily\bfseries---\nobreakspace#3.}}% Optional theorem note
+
+
+
+\newtheoremstyle{blacknumbox} % Theorem style name
+{0pt}% Space above
+{0pt}% Space below
+{\normalfont}% Body font
+{}% Indent amount
+{\small\bfseries\sffamily }% Theorem head font
+{\;}% Punctuation after theorem head
+{0.25em}% Space after theorem head
+{\small\sffamily\thmname{#1}\nobreakspace\thmnumber{\@ifnotempty{#1}{}\@upn{#2}}% Theorem text (e.g. Theorem 2.1)
+\thmnote{\nobreakspace\the\thm@notefont\sffamily\bfseries---\nobreakspace#3.}}% Optional theorem note
+
+% Non-boxed/non-framed environments
+\newtheoremstyle{ocrenum}% % Theorem style name
+{5pt}% Space above
+{5pt}% Space below
+{\normalfont}% % Body font
+{}% Indent amount
+{\small\bfseries\sffamily\color{ocre}}% % Theorem head font
+{\;}% Punctuation after theorem head
+{0.25em}% Space after theorem head
+{\small\sffamily\color{ocre}\thmname{#1}\nobreakspace\thmnumber{\@ifnotempty{#1}{}\@upn{#2}}% Theorem text (e.g. Theorem 2.1)
+\thmnote{\nobreakspace\the\thm@notefont\sffamily\bfseries\color{black}---\nobreakspace#3.}} % Optional theorem note
+\renewcommand{\qedsymbol}{$\blacksquare$}% Optional qed square
+\makeatother
+
+% Defines the theorem text style for each type of theorem to one of the three styles above
+\newcounter{dummy}
+\numberwithin{dummy}{section}
+\theoremstyle{ocrenumbox}
+\newtheorem{theoremeT}[dummy]{Theorem}
+\newtheorem{problem}{Problem}[chapter]
+\newtheorem{exerciseT}{Exercise}[chapter]
+\theoremstyle{blacknumex}
+\newtheorem{exampleT}{Exemplo}[chapter]
+\theoremstyle{blacknumbox}
+\newtheorem{vocabulary}{Vocabulary}[chapter]
+\newtheorem{corollaryT}[dummy]{Corollary}
+\theoremstyle{ocrenum}
+\newtheorem{lemma}[dummy]{Lemma}
+
+
+\theoremstyle{azulnumbox}
+\newtheorem{definitionT}{Definition}[section]
+
+%----------------------------------------------------------------------------------------
+%	DEFINITION OF COLORED BOXES
+%----------------------------------------------------------------------------------------
+%\usepackage[framemethod=tikz]{mdframed}
+\RequirePackage[framemethod=default]{mdframed} % Required for creating the theorem, definition, exercise and corollary boxes
+
+% Theorem box
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+%backgroundcolor=ocre!1.5,
+linecolor=ocre,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=10pt,
+leftmargin=0.1cm,
+rightmargin=0.1cm,
+innerbottommargin=10pt,nobreak=true]{tBox}
+
+% Exercise box
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+rightline=false,
+leftline=true,
+topline=false,
+bottomline=false,
+backgroundcolor=ocre!10,
+linecolor=ocre,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=5pt,
+innerbottommargin=5pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=4pt]{eBox}
+
+% Definition box
+\newmdenv[skipabove=7pt,
+backgroundcolor=mybluei!1,
+skipbelow=7pt,
+rightline=true,
+leftline=true,
+topline=true,
+bottomline=true,
+linecolor=mybluei,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=10pt,
+leftmargin=0.1cm,
+rightmargin=0.1cm,
+linewidth=0.5pt,
+innerbottommargin=10pt,nobreak=true]{dBox}
+
+% Corollary box
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+rightline=false,
+leftline=true,
+topline=false,
+bottomline=false,
+linecolor=gray,
+backgroundcolor=black!5,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=5pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=4pt,
+innerbottommargin=5pt]{cBox}
+
+% Creates an environment for each type of theorem and assigns it a theorem text style from the "Theorem Styles" section above and a colored box from above
+\newenvironment{theorem}{\begin{tBox}\begin{theoremeT}}{\end{theoremeT}\end{tBox}}
+\newenvironment{exercise}{\begin{eBox}\begin{exerciseT}}{\hfill{\color{ocre}\tiny\ensuremath{\blacksquare}}\end{exerciseT}\end{eBox}}
+\newenvironment{definition}{\begin{dBox}\begin{definitionT}}{\end{definitionT}\end{dBox}}
+\newenvironment{example}{\begin{exampleT}}{\hfill{\tiny\ensuremath{\blacksquare}}\end{exampleT}}
+\newenvironment{corollary}{\begin{cBox}\begin{corollaryT}}{\end{corollaryT}\end{cBox}}
+\newenvironment{cor}{\begin{cBox}\begin{corollaryT}}{\end{corollaryT}\end{cBox}}
+
+
+%----------------------------------------------------------------------------------------
+%	REMARK ENVIRONMENT
+%----------------------------------------------------------------------------------------
+
+\newenvironment{remark}{\par\vspace{10pt}\small % Vertical white space above the remark and smaller font size
+\begin{list}{}{
+\leftmargin=35pt % Indentation on the left
+\rightmargin=25pt}\item\ignorespaces % Indentation on the right
+\makebox[-2.5pt]{\begin{tikzpicture}[overlay]
+\node[draw=Maroon!60,line width=1pt,circle,fill=Maroon!25,font=\sffamily\bfseries,inner sep=2pt,outer sep=0pt] at (-15pt,0pt){\textcolor{Maroon}{R}};\end{tikzpicture}} % Orange R in a circle
+\advance\baselineskip -1pt}{\end{list}\vskip5pt} % Tighter line spacing and white space after remark
+
+%----------------------------------------------------------------------------------------
+%	SECTION NUMBERING IN THE MARGIN
+%----------------------------------------------------------------------------------------
+
+\makeatletter
+\renewcommand{\@seccntformat}[1]{\llap{\textcolor{ocre}{\csname the#1\endcsname}\hspace{1em}}}
+\renewcommand{\section}{\@startsection{section}{1}{\z@}
+{-4ex \@plus -1ex \@minus -.4ex}
+{1ex \@plus.2ex }
+{\normalfont\large\sffamily\bfseries}}
+\renewcommand{\subsection}{\@startsection {subsection}{2}{\z@}
+{-3ex \@plus -0.1ex \@minus -.4ex}
+{0.5ex \@plus.2ex }
+{\normalfont\sffamily\bfseries}}
+\renewcommand{\subsubsection}{\@startsection {subsubsection}{3}{\z@}
+{-2ex \@plus -0.1ex \@minus -.2ex}
+{.2ex \@plus.2ex }
+{\normalfont\small\sffamily\bfseries}}
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}
+{-2ex \@plus-.2ex \@minus .2ex}
+{.1ex}
+{\normalfont\small\sffamily\bfseries}}
+
+%----------------------------------------------------------------------------------------
+%	PART HEADINGS
+%----------------------------------------------------------------------------------------
+
+% numbered part in the table of contents
+\newcommand{\@mypartnumtocformat}[2]{%
+\setlength\fboxsep{0pt}%
+\noindent\colorbox{Maroon!20}{\strut\parbox[c][.7cm]{\ecart}{\color{Maroon!70}\Large\sffamily\bfseries\centering#1}}\hskip\esp\colorbox{Maroon!40}{\strut\parbox[c][.7cm]{\linewidth-\ecart-\esp}{\Large\sffamily\centering#2}}}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% unnumbered part in the table of contents
+\newcommand{\@myparttocformat}[1]{%
+\setlength\fboxsep{0pt}%
+\noindent\colorbox{Maroon!40}{\strut\parbox[c][.7cm]{\linewidth}{\Large\sffamily\centering#1}}}%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newlength\esp
+\setlength\esp{4pt}
+\newlength\ecart
+\setlength\ecart{1.2cm-\esp}
+\newcommand{\thepartimage}{}%
+\newcommand{\partimage}[1]{\renewcommand{\thepartimage}{#1}}%
+\def\@part[#1]#2{%
+\ifnum \c@secnumdepth >-2\relax%
+\refstepcounter{part}%
+\addcontentsline{toc}{part}{\texorpdfstring{\protect\@mypartnumtocformat{\thepart}{#1}}{\partname~\thepart\ ---\ #1}}
+\else%
+\addcontentsline{toc}{part}{\texorpdfstring{\protect\@myparttocformat{#1}}{#1}}%
+\fi%
+\startcontents%
+\markboth{}{}%
+{\thispagestyle{empty}%
+\begin{tikzpicture}[remember picture,overlay]%
+\node at (current page.north west){\begin{tikzpicture}[remember picture,overlay]%
+\fill[Maroon!20](0cm,1.8cm) rectangle (\paperwidth,-\paperheight+1.6cm);
+\node[anchor=north] at (2cm,-2.25cm){\color{Maroon!40}\fontsize{220}{100}\sffamily\bfseries\@Roman\c@part};
+\node[anchor=south east] at (\paperwidth-1cm,-\paperheight+2cm){\parbox[t][][t]{8.5cm}{
+\printcontents{l}{0}{\setcounter{tocdepth}{1}}%
+}};
+\node[anchor=north east] at (\paperwidth-1.5cm,-3.25cm){\parbox[t][][t]{15cm}{\strut\raggedleft\color{white}\fontsize{30}{30}\sffamily\bfseries#2}};
+\end{tikzpicture}};
+\end{tikzpicture}}%
+\@endpart}
+\def\@spart#1{%
+\startcontents%
+\phantomsection
+{\thispagestyle{empty}%
+\begin{tikzpicture}[remember picture,overlay]%
+\node at (current page.north west){\begin{tikzpicture}[remember picture,overlay]%
+\fill[Maroon!20](0cm,0cm) rectangle (\paperwidth,-\paperheight);
+\node[anchor=north east] at (\paperwidth-1.5cm,-3.25cm){\parbox[t][][t]{15cm}{\strut\raggedleft\color{white}\fontsize{30}{30}\sffamily\bfseries#1}};
+\end{tikzpicture}};
+\end{tikzpicture}}
+\addcontentsline{toc}{part}{\texorpdfstring{%
+\setlength\fboxsep{0pt}%
+\noindent\protect\colorbox{Maroon!40}{\strut\protect\parbox[c][.7cm]{\linewidth}{\Large\sffamily\protect\centering #1\quad\mbox{}}}}{#1}}%
+\@endpart}
+\def\@endpart{\vfil\newpage
+\if@twoside
+\if@openright
+\null
+\thispagestyle{empty}%
+\newpage
+\fi
+\fi
+\if@tempswa
+\twocolumn
+\fi}
+
+% ----------------------------------------------------------------------------------------
+% 	CHAPTER HEADINGS
+% ----------------------------------------------------------------------------------------
+
+% \newcommand{\thechapterimage}{}%
+% \newcommand{\chapterimage}[1]{\renewcommand{\thechapterimage}{#1}}%
+% \def\@makechapterhead#1{%
+% {\parindent \z@ \raggedright \normalfont
+% \ifnum \c@secnumdepth >\m@ne
+% \if@mainmatter
+% \begin{tikzpicture}[remember picture,overlay]
+% \node at (current page.north west)
+% {\begin{tikzpicture}[remember picture,overlay]
+% \node[anchor=north west,inner sep=0pt] at (0,0) {\includegraphics[width=\paperwidth]{\thechapterimage}};
+% \draw[anchor=west] (\Gm@lmargin,-7.5cm) node [line width=2pt,rounded corners=15pt,draw=ocre,fill=white,fill opacity=0.65,inner sep=15pt]{\strut\makebox[22cm]{}};
+% \draw[anchor=west] (\Gm@lmargin+.3cm,-7.5cm) node {\huge\sffamily\bfseries\color{black}\thechapter. #1\strut};
+% \end{tikzpicture}};
+% \end{tikzpicture}
+% \else
+% \begin{tikzpicture}[remember picture,overlay]
+% \node at (current page.north west)
+% {\begin{tikzpicture}[remember picture,overlay]
+% \node[anchor=north west,inner sep=0pt] at (0,0) {\includegraphics[width=\paperwidth]{\thechapterimage}};
+% \draw[anchor=west] (\Gm@lmargin,-7.5cm) node [line width=2pt,rounded corners=15pt,draw=ocre,fill=white,fill opacity=0.5,inner sep=15pt]{\strut\makebox[25cm]{}};
+% \draw[anchor=west] (\Gm@lmargin+.3cm,-7.5cm) node {\huge\sffamily\bfseries\color{black}#1\strut};
+% \end{tikzpicture}};
+% \end{tikzpicture}
+% \fi\fi\par\vspace*{200\p@}}}
+%
+% %-------------------------------------------
+%
+% \def\@makeschapterhead#1{%
+% \begin{tikzpicture}[remember picture,overlay]
+% \node at (current page.north west)
+% {\begin{tikzpicture}[remember picture,overlay]
+% \node[anchor=north west,inner sep=0pt] at (0,0) {\includegraphics[width=\paperwidth]{\thechapterimage}};
+% \draw[anchor=west] (\Gm@lmargin,-7.5cm) node [line width=1.5pt,rounded corners=7pt,draw=ocre,fill=white,fill opacity=0.6,inner sep=15pt]{\strut\makebox[29cm]{}};
+% \draw[anchor=west] (\Gm@lmargin+.3cm,-7.5cm) node {\huge\sffamily\bfseries\color{black}#1\strut};
+% \end{tikzpicture}};
+% \end{tikzpicture}
+% \par\vspace*{200\p@}}
+% \makeatother
+
+
+
+
+
+
+
+%----------------------------------------------------------------------------------------
+%	HYPERLINKS IN THE DOCUMENTS
+%----------------------------------------------------------------------------------------
+
+\usepackage{hyperref}
+\hypersetup{hidelinks,backref=true,pagebackref=true,hyperindex=true,colorlinks=false,breaklinks=true,urlcolor= Maroon,bookmarks=true,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
+\usepackage{bookmark}
+\bookmarksetup{
+open,
+numbered,
+addtohook={%
+\ifnum\bookmarkget{level}=0 % chapter
+\bookmarksetup{bold}%
+\fi
+\ifnum\bookmarkget{level}=-1 % part
+\bookmarksetup{color=Maroon,bold}%
+\fi
+}
+}
+
+
+\renewcommand\labelitemi{\scalebox{0.7}{$\blacksquare$}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%CAPA
+\newcommand\BackgroundPic{
+\put(-2,0){
+\parbox[b][\paperheight]{\paperwidth}{%
+\vfill
+\centering
+\includegraphics[width=\paperwidth,height=\paperheight+3.9cm,
+keepaspectratio]{./graficos/capa.eps}%
+\vfill
+}}}
+
+\newcommand{\titulo}{Vector Calculus}
+\newcommand{\subtitulo}{Frankenstein's Note}
+\newcommand{\autores}{Daniel Miranda}
+\newcommand{\universidade}{Universidade Federal do ABC}
+\newcommand{\lugar}{Santo André}
+\newcommand{\data}{05/2017}
+\newcommand{\versao}{Version  0.9}
+\newcommand{\pagweb}{ \textcolor{ocre}{\url{http://}}}
+
+
+\setlength{\marginparpush}{2ex}
+
+
+% A new command "\mfigure" to put images to the margin:
+% Usage: \mfigure{image_file}{Image caption text \label{fg:img1}}
+%
+% The width of the image can be justified with an additional parameter
+% between (0,1] which is relational to the \marginparwidth
+% Example:\mfigure[0.5]{image_file}{Image caption...}
+%
+\newcounter{marg_fig_counter}[section]
+
+\newcommand{\mfigure}[4]{
+\begin{figure}
+\includegraphics[width=4cm]{#4}
+\captionof{figure}{#2}
+\label{#3}
+\end{figure}
+}
+
+\newcommand{\mfiguret}[4]{
+\begin{figure}
+\input{#4}
+\captionof{figure}{#2}
+\label{#3}
+\end{figure}}
+
+\makeatletter
+\newcommand\HUGE{\@setfontsize\Huge{40}{40}}
+\makeatother
+
+% \newlength\BoxWd
+% \setlength\BoxWd{1cm}
+% \newlength\Aux
+%
+% \titleformat{\chapter}[display]
+%   {\normalfont\sffamily\bfseries\LARGE}
+%   {\renewcommand{\thechapter}{\arabic{chapter}}\hspace*{0.5em}\colorbox{ocre}{%
+%     \parbox[c][1.5cm][c]{1.5cm}{%
+%       \centering\textcolor{white}  {\HUGE\thechapter}}}}
+%   {-1ex}
+%   {\color{ocre}\Huge \titlerule[4pt]\vspace{.7ex}\filleft\MakeUppercase{#1}}
+%   [\vspace{.2ex}]
+% % chapter tiltes spacing
+% \titlespacing*{\chapter}{0pt}{50pt}{80pt}
+
+
+\definecolor{mybluei}{RGB}{0,173,239}
+\definecolor{myblueii}{RGB}{63,200,244}
+\definecolor{myblueiii}{RGB}{199,234,253}
+
+ \usepackage[includeheadfoot,top=2cm,bottom=2.7cm,left=3.2cm,right=3.2cm,headsep=10pt,letterpaper]{geometry}
+
+\renewcommand\thepart{\arabic{chapter}}
+
+\newcommand\partnumfont{% font specification for the number
+  \fontsize{320}{130}\color{myblueii}\selectfont \bfseries
+}
+
+\newcommand\partnamefont{% font specification for the name "PART"
+  \normalfont\color{white}\scshape\small\bfseries
+}
+
+\titleformat{\chapter}[display]
+  {\normalfont\huge\filleft}
+  {}
+  {20pt}
+  {\begin{tikzpicture}[remember picture,overlay]
+  \fill[myblueiii]
+    (current page.north west) rectangle ([yshift=-7.8cm]current page.north east);
+  \node[
+      fill=mybluei,
+      text width=2\paperwidth,
+      rounded corners=3cm,
+      text depth=11.9cm,
+      anchor=center,
+      inner sep=0pt] at (current page.north east) (parttop)
+    {\thepart};%
+  \node[
+      anchor=south east,
+      inner sep=0pt,
+      outer sep=0pt] (partnum) at ([xshift=-40pt]parttop.south)
+    {\partnumfont\thepart};
+  \node[
+      anchor=south,
+      inner sep=0pt] (partname) at ([yshift=2pt]partnum.south)
+  {\partnamefont Chapter};
+  \node[
+      anchor=north east,
+      align=right,
+      inner xsep=0pt] at ([yshift=-0.0cm]partname.east|-partnum.south)
+  {\parbox{1.4\textwidth}{\vspace{0.2cm}\color{ocre}\sffamily\bfseries\Huge\raggedleft#1}};
+  \end{tikzpicture}%
+  \vspace{1.7cm}
+  }
+
+ \titleformat{name=\chapter,numberless}[block]
+ {\normalfont\huge\filleft}
+  {}
+  {20pt}
+  {\begin{tikzpicture}[remember picture,overlay]
+  \fill[myblueiii]
+    (current page.north west) rectangle ([yshift=-7.6cm]current page.north east);
+  \node[
+      fill=mybluei,
+      text width=2\paperwidth,
+      rounded corners=3cm,
+      text depth=11.4cm,
+      anchor=center,
+      inner sep=0pt] at (current page.north east) (parttop)
+    {\thepart};%
+  \node[
+      anchor=south east,
+      inner sep=0pt,
+      outer sep=0pt] (partnum) at ([xshift=-20pt]parttop.south)
+    {};
+  \node[
+      anchor=south,
+      inner sep=0pt] (partname) at ([yshift=2pt]partnum.south)
+  {\partnamefont };
+  \node[
+      anchor=north east,
+      align=right,
+      inner xsep=0pt] at ([yshift=-0.0cm]partname.east|-partnum.south)
+  {\parbox{1.4\textwidth}{\vspace{0.2cm}\color{ocre}\sffamily\bfseries\Huge\raggedleft#1}};
+  \end{tikzpicture}%
+  \vspace{1.6cm}
+  }

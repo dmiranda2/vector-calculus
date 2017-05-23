@@ -1,0 +1,2178 @@
+
+  \chapter{Multiple Integrals}%endchapter
+
+  \section{Double Integrals}
+
+  Let $R = [a, b] \times [c, d] \subseteq \bbR^2$ be a rectangle, and $f:R \to \bbR$ be continuous.
+  Let $P = \set{ x_0, \dots, x_M, y_0, \dots, y_M}$ where $a = x_0 < x_1 < \cdots < x_M = b$ and $c = y_0 < y_1 < \cdots < y_M = d$.
+  The set $P$ determines a partition of $R$ into a grid of (non-overlapping) rectangles $R_{i,j} = [x_i, x_{i+1}] \times [y_j, y_{j+1}]$ for $0 \leq i < M$ and $0 \leq j < N$.
+  Given $P$, choose a collection of points $\Xi = \set{\xi_{i,j}}$ so that $\xi_{i,j} \in R_{i,j}$ for all $i, j$.
+  \begin{definition}
+    The \emph{Riemann sum} of $f$ with respect to the partition $P$ and points $\Xi$ is defined by
+    \begin{equation*}
+      \mathcal R(f, P, \Xi)
+	\defeq \dsum_{i=0}^{M-1} \dsum_{j = 0}^{N-1}
+	  f(\xi_{i, j}) \area(R_{i,j})
+	= \dsum_{i=0}^{M-1} \dsum_{j = 0}^{N-1}
+	  f(\xi_{i, j}) (x_{i+1} - x_i) (y_{j+1} - y_j)
+    \end{equation*}
+  \end{definition}
+  
+
+  \newcommand\DrawBlock[3]{
+\ifx#1b\relax
+  \path[draw]
+    (lm\the\numexpr#2-1\relax) -- ++(0,0,#3) coordinate (blocklf)
+    (bm\the\numexpr#2-1\relax) -- ++(0,0,#3) coordinate (blocklb)
+    (lm#2) -- ++(0,0,#3) coordinate (blockrf)
+    (bm#2) -- ++(0,0,#3) coordinate (blockrb);
+  \filldraw[fill=white,draw=black]
+    (lm\the\numexpr#2-1\relax) -- (blocklf) -- (blocklb) -- (blockrb) -- 
+(blockrf) -- (lm#2);
+\else  
+  \ifx#1f\relax
+    \path[draw]
+      (fm\the\numexpr#2-1\relax) -- ++(0,0,#3) coordinate (blocklf)
+      (lm\the\numexpr#2-1\relax) -- ++(0,0,#3) coordinate (blocklb)
+      (fm#2) -- ++(0,0,#3) coordinate (blockrf)
+      (lm#2) -- ++(0,0,#3) coordinate (blockrb);
+    \filldraw[fill=white,draw=black]
+      (fm\the\numexpr#2-1\relax) -- (blocklf) -- (blocklb) -- (blockrb) -- 
+(blockrf) -- (fm#2);
+  \fi
+\fi
+\draw (blocklf) -- (blockrf);
+}
+
+\begin{tikzpicture}[y={(0:1cm)},x={(225:0.86cm)}, z={(90:1cm)}]
+
+% coordinates for the lower grid
+\path
+  (1,3,0) coordinate (bm0) -- 
+  (4,3,0) coordinate (fm0) coordinate[midway] (lm0) --
+  (4,8,0) coordinate[pos=0.25] (fm1) coordinate[midway] (fm2) 
+coordinate[pos=0.75] (fm3) coordinate (fm4) --
+  (1,8,0) coordinate (bm4) coordinate[midway] (lm4)--
+  (bm0) coordinate[pos=0.25] (bm3) coordinate[midway] (bm2) 
+coordinate[pos=0.75] 
+(bm1);
+\draw[dashed]
+  (lm0) -- 
+  (lm4) coordinate[pos=0.25] (lm1) coordinate[midway] (lm2) 
+coordinate[pos=0.75] 
+(lm3);
+
+% the blocks
+\DrawBlock{b}{1}{4}
+\DrawBlock{b}{2}{3.7}
+\DrawBlock{b}{3}{4.3}
+\DrawBlock{b}{4}{5}
+\DrawBlock{f}{1}{3.3}
+\DrawBlock{f}{2}{3.5}
+\DrawBlock{f}{3}{4}
+\DrawBlock{f}{4}{4.7}
+
+\foreach \Point/\Height in {lm1/3.7,lm2/4.3,lm3/5}
+  \draw[ultra thin,dashed,opacity=0.2] (\Point) -- ++(0,0,\Height);
+
+% the lower grid
+\foreach \x in {1,2,3}
+  \draw[dashed] (fm\x) -- (bm\x);
+\draw[dashed] (fm0) -- (bm0) -- (bm4);
+\draw (fm0) -- (fm4) -- (bm4);
+\draw[dashed] (lm0) -- (lm4);
+
+% coordinates for the surface
+\coordinate (curvefm0) at ( $ (fm0) + (0,0,4) $ );
+\coordinate (curvebm0) at ( $ (bm0) + (0,0,4) $ );
+\coordinate (curvebm4) at ( $ (bm4) + (0,0,6) $ );
+\coordinate (curvefm4) at ( $ (fm4) + (0,0,5.7) $ );
+
+% the surface
+\filldraw[ultra thick,fill=gray!25,fill opacity=0.2]
+  (curvefm0) to[out=-30,in=210] 
+  (curvefm4) to[out=-4,in=260]
+  (curvebm4) to[out=215,in=330]
+  (curvebm0) to[out=240,in=-20]
+  (curvefm0);
+
+% lines from grid to surface
+\draw[very thick,name path=leftline] (curvefm0) -- (fm0);
+\draw[very thick] (curvefm4) -- (fm4);
+\draw[very thick,name path=rightline] (curvebm4) -- (bm4);
+\draw[very thick,dashed] (curvebm0) -- (bm0);
+
+% coordinate system
+\coordinate (O) at (0,0,0);
+\draw[-latex] (O) -- +(5,0,0) node[above left] {$x$};
+\path[name path=yaxis] (O) -- +(0,10,0) coordinate (yaxisfinal) node[above] 
+{$y$};
+\draw[-latex] (O) -- +(0,0,5) node[left] {$z$};
+\path[name intersections={of=yaxis and leftline,by={yaxis1}}];
+\path[name intersections={of=yaxis and rightline,by={yaxis2}}];
+\draw (O) -- (yaxis1);
+\draw[densely dashed,opacity=0.1] (yaxis1) -- (yaxis2);
+\draw[-latex] (yaxis2) -- (yaxisfinal);
+
+% for debugging
+%\foreach \Name in 
+%curvefm0,curvebm0,curvebm4,curvefm4}
+%  \node at (\Name) {\Name};  
+\end{tikzpicture}
+  
+  \begin{definition}
+    The \emph{mesh size} of a partition $P$ is defined by
+    \begin{equation*}
+      \norm{P} = \max \set{ x_{i+1} - x_i \st 0 \leq i < M} \cup \set{y_{j+1} - y_j \st 0 \leq j \leq N }.
+    \end{equation*}
+  \end{definition}
+
+  \begin{definition}
+    The \emph{Riemann integral} of $f$ over the rectangle $R$ is defined by
+    \begin{equation*}
+      \dint_R f(x, y) \, dx \, dy
+      \defeq
+      \lim_{\norm{P} \to 0}
+	\mathcal R( f, P, \Xi ),
+    \end{equation*}
+    provided the limit exists and is independent of the choice of the points 
+$\Xi$.
+    A function is said to be \emph{Riemann integrable} over $R$ if the Riemann 
+integral exists and is finite.
+  \end{definition}
+
+  \begin{remark}
+    A few other popular notation conventions used to denote the integral are
+    \begin{equation*}
+      \iint_R f \, dA,
+      \quad
+      \iint_R f \, dx \, dy,
+      \quad
+      \iint_R f \, dx_1 \, dx_2,
+      \quad\text{and}\quad
+      \iint_R f.
+    \end{equation*}
+  \end{remark}
+
+  \begin{remark}
+    The double integral represents the volume of the region under the graph of 
+$f$.
+    Alternately, if $f(x, y)$ is the density of a planar body at point $(x, y)$, 
+the double integral is the total mass.
+  \end{remark}
+
+  \begin{theorem}
+    Any bounded continuous function is Riemann integrable on a bounded 
+rectangle.
+  \end{theorem}
+
+  \begin{remark}
+    Most bounded functions we will encounter will be Riemann integrable.
+    Bounded functions with reasonable discontinuities (e.g. finitely many jumps) 
+are usually Riemann integrable on bounded rectangle.
+    An example of a ``badly discontinuous'' function that is not Riemann 
+integrable is the function $f(x, y) = 1$ if $x, y \in \mathbb{Q}$ and $0$ 
+otherwise.
+    %s \emph{provided} they are bounded or don't grow ``too fast'' near their 
+singularities.
+  \end{remark}
+
+
+
+  Now suppose $U \subseteq \bbR^2$ is an nice bounded%
+  \footnote{%
+    We will subsequently always assume $U$ is ``nice''. Namely, $U$ is open, 
+connected and the boundary of $U$ is a piecewise differentiable curve.
+    More precisely, we need to assume that the ``area'' occupied by the boundary 
+of $U$ is $0$.
+    While you might suspect this should be true for all open sets, it isn't!
+    There exist open sets of \emph{finite area} whose boundary occupies an 
+infinite area!}
+  domain, and $f:U \to \bbR$ is a function.
+  Find a bounded rectangle $R \supseteq U$, and as before let $P$ be a partition 
+of $R$ into a grid of rectangles.
+  Now we define the Riemann sum by only summing over all rectangles $R_{i,j}$ 
+that are completely contained inside $U$.
+  Explicitly, let
+  \begin{equation*}
+    \chi*{i,j}
+      = \begin{cases}
+	  1 & R_{i,j} \subseteq U\\
+	  0 & \text{otherwise}.
+	\end{cases}
+  \end{equation*}
+  and define
+  \begin{equation*}
+    \mathcal R(f, P, \Xi, U)
+      %\defeq \dsum_{i=0}^{M-1} \dsum_{j = 0}^{N-1}
+      %  \chi*{i,j} f(\xi_{i, j}) \area(R_{i,j})
+      \defeq \dsum_{i=0}^{M-1} \dsum_{j = 0}^{N-1} \chi*{i,j}
+	f(\xi_{i, j}) (x_{i+1} - x_i) (y_{j+1} - y_j).
+  \end{equation*}
+  \begin{definition}
+    The \emph{Riemann integral} of $f$ over the \emph{domain $U$} is defined by
+    \begin{equation*}
+      \dint_U f(x, y) \, dx \, dy
+      \defeq
+      \lim_{\norm{P} \to 0}
+	\mathcal R( f, P, \Xi, U ),
+    \end{equation*}
+    provided the limit exists and is independent of the choice of the points 
+$\Xi$.
+    A function is said to be \emph{Riemann integrable} over $R$ if the Riemann 
+integral exists and is finite.
+  \end{definition}
+
+  \begin{theorem}
+    Any bounded continuous function is Riemann integrable on a bounded region.
+  \end{theorem}
+  \begin{remark}
+    As before, most reasonable \emph{bounded} functions we will encounter will 
+be Riemann integrable.
+  \end{remark}
+
+  To deal with unbounded functions over unbounded domains, we use a limiting 
+process.
+  \begin{definition}
+    Let $U \subseteq \bbR^2$ be a domain (which is not necessarily bounded) and 
+$f:U \to \bbR$ be a (not necessarily bounded) function.
+    We say $f$ is integrable if
+    \begin{equation*}
+      \lim_{R \to \infty} \dint_{U \cap B(0, R)} \chi*R \abs{f} \, dA
+    \end{equation*}
+    exists and is finite.
+    Here $\chi*R(x) = 1$ if $\abs{f(x)} < R$ and $0$ otherwise.
+  \end{definition}
+  \begin{proposition}
+    If $f$ is integrable on the domain $U$, then
+    \begin{equation*}
+      \lim_{R \to \infty} \dint_{U \cap B(0, R)} \chi*R f \, dA
+    \end{equation*}
+    exists and is finite.
+  \end{proposition}
+  \begin{remark}
+    If $f$ is integrable, then the above limit is independent of how you expand 
+your domain.
+    Namely, you can take the limit of the integral over $U \cap [-R, R]^2$ 
+instead, and you will still get the same answer.
+  \end{remark}
+  \begin{definition}
+    If $f$ is integrable we define
+    \begin{equation*}
+      \dint_U f \, dx \, dy = \lim_{R \to \infty} \dint_{U \cap B(0, R)} \chi*R 
+f \, dA
+    \end{equation*}
+  \end{definition}
+  \section{Iterated integrals and Fubini's theorem}
+
+  Let $U \subseteq \bbR^2$ be a domain.
+  \begin{definition}
+    For $x \in \bbR$, define
+    \begin{equation*}
+      S_x U = \set{y \st (x, y) \in U}
+      \quad\text{and}\quad
+      T_y U = \set{x \st (x, y) \in U}
+    \end{equation*}
+  \end{definition}
+
+  \begin{example}
+    If $U = [a, b] \times [c, d]$ then
+    \begin{equation*}
+      S_x U = 
+      \begin{cases}
+	[c,d] & x \in [a, b]\\
+	\emptyset & x \not\in [a, b]
+      \end{cases}
+      \quad\text{and}\quad
+      T_y U = \begin{cases}
+	[a, b] & y \in [c, d]\\
+	\emptyset & y \not\in [c,d].
+      \end{cases}
+    \end{equation*}
+  \end{example}
+
+  For domains we will consider, $S_x U$ and $T_y U$ will typically be an 
+interval (or a finite union of intervals).
+  \begin{definition}
+    Given a function $f:U \to \bbR$, we define the two \emph{iterated} integrals 
+by
+    \begin{equation*}
+      \dint_{x \in \bbR} \paren[\Big]{ \dint_{y \in S_xU} f(x, y) \, dy } \, dx
+      \quad\text{and}\quad
+      \dint_{y \in \bbR} \paren[\Big]{ \dint_{x \in T_y U} f(x, y) \, dx } \, 
+dy,
+    \end{equation*}
+    with the convention that an integral over the empty set is $0$.
+    (We included the parenthesis above for clarity; and will drop them as we 
+become more familiar with iterated integrals.)
+  \end{definition}
+
+  Suppose $f(x, y)$ represents the density of a planar body at point $(x, y)$.
+  For any $x \in \bbR$,
+  \begin{equation*}
+    \dint_{y \in S_xU} f(x, y) \, dy
+  \end{equation*}
+  represents the mass of the body contained in the vertical line through the 
+point $(x, 0)$.
+  It's only natural to expect that if we integrate this with respect to $y$, we 
+will get the total mass, which is the double integral.
+  By the same argument, we should get the same answer if we had sliced it 
+horizontally first and then vertically.
+  Consequently, we expect both iterated integrals to be equal to the double 
+integral.
+  This is true, under a finiteness assumption.
+
+  \begin{theorem}[Fubini's theorem]
+    Suppose $f:U \to \bbR$ is a function such that either
+    \begin{equation}\label{eqnFubiniFiniteness}
+      \dint_{x \in \bbR} \paren[\Big]{ \dint_{y \in S_xU} \abs{f(x, y)} \, dy } 
+\, dx < \infty
+      \quad\text{or}\quad
+      \dint_{y \in \bbR} \paren[\Big]{ \dint_{x \in T_y U} \abs{f(x, y)} \, dx } 
+\, dy < \infty,
+    \end{equation}
+    then $f$ is integrable over $U$ and
+    \begin{equation*}
+      \dint_U f \, dA
+	= \dint_{x \in \bbR} \paren[\Big]{ \dint_{y \in S_xU} f(x, y) \, dy } \, 
+dx
+	= \dint_{y \in \bbR} \paren[\Big]{ \dint_{x \in T_y U} f(x, y) \, dx } 
+\, dy.
+    \end{equation*}
+  \end{theorem}
+
+  Without the assumption~\eqref{eqnFubiniFiniteness} the iterated integrals need 
+not be equal, even though both may exist and be finite.
+  \begin{example}
+    Define
+    \begin{equation*}
+      f(x, y)
+	= -\partial_x \partial_y \tan\inv\paren[\big]{\frac{y}{x}}
+	= \frac{x^2 - y^2}{(x^2 + y^2)^2}.
+    \end{equation*}
+    Then
+    \begin{equation*}
+      \dint_{x = 0}^1 \dint_{y = 0}^1 f(x, y) \, dy \, dx = \frac{\pi}{4}
+      \quad\text{and}\quad
+      \dint_{y = 0}^1 \dint_{x = 0}^1 f(x, y) \, dx \, dy = -\frac{\pi}{4}
+    \end{equation*}
+  \end{example}
+  \begin{example}
+    Let $f(x, y) = (x - y) / (x + y)^3$ if $x, y > 0$ and $0$ otherwise, and $U 
+= (0, 1)^2$.
+    The iterated integrals of $f$ over $U$ both exist, but are not equal.
+  \end{example}
+
+  \begin{example}
+    Define
+    \begin{equation*}
+      f(x, y) = \begin{cases}
+	1 & y \in (x, x+1) \text{ and } x \geq 0\\
+	-1 & y \in (x-1, x) \text{ and } x \geq 0\\
+	0 & \text{otherwise}.
+      \end{cases}
+    \end{equation*}
+    Then the iterated integrals of $f$ both exist and are not equal.
+  \end{example}
+  Fubini's Theorem allows us to convert the double integral into
+iterated (single) integrals.
+\begin{exa}
+$$\begin{array}{lll}
+\dint _{[0; 1]\times [2; 3]} xy \d{A} & = &
+\dint _0 ^1 \left(\dint _2 ^3 xy \d{y}\right)\d{x}\\
+& = & \dint _0 ^1 \left(\left[\dfrac{xy^2}{2}\right]_2 ^3\right)
+\d{x}\\
+& = & \dint _0 ^1 \left(\dfrac{9x}{2} - 2x \right) \d{x}\\
+& = & \left[ \dfrac{5x^2}{4} \right] _0 ^1 \\
+& = & \dfrac{5}{4}.
+\end{array}$$
+Notice that if we had integrated first with respect to $x$ we
+would have obtained the same result:
+$$\begin{array}{lll}
+\dint _2 ^3 \left(\dint _0 ^1 xy \d{x}\right)\d{y}& = & \dint _2 ^3
+\left(\left[\dfrac{x^2y}{2}\right]_0 ^1\right)
+\d{y}\\
+& = & \dint _2 ^3 \left(\dfrac{y}{2} \right) \d{x}\\
+& = & \left[ \dfrac{y^2}{4} \right] _2 ^3 \\
+& = & \dfrac{5}{4}.
+\end{array}$$
+Also, this integral is ``factorable into $x$ and $y$ pieces''
+meaning that
+$$\begin{array}{lll}
+\dint _{[0; 1]\times [2; 3]} xy \d{A} & = & \left(\dint _0 ^1
+x\d{x}\right)\left(\dint _2 ^3 y\d{y}\right)
+\\
+& = & \left(\dfrac{1}{2}\right)\left(\dfrac{5}{2}\right) \\
+& = & \dfrac{5}{4}
+\end{array}$$
+
+
+
+\end{exa}
+\begin{exa}\label{exa:double_int_for_change1}
+We have $$\begin{array}{lll}\dint _3 ^4  \dint_0 ^1 (x + 2y)(2x + y) \
+\d{x} \d{y} & = & \dint _3 ^4 \dint _0 ^1 (2x^2+5xy+2y^2) \
+\d{x}\d{y} \\
+& = &  \dint_3 ^4 \left(\frac{2}{3}+\frac{5}{2}y+2y^2\right)  \ \d{y} \\
+& = & \frac{409}{12}.
+\end{array}$$
+\end{exa}
+
+
+
+In the cases when the domain of integration is not a rectangle, we
+decompose so that, one variable is kept constant.
+\begin{exa}\label{exa:int_triag_region_1}
+Find $\dint \limits_D xy \ \d{x}\d{y} $ in the triangle with
+vertices $A:(-1,-1)$, $B:(2,-2)$, $C:(1,2)$. \end{exa}\begin{solu}
+The lines passing through the given  points have equations $L_{AB}:
+y = \dfrac{-x - 4}{3}$, $L_{BC}: y = -4x + 6$, $L_{CA}: y =
+\dfrac{3x + 1}{2}$. Now, we draw the region {\em carefully}. If we
+integrate first with respect to $y$, we must divide the region as in
+figure \ref{fig:int_triag_region_1}, because there are two upper
+lines which the upper value of $y$ might be. The lower point of the
+dashed line is $(1, -5/3)$.  The integral is thus $$ \dint _{-1} ^1 x
+\left(\dint _{(-x - 4)/3} ^{(3x + 1)/2} y \ \d{y}\right)\d{x}+ \dint
+_{1} ^2 x \left(\dint _{(-x - 4)/3} ^{-4x + 6} y \ \d{y}\right)\d{x}=
+-\dfrac{11}{8}.
+$$
+If we integrate first with respect to $x$, we must divide the region
+as in figure \ref{fig:int_triag_region_1.1}, because there are two
+left-most lines which the left value of $x$ might be. The right
+point of the dashed line is $(7/4, -1)$. The integral is thus
+$$ \dint _{-2} ^{-1} y \left(\dint _{-4 - 3y} ^{(6 - y)/4} x \ \d{x}\right)\d{y} 
++
+\dint _{-1} ^2 y \left(\dint _{(2y - 1)/3} ^{(6 - y)/4} x \
+\d{x}\right)\d{y} = -\dfrac{11}{8}.
+$$
+
+
+\end{solu}
+
+
+\vspace*{2cm}
+\begin{figure}[htpb]
+\begin{minipage}{4.5cm}
+$$ \psset{unit=1.5pc}\renewcommand{\pshlabel}[1]{{\tiny
+#1}}
+\renewcommand{\psvlabel}[1]{{\tiny #1}} \psaxes(0,0)(-3,-3)(3,3)
+\psdots[dotscale=1, dotstyle=*](-1,-1)(2,-2)(1,2)(1,-1.66)
+\psline(-1,-1)(2,-2)(1,2)(-1,-1)
+\psline[linestyle=dashed](1,2)(1,-1.66)
+$$ \vspace*{2cm}\hangcaption{Example \ref{exa:int_triag_region_1}. Integration 
+order $\d{y}\d{x}$.} \label{fig:int_triag_region_1}
+\end{minipage}\hfill\begin{minipage}{4.5cm}     $$ 
+\psset{unit=1.5pc}\renewcommand{\pshlabel}[1]{{\tiny #1}}
+\renewcommand{\psvlabel}[1]{{\tiny #1}} \psaxes(0,0)(-3,-3)(3,3)
+\psdots[dotscale=1, dotstyle=*](-1,-1)(2,-2)(1,2)(1.75,-1)
+\psline(-1,-1)(2,-2)(1,2)(-1,-1)
+\psline[linestyle=dashed](-1,-1)(1.75,-1)
+$$\vspace*{2cm}\hangcaption{Example \ref{exa:int_triag_region_1}. Integration 
+order $\d{x}\d{y}$.} \label{fig:int_triag_region_1.1}
+     \end{minipage}
+     \hfill
+\begin{minipage}{4.5cm}
+$$\psset{unit=1pc}
+\renewcommand{\pshlabel}[1]{{\tiny
+#1}}
+\renewcommand{\psvlabel}[1]{{\tiny
+#1}}\rput(-4,0){\psaxes(0,0)(-.5,-.5)(10,7)\psline(6,3)(8,4)(9,6)(7,5)(6,3)
+\psline[linestyle=dashed](6.5,4)(8,
+4)\psline[linestyle=dashed](7,5)(8.5,5)\psdots[dotstyle=*,dotscale=.8](6,3)(8,
+4)(7,5)(9,6)(6.5,4)(8.5,5)}
+$$\vspace*{1cm} \footnotesize \hangcaption{Example \ref{exa:int_parall1}.} 
+\label{fig:int_parall1}
+\end{minipage}\end{figure}
+
+
+\begin{exa}\label{exa:int_parall1}
+Consider the region inside the parallelogram $P$ with vertices at
+$A:(6, 3)$, $B:(8,4) $, $C:(9,6)$, $D:(7,5) $, as in figure
+\ref{fig:int_parall1}. Find
+$$\dint \limits_P  xy \ \ \d{x} \d{y}.    $$
+\end{exa} \begin{solu} The lines joining the points have
+equations
+$$L_{AB}: \ y = \frac{x}{2},
+$$ $$L_{BC}: \
+y = 2x - 12,
+$$ $$L_{CD}: \
+y = \frac{x}{2} + \frac{3}{2},
+$$ $$L_{DA}: \
+y = 2x - 9.
+$$
+The integral is thus
+$$\dint _3 ^4 \dint _{(y + 9)/2} ^{2y} xy\ \d{x}
+\d{y}  + \dint _4 ^{5}  \dint _{(y + 9)/2} ^{(y + 12)/2} xy\  \d{x}
+\d{y}    +
+ \dint _5 ^{6}  \dint _{2y-3} ^{(y+12)/2} xy\  \d{x}  \d{y}   =   \frac{409}{4}. 
+$$
+
+
+
+\end{solu}
+
+\begin{exa}
+ Find $$\dint \limits_D \dfrac{y}{x^2 + 1} \d{x}\d{y}$$where $$D =  \{(x, 
+y)\in\reals^2|x \geq 0, x^2 + y^2 \leq
+ 1\}.$$\end{exa}
+\begin{solu} The integral is $0$. Observe that if $(x, y)\in D$ then $(x,
+-y)\in D$. Also, $f(x, -y) = -f(x, y)$.
+\end{solu}
+
+
+  
+\section*{\psframebox{Homework}}
+\begin{multicols}{2}\columnseprule 1pt \columnsep 25pt\multicoltolerance=900
+\begin{pro}
+Evaluate the iterated integral $\dint _1 ^3 \dint _0 ^x
+\dfrac{1}{x}\ \d{y}\d{x}$.
+\begin{answer}
+$2$
+\end{answer}
+\end{pro}
+\begin{pro}
+Let $S$ be the interior and boundary of the  triangle with vertices
+$(0,0)$, $(2,1)$,  and $(2,0)$. Find $\dint \limits_{S} y\d{A}$.
+\begin{answer}
+$\dfrac{1}{3} $
+\end{answer}
+\end{pro}
+\begin{pro}
+Let $$S=\{(x,y)\in \reals^2: x\geq 0,\  y\geq 0,\  1 \leq
+x^2+y^2\leq 4\}.$$ Find $\dint \limits_{S} x^2\d{A}$.
+\begin{answer}
+$\dfrac{15\pi}{16}$
+\end{answer}
+\end{pro}
+\begin{pro}
+ Find $$\dint \limits_D xy \d{x}\d{y}$$ where $$D =  \{(x, y)\in\reals^2|y \geq 
+x^2, x \geq
+ y^2\}.$$
+\begin{answer} The integral equals
+$$\begin{array}{lll}
+\dint \limits_D xy \d{x}\d{y} & = & \dint _0 ^1 x\left(\dint _{x^2}
+^{\sqrt{x}}  y \ \d{y} \right) \ \d{x}\\
+& = & \dint _0 ^1 \dfrac{1}{2}x(x - x^4) \ \d{x}\\
+& = & \dfrac{1}{12}.
+\end{array}$$
+\end{answer}
+\end{pro}
+
+\begin{pro}
+Find $$\dint \limits_D (x + y)(\sin x)(\sin y) \d{A}$$ where $D =
+[0; \pi]^2.$ \begin{answer} The integral equals
+$$
+\begin{array}{lll}\dint \limits_D x\sin x\sin y \d{x}\d{y}  +
+\dint \limits_D y\sin x\sin y \d{x}\d{y} & = & 2\left(\dint_0 ^\pi
+y\sin
+y \ \d{y}\right)\left(\dint_0 ^\pi \sin x \ \d{x}\right) \\
+& = & 4\pi.
+\end{array}$$
+\end{answer}
+\end{pro}
+\begin{pro}
+Find $\dint _0 ^1 \dint _0 ^1 \min (x^2,y^2)\d{x}\d{y}$.
+\begin{answer}
+The integral is
+$$\begin{array}{lll}\dint\limits _{x\leq y} x^2 \d{x}\d{y} + \dint\limits_{y\leq 
+x} y^2 \d{x}\d{y}
+& = & \dint _0 ^1 \dint _0 ^y x^2 \d{x}\d{y} + \dint _0 ^1 \dint _y ^1
+y^2 \d{x}\d{y}\\
+& = & \dint _0 ^1 \dfrac{y^3}{3}\d{y} + \dint _0 ^1
+\left(y^2-y^3\right)\d{y}\\
+& = & \dfrac{y^4}{12}\Big| _0 ^1 +
+\left(\dfrac{y^3}{3}-\dfrac{y^4}{4}\right) \Big| _0 ^1 \\
+& = & \dfrac{1}{12} + \dfrac{1}{3} -\dfrac{1}{4} \\
+& = & \dfrac{1}{6}.
+\end{array}$$
+\end{answer}
+\end{pro}
+\begin{pro}
+Find $\dint _D xy\d{x}\d{y}$ where
+$$ D=\{(x,y)\in \reals^2: x>0,y>0, 9<x^2+y^2<16, 1<x^2-y^2<16\}. $$
+\begin{answer}
+$\dfrac{21}{8}$
+\end{answer}
+\end{pro}
+\begin{pro}
+\label{pro:polar-integral2}  Evaluate $\dint_{{\cal R}}x\d{A}$ where
+${\cal R}$ is the (unoriented) circular segment in figure
+\ref{fig:polar-integral2}, which is created by the intersection of
+regions
+$$\{(x,y)\in\reals^2: x^2+y^2 \leq 16 \}$$ and  $$\left\{(x,y)\in\reals^2:  y 
+\geq -\dfrac{\sqrt{3}}{3}x+4\right\}. $$
+\begin{answer}
+Observe that $$ x^2+y^2=16, y = -\dfrac{\sqrt{3}}{3}x+4\implies
+16-x^2=\left(-\dfrac{\sqrt{3}}{3}x+4\right)^2 \implies x = 0,
+2\sqrt{3}.
+$$The integral is
+$$\begin{array}{lll} \dint _0 ^{2\sqrt{3}} \dint _{-\frac{\sqrt{3}}{3}x+4} 
+^{\sqrt{16-x^2}}x\d{y}\d{x} & = &
+\dint _0 ^{2\sqrt{3}}
+x\left(\sqrt{16-x^2}+\dfrac{\sqrt{3}}{3}x-4\right) \d{x}\\
+& = & -\dfrac{1}{3}(16-x^2)^{3/2}+\dfrac{\sqrt{3}}{9}x^3-2x^2\Big|
+_0
+^{2\sqrt{3}}\\
+& = & \dfrac{8}{3}.
+\end{array}$$
+
+\end{answer}
+\end{pro}
+
+\end{multicols}
+\section{Change of Variables}
+We now perform a multidimensional analogue of  the change of
+variables theorem in one variable.
+\begin{thm}
+Let $(D, \Delta) \in (\reals^n)^2$ be open, bounded sets in
+$\reals^n$ with volume and let $g:\Delta \rightarrow D$ be a
+continuously differentiable bijective mapping such that $\det g'(u)
+\neq 0$, and both $|\det g'(u)|, \dfrac{1}{|\det g'(u)|}$ are
+bounded on $\Delta$. For $f:D \rightarrow \reals$ bounded and
+integrable, $f\circ g|\det g'(u)|$ is integrable on $\Delta$ and
+$$\dint \cdots \dint _D f = \dint \cdots \dint _\Delta (f\circ g)|\det
+ g'(u)|,$$ that is
+$$\dint \cdots \dint _D f(x_1, x_2, \ldots, x_n) \d{x}_1 \wedge
+\d{x}_2 \wedge \ldots \wedge \d{x}_n  $$
+$$\qquad \qquad \qquad = \dint \cdots \dint _\Delta f(g(u_1, u_2, \ldots, u_n))
+|\det g'(u)|\d{u}_1 \wedge \d{u}_2 \wedge \ldots \wedge \d{u}_n .$$
+\end{thm}
+One normally chooses changes of variables that map into
+rectangular regions, or that simplify the integrand. Let us start
+with a rather trivial example.
+
+
+\vspace*{4cm}
+\begin{figure}[htpb]
+\begin{minipage}{7cm}
+$$\psset{unit=1pc}
+\renewcommand{\pshlabel}[1]{{\tiny
+#1}}
+\renewcommand{\psvlabel}[1]{{\tiny #1}}
+\rput(-4,0){\psaxes(0,0)(-.5,-.5)(10,7)\pscustom[fillcolor=yellow,
+fillstyle=solid]{\psline(0,3)(0,4)(1,4)(1,3)(0,3)}\psdots[dotstyle=*,dotscale=.8
+](0,3)(0,4)(1,4)(1,3)}$$
+\vspace*{1cm} \footnotesize \hangcaption{Example
+\ref{exa:change_of_var_1}. $xy$-plane.} \label{fig:change_of_var_1}
+\end{minipage}
+\hfill
+\begin{minipage}{7cm}
+$$\psset{unit=1pc}
+\renewcommand{\pshlabel}[1]{{\tiny
+#1}}
+\renewcommand{\psvlabel}[1]{{\tiny
+#1}}\rput(-4,0){\psaxes(0,0)(-.5,-.5)(10,7)\pscustom[fillcolor=yellow,
+fillstyle=solid]{\psline(6,3)(8,4)(9,6)(7,5)(6,3)}\psdots[dotstyle=*,dotscale=.8
+](6,3)(8,4)(7,5)(9,6)}
+$$\vspace*{1cm} \footnotesize \hangcaption{Example \ref{exa:change_of_var_1}. 
+$uv$-plane.} \label{fig:change_of_var_1}\end{minipage}
+\end{figure}
+
+
+\begin{exa}
+Evaluate the integral $$\dint _3 ^4 \dint _0 ^1  (x + 2y)(2x + y)\\
+\d{x} \d{y}.
+$$
+\label{exa:change_of_var_1}\end{exa} \begin{solu} Observe that we
+have already computed this integral in example
+\ref{exa:double_int_for_change1}. Put
+$$u = x + 2y \implies \d{u} = \d{x} + 2\d{y},     $$
+$$v = 2x + y \implies \d{v} = 2\d{x} + \d{y},     $$
+
+giving $$\d{u}\wedge\d{v} = -3\d{x}\wedge\d{y}.
+$$
+Now, $$(u,v) = \begin{bmatrix} 1 & 2 \cr 2 & 1 \cr
+\end{bmatrix}\colvec{x
+\\ y}
+$$is a linear transformation, and hence it maps quadrilaterals into
+quadrilaterals. The corners of the rectangle in the area of
+integration in the $xy$-plane are $(0,3)$,  $(1,3)$, $(1,4)$, and
+$(0, 4)$, (traversed counter-clockwise) and they map into $(6, 3)$,
+$(7,5) $, $(9,6)$, and $(8,4) $, respectively, in the $uv$-plane
+(see figure \ref{fig:change_of_var_1}). The form $\d{x}\wedge\d{y}$
+has opposite orientation to $\d{u}\wedge\d{v}$ so we use $$
+\d{v}\wedge\d{u} = 3\d{x}\wedge\d{y}    $$instead. The integral
+sought is
+$$  \frac{1}{3}\dint\limits_P uv \ \d{v}\d{u}     =
+\frac{409}{12},
+$$from example \ref{exa:int_parall1}.
+\end{solu}
+
+
+\begin{exa}
+The integral
+$$\dint _{[0;1]^2} (x^4 - y^4) \d{A}
+= \dint _0 ^1  \left( \dfrac{1}{5} - y^4\right)\d{y}
+ = 0.$$ Evaluate it
+using the change of variables $u = x^2 - y^2, v = 2xy.$
+\end{exa}
+\begin{solu} First we find
+$$\d{u}= 2x\d{x}- 2y\d{y},$$
+$${\rm d}v = 2y\d{x}+ 2x\d{y},$$and so
+$$\d{u}\wedge\d{v} = (4x^2 + 4y^2)\d{x}\wedge \d{y}.$$
+
+
+We now determine the region $\Delta$ into which the square $D =
+[0; 1 ]^2$ is mapped. We use the fact that boundaries will be
+mapped into boundaries. Put $$AB = \{(x, 0): 0 \leq x \leq 1\},$$
+$$BC = \{(1, y): 0 \leq y \leq 1\},$$ $$CD = \{(1 - x, 1): 0 \leq x
+\leq 1\},$$ $$DA = \{(0, 1 - y): 0 \leq y \leq 1\}.$$
+
+
+
+
+On $AB$ we have $u = x, v = 0.$ Since $0 \leq x \leq 1$, $AB$ is
+thus mapped into the line segment $0 \leq u \leq 1, v = 0$.
+
+
+
+
+On $BC$ we have $u = 1 - y^2, v = 2y$. Thus $u = 1 -
+\dfrac{v^2}{4}$. Hence $BC$ is mapped to the portion of the
+parabola $u = 1 - \dfrac{v^2}{4}, 0 \leq v \leq 2.$
+
+
+
+
+On $CD$ we have $u = (1 - x)^2 - 1, v = 2(1 - x).$ This means that
+$u = \dfrac{v^2}{4} - 1, 0 \leq v \leq 2.$
+
+
+
+
+Finally, on $DA,$ we have $u = -(1 - y)^2, v = 0.$ Since $0 \leq y
+\leq 1$, $DA$ is mapped into the line segment $-1 \leq u \leq 0, v
+= 0.$ The region $\Delta$ is thus the area in the $uv$ plane
+enclosed by the parabolas $u \leq \dfrac{v^2}{4} - 1, u \leq 1 -
+\dfrac{v^2}{4}$ with $ -1 \leq u \leq 1, 0 \leq v \leq 2.$
+
+
+
+We deduce that
+$$\begin{array}{lll}\dint _{[0;1]^2} (x^4 - y^4) \d{A}& = &  \dint _{\Delta} 
+(x^4 - y^4) \dfrac{1}{4(x^2 + y^2)}
+\d{u}\d{v} \\
+& = &  \dfrac{1}{4}\dint _{\Delta} (x^2 - y^2)
+\d{u}\d{v} \\
+& = &  \dfrac{1}{4}\dint _{\Delta} u
+\d{u}\d{v} \\
+& = & \dfrac{1}{4}\dint _0 ^2 \left( \dint _{v^2/4 - 1} ^{1 - v^2/4}
+u
+\d{u}\right)\d{v} \\
+& = & 0,
+\end{array}$$as before.
+\end{solu}
+\begin{exa}
+Find $$\dint \limits_D  e^{(x^3 + y^3)/xy} \ \ \ \d{A}$$ where
+$$D =  \{(x, y)\in\reals^2|y^2 - 2px \leq 0, x^2 - 2py \leq 0, p\in
+]0;+\infty[ \ {\rm fixed}\},$$  using the change of variables $x =
+u^2v, \ y = uv^2$.
+\end{exa}
+\begin{solu} We have $$\d{x} = 2uv\d{u} + u^2\d{v},    $$
+$$\d{y} = v^2\d{u} + 2uv\d{v},    $$
+$$\d{x} \wedge \d{y} = 3u^2v^2\d{u}\wedge\d{v}.    $$
+The region transforms into
+$$\Delta = \{(u, v)\in\reals^2| 0 \leq u \leq (2p)^{1/3}, \ 0 \leq v \leq
+(2p)^{1/3}\}.$$The integral becomes
+$$\begin{array}{lll}
+\dint \limits_D  f(x, y) \d{x}\d{y} & = & \dint \limits_\Delta \exp
+\left(\dfrac{u^6v^3 +
+u^3v^6}{u^3v^3}\right) (3u^2v^2) \ \d{u}{\rm d}v \\
+& = & 3\dint \limits_\Delta e^{u^3}e^{v^3}u^2v^2 \ \d{u}{\rm d}v \\
+& = & \dfrac{1}{3}\left(\dint _0 ^{(2p)^{1/3}} 3u^2e^{u^3}\ \d{u}
+\right)^2 \\
+& = & \dfrac{1}{3}(e^{2p} - 1)^2.
+\end{array}$$
+As an exercise, you may try the (more natural) substitution $x^3 =
+u^2v, y^3 = v^2u$ and verify that the same result is obtained.
+\end{solu}
+
+
+\vspace*{2cm}
+\begin{figure}[htpb]
+\begin{minipage}{7cm}
+$$
+\psaxes[linewidth=2pt,arrows={->}](0,0)(0,0)(1.5,1.5)
+\pspolygon*[showpoints=true,linecolor=green](0,0)(1,0)(1,1)(0,1)
+$$
+\vspace*{1cm} \footnotesize \hangcaption{Example
+\ref{exa:change_of_var_4}. $xy$-plane.} \label{fig:change_of_var_4}
+\end{minipage}
+\hfill
+\begin{minipage}{7cm}
+$$\psaxes[linewidth=2pt,arrows={->},labels=none](0,0)(0,0)(1.9,1.9)
+\pspolygon*[showpoints=true,linecolor=green](0,0)(1.5708,0)(0,1.5708)
+\uput[d](1.5708,0){\frac{\pi}{2}} \uput[l](0,1.5708){\frac{\pi}{2}}
+$$\vspace*{1cm} \footnotesize \hangcaption{Example \ref{exa:change_of_var_4}. 
+$uv$-plane.} \label{fig:change_of_var_5}\end{minipage}
+\end{figure}
+
+
+\begin{exa}In this problem we will follow an argument of Calabi, Beukers, and 
+Kock to prove that $\dsum _{n=1}
+^{+\infty}\dfrac{1}{n^2}=\dfrac{\pi ^2}{6}$.
+\begin{enumerate}
+\item
+Prove that if $S = \dsum _{n=1} ^{+\infty}\dfrac{1}{n^2}$, then
+$\dfrac{3}{4}S = \dsum _{n=1} ^{+\infty}\dfrac{1}{(2n-1)^2}$.
+\item Prove that $ \dsum _{n=1} ^{+\infty}\dfrac{1}{(2n-1)^2} = \dint _0 ^1 
+\dint _0 ^1
+\dfrac{\d{x}\d{y}}{1-x^2y^2}$.
+\item Use the change of variables $x=\dfrac{\sin u}{\cos v}$, $y=\dfrac{\sin
+v}{\cos u}$ in order to evaluate $\dint _0 ^1 \dint _0 ^1
+\dfrac{\d{x}\d{y}}{1-x^2y^2}$.
+\end{enumerate}
+\label{exa:change_of_var_4}
+\end{exa}
+\begin{solu}
+\noindent
+\begin{enumerate}
+\item Observe that the sum of the even terms is
+$$ \dsum _{n=1} ^{+\infty}\dfrac{1}{(2n)^2} = \dfrac{1}{4}\dsum _{n=1} 
+^{+\infty}\dfrac{1}{n^2} = \dfrac{1}{4}S,
+$$a quarter of the sum, hence the sum of the odd terms must be three quarters of 
+the sum,
+$\dfrac{3}{4}S$.
+\item Observe that
+$$ \dfrac{1}{2n-1} = \dint _0 ^1 x^{2n-2}\d{x} \implies 
+\left(\dfrac{1}{2n-1}\right)^2 = \left(\dint _0 ^1 
+x^{2n-2}\d{x}\right)\left(\dint _0 ^1 y^{2n-2}\d{y}\right)= \dint _0 ^1 \dint _0 
+^1 (xy)^{2n-2}\d{x}\d{y}. $$
+Thus
+$$\dsum _{n=1} ^{+\infty}\dfrac{1}{(2n-1)^2} =  \dsum _{n=1} ^{+\infty} \dint _0 
+^1 \dint _0 ^1 (xy)^{2n-2}\d{x}\d{y} = \dint _0 ^1 \dint _0 ^1  \dsum _{n=1} 
+^{+\infty}(xy)^{2n-2}\d{x}\d{y}
+=\dint _0 ^1 \dint _0 ^1 \dfrac{\d{x}\d{y}}{1-x^2y^2},$$ as
+claimed.\footnote{This exchange of integral and sum needs
+justification. We will accept it for our purposes.}
+
+
+\item If $x=\dfrac{\sin u}{\cos v}$, $y=\dfrac{\sin
+v}{\cos u}$, then
+$$\d{x} = (\cos u)(\sec v)\d{u} + (\sin u)(\sec v)(\tan v)\d{v}, \quad \d{y} = 
+(\sec u)(\tan u)(\sin v)\d{u}  + (\sec u)(\cos v)\d{v}, $$
+from where
+$$ \d{x}\wedge\d{y}= \d{u}\wedge\d{v} - (\tan^2u)(\tan^2v)\d{u}\wedge\d{v} = 
+\left(1-(\tan^2u)(\tan^2v)\right)\d{u}\wedge\d{v}. $$
+Also,
+$$ 1-x^2y^2 = 1-\dfrac{\sin ^2v}{\cos^2v}\cdot \dfrac{\sin^2v}{\cos^2u} 
+=1-(\tan^2u)(\tan^2v). $$
+This gives
+$$ \dfrac{\d{x}\d{y}}{1-x^2y^2}=\d{u}\d{v}. $$
+We now have to determine the region that the transformation
+$x=\dfrac{\sin u}{\cos v}$, $y=\dfrac{\sin v}{\cos u}$ forms in the
+$uv$-plane. Observe that
+$$ u=\arctan x\sqrt{\dfrac{1-y^2}{1-x^2}}, \qquad v =\arctan y 
+\sqrt{\dfrac{1-x^2}{1-y^2}}.  $$
+This means that the square in the $xy$-plane in figure
+\ref{fig:change_of_var_4} is transformed into the triangle in the
+$uv$-plane in figure \ref{fig:change_of_var_5}.
+
+
+
+We deduce,
+ $$\dint _0 ^1 \dint _0 ^1
+\dfrac{\d{x}\d{y}}{1-x^2y^2} = \dint _0 ^{\pi /2}\dint _0 ^{\pi/2
+-v}\d{u}\d{v} =\dint _0 ^{\pi /2}\left(\pi/2 -v\right)\d{v} =
+\left(\dfrac{\pi}{2}v -\dfrac{v^2}{2}\right)\Big| _0 ^{\pi/2} =
+\dfrac{\pi ^2}{4} - \dfrac{\pi ^2}{8} =\dfrac{\pi ^2}{8}.
+$$
+Finally,
+$$ \dfrac{3}{4}S=\dfrac{\pi ^2}{8} \implies S =\dfrac{\pi ^2}{6}.$$
+\end{enumerate}
+\end{solu}
+
+
+
+
+
+  
+\section*{\psframebox{Homework}}
+\begin{pro}
+Let $D' = \{(u, v)\in\reals^2: u  \leq 1, -u \leq v \leq u\}$.
+Consider $$\fun{\Phi}{(u, v)}{\left(\frac{u + v}{2}, \frac{u -
+v}{2}\right)}{\reals^2}{\reals^2}.$$
+\begin{dingautolist}{202}
+\item Find the image of $\Phi$ on $D'$, that is, find $D = \Phi
+(D')$. \item Find $$\dint_D (x + y)^2e^{x^2 - y^2}\d{A}.$$
+\end{dingautolist} \begin{answer}
+\begin{dingautolist}{202}
+\item  Put $x = \frac{u + v}{2}$ and $y = \frac{u - v}{2}$ . Then
+$x + y = u$ and  $x - y$. Observe that $D'$ is the triangle in the
+$uv$ plane bounded by the lines $u = 0, u = 1, v = u, v = -u.$ Its
+image under $\Phi$ is the triangle bounded by the equations $x = 0,
+y = 0, x + y = 1.$ Clearly also
+$$\d{x}\wedge \d{y} = \frac{1}{2}\d{u}\wedge\d{v}.$$
+
+\item  From the above
+$$\begin{array}{lll}\dint_D (x + y)^2e^{x^2 - y^2}\d{A}
+& = & \frac{1}{2}\dint_{D'} u^2e^{uv}\d{u}{\rm d}v \\
+& = & \frac{1}{2}\dint _0 ^1 \dint _{-u} ^u u^2 e^{uv} \d{u}\d{v} \\
+& = & \frac{1}{2}\dint _0 ^1 u(e^{u^2} - e^{-u^2})\d{u}\\
+& = & \frac{1}{4}(e + e^{-1} - 2).
+\end{array}$$
+\end{dingautolist}
+\end{answer}
+\end{pro}
+\begin{pro}
+Using the change of variables $x=u^2-v^2$, $y=2uv$, $u \geq 0$,
+$v\geq 0$, evaluate $\dint _R \sqrt{x^2+y^2}\d{A}$, where
+$$R=\{(x,y)\in\reals^2: -1\leq x \leq 1, 0 \leq y \leq 2\sqrt{1-|x|}\}$$
+\end{pro}
+\begin{pro}Using  the change of variables $u = x-y$ and $v = x + y$,
+evaluate $\dint _R \dfrac{x-y}{x+y}\d{A}$, where
+ $R$ is the square with vertices at  $(0, 2)$, $(1, 1)$, $ (2, 2)$,
+$(1, 3)$.
+\end{pro}
+\begin{pro}
+Find $\dint \limits_D f(x, y) \d{A}$ where $$D = \{(x,
+y)\in\reals^2|a \leq xy \leq b, y \geq x \geq 0, y^2 - x^2 \leq 1,
+(a, b) \in\reals^2, 0 < a < b\}$$ and $f(x, y) = y^4 - x^4$ by using
+the change of variables $u = xy, v = y^2 - x^2$.
+\begin{answer} Here we argue that
+$$\d{u}= y\d{x}+ x\d{y},$$
+$${\rm d}v = -2x\d{x}+ 2y\d{y}.$$
+Taking the wedge product of differential forms,
+$$\d{u}\wedge\d{v} = 2(y^2  + x^2) \d{x}\wedge \d{y}. $$
+Hence
+$$\begin{array}{lll}f(x, y) \d{x}\wedge \d{y} & = & (y^4 - x^4) \dfrac{1}{2(y^2 
++ x^2)}\d{u}\wedge{\rm
+d}v\\
+& = &  \dfrac{1}{2}(y^2 - x^2)\d{u}\wedge{\rm d}v \\
+& = &  \dfrac{v}{2}\d{u}\wedge{\rm d}v\end{array}$$ The region
+transforms into
+$$\Delta = [a; b]\times[0;1].$$The integral becomes
+$$\begin{array}{lll}
+\dint \limits_D f(x, y) \d{x}\wedge\d{y} & = & \dint \limits_\Delta
+v \ \d{u}\wedge{\rm d}v \\
+& = & \dfrac{1}{2}\left(\dint _a ^b \ \d{u}\right)\left(\dint _0 ^1 v\ 
+\d{v}\right) \\
+& = & \dfrac{b - a}{4}.
+\end{array}$$
+\end{answer}
+\end{pro}
+
+\begin{pro}Use the following steps (due to Tom Apostol) in order to
+prove that
+$$\dsum _{n = 1} ^\infty \frac{1}{n^2}  = \frac{\pi ^2}{6}.$$
+\begin{dingautolist}{202}
+\item  Use the series expansion
+$$ \frac{1}{1 - t} = 1 + t + t^2 + t^3 + \cdots  \ \ \ \ |t| <
+1,$$in order to prove (formally) that
+$$\dint _0 ^1 \dint _0 ^1 \frac{\d{x}\d{y}}{1 - xy} = \dsum _{n = 1} ^\infty 
+\frac{1}{n^2}.$$
+
+\item  Use the change of variables $u = x + y, v = x - y$ to shew
+that
+$$\dint _0 ^1 \dint _0 ^1 \frac{\d{x}\d{y}}{1 - xy}  =
+2\dint _0 ^1 \left(\dint _{-u} ^u\frac{{\rm d}v}{4 - u^2 + v^2}\right)
+\d{u}+ 2\dint _1 ^2 \left(\dint _{u - 2} ^{2 - u }\frac{{\rm d}v}{4 -
+u^2 + v^2}\right) \d{u}.$$
+
+\item  Shew that the above integral reduces to
+$$2\dint _0 ^1 \frac{2}{\sqrt{4 - u^2}} \arctan \frac{u}{\sqrt{4 - u^2}} \ \d{u}
++ 2\dint _1 ^2 \frac{2}{\sqrt{4 - u^2}} \arctan \frac{ 2 - u}{\sqrt{4
+- u^2}} \ \d{u}.$$ \item Finally, prove that the above integral is
+$\frac{\pi^2}{6}$ by using the substitution $\theta = \arcsin
+\frac{u}{2}$.
+\end{dingautolist}
+
+\begin{answer}\begin{dingautolist}{202} \item  Formally,
+$$\begin{array}{lll}
+\dint _0 ^1 \dint _0 ^1 \frac{\d{x}\d{y}}{1 - xy} & = & \dint _0 ^1
+\dint _0 ^1 (1 + xy + x^2y^2 + x^3y^3 + \cdots )\d{x}\d{y} \\
+& = & \dint _0 ^1 \left(y + \frac{xy^2}{2} + \frac{x^2y^3}{3}   +
+\frac{x^3y^4}{4} + \cdots \right)_0 ^1 \ \d{x}\\ & = & \dint _0 ^1 (1
++ \frac{x}{2} + \frac{x^2}{3}  + \frac{x^3}{4} + \cdots )\d{x}\\
+& = & 1 + \frac{1}{2^2} + \frac{1}{3^2} + \frac{1}{4^2}  + \cdots
+\end{array}$$
+\item This change of variables transforms the square $[0; 1]\times
+[0;1]$ in the $xy$ plane into the square with vertices at $(0, 0)$,
+$(1, 1)$, $(2, 0)$, and $(1, -1)$ in the $uv$ plane. We will split
+this region of integration into two disjoint triangles: $T_1$ with
+vertices at  $(0, 0)$, $(1, 1)$, $(1, -1)$, and $T_2$ with vertices
+at $(1, -1)$, $(1, 1)$, $(2, 0)$. Observe that
+$$\d{x}\wedge \d{y} = \frac{1}{2}\d{u}\wedge\d{v},$$
+and that $u + v = 2x, u - v = 2y$ and so $4xy = u^2 - v^2$. The
+integral becomes
+$$\begin{array}{lll}
+\dint _0 ^1 \dint _0 ^1 \frac{\d{x}\d{y}}{1 - xy}  & = &
+\frac{1}{2}\dint\limits_{T_1\cup T_2} \frac{\d{u}\wedge {\rm d
+}v}{1 - \frac{u^2 - v^2}{4}} \\
+& = & 2\dint _0 ^1 \left(\dint _{-u} ^u\frac{{\rm d}v}{4 - u^2 +
+v^2}\right) \d{u}+ 2\dint _1 ^2 \left(\dint _{u - 2} ^{2 - u
+}\frac{{\rm d}v}{4 - u^2 + v^2}\right) \d{u},
+\end{array}$$as desired.
+
+\item  This follows by using the identity
+$$\dint_0 ^t \frac{\d{\omega}}{1 + \Omega^2} = \arctan t.$$
+\item  This is straightforward but tedious!
+\end{dingautolist}
+
+\end{answer}
+\end{pro}
+
+\section{Change to Polar Coordinates}
+One of the most common changes of variable is the passage to polar
+coordinates  where
+$$x = \rho\cos\theta \implies \d{x} = \cos\theta\d{\rho} - 
+\rho\sin\theta\d{\theta}, $$
+$$y = \rho\sin\theta \implies \d{y} = \sin\theta\d{\rho} + 
+\rho\cos\theta\d{\theta}, $$
+whence
+$$\d{x} \wedge \d{y} = (\rho\cos^2\theta + 
+\rho\sin^2\theta)\d{\rho}\wedge\d{\theta} = \rho\d{\rho}\wedge\d{\theta}. $$
+\begin{exa}\label{exa:pol-coor1}
+Find $$\dint \limits_D  xy\sqrt{x^2 + y^2}\d{A} $$ where
+$$D = \{(x, y)\in\reals^2|x \geq 0, y \geq 0, y \leq x, x^2 + y^2
+\leq 1\}.$$
+\end{exa}
+\begin{solu} We use polar coordinates. The region $D$ transforms into the
+region $$\Delta = [0; 1]\times \left[0; \dfrac{\pi}{4}
+\right].$$Therefore the integral becomes
+$$\begin{array}{lll}
+\dint \limits_\Delta \rho ^4 \cos\theta\sin\theta \ \d{\rho}
+\d{\theta} & = & \left(\dint _0 ^{\pi/4} \cos\theta\sin\theta \ 
+\d{\theta}\right)\left(\dint _0 ^1 \rho ^4 \ \d{\rho}\right) \\
+& = & \dfrac{1}{20}.
+\end{array}$$
+\end{solu}
+\vspace{2cm}
+\begin{figure}[!hptb]
+\begin{minipage}{4cm}
+\centering \psset{unit=1pc} \pswedge*[linecolor=red](0,0){2}{0}{45}
+\psaxes[labels=none,linewidth=2pt](0,0)(-4,-4)(4,4)
+\vspace{2cm}\footnotesize\hangcaption{Example
+\ref{exa:pol-coor1}.}\label{fig:pol-coor1}
+\end{minipage}
+\hfill
+\begin{minipage}{4cm}
+\centering \psset{unit=1pc}
+\pswedge*[linecolor=red](0,0){2}{0}{90}\pswedge*[linecolor=white](0,1){1}{-90}{
+90}
+\psaxes[labels=none,linewidth=2pt](0,0)(-4,-4)(4,4)
+\vspace{2cm}\footnotesize\hangcaption{Example
+\ref{exa:pol-coor2}.}\label{fig:pol-coor2}
+\end{minipage}
+\hfill
+\begin{minipage}{4cm}
+\centering \psset{unit=1pc}
+\psaxes[labels=none,linewidth=2pt](0,0)(-4,-4)(4,4)
+\parametricplot[algebraic,linewidth=2pt,linecolor=red]{0}{6.29}{
+-sqrt(3)*sin(t)/3+cos(t)|2*sqrt(3)*sin(t)/3}
+\vspace{2cm}\footnotesize\hangcaption{Example
+\ref{exa:pol-coor3}.}\label{fig:pol-coor3}
+\end{minipage}
+\hfill
+\begin{minipage}{4cm}
+\centering \psset{unit=1pc}
+\psaxes[labels=none,linewidth=2pt](0,0)(-4,-4)(4,4)
+\pstGeonode[PointName=none,PointSymbol=none](0,0){O}(2,0){A}(-1,1){C}(1,1){D}
+\pstInterLC[PointName=none]{C}{D}{O}{A}{L}{L'}
+\pscustom[fillstyle=solid,fillcolor=red]{\psline(L)(L')\pstArcOAB{O}{L'}{L}}
+\vspace{2cm}\footnotesize\hangcaption{Example
+\ref{exa:pol-coor4}.}\label{fig:pol-coor4}
+\end{minipage}
+\end{figure}
+
+\begin{exa}\label{exa:pol-coor2}
+Evaluate $\dint _R xd{A}$, where $R$ is the region bounded by the
+circles $x^2+y^2=4$ and $x^2+y^2=2y$.
+\end{exa}
+\begin{solu}
+Observe that this is problem \ref{pro:bet-circles1}. Since
+$x^2+y^2=r^2$, the radius sweeps from  $r^2=2r\sin \theta$ to
+$r^2=4$, that is, from $2\sin \theta$ to  $2$. The angle clearly
+sweeps from $0$ to $\dfrac{\pi}{2}$. Thus the integral becomes
+$$\begin{array}{lll}\dint _R xd{A} & = & \dint _0 ^{\pi/2}\dint _2 
+^{2\sin\theta} r^2\cos\theta \d{r}\d{\theta} \\
+& = & \dfrac{1}{3}\dint _0 ^{\pi/2}(8\cos\theta 
+-8\cos\theta\sin^3\theta)\d{\theta} \\
+& =& 2.
+ \end{array} $$
+\end{solu}
+\begin{exa}\label{exa:pol-coor3}
+Find $\dint _D e^{-x^2-xy-y^2} \ \d{A}$, where
+$$D = \{(x,y)\in \reals^2: x^2 + xy + y^2 \leq 1\}.
+$$ \end{exa} \begin{solu}
+ Completing squares $$ x^2 + xy + y^2 =  \left(x + \frac{y}{2}\right)^2 + 
+\left(\frac{\sqrt{3}y}{2}\right)^2.  $$ Put $U= x + \frac{y}{2}$, $V= 
+\frac{\sqrt{3}y}{2}$.
+The integral becomes $$\begin{array}{lll}\dint _{\{x^2 + xy + y^2
+\leq 1\}} e^{-x^2-xy-y^2}\d{x} \d{y} & = & \frac{2}{\sqrt{3}}\dint
+_{\{U^2 +V^2 \leq 1\}} e^{-(U^2 + V^2)}\d{U} \d{V}. \end{array}
+$$Passing to polar coordinates, the above equals $$ \frac{2}{\sqrt{3}}\dint _0 
+^{2\pi}\dint _{0} ^1  \rho e^{-\rho^2}\d{\rho}\d{\theta} =  
+\dfrac{2\pi}{\sqrt{3}} (1 - e^{-1}).   $$
+\end{solu}
+\begin{exa}\label{exa:pol-coor4}
+Evaluate $\dint _{\cal R} \dfrac{1}{(x^2+y^2)^{3/2}}\d{A}$ over the
+region $\left\{(x,y)\in\reals^2:x^2+y^2\leq 4, y\geq 1\right\}$
+(figure \ref{fig:pol-coor4}).
+\end{exa}
+\begin{solu}
+The radius sweeps from $r=\dfrac{1}{\sin\theta} $ to $r=2$. The
+desired integral is $$\begin{array}{lll}\dint _{\cal R}
+\dfrac{1}{(x^2+y^2)^{3/2}}\d{A} & = & \dint _{\pi/6} ^{5\pi /6} \dint
+_{\csc \theta} ^{2}\dfrac{1}{r^2} \d{r}\d{\theta}\\
+& = & \dint _{\pi/6} ^{5\pi /6} \left(\sin\theta-\dfrac{1}{2}\right)\d{\theta}\\
+& = &\sqrt{3} -\dfrac{\pi}{3}.
+\end{array}$$
+\end{solu}
+\begin{exa}
+Evaluate $\dint _R (x^3+y^3)\d{A}$ where $R$ is the region bounded by
+the ellipse $\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$ and the first
+quadrant, $a>0$ and $b>0$.
+\begin{solu}
+Put $x=ar\cos \theta$, $y=br\sin \theta$. Then
+$$x = ar\cos\theta \implies \d{x} = a\cos\theta\d{r} - ar\sin\theta\d{\theta}, 
+$$
+$$y = br\sin\theta \implies \d{y} = b\sin\theta\d{r} + br\cos\theta\d{\theta}, 
+$$
+whence
+$$\d{x} \wedge \d{y} = (abr\cos^2\theta + abr\sin^2\theta)\d{r}\wedge\d{\theta} 
+= abr\d{r}\wedge\d{\theta}. $$
+Observe that on the ellipse
+$$\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1 \implies 
+\dfrac{a^2r^2\cos^2\theta}{a^2}+\dfrac{b^2r^2\sin^2\theta}{b^2}=1\implies r=1.  
+$$
+Thus the required integral is
+$$\begin{array}{lll}\dint _R (x^3+y^3)\d{A} & = & \dint _0 ^{\pi/2} \dint _0 ^1 
+abr^4(\cos ^3\theta + \sin ^3\theta)\d{r}\d{\theta} \\
+& = & ab\left(\dint _0 ^1 r^4\d{r}\right)\left( \dint _0 ^{\pi/2}
+(a^3\cos ^3\theta + b^3\sin ^3\theta)\d{\theta}\right)\\
+& = & ab\left(\dfrac{1}{5}\right)\left(\dfrac{2a^3+2b^3}{3}\right)\\
+& = & \dfrac{2ab(a^3+b^3)}{15}.
+ \end{array}$$
+
+\end{solu}
+\end{exa}
+\section*{\psframebox{Homework}}
+
+\begin{pro}\label{pro:inside-circles}
+Evaluate $\dint _{\cal R} xy\d{A}$ where ${\cal R}$ is the region
+$${\cal R} =\left\{(x,y)\in\reals^2: x^2+y^2\leq 16, x\geq 1, y \geq
+1\right\},$$as in the figure \ref{fig:inside-circles1}. Set up the
+integral in both Cartesian and polar coordinates.
+\begin{answer}
+The integral in Cartesian coordinates is
+$$\begin{array}{lll}  \dint _{1} ^{\sqrt{15}} \dint _{1} 
+^{\sqrt{16-y^2}}xy\d{x}\d{y}
+& = & \dfrac{1}{2}\dint \dint _{1} ^{\sqrt{15}} 15y-y^3 \d{y}\\
+& = & \dfrac{49}{2}.
+\end{array}$$
+
+
+
+The integral in polar coordinates is $$\begin{array}{lll}\dint
+_{\arcsin \frac{1}{4}} ^{\frac{\pi}{4}} \dint _{1/\sin \theta}
+^4r^3\sin\theta\cos\theta  \d{r}\d{\theta}
+  + \dint  _{\frac{\pi}{4}} ^{\arccos \frac{1}{4}}\dint _{1/\cos \theta} 
+^4r^3\sin\theta\cos\theta  \d{r}\d{\theta} & =
+& \dfrac{1}{4}\dint _{\arcsin \frac{1}{4}} ^{\frac{\pi}{4}}
+\left(4^4-\dfrac{1}{\sin^4\theta}\right)\sin\theta\cos\theta
+\d{\theta}\\
+& & \quad
+  + \dfrac{1}{4}\dint  _{\frac{\pi}{4}} ^{\arccos 
+\frac{1}{4}}\left(4^4-\dfrac{1}{\cos^4\theta}\right)\sin\theta\cos\theta
+  \d{\theta}\\
+  & = & \dfrac{4^4}{4}\dint  _{\arcsin \frac{\pi}{4}} ^{\arccos
+  \frac{1}{4}} \sin\theta\cos \theta\d{\theta} \\ & & \quad -  \dfrac{1}{4}\dint 
+ ^{\frac{\pi}{4}}
+  _{\arcsin
+  \frac{1}{4}} (\cot \theta)(\csc^2\theta) \d{\theta} \\ & & \quad 
+-\dfrac{1}{4}\dint  _{\frac{\pi}{4}} ^{\arccos
+  \frac{1}{4}} (\tan\theta)(\sec^2\theta)\d{\theta}\\
+  & = & 28-\dfrac{7}{4}-\dfrac{7}{4}\\
+  & = & \dfrac{49}{2}
+\end{array}$$
+
+\end{answer}
+\end{pro}
+\vspace{2cm}
+\begin{figure}[!hptb]
+\centering \psset{unit=1pc}
+\psaxes[labels=none,linewidth=2pt](0,0)(-4,-4)(4,4)
+\pstGeonode[PointName=none,PointSymbol=none](0,0){O}(1,1){A}(1.732050808,1){B}(1
+,1.732050808){C}(4,0){D}
+\pstInterLC[PointName=none,PointSymbol=none]{A}{B}{O}{D}{M}{M'}
+\pstInterLC[PointName=none,PointSymbol=none]{A}{C}{O}{D}{N}{N'}
+\pscustom[fillcolor=red,fillstyle=solid]{
+\psline(A)(M')\pstArcOAB{O}{M'}{N'}\psline(N')(A) }
+\vspace{2cm}\footnotesize\hangcaption{Problem
+\ref{pro:inside-circles}.}\label{fig:inside-circles1}
+\end{figure}
+
+
+\begin{pro}
+
+Find $$\dint \limits_D (x^2 - y^2) \d{A} $$ where
+$$D = \{(x, y)\in\reals^2|(x - 1)^2 + y^2 \leq 1\}.$$
+\begin{answer} Using polar coordinates,
+$$\begin{array}{lll}
+\dint \limits_D x^2 - y^2 \d{x}\d{y} & = & \dint _{-\pi/2}
+^{\pi/2}\left(\dint ^{2\cos\theta} _0 \rho^3 \ \d{\rho}\right)
+(\cos^2\theta - \sin^2\theta) \d{\theta} \\
+& = & 8 \dint _0 ^{\pi/2} \cos^4\theta(\cos^2\theta - \sin^2\theta) \
+\d{\theta} \\
+& = & \pi.
+\end{array}$$
+\end{answer}
+\end{pro}
+\begin{pro}
+Find $$\dint \limits_D \sqrt{xy} \d{A}$$ where
+$$D = \{(x, y)\in\reals^2|(x^2 + y^2)^2 \leq 2xy\}.$$
+\begin{answer} Using polar coordinates,
+$$\begin{array}{lll}
+\dint \limits_D \sqrt{xy} \d{x}\d{y} & = & 4\dint _{0}
+^{\pi/4}\left(\dint ^{\sqrt{\sin 2\theta}} _0 \rho\sqrt{\rho
+^2\cos\theta\sin\theta} \ \d{\rho}\right) \d{\theta} \\
+& = & \dfrac{4}{3} \dint _0 ^{\pi/4} (\sqrt{\sin
+2\theta})^3\sqrt{\cos\theta\sin\theta} \ \d{\theta} \\
+& = & \dfrac{4}{3\sqrt{2}} \dint _0 ^{\pi/4} \sin^2 2\theta \ \d{\theta} \\
+& = & \dfrac{\pi\sqrt{2}}{12}.
+\end{array}$$
+\end{answer}
+\end{pro}
+\begin{pro}Find $\dint _D f \d{A}$ where $$D =
+\{(x, y)\in\reals^2:b^2x^2 + a^2y^2 = a^2b^2, (a, b)\in ]0;+\infty[
+\ {\rm fixed}\}$$ and $f(x, y) = x^3 + y^3$. \begin{answer} Using $x
+= a\rho \cos \theta$, $y = b\rho\sin\theta,$ the integral becomes
+$$
+(ab)\left(\dint _0 ^{2\pi} a^3\cos^3\theta +
+b^3\sin^3\theta\d{\theta}\right)\left(\dint _0 ^{1} \rho^4
+\d{\rho}\right)  = \frac{2}{15}(ab)(a^3 + b^3). $$
+\end{answer}
+\end{pro}
+\begin{pro}
+Let $a>0$ and $b>0$. Prove that
+$$ \dint _R \sqrt{\dfrac{a^2b^2-a^2y^2-b^2x^2}{a^2b^2+a^2y^2+b^2x^2}}\d{A} 
+=\dfrac{\pi ab(\pi -2)}{8},$$
+where $R$ is the region bounded by the ellipse
+$\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}=1$ and the first quadrant.
+\end{pro}
+\begin{pro}
+Prove that
+$$ \dint _R \dfrac{y}{\sqrt{x^2+y^2}}\d{x}\d{y}=\sqrt{2}-1, $$
+where $$R=\{(x,y)\in \reals^2:0<x<1, o<y<x^2\}.$$
+\end{pro}
+\begin{pro}
+Prove that the ellipse $$(x - 2y + 3)^2 + (3x + 4y - 1)^2 = 4$$
+bounds an area of $\dfrac{2\pi}{5}$.
+\end{pro}
+\begin{pro} Find $$\dint \limits_D \sqrt{x^2 + y^2} \d{A} $$ where $$D =
+\{(x, y)\in\reals^2|x \geq 0, y \geq 0, x^2 + y^2 \leq 1, x^2 + y^2
+- 2y \geq
+ 0\}.$$
+\begin{answer} Using polar coordinates,
+$$\begin{array}{lll}
+\dint \limits_D f(x, y) \d{A} & = & \dint _{0} ^{\pi/6}\left(\dint
+_{2\sin\theta} ^1 \rho^2 \ \d{\rho}\right)
+\d{\theta} \\
+& = & \dfrac{1}{3} \dint _0 ^{\pi/6} (1 - 8\sin^3\theta) \ \d{\theta} \\
+& = & \dfrac{\pi}{18} - \dfrac{16}{9} + \sqrt{3}.
+\end{array}$$
+\end{answer}
+\end{pro}
+\begin{pro} Find $\dint _D f \d{A}$ where
+$$D =  \{(x, y)\in\reals^2|y \geq 0, x^2 + y^2 - 2x \leq 0\}$$ and
+$f(x, y) = x^2y$.  \begin{answer} Using polar coordinates the
+integral becomes
+$$\dint _0 ^{\pi/2}\left(\dint _0 ^{2\cos\theta} \rho^4 \d{\rho}\right) 
+\cos^2\theta\sin\theta \d{\theta} = \frac{4}{5}.$$
+
+\end{answer}
+\end{pro}
+\begin{pro}
+Let $D=\{(x,y)\in \reals^2: x\geq 1, x^2+y^2 \leq 4\}$. Find $\dint
+_D x\d{A}$.
+\end{pro}
+
+\begin{pro} Find $\dint _D f \d{A}$ where
+$$D =  \{(x, y)\in\reals^2|x \geq 1, x^2 + y^2 - 2x \leq 0\}$$ and
+$f(x, y) = \frac{1}{(x^2 + y^2)^2}$. \begin{answer} Using polar
+coordinates the integral becomes
+$$\dint _{-\pi/4} ^{\pi/4}\left(\dint_{1/\cos\theta} ^{2\cos\theta} 
+\frac{1}{\rho^3}\d{\rho}\right)\d{\theta}  =
+\dint_0 ^{\pi/4} \left(\cos^2\theta -
+\frac{\sec^2\theta}{4}\right)\d{\theta} = \frac{\pi}{8}.
+$$
+\end{answer}
+\end{pro}
+
+\begin{pro}
+ Let $$D = \{(x, y) \in \reals^2: x^2 + y^2 - y \leq 0, x^2 + y^2
+- x \leq 0\}.$$ Find the integral $$\dint_D (x +
+y)^2\d{A}.$$\begin{answer} Put  $$D' = \{(x, y) \in \reals^2:
+ y \geq x, x^2 + y^2 - y \leq 0, x^2 + y^2 - x \leq 0\}.$$ Then
+ the integral equals$$2\dint_{D'} (x + y)^2\d{x}\d{y}.$$Using polar coordinates 
+the integral equals
+$$\begin{array}{lll}2\dint _{\pi/4} ^{\pi/2}(\cos\theta + 
+\sin\theta)^2\left(\dint_0 ^{\cos\theta} \rho^3{\rm d\rho}\right) \d{\theta}
+& = & \frac{1}{2}\dint _{\pi/4} ^{\pi/2} \cos^4\theta (1 +
+2\sin\theta\cos\theta)\d{\theta} \\ &  = &  \frac{3\pi}{64} -
+\frac{5}{48}. \end{array}$$
+\end{answer}
+\end{pro}
+\begin{pro}
+ Let $D = \{(x, y)\in\reals^2| y \leq x^2
++ y^2 \leq 1\}$. Compute
+$$\dint _{D} \frac{\d{A}}{(1 + x^2 + y^2)^2}.$$
+\begin{answer} Observe that $D = D_2 \setminus D_1$ where $D_2$ is the disk
+limited by the equation $x^2 + y^2 = 1$ and $D_1$ is the disk
+limited by the equation $x^2 + y^2 = y.$ Hence
+$$\dint _{D} \frac{\d{x}\d{y}}{(1 + x^2 + y^2)^2} = \dint _{D_2} 
+\frac{\d{x}\d{y}}{(1 + x^2 + y^2)^2}
+- \dint _{D_1} \frac{\d{x}\d{y}}{(1 + x^2 + y^2)^2}.$$ Using polar
+coordinates we have
+$$\dint _{D_2} \frac{\d{x}\d{y}}{(1 + x^2 + y^2)^2} =
+\dint _{0} ^{2\pi}\dint_0 ^1 \frac{\rho}{(1 + \rho^2)^2} \d{\rho}
+\d{\theta} =  \frac{\pi}{2}$$and
+$$\begin{array}{lll}\dint _{D_1} \frac{\d{x}\d{y}}{(1 + x^2 + y^2)^2} &
+=& 2\dint _{0} ^{\pi/2}\dint_0 ^{\sin\theta} \frac{\rho}{(1 +
+\rho^2)^2} \d{\rho} \d{\theta} =  \dint _0 ^{\pi/2}
+\frac{\sin^2\theta \d{\theta}}{1 + \sin^2\theta} \\ & = & \dint _0
+^{+\infty}\frac{\d{t}}{t^2 + 1} -  \frac{{\rm d}t}{2t^2 + 1} =
+\frac{\pi}{2} - \frac{\pi\sqrt{2}}{4}. \\ \end{array}
+$$(We evaluated this last integral using $t = \tan\theta$) Finally, the integral 
+equals
+$$\frac{\pi}{2} - \left(\frac{\pi}{2} -
+\frac{\pi\sqrt{2}}{4}\right) = \frac{\pi\sqrt{2}}{4}.$$
+
+
+
+\end{answer}
+\end{pro}
+
+
+\begin{pro}
+Evaluate $$\dint \limits_{\{(x,y)\in\reals^2: x \geq 0, y \geq 0,
+x^4 + y^4 \leq 1\}} \ \ x^3y^3 \sqrt{1 - x^4-y^4} \ \d{A}
+$$using $x^2 = \rho\cos \theta$, $y^2 = \rho\sin\theta$.
+\begin{answer} We have $$2x\d{x} = \cos\theta\d{\rho} -
+\rho\sin\theta\d{\theta}, \ \ \ 2y\d{y} = \sin\theta\d{\rho} +
+\rho\cos\theta\d{\theta},
+$$whence $$ 4xy\d{x}\wedge \d{y} = \rho\d{\rho}\wedge\d{\theta}.    $$
+It follows that $$\begin{array}{lll} x^3y^3 \sqrt{1 - x^4-y^4} \
+\d{x}\wedge\d{y} & = & \frac{1}{4}(x^2y^2)(\sqrt{1 - x^4 -
+y^4})(4xy\ \d{x}\wedge \d{y}) \\ & = &
+\frac{1}{4}(\rho^{3}\cos\theta\sin\theta\sqrt{1-\rho^2})\d{\rho}\wedge\d{\theta}
+\end{array}$$ Observe that $$x^4 + y^4 \leq 1 \implies \rho^2\cos^2\theta +
+\rho^2\sin^2\theta \leq 1 \implies \rho \leq 1.$$Since the
+integration takes place on the first quadrant, we have $0 \leq
+\theta \leq \pi/2$. Hence the integral becomes
+$$\begin{array}{lll} \dint _0 ^{\pi/2} \dint _0 ^1  
+\frac{1}{4}(\rho^{3}\cos\theta\sin\theta\sqrt{1-\rho^2})\d{\rho}\d{\theta} & = &
+\frac{1}{4}\left(\dint _0
+^{\pi/2}\cos\theta\sin\theta\d{\theta}\right)\left(\dint _0
+^1\rho^{3}\sqrt{1 - \rho^2}\d{\rho}\right) \\
+& = & \frac{1}{4}\cdot\frac{1}{2}\cdot\frac{2}{15} \\ & = &
+\frac{1}{60}.
+\end{array} $$
+
+
+\end{answer}
+\end{pro}
+
+
+\begin{pro}
+William Thompson (Lord Kelvin) is credited to have said: ``A
+mathematician is someone to whom
+$$\dint _0 ^{+\infty} e^{-x^2} \d{x}= \frac{\sqrt{\pi}}{2}$$is
+as obvious as twice two is four to you. Liouville was a
+mathematician.'' Prove that $$\dint _0 ^{+\infty} e^{-x^2} \d{x}=
+\frac{\sqrt{\pi}}{2}$$ by following these steps.
+\begin{dingautolist}{202}
+\item  Let $a > 0$ be a real number and put $D_a = \{(x,
+y)\in\reals^2| x^2 + y^2 \leq a^2\}$. Find
+$$I_a = \dint _{D_a} e^{-(x^2 + y^2)} \ \d{x} \d{y}.$$
+\item  Let $a > 0$ be a real number and put $\Delta_a = \{(x,
+y)\in\reals^2| |x| \leq a, |y| \leq a\}$. Let
+$$J_a = \dint _{\Delta_a} e^{-(x^2 + y^2)} \ \d{x} \d{y}.$$Prove that
+$$I_a \leq J_a \leq I_{a\sqrt{2}}.$$
+\item  Deduce that
+$$\dint _0 ^{+\infty} e^{-x^2} \d{x}= \frac{\sqrt{\pi}}{2}.$$
+
+\end{dingautolist}
+\begin{answer}
+\begin{dingautolist}{202}
+\item   Using polar coordinates
+$$I_a = \dint_0 ^{2\pi}\left(\dint _0 ^a\rho 
+e^{-\rho^2}\d{\rho}\right)\d{\theta} = \pi(1 - e^{-a^2}).$$
+\item   The domain of integration of $J_a$ is a square of side
+$2a$ centred at the origin. The respective domains of integration of
+$I_a$ and $I_{a\sqrt{2}}$ are the inscribed and the exscribed
+circles to the square. \item  First observe that
+$$J_a = \left(\dint_{-a} ^a e^{-x^2}\d{x}\right)^2.$$ Since both
+$I_a$ and $I_{a\sqrt{2}}$ tend to $\pi$ as $a\rightarrow +\infty$,
+we deduce that $J_a \rightarrow \pi.$ This gives the result.
+
+\end{dingautolist}
+\end{answer}
+\end{pro}
+\begin{pro}
+Let $D = \{(x,y)\in \reals^2: 4 \leq x^2 + y^2 \leq 16\}$ and
+$f(x,y) = \dfrac{1}{x^2 + xy + y^2}$. Find $\dint \limits_D
+f(x,y)\d{A}$.
+\begin{answer}
+$$\begin{array}{lll}
+\dint \limits_{4 \leq x^2 + y^2 \leq 16} \dfrac{1}{x^2 + xy +
+y^2}\d{A} & = & \dint _0 ^{2\pi} \dint _2 ^4 \dfrac{r}{r^2 +
+r^2\sin\theta\cos\theta}\d{r}\d{\theta} \\
+& = & \dint _0 ^{2\pi} \dint _2 ^4 \dfrac{1}{r(1 +
+\sin\theta\cos\theta)}\d{r}\d{\theta} \\
+& = & \left(\dint _0 ^{2\pi} \dfrac{\d{\theta}}{1 +
+\sin\theta\cos\theta}\right)\left(\dint _2 ^4 \dfrac{\d{r}}{r}\right) \\
+& = &  \left(\dint _0 ^{2\pi} \dfrac{\d{\theta}}{1 +
+\sin\theta\cos\theta}\right)\log 2\\
+& = &  2\left(\dint _0 ^{2\pi} \dfrac{\d{\theta}}{2 + \sin
+2\theta}\right)\log 2 \\
+& = &  4\left(\dint _0 ^{\pi} \dfrac{\d{\theta}}{2 + \sin
+2\theta}\right)\log 2 \\
+& = & 4I\log 2,
+\end{array}$$so the problem reduces to evaluate $I = \dint _0 ^{\pi} 
+\dfrac{\d{\theta}}{2 +
+\sin 2\theta}$. To find this integral, we now use what has been
+dubbed as ``the world's sneakiest substitution''\footnote{by Michael
+Spivak, whose {\em Calculus} book I recommend greatly.}: we put
+$\tan \theta = t$. In so doing we have to pay attention to the fact
+that $\theta \mapsto \tan \theta $ is not continuous on $[0;\pi]$,
+so we split the interval of integration into two pieces, $[0;\pi] =
+[0;\frac{\pi}{2}] \cup ]\frac{\pi}{2};\pi]$. Then $\sin 2\theta =
+\dfrac{2t}{1+t^2}$, $\cos 2\theta = \dfrac{1-t^2}{1+t^2}$,
+$\d{\theta} = \dfrac{\d{t}}{1+t^2}$. Hence
+
+$$\begin{array}{lll} \dint _0 ^{\pi} \dfrac{\d{\theta}}{2 +
+\sin 2\theta}  & = &  \dint _0 ^{\pi/2} \dfrac{\d{\theta}}{2 + \sin
+2\theta} +  \dint _{\pi/2} ^{\pi} \dfrac{\d{\theta}}{2 +
+\sin 2\theta}\\
+&  = & \dint _0 ^{+\infty} \dfrac{\frac{\d{t}}{1+t^2}}{2 +
+\frac{2t}{1+t^2}} + \dint ^0 _{-\infty} \dfrac{\frac{\d{t}}{1+t^2}}{2
++ \frac{2t}{1+t^2}} \\ & =  & \dint _0 ^{+\infty}
+\dfrac{\d{t}}{2(t^2+t+1)} + \dint ^0 _{-\infty}
+\dfrac{\d{t}}{2(t^2+t+1)} \\ & = & \dfrac{2}{3}\dint _0 ^{+\infty}
+\dfrac{\d{t}}{(\frac{2t}{\sqrt{3}}+\frac{1}{\sqrt{3}})^2+1} +
+\dfrac{2}{3}\dint ^0 _{-\infty}
+\dfrac{\d{t}}{(\frac{2t}{\sqrt{3}}+\frac{1}{\sqrt{3}})^2+1}
+\\ & = & \dfrac{\sqrt{3}}{3}\Big| _0 ^{+\infty}\arctan
+\left(\dfrac{2t\sqrt{3}}{3}+\frac{\sqrt{3}}{3}\right) +
+\dfrac{\sqrt{3}}{3}\Big| ^0 _{-\infty}\arctan
+\left(\dfrac{2t\sqrt{3}}{3}+\frac{\sqrt{3}}{3}\right) \\ & = &
+\dfrac{\sqrt{3}}{3}\left(\dfrac{\pi}{2}-\dfrac{\pi}{6}\right) +
+\dfrac{\sqrt{3}}{3}\left(\dfrac{\pi}{6}-\left(-\dfrac{\pi}{2}\right)\right)
+\\
+& = & \dfrac{\pi\sqrt{3}}{3}.\end{array}$$ We conclude that
+$$\dint \limits_{4 \leq x^2 + y^2 \leq 16} \dfrac{1}{x^2 + xy +
+y^2}\d{A} = \dfrac{4\pi\sqrt{3}\log 2}{3}.   $$
+
+\end{answer}
+\end{pro}
+\begin{pro}
+ Prove that every closed convex region in the
+plane of area $ \geq \pi$ has two points which are two units apart.
+\begin{answer}Recall from formula \ref{eq:area_inside_curve} that the area
+enclosed by a simple closed curve $\Gamma$ is given by $$
+\frac{1}{2}\dint _\Gamma x\d{y} - y\d{x}.
+$$Using polar  coordinates $$\begin{array}{lll}x\d{y} - y\d{x} & = &
+(\rho\cos\theta)(\sin\theta\d{\rho} + \rho\cos\theta\d{\theta}) -
+(\rho\sin\theta)(\cos\theta\d{\rho} - \rho\sin\theta\d{\theta}) \\
+& = & \rho^2\d{\theta}.
+\end{array}$$
+ Parametrise the curve enclosing the region by polar
+coordinates so that the region is tangent to the polar axis at the
+origin. Let the equation of the curve be $\rho = f(\theta)$. The
+area of the region is then given by
+$$\frac{1}{2}\dint_0 ^\pi \rho^2 \d{\theta} = \frac{1}{2}\dint_0 ^\pi 
+(f(\theta))^2 \d{\theta}
+=  \frac{1}{2}\dint_0 ^{\pi/2}( (f(\theta))^2  +   (f(\theta +
+\pi/2))^2 )\d{\theta} .$$ By the Pythagorean Theorem, the integral
+above is the integral of the square of the chord in question. If no
+two points are farther than 2 units, their squares are no farther
+than 4 units, and so the area
+$$< \frac{1}{2}\dint_0 ^{\pi/2} 4\d{\theta} = \pi,$$a
+contradiction.
+\end{answer}
+\end{pro}
+\begin{pro} In the $xy$-plane, if $R$ is the set of points
+inside and on a convex polygon, let $D(x, y)$ be the distance from
+$(x, y)$ to the nearest point $R$. Show that
+$$\dint _{-\infty} ^{+\infty}\dint _{-\infty} ^{+\infty} e^{-D(x, y)} \ \d{x} 
+\d{y} = 2\pi +  L +
+A,$$where $L$ is the perimeter of $R$ and $A$ is the area of $R$.
+\begin{answer} Let $I(S)$ denote the integral sought over a region $S$. Since
+$D(x, y) = 0$ inside $R$, $I(R) = A$. Let ${\mathscr  L}$ be a side
+of $R$ with length $l$ and let $S({\mathscr  L})$ be the half strip
+consisting of the points of the plane having a point on ${\mathscr
+L}$ as nearest point of $R$. Set up coordinates $uv$ so that $u$ is
+measured parallel to ${\mathscr  L}$ and $v$ is measured
+perpendicular to $L$. Then
+$$I(S({\mathscr  L})) = \dint _{0} ^{l}\dint _{0} ^{+\infty} e^{-v} \ \d{u}\d{v} 
+=
+l.$$The sum of these integrals over all the sides of $R$ is $L$.
+
+
+If ${\mathscr  V}$ is a vertex of $R$, the points that have
+${\mathscr  V}$ as nearest from $R$ lie inside an angle $S({\mathscr
+V})$ bounded by the rays from ${\mathscr  V}$ perpendicular to the
+edges meeting at ${\mathscr  V}$. If $\alpha$ is the measure of that
+angle, then using polar coordinates
+$$I(S({\mathscr  V})) = \dint _{0} ^{\alpha}\dint _{0} ^{+\infty} \rho e^{-\rho} 
+\ \d{\rho} \d{\theta} =
+\alpha.$$The sum of these integrals over all the vertices of $R$ is
+$2\pi$. Assembling all these integrals we deduce the result.
+\end{answer}
+\end{pro}
+
+  \section{Triple integrals}
+
+  Triple integrals are just like double integrals, except we integrate over 
+regions in $\bbR^3$ instead of $\bbR^2$.
+  Let $C$ be the cuboid $C = [a_1, b_1] \times [a_2, b_2] \times [a_3, b_3]$ and 
+$f:C \to \bbR$ be a function.
+  As before, define the Riemann sum
+  \begin{equation*}
+    \mathcal R(f, P, \Xi)
+      = \dsum_{i = 0}^{N_1} \dsum_{j = 0}^{N_2} \dsum_{k = 0}^{N_3} f( \xi_{i, 
+j, k} ) (x_{i+1} - x_i)(y_{i+1} - y_i)(z_{i+1} - z_i)
+  \end{equation*}
+  define the Riemann integral of $f$ by taking the limit of Riemann sums:
+  \begin{equation*}
+    \dint_U f \, dV = \lim_{\norm{P} \to 0} \mathcal R(f, P, \Xi).
+  \end{equation*}
+  Here we use $dV$ (or sometimes $dx \, dy \, dz$ to denote that the integral is 
+a volume (or triple) integral.
+
+  When dealing with unbounded functions over unbounded domains,%
+  \footnote{%
+    As before, we make the ``niceness'' assumption that the boundary of $U$ is a 
+differentiable surface.
+  }
+  we use the same limiting procedure.
+  If
+  \begin{equation*}
+    \lim_{R \to \infty} \dint_{U \cap B(0, R)} \chi*R \abs{f} \, dV
+  \end{equation*}
+  exists and is finite then we define
+  \begin{equation*}
+    \dint_U f \, dV = \lim_{R \to \infty} \dint_{U \cap B(0, R)} \chi*R f \, dV
+  \end{equation*}
+
+  We can break a volume integral into three iterated integrals, and Fubini's 
+theorem is still true.
+  Rather than restate everything, we do a few examples.
+
+  \begin{example}
+    Let $U = B(0, R) \subseteq \bbR^3$.
+    Compute $\dint_U 1 \, dV$ and derive a formula for the volume.
+  \end{example}
+  \begin{proof}[Solution]
+    Note
+    \begin{align}
+      \dint_U 1 \, dV
+	&= \dint_{x = -R}^R \dint_{y = -\sqrt{R^2 - x^2}}^{\sqrt{R^2 - x^2}} 
+\dint_{z = -\sqrt{R^2 - x^2 - y^2}}^{\sqrt{R^2 - x^2 - y^2}} 1 \, dz \, dy \, dx
+	\\
+	&= 2 \dint_{x = -R}^R \dint_{y = -\sqrt{R^2 - x^2}}^{\sqrt{R^2 - x^2}} 
+\sqrt{R^2 - x^2 - y^2} dy \, dx
+	\\
+	&= 2 \dint_{x = -R}^R \dint_{\theta = -\frac{\pi}{2}}^{\frac{\pi}{2}} 
+(R^2 - x^2)\cos^2 \theta \, d\theta \, dx
+	= \pi \left(R^2 x - \frac{x^3}{3} \right)_{-R}^R
+	= \frac{4}{3} \pi R^3
+	\qed
+    \end{align}
+  \end{proof}
+
+ 
+\begin{exa}
+Find $$\dint \limits_{[0;1]^3} \ x^2ye^{xyz} \ \d{V}.$$
+\end{exa}
+\begin{solu}The integral is
+$$\begin{array}{lll}
+\dint_0 ^1 \left(\dint_0 ^1 \left(\dint_0 ^1 x^2ye^{xyz}\
+\d{z}\right)\d{y}\right) \d{x}& = & \dint_0 ^1 \left(\dint_0 ^1
+x(e^{xy} - 1)\ \d{y}\right) \d{x}\\
+& = & \dint_0 ^1 (e^x - x - 1) \d{x}\\
+& = & e  - \dfrac{5}{2}.
+\end{array}$$
+\end{solu}
+\begin{exa}
+Find $\dint \limits_R z \ \d{V}$ if
+$$R = \{(x, y, z)\in\reals^3| x \geq 0, y \geq 0, z \geq 0, \sqrt{x}
++ \sqrt{y} + \sqrt{z} \leq 1\}.$$
+\end{exa}
+\begin{solu} The integral is
+$$\begin{array}{lll}
+\dint _R z\d{x}\d{y}\d{z} & =  &  \dint _0 ^1 z\left(\dint _0 ^{(1 -
+\sqrt{z})^2}\left( \dint _0 ^{(1 - \sqrt{z} - \sqrt{x})^2} \d{y}
+\right)\d{x}\right)\
+\d{z} \\
+& = &  \dint _0 ^1 z\left(\dint _0 ^{(1 - \sqrt{z})^2} (1 - \sqrt{z} -
+\sqrt{x} )^2\d{x}\right)\
+\d{z} \\
+& = &  \dfrac{1}{6}\dint _0 ^1 z(1 - \sqrt{z})^4\
+\d{z} \\
+ & = & \dfrac{1}{840}.
+\end{array}$$
+\end{solu}
+\begin{exa}
+Prove that $$\dint \limits_{V} x \d{V} = \dfrac{a^2bc}{24},
+$$where $V$ is the tetrahedron $$V = \left\{(x,y,z)\in\reals^3: x \geq 0, y \geq 
+0, z \geq 0, \dfrac{x}{a} + \dfrac{y}{b} + \dfrac{z}{c} \leq
+1\right\}.$$\end{exa} \begin{solu} We have
+$$\begin{array}{lll}\dint \limits_{V} x \d{x}\d{y}\d{z} & = &
+\dint_0 ^{c}  \dint _0 ^{b-bz/c}  \dint _0 ^{a - {ay}/{b}-{az}/{c} }         x 
+\d{x}\d{y}\d{z} \\
+& = & \frac{1}{2}\dint_0 ^{c}  \dint _0 ^{b-bz/c}  \left(a - 
+\dfrac{ay}{b}-\dfrac{az}{c}\right)^2\d{y}\d{z} \\
+&  = & \frac{1}{6} \dint _0 ^c \frac {{a}^{2} \left( -z+c \right) 
+^{3}b}{{c}^{3}} \d{x} \\
+& = & \dfrac{a^2bc}{24}
+\end{array}$$
+\end{solu}
+\vspace{2cm}
+\begin{figure}[htpb]
+\begin{minipage}{7cm}
+\centering \psset{unit=2pc}\pstThreeDCoor[IIIDticks=false,xMin=
+0,xMax=3.5,yMin=0,yMax=4.5,zMin=0,zMax=4.5] \pstThreeDNode(0,0,0){O}
+     \psdot[linecolor=red](A) \uput[35](O){$O$}
+      \pstThreeDNode(3,2,0){A}
+     \psdot[linecolor=red](A) \uput[-90](A){$A$}
+      \pstThreeDNode(0,3,0){B}
+     \psdot[linecolor=red](B) \uput[-90](B){$B$}
+     \pstThreeDNode(0,0,2){C}
+     \psdot[linecolor=red](C) \uput[0](C){$C$}
+     \pstLineAB[linewidth=2pt]{O}{A}
+      \pstLineAB[linewidth=2pt]{O}{B}
+       \pstLineAB[linewidth=2pt]{O}{C}
+       \pspolygon[linewidth=2pt](A)(B)(C)
+       \vspace{2cm}\footnotesize\hangcaption{Problem
+\ref{pro:vol-integral}.} \label{fig:vol-integral}
+\end{minipage} \hfill
+\begin{minipage}{7cm}\centering\psset{unit=1pc}
+\psaxes[subticks=0,labels=none]{->}(0,0)(-5,-2)(5,5)
+\pstGeonode[PosAngle={0,30,210},dotscale=2](3,2){A}(0,3){B}(0,0){C}
+\pspolygon[linewidth=2pt](A)(B)(C)
+\vspace{1cm}\footnotesize\hangcaption{$xy$-projection.}\label{fig:xyprojection}
+\end{minipage}
+\end{figure}
+
+\begin{exa}
+\label{pro:vol-integral} Evaluate the integral $\dint _{S} x\d{V}$
+where $S$ is the (unoriented) tetrahedron with vertices $(0,0,0)$,
+$(3,2,0)$, $(0,3,0)$, and $(0,0,2)$. See figure
+\ref{fig:vol-integral}.
+\end{exa}
+\begin{solu}A short computation shews that the plane passing through
+$(3,2,0)$, $(0,3,0)$, and $(0,0,2)$ has equation $2x+6y+9z=18$.
+Hence, $0 \leq z \leq \dfrac{18-2x-6y}{9}.$ We must now figure out
+the $xy$ limits of integration. In figure \ref{fig:xyprojection} we
+draw the projection of the tetrahedron on the $xy$ plane. The line
+passing through $AB$ has equation $y=-\dfrac{x}{3}+3$. The line
+passing through $AC$ has equation $y=\dfrac{2}{3}x$.
+
+We find, finally,
+$$ \begin{array}{lll} \dint _{S} x\d{V} & = & \dint _0 ^3 \dint _{2x/3} ^{3-x/3} 
+\dint _0 ^{(18-2x-6y)/9} x\d{z}\d{y}\d{x} \\
+& = & \dint _0 ^3 \dint _{2x/3} ^{3-x/3} \dfrac{18x-2x^2-6yx}{9}
+\d{y}\d{x}\\
+& = & \dint _0 ^3   \dfrac{18xy-2x^2y-3y^2x}{9} \Big| _{2x/3}
+^{3-x/3} \d{x}\\
+& = &\dint _0 ^3 \left(\dfrac{x^3}{3}-2x^2+3x\right)\d{x} \\
+& = & \dfrac{9}{4}
+ \end{array}$$
+
+
+
+
+
+\end{solu}
+
+\begin{exa}
+Evaluate $\dint _R xyz \d{V}$, where $R$ is the solid formed by the
+intersection of the parabolic cylinder $z=4-x^2$, the planes $z=0$,
+$y=x$, and $y=0$. Use the following orders of integration:
+\begin{enumerate}
+\item $\d{z}\d{x}\d{y}$
+\item $\d{x}\d{y}\d{z}$
+\end{enumerate}
+\end{exa}
+\begin{solu}
+We must find the projections of the solid on the the coordinate
+planes.
+\begin{enumerate}
+\item With the order $\d{z}\d{x}\d{y}$, the limits of integration of $z$ can 
+only depend, if at all, on $x$ and $y$.
+Given an arbitrary point in the solid,  its lowest $z$ coordinate is
+$0$ and its highest one is on the cylinder, so the limits for $z$
+are from $z=0$ to $z=4-x^2$. The projection of the solid on the
+$xy$-plane is the area bounded by the lines $y=x$, $x=2$, and the
+$x$ and $y$ axes.
+$$\begin{array}{lll}\dint _0 ^2\dint _0 ^y\dint _0 ^{4-x^2}   xyz 
+\d{z}\d{x}\d{y} &
+= &  \dfrac{1}{2}\dint _0 ^2 \dint _0 ^y  xy(4-x^2)^2 \d{x}\d{y}\\
+&
+= &  \dfrac{1}{2}\dint _0 ^2 \dint _0 ^y  y(16x-8x^3+x^5) \d{x}\d{y}\\
+&
+= &  \dint _0 ^2 \left(4y^3-y^5+\dfrac{y^7}{12}\right)\d{y}\\
+& = & 8.
+\end{array}$$
+\item With the order $\d{x}\d{y}\d{z}$, the limits of integration of $x$ can 
+only depend, if at all, on $y$ and $z$.
+Given an arbitrary point in the solid,   $x$ sweeps from the plane
+to $x=2$, so the limits for $x$ are from $x=y$ to $x=\sqrt{4-z}$.
+The projection of the solid on the $yz$-plane is the area bounded by
+$z=4-y^2$, and the  $z$ and $y$ axes.
+$$\begin{array}{lll}\dint _0 ^4\dint _0 ^{\sqrt{4-z}}\dint _y ^2   xyz 
+\d{x}\d{y}\d{z} &
+= &  \dfrac{1}{2}\dint _0 ^4 \dint _0 ^{\sqrt{4-z}}  (4y-y^3)z \d{y}\d{z}\\
+&
+= &  \dint _0 ^4 \left(2z-\dfrac{z^3}{8}\right)  \d{z}\\
+& = & 8.
+\end{array}$$
+\end{enumerate}
+\end{solu}
+
+\section*{\psframebox{Homework}}
+\begin{pro}
+Compute $\dint _E z\d{V}$ where $E$ is the region in the first octant
+bounded by the planes $y+z = 1$ and $x+z = 1$.
+\begin{answer}
+We have
+$$\begin{array}{lll}
+\dint _E z\d{V} & = & \dint _0 ^1 \dint _0 ^{1-y}\dint _0
+^{1-z}z\d{x}\d{z}\d{y}
+\\
+& = & \dint _0 ^1 \dint _0 ^{1-y}z-z^2\d{z}\d{y}
+\\
+& = & \dint _0 ^1 \dfrac{(1-y)^2}{2}-\dfrac{(1-y)^3}{3}\d{y}
+\\
+& = &  \dfrac{(1-y)^4}{12}-\dfrac{(1-y)^3}{6}\Big| _0 ^1
+\\
+& = & =\dfrac{1}{6}.
+\end{array}$$
+\end{answer}
+\end{pro}
+\begin{pro}
+Consider the solid $S$ in the first octant, bounded by the parabolic
+cylinder $z=2-\dfrac{x^2}{2}$ and the planes $z=0$, $y=x$, and
+$y=0$. Prove that $\dint _S xyz = \dfrac{2}{3}$ first by integrating
+in the order $\d{z}\d{y}\d{x}$, and then by integrating in the order
+$\d{y}\d{x}\d{z}$.
+\end{pro}
+
+\begin{pro}
+ Evaluate the integrals $\dint _R 1\d{V}$ and  $\dint _R x\d{V}$, where $R$ is 
+the
+tetrahedron with vertices at $(0,0,0)$, $(1,1,1)$, $(1,0,0)$, and
+$(0,0,1)$.
+\begin{answer}
+Let $A=(1,1,1)$, $B=(1,0,0)$,  $C=(0,0,1)$, and $O=(0,0,0)$. We have
+four planes passing through each triplet of points:
+$$\begin{array}{lll}P_1: & A, B, C, &  x-y+z=1\\
+P_2: & A, B, O & z=y \\
+P_3: & A,C, O & x=y \\
+P_4: & B, C, O & y = 0. \\
+  \end{array}$$
+Using the order of integration $\d{z}\d{x}\d{y}$, $z$ sweeps from
+$P_2$ to $P_1$, so the limits are $z=y$ to $z=1-x+y$. The projection
+of the solid on the $xy$ plane produces the region bounded by the
+lines $x=0$, $x=1$ and $x=y$ on the first quadrant of the
+$xy$-plane. Thus
+$$\begin{array}{lll} \dint _0 ^1\dint _0 ^{x} \dint _y ^{1-x+y} \d{z}\d{y}\d{x} 
+& = &
+\dint _0 ^1\dint _0 ^{x} (1-x)\d{y}\d{x} \\
+& = & \dint _0 ^1 \left(x-x^2\right)\d{x}\\
+& = & \left(\dfrac{x^2}{2}-\dfrac{x^3}{3}\right)\Big|_0 ^1\\
+& = & \dfrac{1}{6}.
+\end{array}$$
+
+
+\bigskip
+
+
+ We use the same limits of integration as in the previous integral. We have
+$$\begin{array}{lll} \dint _0 ^1\dint _0 ^{x} \dint _y ^{1-x+y}x \d{z}\d{y}\d{x} 
+& = &
+\dint _0 ^1\dint _0 ^{x} (x-x^2)\d{y}\d{x} \\
+& = & \dint _0 ^1 \left(x^2-x^3\right)\d{x}\\
+& = & \left(\dfrac{x^3}{3}-\dfrac{x^4}{4}\right)\Big|_0 ^1\\
+& = & \dfrac{1}{12}.
+\end{array}$$
+
+\end{answer}
+\end{pro}
+
+\begin{pro}
+Compute $\dint _E x\d{V}$   where $E$ is the region in the first
+octant bounded by the plane $y=3z$ and the cylinder $x^2+y^2 = 9$.
+\begin{answer}
+We have
+$$
+\dint _E x\d{V}  = \dint _0 ^3 \dint _0 ^{\sqrt{9-x^2}}\dint _0
+^{y/3}x\d{z}\d{y}\d{x}=\dfrac{27}{8}.
+$$
+\end{answer}
+\end{pro}
+\begin{pro}
+Find $\dint \limits_D \dfrac{\d{V}}{(1+x^2z^2)(1+y^2z^2)}$ where
+$$D=\{(x,y,z)\in \reals^3: 0 \leq x \leq 1, 0 \leq y \leq 1, z \geq 0\}.
+$$\begin{answer} The desired integral is
+$$\begin{array}{lll} \dint_0 ^1 \dint_0 ^1 \dint_0 ^\infty 
+\dfrac{\d{x}\d{y}\d{z}}{(1+x^2z^2)(1+y^2z^2)}
+& = & \dint_0 ^1 \dint_0 ^1 \dint_0 ^\infty
+\dfrac{1}{x^2-y^2}\left(\dfrac{x^2}{1+x^2z^2}-\dfrac{y^2}{1+y^2z^2}\right)\d{x}
+\d{y}\d{z}\\
+& = & \dint_0 ^1 \dint_0 ^1 \dfrac{1}{x^2-y^2}\left(x\arctan (xz) -
+y\arctan(yz)\right)\Bigg|_{z=0} ^{z=\infty}\d{x}\d{y}\\
+& = & \dint_0 ^1 \dint_0 ^1 \dfrac{\pi
+(x-y)}{2(x^2-y^2)}\d{x}\d{y}\\
+& = & \dint_0 ^1 \dint_0 ^1 \dfrac{\pi}{2(x+y)}\d{x}\d{y}\\
+& = & \dfrac{\pi}{2}\dint _0 ^1 \log (y + 1)  - \log y\d{y} \\
+& = & \dfrac{\pi}{2}\cdot( (y + 1)\log (y + 1) - (y + 1) -y\log y + y)\Bigg|_0 ^1 \\
+& = & \pi \log 2.
+\end{array}$$
+\end{answer}
+\end{pro}
+
+ \section{Change of Variables}
+\begin{exa}
+Find $$\dint\limits_R (x + y + z)(x + y - z)(x - y - z) \d{V},
+$$where $R$ is the tetrahedron bounded by the planes $x + y + z =
+0$, $x + y - z= 0$, $x - y - z = 0$, and $2x - z = 1$.
+\end{exa}
+\begin{solu} We make the change of variables $$  u  = x + y + z \implies
+\d{u} = \d{x} + \d{y} + \d{z},$$
+$$  v = x + y - z
+\implies \d{v} = \d{x} + \d{y} - \d{z},$$
+$$  w  = x - y - z
+\implies \d{w} = \d{x} - \d{y} -\d{z}.$$ This gives $$\d{u} \wedge
+\d{v} \wedge \d{w} = -4\d{x} \wedge \d{y} \wedge \d{z}.
+$$ These forms have opposite orientations, so we choose, say,  $$\d{u} \wedge
+\d{w} \wedge \d{v} = 4\d{x} \wedge \d{y} \wedge \d{z}
+$$ which have the same orientation. Also,
+$$ 2x - z = 1 \implies u + v + 2w = 2.$$ The tetrahedron in the
+$xyz$-coordinate frame is mapped into a tetrahedron bounded by $u =
+0$, $v = 0$, $u + v + 2w = 1 $ in the $uvw$-coordinate frame. The
+integral becomes
+$$\frac{1}{4}\dint _0 ^2 \dint _0 ^{1 - v/2} \dint _0 ^{2 - v - 2w} uvw\  \d{u}
+\d{w}  \d{v} = \dfrac{1}{180}. $$
+
+Consider a transformation to cylindrical coordinates $$(x, y, z) =
+(\rho\cos\theta, \rho\sin\theta, z).$$From what we know about polar
+coordinates
+$$\d{x} \wedge \d{y} = \rho \d{\rho}\wedge \d{\theta}.   $$
+Since the wedge product of forms is associative,
+$$\d{x} \wedge \d{y} \wedge \d{z} = \rho \d{\rho}\wedge \d{\theta} \wedge\d{z}.   $$
+\end{solu}
+\begin{exa}
+Find $\dint _R z^2\d{x}\d{y}\d{z}$ if
+$$R = \{(x, y, z)\in\reals^3| x^2 + y^2 \leq 1, 0 \leq z \leq 1\}.$$
+
+\end{exa}
+\begin{solu}  The region of integration is mapped into
+$$\Delta = [0; 2\pi]\times[0; 1]\times[0 ; 1]$$ through a
+cylindrical coordinate change. The integral is therefore
+$$\begin{array}{lll}
+\dint _R f(x, y, z)\d{x}\d{y}\d{z}  & = & \left(\dint _0 ^{2\pi} \
+\d{\theta}\right)\left(\dint _0 ^{1} \rho\ \d{\rho}\right)\left(\dint
+_0 ^{1} z^2\ \d{z}\right)
+\\
+& = & \dfrac{\pi}{3}.
+\end{array}$$
+\end{solu}
+\begin{exa}
+Evaluate $\dint _D (x^2 + y^2)\d{x}\d{y}\d{z}$ over the first octant
+region bounded by the cylinders $x^2 + y^2 =1$ and $x^2 + y^2 = 4$
+and the planes $z = 0, z = 1,$ $x = 0, x = y$.
+\end{exa} \begin{solu} The integral is $$\dint _0 ^1  \dint _{\pi /4}
+^{\pi /2} \dint _1 ^2 \rho^3\d{\rho}\d{\theta}\d{z} =
+\dfrac{15\pi}{16}.
+$$
+\end{solu}
+
+
+\begin{exa}\label{exa:3cylinders}
+Three long cylinders of radius $R$ intersect at right angles. Find
+the volume of their intersection.
+\end{exa}
+\begin{solu} Let $V$ be the desired volume. By symmetry, $V = 2^4V'$, where
+$$V' = \dint _{D'} \d{x} \d{y}  \d{z},$$
+$$D' = \{(x, y, z)\in \reals^3: 0 \leq y \leq x, 0 \leq z, x^2 + y^2 \leq R^2, y^2 + z^2 \leq R^2, z^2 + x^2 \leq R^2\}.$$
+In this case it is easier to integrate with respect to $z$ first.
+Using cylindrical coordinates
+$$\Delta' = \left\{(\theta, \rho, z)\in \left[0;\dfrac{\pi}{4}\right]\times [0; R]\times [0; +\infty[,
+0 \leq z \leq \sqrt{R^2 - \rho^2\cos^2\theta}\right\}.$$ Now,
+$$\begin{array}{lll}
+V' & = & \dint _0 ^{\pi/4}\left(\dint _0 ^R \left( \dint _0 ^{\sqrt{R^2
+- \rho^2\cos^2\theta}} \d{z}\right)\rho \d{\rho}
+\right) \d{\theta} \\
+& = & \dint _0 ^{\pi/4}\left(\dint _0 ^R \rho\sqrt{R^2 -
+\rho^2\cos^2\theta} \d{\rho}
+\right) \d{\theta} \\
+& = & \dint _0 ^{\pi/4}-\dfrac{1}{3\cos^2\theta}\left[ (R^2 -
+\rho^2\cos^2\theta)^{3/2}
+\right] _0 ^R \d{\theta} \\
+& =  & \dfrac{R^3}{3}\dint _0 ^{\pi/4} \dfrac{1 - \sin^3\theta}{\cos^2\theta} \d{\theta} \\
+& \stackrel{=}{u = \cos\theta} &
+\dfrac{R^3}{3}\left([\tan\theta]_0 ^{\pi/4} + \dint _1
+^{\frac{\sqrt{2}}{2}} \dfrac{1 - u^2}{u^2}\d{u}\right) \\
+& = &  \dfrac{R^3}{3}\left(1 - \left[u^{-1} + u\right] _1
+^{\frac{\sqrt{2}}{2}}\right)
+\\
+& = & \dfrac{\sqrt{2} - 1}{\sqrt{2}}R^3.
+\end{array}$$
+Finally
+$$V = 16V' = 8(2 - \sqrt{2})R^3.$$
+\end{solu}
+
+
+
+Consider now a change to spherical coordinates
+$$ x=\rho\cos\theta\sin\phi, \ \  y=\rho\sin\theta\sin\phi, \ \
+z=\rho\cos\phi.
+$$ We have
+
+$$\begin{array}{lll} \d{x} & = &
+\cos\theta\sin\phi\d{\rho} - \rho\sin\theta\sin\phi\d{\theta} +
+\rho\cos\theta\cos\phi\d{\phi},    \\
+ \d{y} & = & \sin\theta\sin\phi\d{\rho} +
+\rho\cos\theta\sin\phi\d{\theta} + \rho\sin\theta\cos\phi\d{\phi},
+\\
+  \d{z} & = & \cos\phi\d{\rho} - \rho\sin\phi\d{\phi}.  \end{array}   $$ This
+gives
+$$\d{x}\wedge\d{y}\wedge\d{z}  = -\rho^2\sin\phi\d{\rho}\wedge\d{\theta}\wedge\d{\phi}.  $$
+From this derivation, the form
+$\d{\rho}\wedge\d{\theta}\wedge\d{\phi}$ is negatively oriented,
+and so we choose
+$$\d{x}\wedge\d{y}\wedge\d{z}  = \rho^2\sin\phi\d{\rho}\wedge\d{\phi}\wedge\d{\theta} $$
+instead.
+
+\begin{exa}
+Let $(a, b, c)\in ]0;+\infty[^3$ be fixed. Find $\dint _R xyz\
+\d{V}$ if
+$$R = \left\{(x, y, z)\in\reals^3:  \dfrac{x^2}{a^2} + \dfrac{y^2}{b^2} +
+\dfrac{z^2}{c^2}
+ \leq 1, x \geq 0, y \geq 0, z \geq 0\right\}.$$
+
+\end{exa}\begin{solu}We use spherical coordinates, where $$(x, y, z) = (a\rho\cos\theta\sin\phi,
+b\rho\sin\theta\sin\phi, c\rho\cos\phi).$$ We have
+$$ \d{x}\wedge\d{y}\wedge\d{z} = abc\rho^2\sin\phi \d{\rho}\wedge\d{\phi}\wedge\d{\rho}. $$ The integration region is mapped into
+$$\Delta = [0 ; 1] \times [0 ; \dfrac{\pi}{2}]\times [0; \dfrac{\pi}{2}].$$
+The integral becomes
+$$ (abc)^2\left(\dint _0 ^{\pi/2}\cos\theta\sin\theta \ \d{\theta}\right)\left(\dint _0 ^{1} \rho^5\ \d{\rho}\right)\left(\dint
+_0 ^{\pi/2} \cos^3\phi\sin\phi\ \d{\phi}\right) \\
+= \dfrac{(abc)^2}{48}.
+$$
+\end{solu}
+ \begin{exa} Let $V = \{(x,y,z)\in\reals^3: x^2 + y^2 + z^2 \leq 9, 1 \leq z \leq
+2\}$. Then  $$\begin{array}{lll} \dint \limits_{V} \d{x}\d{y}\d{z} &
+= & \dint _{0} ^{2\pi}\dint _{\pi/2 - \arcsin 2/3} ^{\pi/2 - \arcsin
+1/3}   \dint _{1/\cos\phi}
+^{2/\cos\phi} \rho^2\sin\phi \ \d{\rho} \d{\phi}\d{\theta}\\
+& = & \dfrac{63\pi}{4}. \end{array}$$
+\end{exa}
+
+
+\section*{\psframebox{Homework}}
+\begin{pro}
+Consider the region ${\cal R}$  below the cone $z=\sqrt{x^2+y^2}$
+and above the paraboloid $z=x^2+y^2$ for $0 \leq z \leq 1$. Set up
+integrals for the volume of this region in Cartesian, cylindrical
+and spherical coordinates. Also, find this volume.
+\begin{answer}Cartesian:
+$$\dint _{-1} ^1\dint _{-\sqrt{1-y^2}} ^{\sqrt{1-y^2}} \dint
+_{x^2+y^2} ^{\sqrt{x^2+y^2}} \d{z}\d{x}\d{y} .$$ Cylindrical:
+$$\dint _{0} ^1\dint _{0} ^{2\pi} \dint _{r^2} ^{r}
+r\d{z}\d{\theta}\d{r} .$$ Spherical: $$\dint _{\pi/4} ^{\pi/2}\dint
+_{0} ^{2\pi} \dint _{0} ^{(\cos \phi)/(\sin \phi)^2} r^2\sin\phi
+\d{r}\d{\theta}\d{\phi} . $$ The volume is $\dfrac{\pi}{3}$.
+\end{answer}
+\end{pro}
+
+\begin{pro}
+Consider the integral $\dint _{{\cal R}} x \d{V}$, where ${\cal R}$
+is the region above the paraboloid $z=x^2+y^2$ and under the sphere
+$x^2+y^2+z^2 =4$. Set up integrals for the volume of this region in
+Cartesian, cylindrical and spherical coordinates. Also, find this
+volume.
+\begin{answer}
+\noindent
+\begin{enumerate}
+\item Since $x^2+y^2\leq z\leq \sqrt{4-x^2-y^2}$, we start our
+integration with the $z$-variable. Observe that if $(x,y,z)$ is on
+the intersection of the surfaces then  $$ z^2+z=4 \implies
+z=\dfrac{-1\pm \sqrt{17}}{2}.
+$$Since $x^2+y^2+z^2 =4 \implies -2 \leq z \leq 2$, we must have
+$z=\dfrac{\sqrt{17}-1}{2}$ only. The projection of the circle of
+intersection of the paraboloid and the sphere onto the $xy$-plane
+satisfies the equation
+$$z^2+z=4 \implies x^2+y^2+(x^2+y^2)^2=4 \implies x^2+y^2=\dfrac{\sqrt{17}-1}{2},  $$a circle of radius
+$\sqrt{\frac{\sqrt{17}-1}{2}}$. The desired integral is thus
+$$\dint _{-\sqrt{\frac{\sqrt{17}-1}{2}}} ^{\sqrt{\frac{\sqrt{17}-1}{2}}} \dint _{-\sqrt{\frac{\sqrt{17}-1}{2}-x^2}}  ^{\sqrt{\frac{\sqrt{17}-1}{2}-x^2}} \dint _{x^2+y^2} ^{\sqrt{4-x^2-y^2}} x\d{z}\d{y}\d{x}.  $$
+\item  The $z$-limits remain the same as in the Cartesian coordinates, but translated into cylindrical coordinates, and so
+$r^2\leq z\leq \sqrt{4-r^2}$. The projection of the intersection
+circle onto the $xy$-plane is again a circle with centre at the
+origin and radius $\sqrt{\frac{\sqrt{17}-1}{2}}$. The desired
+integral
+$$\dint _{0} ^{2\pi} \dint _{0}  ^{\sqrt{\frac{\sqrt{17}-1}{2}}} \dint _{r^2} ^{\sqrt{4-r^2}} r^2\cos \theta \d{z}\d{r}\d{\theta}.  $$
+
+
+\item  Observe that $$ z=x^2+y^2 \implies r\cos \phi=r^2(\cos \theta)^2(\sin\phi)^2+r^2(\sin\theta)^2(\sin\phi)^2 \implies
+r \in \{0, (\csc \phi)(\cot \phi)\}. $$It is clear that the limits
+of the angle $\theta$ are from $\theta =0$ to $\theta =2\pi$. The
+angle $\phi$ starts at $\phi=0$.   Now,
+$$z=r\cos\phi \implies \cos \phi = \dfrac{\dfrac{\sqrt{17}-1}{2}}{2} \implies \phi = \arccos \left(\dfrac{\sqrt{17}-1}{4}\right)$$
+
+The desired integral
+$$\dint _{0} ^{2\pi} \dint _{0}  ^{\arccos \left(\dfrac{\sqrt{17}-1}{4}\right)} \dint _{(\csc \phi)(\cot \phi)} ^{2} r^3\cos \theta\sin ^2 \phi \d{r}\d{\phi}\d{\theta}.  $$
+
+\end{enumerate}
+
+
+Perhaps it is easiest to evaluate the integral using cylindrical
+coordinates. We obtain
+$$\dint _{0} ^{2\pi} \dint _{0}  ^{\sqrt{\dfrac{\sqrt{17}-1}{2}}} \dint _{r^2} ^{\sqrt{4-r^2}} r^2\cos \theta \d{z}\d{r}\d{\theta} = 0,  $$
+a conclusion that is easily reached, since the integrand is an odd
+function of $x$ and the domain of integration is symmetric about the
+origin in $x$.
+\end{answer}
+
+\end{pro}
+\begin{pro}
+Consider the region ${\cal R}$  bounded by the sphere
+$x^2+y^2+z^2=4$ and the plane $z=1$. Set up integrals for the volume
+of this region in Cartesian, cylindrical and spherical coordinates.
+Also, find this volume.
+\begin{answer}Cartesian:
+$$\dint _{-\sqrt{3}} ^{\sqrt{3}}\dint _{-\sqrt{3-y^2}} ^{\sqrt{3-y^2}} \dint
+_{1} ^{\sqrt{4-x^2-y^2}} \d{z}\d{x}\d{y} .$$ Cylindrical:
+$$\dint _{0} ^{\sqrt{3}}\dint _{0} ^{2\pi} \dint _{1} ^{\sqrt{4-r^2}}
+r\d{z}\d{\theta}\d{r} .$$ Spherical: $$\dint _{0} ^{\pi/3}\dint _{0}
+^{2\pi} \dint _{1/\cos\phi} ^{2} r^2\sin\phi \d{r}\d{\theta}\d{\phi}
+.
+$$ The volume is $\dfrac{5\pi}{3}$.
+
+\end{answer}
+\end{pro}
+\begin{pro}
+Prove that the volume enclosed by the ellipsoid
+$$\dfrac{x^2}{a^2}+\dfrac{y^2}{b^2}+\dfrac{z^2}{c^2}=1
+$$is $\dfrac{4\pi abc}{3}$. Here $a>0$, $b>0$, $c>0$.
+\end{pro}
+
+\begin{pro}
+Compute $\dint _E y\d{V}$   where $E$ is the region between the
+cylinders  $x^2+y^2=1$ and  \mbox{$x^2+y^2 = 4$}, below the plane
+$x-z=-2$ and above the $xy$-plane.
+\begin{answer}
+We have
+$$\dint _E y\d{V} = \dint _0 ^{2\pi}\dint _1 ^2 \dint _0 ^{2+r\cos\theta}r^2\sin\theta \d{z}\d{r}\d{\theta} =0. $$
+\end{answer}
+\end{pro}
+\begin{pro}
+Prove that $$ \dint \limits _{\stackrel{x\geq 0, y \geq
+0}{x^2+y^2+z^2\leq R^2}} e^{-\sqrt{x^2+y^2+z^2}}\d{V}=
+\pi\left(2-2e^{-R}-2Re^{-R}-R^2e^{-R}\right).$$
+\end{pro}
+
+\begin{pro}
+Compute $\dint _E y^2z^2\d{V}$   where $E$ is bounded by the
+paraboloid \mbox{$x=1-y^2-z^2$} and the plane $x=0$.
+\begin{answer}
+$\dfrac{\pi}{96}$
+\end{answer}
+\end{pro}
+
+\begin{pro}
+Compute $\dint _E z\sqrt{x^2+y^2+z^2}\d{V}$   where $E$ is is the
+upper solid hemisphere bounded by the $xy$-plane and the sphere of
+radius $1$ about the origin.
+\begin{answer}
+$\dfrac{\pi}{14}$
+\end{answer}
+\end{pro}
+
+
+
+
+\begin{pro}
+Compute the $4$-dimensional integral
+$$\iiiint\limits_{x^2 + y^2 + u^2 + v^2 \leq 1} e^{x^2 + y^2 + u^2 + v^2 } \d{x}\d{y}\d{u}\d{v}.   $$
+\begin{answer} We put $$x = \rho\cos \theta\sin\phi\sin t; y
+=\rho\sin\theta\sin\phi\sin t; u =\rho\cos \phi\sin t; v = \rho\cos
+t.
+$$ Upon using $\sin^2a+\cos^2a = 1$ three times,
+$$\begin{array}{lll}x^2+y^2+u^2+v^2 & =
+&r^2\cos^2\theta\sin^2\phi\sin^2 t+r^2\sin^2\theta\sin^2\phi\sin^2t
++ r^2\cos^2\phi\sin^2 t + r^2\cos^2 t \\
+& = &r^2\cos^2\theta\sin^2\phi+r^2\sin^2\theta\sin^2\phi
++ r^2\cos^2\phi \\
+& = &r^2\cos^2\theta+r^2\sin^2\theta \\
+& = & r^2.
+\end{array}$$
+Now,
+$$\begin{array}{lll}\d{x} & = & \cos\theta\sin\phi\sin t\d{r} -\rho\sin\theta\sin\phi\sin t\d{\theta} + \rho\cos \theta\cos\phi\sin t\d{\phi}
++ \rho\cos \theta\sin\phi\cos t\d{t} \\
+\d{y} & = & \sin\theta\sin\phi\sin t\d{r} +\rho\cos
+\theta\sin\phi\sin t\d{\theta} + \rho\sin\theta\cos\phi\sin
+t\d{\phi} +
+\rho\sin\theta\sin\phi\cos t\d{t} \\
+\d{u} & = & \cos\phi\sin t\d{r} -\rho\sin\phi\sin t\d{\phi} + \rho\cos \phi\cos t\d{t}\\
+\d{v}  & = & \cos t\d{r} - \rho\sin t\d{t}   \end{array}.$$After
+some calculation,
+$$ \d{x}\wedge\d{y}\wedge\d{u}\wedge\d{v} = r^3\sin\phi\sin^2t\d{r}\wedge\d{\phi}\wedge\d{\theta}\wedge\d{t}. $$
+Therefore
+$$\begin{array}{lll}\iiiint\limits_{x^2 + y^2 + u^2 + v^2 \leq 1} e^{x^2 + y^2 + u^2 + v^2 } \d{x}\d{y}\d{u}\d{v} & = &
+\dint _{0} ^{\pi}\dint _0 ^{2\pi}\dint _0 ^\pi\dint _0 ^1
+r^3e^{r^2}\sin\phi\sin^2t\d{r}\d{\phi}\d{\theta}\d{t} \\ & = &
+\left(\dint _{0} ^{1} r^3e^{r^2}\d{r}\right)\left(\dint _{0} ^{2\pi}
+\d{\theta}\right)\left(\dint _{0} ^{\pi}\sin\phi
+\d{\phi}\right)\left(\dint _{0} ^{\pi}\sin^2t
+\d{t}\right)\\
+& = &
+\left(\dfrac{1}{2}\right)(2\pi)(2)\left(\dfrac{\pi}{2}\right) \\
+& = & \pi^2.
+\end{array}$$
+
+\end{answer}
+\end{pro}
+
+\begin{pro}[Putnam Exam 1984] Find $$\dint \limits_R x^1y^9z^8(1 -x-y-z)^4\  \d{x}\d{y}\d{z},   $$
+where $$R = \{(x,y,z)\in\reals^3: x \geq 0, y \geq 0, z \geq 0, x +
+y + z \leq 1\}.
+$$
+
+\begin{answer} We make the change of variables $$u = x + y + z \implies \d{u}
+= \d{x} + \d{y} + \d{z},
+$$
+$$uv = y + z \implies u\d{v} + v\d{u} = \d{y} + \d{z},  $$
+$$uvw = z \implies uv\d{w} + uw\d{v} + vw\d{u} = \d{z}.  $$This gives
+$$x = u(1- v),     $$
+$$y = uv(1- w),$$
+$$z = uvw,  $$
+$$u^2v\ \d{u}\wedge\d{v}\wedge\d{w}
+=\d{x}\wedge\d{y}\wedge\d{z}.$$ To find the limits of integration we
+observe that the limits of integration using $\d{x}\wedge \d{y}
+\wedge \d{z}$ are
+$$ 0 \leq z \leq 1, \ 0 \leq y \leq 1 - z, \ 0 \leq x \leq 1 - y - z.   $$
+This translates into
+$$ 0 \leq uvw \leq 1, \ 0 \leq uv-uvw \leq 1 - uvw, \ 0\leq u-uv \leq 1 - uv+uvw - uvw.   $$
+Thus
+$$ 0 \leq uvw \leq 1, \ 0 \leq uv \leq 1 , \ 0\leq u\leq 1 ,
+$$which finally give
+$$ 0 \leq u \leq 1, \ 0 \leq v \leq 1 , \ 0\leq w\leq 1.
+$$
+The integral sought is then, using the fact that for positive
+integers $m, n$ one has $$\dint _0 ^1 x^m(1-x)^n\ \d{x} =
+\dfrac{m!n!}{(m+n+1)!},   $$ we deduce,
+$$\dint _0 ^1\dint _0 ^1\dint _0 ^1
+u^{20}v^{18}w^8(1-u)^4(1-v)(1-w)^9 \ \d{u}\d{v}\d{w},
+$$which in turn is
+$$
+\left(\dint_0^1 u^{20}(1-u)^4\d{u}\right)\left(\dint_0^1
+v^{18}(1-v)\d{v}\right)\left(\dint_0^1 w^8(1-w)^9\d{w}\right) =
+\frac{1}{265650}\cdot\frac{1}{380}\cdot\frac{1}{437580} $$which is
+$$ =  \frac{1}{44172388260000}.$$
+\end{answer}
+\end{pro}

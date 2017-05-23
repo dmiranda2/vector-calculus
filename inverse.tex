@@ -1,0 +1,275 @@
+\chapter{ Proofs of the Inverse and the Implicit Functions Theorems} \label{sec:proof-inverse-implicit}
+% 
+%   In this section , we  prove the inverse function theorem (which
+% asserts that if a function has invertible differential at a point, then
+% it is locally invertible itself) and the implicit function theorem
+% (which asserts that certain sets are the graphs of functions).
+
+\section{Banach's Fixed Point Theorem}\label{banachs-fixed-point-theorem}
+
+\begin{df}
+ Let $M$  be a  subset  of $\bbR^n$.  A function \(f: M \to M\) is  a
+\negrito{strict contraction} if  there exists a constant
+\(0 \le \lambda < 1\) such that
+
+\[\forall x, y \in M: \dist(f(x), f(y)) \le \lambda \dist(x, y).\]
+\end{df}
+
+
+
+
+\begin{thm}[Banach's Fixed Point]
+ Let $M$  be a closed subset\footnote{Tthe Banach Fixed Point can be proved for a  complete metric space  \((M,d)\)} of $\bbR^n$ and let \(f: M \to M\) be a
+\negrito{strict contraction}.  Then \(f\)
+has a unique \negrito{fixed point}, which means that there is a unique
+\(z \in M\) such that \(f(z) = z\). Furthermore, if we start with a
+completely arbitrary point \(y \in M,\) then the sequence
+
+\[y, f(y), f(f(y)), f(f(f(y))), \ldots\] converges to \(z\).
+\end{thm}
+
+\begin{proof}
+We start  proving the uniqueness of the fixed point. 
+
+Assume  that \(x, y\) are fixed points. Then
+\[\dist(x, y) = \dist(f(x), f(y)) \le \lambda \dist(x, y) \Rightarrow (1 - \lambda) \dist(x, y) = 0.\]
+Since \(0 \le \lambda < 1,\) we have 
+\(\dist(x, y) = 0\) and so $ x = y$. So we have the  the uniqueness of the fixed point. 
+
+
+Now we prove the existence of the fixed point.
+
+Let $z_n$  be the sequence recursively defined  by  \(z_0 := y\) and \(z_{n+1} = f(z_n)\). This sequence 
+\((z_n)_{n \in \mathbb N}\) is nothing else but the sequence
+\(y, f(y), f(f(y)), f(f(f(y))), \ldots\).
+
+Let \(n \ge 0\). We claim that
+
+\[\dist(z_{n+1}, z_n) \le \lambda^n \dist(z_1, z_0).\] Indeed, this follows by
+induction on \(n\). The case \(n=0\) is trivial, and if the claim is
+true for \(n,\) then
+\(\dist(z_{n+2}, z_{n+1}) = \dist(f(z_{n+1}), f(z_n)) \le \lambda \dist(z_{n+1}, z_n) \le \lambda \cdot \lambda^n \dist(z_1, z_0)\).
+
+Hence, by the triangle inequality,
+
+\begin{align}
+\dist(z_{n + m}, z_n) & \le \sum_{j=n+1}^{n+m} \dist(z_j, z_{j-1}) \\
+& \le \sum_{j=n+1}^{n+m} \lambda^{j-1} \dist(z_1, z_0) \\
+& \le \sum_{j=n+1}^\infty \lambda^{j-1} \dist(z_1, z_0) \\
+& = \dist(z_1, z_0) \lambda^n \frac{1}{1 - \lambda}
+\end{align}
+
+We note that the latter expression goes to zero as \(n \to \infty\)
+and so  $z_n$ is a Cauchy sequence. 
+Since $M$ is a  closed subset of $\bbR^n$, the sequence converges to a limit \(z\). This limit  is the
+fixed point:
+
+\[x = \lim_{n \to \infty} z_n = \lim_{n \to \infty} f(z_{n-1}) = f(\lim_{n \to \infty} z_{n-1}) = f(z).\]
+
+\end{proof}
+
+
+
+\begin{lemma}
+Let \(g: \overline{B_r(0)} \to \overline{B_r(0)}\) be  Lipschitz continuous function  with Lipschitz
+constant less or equal \(1/2\) such that \(g(0) = 0\). Then the function
+
+\[f: \overline{B_r(0)} \to \mathbb R^n, f(x) := g(x) + x\] is injective
+and \(B_{r/2}(0) \subseteq f(B_r(0))\).
+\end{lemma}
+
+
+\begin{proof}
+First, we note that for \(y \in B_{r/2}(0)\) the function
+
+\[h: \overline{B_r(0)} \to \mathbb R^n, h(z) := y - g(z)\] is a strict
+contraction. This fact follows from
+
+\[\|y - g(z) - (y - g(z'))\| = \|g(z') - g(z)\| \le \frac{1}{2}\|z - z'\|.\]
+Furthermore, it maps the closed ball  \(\overline{B_r(0)}\) to itself, since for
+\(z \in \overline{B_r(0)}\)
+
+\[\|y - g(z)\| \le \|y\| + \|g(z - 0)\| \le \frac{r}{2} + \frac{1}{2}\|z\| \le r.\]
+Hence, the Banach Fixed Point Theorem is applicable to the function \(h\). Now  the fact that the point \(x\)
+is a fixed point of the function  \(h\) is equivalent to
+
+\[f(x) = y,\] and thus \(B_{r/2}(0) \subseteq f(B_r(0))\) follows from
+the existence of fixed points. Furthermore, if \(f(x) = f(x'),\) then
+
+\[\frac{1}{2} \|x - x'\| \ge \|g(x) - g(x')\| = \|f(x) - x - (f(x') - x')\| = \|x - x'\|\]
+and so \(x = x'\). So  the function is injective.
+\end{proof}
+
+
+\section{The Inverse Function Theorem}\label{the-inverse-function-theorem}
+
+\begin{thm}
+Let \(\vector{f}: \mathbb R^n \to \mathbb R^n\) be a continuously differentiable function  in a neighborhood \(\vector{x}_0 \in \mathbb R^n\)
+such that \(\vector{f}'(\vector{x}_0)\) is invertible. Then there exists an open set
+\(U \subseteq \mathbb R^n\) with \(\vector{x}_0 \in U\) such that \(\vector{f}|_U\) is a
+bijective function with an inverse \(\vector{f}^{-1} : \vector{f}(U) \to U\) which is
+differentiable at \(\vector{x}_0\) and satisfies
+
+\[(\vector{f}^{-1})'(\vector{x}_0) = (\vector{f}'(\vector{x}_0))^{-1}.\]
+\end{thm}
+
+
+\begin{proof}
+We first reduce the analysis  to the case \(\vector{f}(\vector{x}_0) = 0,\) \(\vector{x}_0 = 0\) and
+\(\vector{f}'(\vector{x}_0) = \text{I}\). Indeed, suppose for all those functions the
+theorem holds, and let now \(h\) be an arbitrary function satisfying the
+requirements of the theorem (where the differentiability is given at
+\(\vector{x}_0\)). We set
+
+\[\tilde h(x) := h'(\vector{x}_0)^{-1}(h(\vector{x}_0 - x) - h(\vector{x}_0))\] and obtain that
+\(\tilde h\) is differentiable at \(0\) with differential \(\text{Id}\)
+and \(\tilde h(0) = 0\); the first property follows since we multiply
+both the function and the linear approximation by
+\(h'(\vector{x}_0)^{-1}\) and only shift the function, and the second one is seen
+from inserting \(x = 0\). Hence, we obtain an inverse of \(\tilde h\)
+with it's differential at \(\tilde h(0) = 0,\) and if we now set
+
+\[h^{-1}(y) :=  (\tilde h^{-1} (h'(\vector{x}_0)^{-1}(y - h(\vector{x}_0))) - \vector{x}_0),\] it
+can be seen that \(h^{-1}\) is an inverse of \(h\) with all the required
+properties (which is a bit of a tedious exercise, but involves nothing
+more than the definitions).
+
+Thus let \(\vector{f}\) be a function such that \(\vector{f}(0) = 0,\) \(\vector{f}\) is invertible
+at \(0\) and \(\vector{f}'(0) = \text{Id}\). We define
+
+\[g(x) := \vector{f}(x) - x.\] The differential of this function is zero. Since the function \(g\) is also
+continuously differentiable at a small neighborhood of \(0,\) we find
+\(\delta > 0\) such that
+
+\[\frac{\partial g}{\partial x_j}(x) < \frac{1}{2n^2}\] for all
+\(j \in \{1, \ldots, n\}\) and \(x \in B_\delta(0)\). Since further
+\(g(0) = \vector{f}(0) - 0 = 0,\) the general mean-value theorem and Cauchy's
+inequality imply that for \(k \in \{1, \ldots, n\}\) and
+\(x \in B_\delta(0),\)
+
+\[|g_k(x)| = |\langle x, \frac{\partial g}{\partial x_j}(t_k x) \rangle| \le \|x\| n \frac{1}{2n^2}\]
+for suitable \(t_k \in [0, 1]\). Hence,
+
+\[\|g(x)\| \le |g_1(x)| + \cdots + |g_n(x)| \le \frac{1}{2} \|x\|\]
+and thus, we note that the lemma is
+applicable, and \(\vector{f}\) is a bijection on \(\overline{B_\delta(0)},\)
+whose image is contained within the open set
+\(\overline{B_{\delta/2}(0)}\). So we may pick
+\(U := \vector{f}^{-1}(B_{\delta/2}(0)),\) which is open due to the continuity of
+\(f\).
+
+Thus, the most important part of the theorem is already done. All that
+is left to do is to prove differentiability of \(\vector{f}^{-1}\) at \(0\). Now
+we even prove the slightly stronger claim that the differential of
+\(\vector{f}^{-1}\) at \(\vector{x}_0\) is given by the identity, although this would also
+follow from the chain rule once differentiability is proven.
+
+Note now that the contraction identity for \(g\) implies the following
+bounds on \(\vector{f}\):
+
+\[\frac{1}{2}\|x\| \le \|\vector{f}(x)\| \le \frac{3}{2} \|x\|.\] The second
+bound follows from
+
+\[\|\vector{f}(x)\| \le \|\vector{f}(x) - x\| + \|x\| = \|g(x)\| + \|x\| \le \frac{3}{2} \|x\|,\]
+and the first bound follows from
+
+\[\|\vector{f}(x)\| \ge |\|\vector{f}(x) - x\| - \|x\|| = \left| \|g(x)\| - \|x\| \right| \ge \frac{1}{2} \|x\|.\]
+
+Now for the differentiability at \(0\). We have, by substitution of
+limits (as \(f\) is continuous and \(f(0) = 0\)):
+
+\begin{align}
+\lim_{\mathbf h \to 0} \frac{\|\vector{f}^{-1}(\mathbf h) - \vector{f}^{-1}(0) - \operatorname{Id} (\mathbf h - 0)\|}{\|\mathbf h\|} & = \lim_{\mathbf h \to 0} \frac{\|\vector{f}^{-1}(\vector{f}(\mathbf h)) - \vector{f}(\mathbf h)\|}{\|\vector{f}(\mathbf h)\|} \\
+& = \lim_{\mathbf h \to 0} \frac{\|\mathbf h - f(\mathbf h)\|}{\|f(\mathbf h)\|},
+\end{align}
+where the last expression converges to zero due to the
+differentiability of \(\vector{f}\) at \(0\) with differential the identity, and
+the sandwhich criterion applied to the expressions
+
+\[\frac{\|\mathbf h - \vector{f}(\mathbf h)\|}{\frac{3}{2} \|\mathbf h\|}\] and
+
+\[\frac{\|\mathbf h - f(\mathbf h)\|}{\frac{1}{2} \|\mathbf h\|}.\]
+\end{proof}
+
+\section{The Implicit Function Theorem}\label{the-implicit-function-theorem}
+
+\begin{thm}
+Let \(\vector{f}: \mathbb R^n \to \mathbb R\) be a continuously differentiable
+function, and consider the set
+
+\[S := \{(x_1, \ldots, x_n) \in \mathbb R^n | \vector{f}(x_1, \ldots, x_n) = 0\}.\]
+If we are given some \(y \in S\) such that \(\partial_n \vector{f}(y) \neq 0,\)
+then we find \(U \subseteq \mathbb R^{n-1}\) open with
+\((y_1, \ldots, y_{n-1}) \in U\) and \(g: U \to S\) such that
+
+\[y = g(y_1, \ldots, y_{n-1})\] and
+\(\{(z_1, \ldots, z_{n-1}, g(z_1, \ldots, z_{n-1})) | (z_1, \ldots, z_{n-1}) \in U\} \subseteq S,\)
+% where
+% \(\{(z_1, \ldots, z_{n-1}, g(z_1, \ldots, z_{n-1})) | (z_1, \ldots, z_{n-1}) \in U\}\)
+
+
+Furthermore, \(g\) is a differentiable function.
+\end{thm}
+
+
+\begin{proof}
+ 
+We define a new function
+
+\[F: \mathbb R^n \to \mathbb R^n, F(x_1, \ldots, x_n) := (x_1, \ldots, x_{n-1}, f(x_1, \ldots, x_n)).\]
+The differential of this function looks like this:
+
+\[F'(x) = \begin{pmatrix}
+1 & 0 & \cdots & & 0 \\
+0 & 1 & & & \vdots \\
+\vdots & & \ddots & & \\
+0 & \cdots & 0 & 1 & 0 \\
+\partial_1 f(x) & & \cdots & & \partial_n f(x)
+\end{pmatrix}\] Since we assumed that \(\partial_n f(y) \neq 0,\)
+\(F'(y)\) is invertible, and hence the Inverse Function Theorem implies
+the existence of a small open neighbourhood
+\(\tilde V \subseteq \mathbb R^n\) containing \(y\) such that
+\emph{restricted to that neighbourhood} \(F\) is  invertible, with
+a differentiable inverse \(F^{-1},\) which is itself defined on an open
+set \(\tilde U\) containing \(F(y)\). Now set first
+
+\[U := \{(x_1, \ldots, x_{n-1}) | (x_1, \ldots, x_{n-1}, 0) \in \tilde U \},\]
+) and then
+
+\[g: U \to \mathbb R, g(x_1, \ldots, x_{n-1}) := \pi_n(F^{-1}(x_1, \ldots, x_{n-1}, 0)),\]
+the \(n\)-th component of \(F^{-1}(x_1, \ldots, x_{n-1}, 0)\). We claim
+that \(g\) has the desired properties.
+
+Indeed, we first note that
+\(F^{-1}(x_1, \ldots, x_{n-1}, 0) = (x_1, \ldots, x_{n-1}, g(x_1, \ldots, x_{n-1})),\)
+since applying \(F\) leaves the first \(n-1\) components unchanged, and
+thus we get the identity by observing \(F(F^{-1}(x)) = x\). Let thus
+\((z_1, \ldots, z_{n-1}) \in U\). Then
+
+\begin{align}
+f(z_1, \ldots, z_{n-1}, g(z_1, \ldots, z_{n-1})) & = (\pi_n \circ F)(F^{-1}(z_1, \ldots, z_{n-1}, 0)) \\
+& = \pi_n((F \circ F^{-1})(z_1, \ldots, z_{n-1}, 0)) = 0.
+\end{align} Furthermore, the set
+
+
+
+\[\{(z_1, \ldots, z_{n-1}, g(z_1, \ldots, z_{n-1})) | (z_1, \ldots, z_{n-1}) \in U\} = S \cap \tilde V.\]
+For \(\subseteq,\) we first note that the set on the left hand side is
+in \(S,\) since all points in it are mapped to zero by \(f\). Further,
+
+\[F(z_1, \ldots, z_{n-1}, g(z_1, \ldots, z_{n-1})) = (z_1, \ldots, z_{n-1}, 0) \in \tilde U\]
+and hence \(\subseteq\) is completed when applying \(F^{-1}\). For the
+other direction, let a point \((x_1, \ldots, x_n)\) in
+\(S \cap \tilde V\) be given, apply \(F\) to get
+
+\[F((x_1, \ldots, x_n)) = (x_1, \ldots, x_{n-1}, 0) \in \tilde U\] and
+hence \((x_1, \ldots, x_{n-1}) \in U\); further
+
+\[(x_1, \ldots, x_{n-1}, g(x_1, \ldots, x_{n-1})) = (x_1, \ldots, x_n)\]
+by applying \(F\) to both sides of the equation.
+
+Now \(g\) is automatically differentiable since $g$ is  the component of a
+differentiable function.
+ 
+\end{proof}
+ 

@@ -1,0 +1,119 @@
+\documentclass[11pt,oneside]{book} %
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{amsfonts,amsthm} % For math equations, theorems, symbols, etc
+\usepackage{caption,graphicx}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\usepackage[disable]{todonotes}
+\usepackage[utf8]{inputenc}
+\usepackage{pgfplots}
+\usepackage{overpic}
+\captionsetup{width=0.5\linewidth}
+\newcommand{\hangcaption}{\caption}
+\usepackage[style=numeric,citestyle=numeric,firstinits=true,sorting=nyt,sortcites=true,autopunct=true,babel=hyphen,hyperref=true,abbreviate=false,backref=true]{biblatex}
+\linespread{1.2}
+\input{comandos2}
+\input{structure} 
+\input{teoremas}
+\definecolor{shadecolor}{rgb}{0.851,0.9532,0.9532}
+\definecolor{shadecolorborda}{rgb}{0.0936,0.531,0.593}
+\definecolor{leftbarcolor}{rgb}{0.91,0.91,0.7187}
+\definecolor{exerccolorborda}{rgb}{0.586,0.757,0.886}
+\definecolor{exerccolor}{rgb}{0.816,0.902,0.96}
+\renewcommand{\d}{\mathrm{d}}
+
+\begin{document}
+\Opensolutionfile{multicaca}[multicaca1]
+
+\input{titulo4}
+\makeatletter
+\AddToShipoutPicture{%
+            \setlength{\@tempdimb}{.5\paperwidth}%
+            \setlength{\@tempdimc}{.5\paperheight}%
+            \setlength{\unitlength}{1pt}%
+            \put(\strip@pt\@tempdimb,\strip@pt\@tempdimc){%
+        \makebox(0,0){\rotatebox{45}{\textcolor[gray]{0.97}%
+        {\fontsize{5cm}{5cm}\selectfont{Draft}}}%
+            }%
+}}
+
+%----------------------------------------------------------------------------------------
+%	COPYRIGHT PAGE
+%----------------------------------------------------------------------------------------
+
+\newpage
+~\vfill
+\thispagestyle{empty}
+
+
+%pdf2htmlEX  --split-pages 1 --fit-width 980 --bg-format jpg  --dest-dir vector-tensor-calculus --page-filename vector-tensor-calculus-%d.page main2.pdf
+\noindent
+\begin{quote}
+    Copyright \copyright{}2017\\
+    Permission is granted to copy, distribute and/or modify this document
+    under the terms of the GNU Free Documentation License, Version 1.3
+    or any later version published by the Free Software Foundation;
+    with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+\begin{center}
+ \includegraphics[width=4cm]{./figs/gnu.eps}
+\end{center}
+
+
+    \vspace{0.5cm}
+
+These notes were written  based on and using excerpts from the book
+``Multivariable and Vector Calculus'' by David Santos and  includes  excerpts
+from
+``Vector Calculus'' by Michael Corral, from ``Linear Algebra via Exterior
+Products'' by Sergei Winitzki, ``Linear Algebra'' by David Santos and from ``Introduction to Tensor Calculus'' by Taha Sochi.
+
+    These books are also available  under the terms of the GNU Free Documentation License.
+\end{quote}
+
+\listoftodos[Corrections and Todo Notes]
+
+
+ \input{history}
+\cleardoublepage
+%  \chapter*{Contents}
+\pagestyle{empty} % No headers
+
+\tableofcontents% Print the table of contents itself
+\cleardoublepage% Forces the first chapter to start on an odd page so it's on the right
+\pagestyle{fancy} % Print headers again
+
+
+
+ \part{Differential Vector Calculus}
+ \input{chapter1} %Vectors n
+\input{chapter1b} %topology
+ \input{chapter2} %Differentiation
+  \part{Integral Vector Calculus}
+ \input{chapter3b} %multiple integrals
+ \input{chapter2-inv} %Curves and Surfaces
+ \input{chapter4} %line Integral
+ \input{chapter5b} % surface
+ \part{Tensor Calculus}
+ \input{curv} %curvilinear Coordinates
+\input{chapter6} %Tensor
+\input{chapter7} % Tensores em Coordenadas
+\input{chapter7a} %cAmpos tensoriais
+ \part{Applications of Tensor Calculus}
+
+\input{chapter7b} % Aplicações
+\input{chapter8} %Integration of Forms
+\part{Appendix}
+\appendix
+ \input{inverse} %%%Inverse Function Theorem
+ \input{determinant}
+\Closesolutionfile{multicaca}
+\chapter{Answers and Hints}\addcontentsline{toc}{section}{Answers and Hints}\markright{Answers and Hints}
+{\small \input{multicaca1}}
+\input{gnu}
+\nocite{*}
+\addcontentsline{toc}{chapter}{{References}}
+\printbibliography
+\setlength{\columnsep}{0.75cm}
+\addcontentsline{toc}{chapter}{\textcolor{ocre}{Index}}
+\printindex
+
+\end{document}

@@ -1,0 +1,98 @@
+\thispagestyle{empty}
+
+%\AddToShipoutPicture*{\BackgroundPic}
+\makeatletter
+\makeatother\mbox{}
+
+
+
+{\begin{tikzpicture}[remember picture,overlay]
+  \fill[myblueiii]
+    (current page.north west) rectangle ([xshift=-0.cm, yshift=-26.7cm]current page.north east);
+  \node[
+      fill=mybluei,
+      text width=2\paperwidth,
+      rounded corners=0cm,
+      text depth=4cm,
+      anchor=center,
+      inner sep=0pt] at (current page.north east) (parttop)
+    {\hspace{-4cm}};%
+  \node[
+      anchor=south east,
+      inner sep=0pt,
+      outer sep=0pt] (partnum) at ([xshift=-20pt]parttop.south)
+    {};
+  \node[
+      anchor=south,
+      inner sep=0pt] (partname) at ([yshift=2pt]partnum.south)
+  {\partnamefont };
+  \node[
+      anchor=north east,
+      align=right,
+      inner xsep=0pt] at ([yshift=-0.0cm]partname.east|-partnum.south)
+  {\parbox{1.4\textwidth}{\vspace{0.2cm}\color{ocre}\sffamily\bfseries\Huge\raggedleft \textcolor{ocre}{}}};
+  \end{tikzpicture}%
+  \vspace{1cm}
+  }
+
+
+
+
+
+
+
+
+
+
+
+%\pdfbookmark[1]{Titlepage}{Titlepage}
+{\large
+
+
+ \vspace{-3.4cm}
+
+{ \hspace{2.6cm} \bfseries \fontsize{1.6cm}{1.6em}\selectfont \textcolor{white}{ %\autores
+}} \\
+
+\bigskip
+\vspace{3cm}
+
+
+{ \hspace{-1cm} \bfseries {\fontsize{2.2cm}{2.2em}\selectfont  \textcolor{ocre}{\titulo}} \\
+}
+
+
+{ \hspace{0.5cm} \bfseries {\fontsize{1.5cm}{1.5em}\selectfont  \textcolor{ocre}{\subtitulo}} \\
+}
+
+
+
+\vspace{10.1cm}
+
+\hspace{2cm} \begin{tabular} {cc}
+
+%\parbox{0.3\textwidth}{\includegraphics[width=2.5cm]{graficos/passarosazul.eps}}
+&
+\hspace{-4.6cm}\parbox{0.7\textwidth}{{\textbf{ \large}}
+
+					{\color{ocre}\Large \bfseries
+
+				\universidade \\
+					\lugar\\
+					\versao \\
+					\data\\
+					 }}
+			\end{tabular}}
+
+% 			\vspace{1.59cm}
+%
+% 		\noindent	\hspace{3.2cm}\parbox{0.74\textwidth}{
+% 				{\fontsize{0.35cm}{0.34em} \pagweb \\
+						 \textcolor{myblueii}{Written in \LaTeX{}.}
+
+
+
+
+\vfill
+
+\pagecolor{white}
